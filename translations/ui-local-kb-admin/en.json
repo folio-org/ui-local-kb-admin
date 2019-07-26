@@ -20,6 +20,8 @@
   "prop.started": "Started",
   "prop.status": "Running status",
 
+  "searchInputLabel": "Search jobs",
+
   "org.olf.general.jobs.PackageIngestJob": "Harvester",
   "source": "Source",
 

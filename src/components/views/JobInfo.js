@@ -102,6 +102,7 @@ export default class JobInfo extends React.Component {
 
     return (
       <Pane
+        data-test-job-details
         actionMenu={this.getActionMenu}
         defaultWidth="45%"
         dismissible
