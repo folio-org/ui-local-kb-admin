@@ -10,7 +10,6 @@ const jobsAmount = 10;
 describe('Jobs', () => {
   setupApplication();
   const jobs = new JobsInteractor();
-  //const mcl = new MultiColumnListInteractor();
 
   describe('Jobs render', () => {
     beforeEach(async function () {
@@ -23,10 +22,9 @@ describe('Jobs', () => {
       expect(jobs.isVisible).to.equal(true);
     });
 
-    // TODO: Add this test after the MCL refactor 
-    // it('renders each job instance', () => {
-    //   expect(jobs.instanceList.size).to.equal(jobsAmount);
-    // });
+    it('renders each job instance', () => {
+      expect(jobs.instanceList.size).to.equal(jobsAmount);
+    });
 
     describe('clicking on the first job', function () {
       beforeEach(async function () {

@@ -10,59 +10,160 @@ import setupApplication from '../helpers/setup-application';
 import JobsInteractor from '../interactors/jobs';
 
 setupApplication();
-const endedJobsAmount = 4;
 
-beforeEach(async function () {
-  this.server.createList('job', endedJobsAmount, { status: { value: 'Queued', label: 'Queued' } });
-  this.visit('/local-kb-admin?sort=Name');
-});
-
-describe('Status filter', () => {
+describe('Local kb admin Filters', () => {
   const jobs = new JobsInteractor();
 
-  describe('show ended jobs', () => {
+  describe('status filter tests', () => {
+    const endedJobsAmount = 4;
+    const queuedJobsAmount = 6;
+    const inProgressJobsAmount = 8;
+    const totalJobsAmount = endedJobsAmount + queuedJobsAmount + inProgressJobsAmount;
+
     beforeEach(async function () {
-      await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
-      await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
-      await jobs.runningStatusCheckbox.clickEndedJobCheckbox();
+      await this.server.createList('job', endedJobsAmount, { status: { value: 'ended', label: 'Ended' } });
+      await this.server.createList('job', queuedJobsAmount, { status: { value: 'queued', label: 'Queued' } });
+      await this.server.createList('job', inProgressJobsAmount, { status: { value: 'in_progress', label: 'In progress' } });
+      await this.visit('/local-kb-admin?filters=status.Queued%2Cstatus.In%20progress&sort=started');
+      await jobs.whenCheckboxesLoaded();
     });
 
-    it('should show the list of ended jobs', () => {
-      expect(jobs.isVisible).to.equal(true);
-    });
+    describe('filtering by', () => {
+      describe('in progress jobs', () => {
+        beforeEach(async function () {
+          await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
+        });
+    
+        it('should show all the in progress jobs', () => {
+          expect(jobs.instanceList.size).to.equal(inProgressJobsAmount);
+        });
+      });
+    
+      describe('queued jobs', () => {
+        beforeEach(async function () {
+          await jobs.clickResetAll();
+          await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
+        });
+    
+        it('should show all the queued jobs', () => {
+          expect(jobs.instanceList.size).to.equal(queuedJobsAmount);
+        });
+      });
+    
+      describe('in progress, queued and ended jobs', () => {
+        beforeEach(async function () {
+          await jobs.clickResetAll();
+          await jobs.runningStatusCheckbox.clickEndedJobCheckbox();
+        });
 
-    it('should show right amount of ended jobs', () => {
-      console.log(jobs.instanceList.size,'size');
-      expect(jobs.instanceList.size).to.equal(endedJobsAmount);
+        it('should show all the jobs', () => {
+          expect(jobs.instanceList.size).to.equal(totalJobsAmount);
+        });
+      });
     });
   });
 
-  // describe('show active users', () => {
-  //   beforeEach(async function () {
-  //     await users.activeUserCheckbox.clickActive();
-  //   });
+  describe('result filter tests', () => {
+    const successJobsAmount = 2;
+    const partialSuccessJobsAmount = 3;
+    const failureJobsAmount = 4;
+    const interruptedJobsAmount = 5;
+    const totalJobsAmount = successJobsAmount + partialSuccessJobsAmount + failureJobsAmount + interruptedJobsAmount;
 
-  //   it('should show the list of users', () => {
-  //     expect(users.isVisible).to.equal(true);
-  //   });
+    beforeEach(async function () {
+      await this.server.createList('job', successJobsAmount, { result: { value: 'Success', label: 'Success' } });
+      await this.server.createList('job', partialSuccessJobsAmount, { result: { value: 'Partial success', label: 'Partial success' } });
+      await this.server.createList('job', failureJobsAmount, { result: { value: 'Failure', label: 'Failure' } });
+      await this.server.createList('job', interruptedJobsAmount, { result: { value: 'Interrupted', label: 'Interrupted' } });
+      await this.visit('/local-kb-admin?filters=status.Queued%2Cstatus.In%20progress&sort=started');
+    });
+  
+    describe('filtering by', () => {
+      beforeEach(async function () {
+        await jobs.whenCheckboxesLoaded();
+      });
 
-  //   it('should be proper amount of users', () => {
-  //     expect(users.instances().length).to.equal(activeUsersAmount);
-  //   });
-  // });
+      describe('successful jobs', () => {
+        beforeEach(async function () {
+          await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
+          await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
+          await jobs.resultCheckbox.clickSuccessResultCheckbox();
+        });
+    
+        it('should show all successful jobs', () => {
+          expect(jobs.instanceList.size).to.equal(successJobsAmount);
+        });
+      });
 
-  // describe('show all users', () => {
-  //   beforeEach(async function () {
-  //     await users.activeUserCheckbox.clickActive();
-  //     await users.activeUserCheckbox.clickInactive();
-  //   });
+      describe('partialy successful jobs', () => {
+        beforeEach(async function () {
+          await jobs.clickResetAll();
+        });
 
-  //   it('should show the list of users', () => {
-  //     expect(users.isVisible).to.equal(true);
-  //   });
+        describe('', () => {
+          beforeEach(async function () {
+            await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
+            await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
+            await jobs.resultCheckbox.clickPartialSuccessResultCheckbox();
+          });
 
-  //   it('should be proper amount of users', () => {
-  //     expect(users.instances().length).to.equal(allUsers);
-  //   });
-  // });
+          it('show all the partial successful jobs', () => {
+            expect(jobs.instanceList.size).to.equal(partialSuccessJobsAmount);
+          });
+        })
+      });
+
+      describe('failed jobs', () => {
+        beforeEach(async function () {
+          await jobs.clickResetAll();
+        });
+
+        describe('', () => {
+          beforeEach(async function () {
+            await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
+            await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
+            await jobs.resultCheckbox.clickFailureResultCheckbox();
+          });
+      
+          it('show all the failed jobs', () => {
+            expect(jobs.instanceList.size).to.equal(failureJobsAmount);
+          });
+        })
+      });
+
+      describe('interrupted jobs', () => {
+        beforeEach(async function () {
+          await jobs.clickResetAll();
+        });
+
+        describe('', () => {
+          beforeEach(async function () {
+            await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
+            await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
+            await jobs.resultCheckbox.clickInterruptedResultCheckbox();
+          });
+      
+          it('should show all the interrupted jobs', () => {
+            expect(jobs.instanceList.size).to.equal(interruptedJobsAmount);
+          });
+        })
+      });
+
+      describe('harvester jobs', () => {
+        beforeEach(async function () {
+          await jobs.clickResetAll();
+        });
+
+        describe('', () => {
+          beforeEach(async function () {
+            await jobs.jobTypeCheckbox.clickHarvesterCheckbox();
+          });
+
+          it('show all the harvester jobs', () => {
+            expect(jobs.instanceList.size).to.equal(totalJobsAmount);
+          });
+        })
+      });
+    });   
+  });
 });

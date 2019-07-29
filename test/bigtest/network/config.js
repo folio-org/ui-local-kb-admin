@@ -7,11 +7,10 @@ export default function config() {
     });
     
     this.get('/erm/jobs', (schema, request) => {
-
       const queryString = request.url.split('?')[1];
       const params = parseQueryString(queryString);
       let { filters } = params;
-
+      
       // when there is only one filter and its not an array
       if(filters && !_.isEmpty(filters) && !Array.isArray(filters)) filters = [filters];
 
@@ -22,7 +21,7 @@ export default function config() {
           return { name, value };                  
           })
       }).flat();
-      
+            
       if(parsed) {
         return {
           results: schema.jobs.where((job) => {
