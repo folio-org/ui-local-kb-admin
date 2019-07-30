@@ -108,9 +108,13 @@ export default class JobInfo extends React.Component {
         dismissible
         id="pane-view-job"
         onClose={this.props.onClose}
-        paneTitle={job.name}
+        paneTitle={
+          <span data-test-header-title>
+            {job.name}
+          </span>
+        }
       >
-        <TitleManager record={job.name}>
+        <TitleManager data-test-title-name record={job.name}>
           <div>
             <Row>
               <Col xs={9}>

@@ -15,7 +15,7 @@ describe('Jobs', () => {
     beforeEach(async function () {
       this.server.createList('job', 10);
       this.visit('/local-kb-admin?filters=status.Queued%2Cstatus.In%20progress&sort=started');
-      await jobs.runningStatusCheckbox.clickEndedJobCheckbox()
+      await jobs.runningStatusCheckbox.clickEndedJobCheckbox();
     });
 
     it('shows the list of job items', () => {
@@ -35,5 +35,5 @@ describe('Jobs', () => {
         expect(jobs.instance.isVisible).to.equal(true);
       });
     });
-    })
-})
+  });
+});

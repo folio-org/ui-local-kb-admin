@@ -45,6 +45,7 @@ export default class ErrorLogs extends React.Component {
     const { id, job, onToggle, open } = this.props;
     return (
       <Accordion
+        data-test-errorlog-accordion
         displayWhenClosed={this.renderBadge()}
         displayWhenOpen={this.renderBadge()}
         id={id}
