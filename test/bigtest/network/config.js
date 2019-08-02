@@ -55,4 +55,8 @@ export default function config() {
   this.get('erm/jobs/:id', (schema, request) => {
     return schema.jobs.find(request.params.id).attrs;
   });
+
+  this.delete('erm/jobs/:id', (schema, request) => {
+    return schema.jobs.find(request.params.id).destroy();
+  });
 }
