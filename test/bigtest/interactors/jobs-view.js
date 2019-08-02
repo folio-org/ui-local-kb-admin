@@ -9,6 +9,12 @@ import {
   click = clickable('button');
 }
 
+@interactor class ConfirmationModalInteractor {
+  static defaultScope = '#delete-job-confirmation';
+  cancel = clickable('[data-test-confirmation-modal-cancel-button]');
+  confirm = clickable('[data-test-confirmation-modal-confirm-button]');
+}
+
 @interactor class HeaderDropdownMenu {
   isDeleteButtonPresent = isPresent('#clickable-dropdown-delete-job')
   clickDelete = clickable('#clickable-dropdown-delete-job');
@@ -37,4 +43,5 @@ export default @interactor class JobsView {
 
   headerDropdown = new HeaderDropdown('[class*=paneHeaderCenterInner---] [class*=dropdown---]');
   headerDropdownMenu = new HeaderDropdownMenu();
+  confirmationModal = new ConfirmationModalInteractor();
 }

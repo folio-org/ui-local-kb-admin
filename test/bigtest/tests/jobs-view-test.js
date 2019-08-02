@@ -81,5 +81,46 @@ describe('JobView', () => {
     });
   });
 
-  // TODO: More tests to be added once the delete functionality is added
+  describe('click delete job', () => {
+    beforeEach(async function () {
+      await jobsView.headerDropdown.click();
+      await jobsView.headerDropdownMenu.clickDelete();
+    });
+
+    it('shows delete job confirmation modal', () => {
+      expect(jobsView.confirmationModal.isVisible).to.be.true;
+    });
+  });
+
+  describe('click delete job and cancel confirmation modal', () => {
+    beforeEach(async function () {
+      await jobsView.headerDropdown.click();
+      await jobsView.headerDropdownMenu.clickDelete();
+      await jobsView.confirmationModal.cancel();
+    });
+
+    it('closes delete order confirmation', () => {
+      expect(jobsView.confirmationModal.isPresent).to.be.false;
+    });
+
+    it('shows view job details pane', () => {
+      expect(jobsView.isVisible).to.be.true;
+    });
+  });
+
+  describe('click delete job and confirm', () => {
+    beforeEach(async function () {
+      await jobsView.headerDropdown.click();
+      await jobsView.headerDropdownMenu.clickDelete();
+      await jobsView.confirmationModal.confirm();
+    });
+
+    it('closes delete job confirmation modal', () => {
+      expect(jobsView.confirmationModal.isPresent).to.be.false;
+    });
+
+    it('closes view job details pane', () => {
+      expect(jobsView.isPresent).to.be.false;
+    });
+  });
 });
