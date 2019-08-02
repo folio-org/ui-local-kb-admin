@@ -1,3 +1,24 @@
 {
-    "meta.title": "مشرف قاعدة المعرفة المحلي"
+    "meta.title": "مشرف قاعدة المعرفة المحلي",
+    "errorLog": "سجل الأخطاء",
+    "infoLog": "سجل المعلومات",
+    "job.delete": "حذف الوظيفة",
+    "prop.class": "نوع الوظيفة",
+    "prop.ended": "انتهى",
+    "prop.errors": "أخطاء",
+    "prop.filename": "اسم الملف",
+    "prop.jobName": "اسم الوظيفة",
+    "prop.noOfErrors": "عدد الاخطاء",
+    "prop.outcome": "نتيجة الاستيراد",
+    "prop.result": "النتيجة",
+    "prop.runningStatus": "حالة التشغيل",
+    "prop.started": "بدأ",
+    "prop.status": "حالة التشغيل",
+    "org.olf.general.jobs.PackageIngestJob": "حاصد",
+    "source": "المصدر",
+    "infoLogNo": "لا توجد إخطارات معلومات لهذه الوظيفة",
+    "errorLogNo": "لا يوجد أي أخطاء للتبليغ عنها",
+    "columns.errorLogMessage": "خطأ",
+    "columns.infoLogMessage": "رسالة",
+    "columns.recordNumber": "رقم التسجيلة"
 }

@@ -1,3 +1,24 @@
 {
-    "meta.title": "Administrador de KB local"
+    "meta.title": "Administrador de KB local",
+    "errorLog": "Log de erros",
+    "infoLog": "Log de informações",
+    "job.delete": "Excluir job",
+    "prop.class": "Tipo de job",
+    "prop.ended": "Finalizado",
+    "prop.errors": "Erros",
+    "prop.filename": "Nome do arquivo",
+    "prop.jobName": "Nome do job",
+    "prop.noOfErrors": "Núm. de erros",
+    "prop.outcome": "Resultado de importação",
+    "prop.result": "Resultado",
+    "prop.runningStatus": "Status de execução",
+    "prop.started": "Iniciado",
+    "prop.status": "Status de execução",
+    "org.olf.general.jobs.PackageIngestJob": "Harvester",
+    "source": "Fonte",
+    "infoLogNo": "Não há avisos de informação para este job.",
+    "errorLogNo": "Nenhum erro para reportar.",
+    "columns.errorLogMessage": "Erro",
+    "columns.infoLogMessage": "Mensagem",
+    "columns.recordNumber": "Número do registro"
 }
