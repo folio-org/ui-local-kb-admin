@@ -37,7 +37,7 @@ export default function config() {
 
   this.get('/erm/refdataValues/persistentJob/result', () => {
     return [
-      { 'id':'2c9d81916c044334016c0444659b0032', 'value':'success', 'label':'success' },
+      { 'id':'2c9d81916c044334016c0444659b0032', 'value':'success', 'label':'Success' },
       { 'id':'2c9d81916c044334016c044465a90033', 'value':'partial_success', 'label':'Partial success' },
       { 'id':'2c9d81916c044334016c044465ba0034', 'value':'failure', 'label':'Failure' },
       { 'id':'2c9d81916c044334016c044465c10035', 'value':'interrupted', 'label':'Interrupted' }

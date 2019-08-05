@@ -6,6 +6,7 @@ import {
   clickable,
   isPresent,
   isVisible,
+  text,
 } from '@bigtest/interactor';
 
 @interactor class RunningStatusCheckbox {
@@ -45,6 +46,7 @@ export default @interactor class JobsInteractor {
   resultCheckbox = new ResultCheckbox();
   jobTypeCheckbox = new JobTypeCheckbox();
   instance = scoped('[data-test-job-details]');
+  headerTitle = text('[data-test-header-title]');
 
   whenCheckboxesLoaded() {
     return this.when(() => this.sectionIsPresent);

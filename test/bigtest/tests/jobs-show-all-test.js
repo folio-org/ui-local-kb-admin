@@ -12,8 +12,9 @@ describe('Jobs', () => {
   const jobs = new JobsInteractor();
 
   describe('Jobs render', () => {
+    let jobList;
     beforeEach(async function () {
-      this.server.createList('job', 10);
+      jobList = this.server.createList('job', jobsAmount);
       this.visit('/local-kb-admin?filters=status.Queued%2Cstatus.In%20progress&sort=started');
       await jobs.runningStatusCheckbox.clickEndedJobCheckbox();
     });
@@ -33,6 +34,10 @@ describe('Jobs', () => {
 
       it('loads the job details', function () {
         expect(jobs.instance.isVisible).to.equal(true);
+      });
+
+      it('should display the instance title in the pane header', () => {
+        expect(jobs.headerTitle).to.equal(jobList[0].name);
       });
     });
   });

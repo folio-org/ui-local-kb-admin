@@ -71,10 +71,10 @@ describe('Local kb admin Filters', () => {
     const totalJobsAmount = successJobsAmount + partialSuccessJobsAmount + failureJobsAmount + interruptedJobsAmount;
 
     beforeEach(async function () {
-      this.server.createList('job', successJobsAmount, { result: { value: 'Success', label: 'success' } });
-      this.server.createList('job', partialSuccessJobsAmount, { result: { value: 'Partial success', label: 'Partial success' } });
-      this.server.createList('job', failureJobsAmount, { result: { value: 'Failure', label: 'Failure' } });
-      this.server.createList('job', interruptedJobsAmount, { result: { value: 'Interrupted', label: 'Interrupted' } });
+      this.server.createList('job', successJobsAmount, { result: { value: 'success', label: 'Success' } });
+      this.server.createList('job', partialSuccessJobsAmount, { result: { value: 'partial_success', label: 'Partial success' } });
+      this.server.createList('job', failureJobsAmount, { result: { value: 'failure', label: 'Failure' } });
+      this.server.createList('job', interruptedJobsAmount, { result: { value: 'interrupted', label: 'Interrupted' } });
       await this.visit('/local-kb-admin');
       await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
       await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
@@ -90,73 +90,53 @@ describe('Local kb admin Filters', () => {
         expect(jobs.instanceList.size).to.equal(successJobsAmount);
       });
 
-      describe('partialy successful jobs', () => {
+      describe('partially successful jobs', () => {
         beforeEach(async function () {
           await jobs.clickResetAll();
+          await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
+          await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
+          await jobs.resultCheckbox.clickPartialSuccessResultCheckbox();
         });
 
-        describe('should', () => {
-          beforeEach(async function () {
-            await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
-            await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
-            await jobs.resultCheckbox.clickPartialSuccessResultCheckbox();
-          });
-
-          it('show all the partial successful jobs', () => {
-            expect(jobs.instanceList.size).to.equal(partialSuccessJobsAmount);
-          });
+        it('should show all the partial successful jobs', () => {
+          expect(jobs.instanceList.size).to.equal(partialSuccessJobsAmount);
         });
       });
 
       describe('failed jobs', () => {
         beforeEach(async function () {
           await jobs.clickResetAll();
+          await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
+          await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
+          await jobs.resultCheckbox.clickFailureResultCheckbox();
         });
 
-        describe('should', () => {
-          beforeEach(async function () {
-            await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
-            await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
-            await jobs.resultCheckbox.clickFailureResultCheckbox();
-          });
-
-          it('show all the failed jobs', () => {
-            expect(jobs.instanceList.size).to.equal(failureJobsAmount);
-          });
+        it('should show all the failed jobs', () => {
+          expect(jobs.instanceList.size).to.equal(failureJobsAmount);
         });
       });
 
       describe('interrupted jobs', () => {
         beforeEach(async function () {
           await jobs.clickResetAll();
+          await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
+          await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
+          await jobs.resultCheckbox.clickInterruptedResultCheckbox();
         });
 
-        describe('should', () => {
-          beforeEach(async function () {
-            await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
-            await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
-            await jobs.resultCheckbox.clickInterruptedResultCheckbox();
-          });
-
-          it('should show all the interrupted jobs', () => {
-            expect(jobs.instanceList.size).to.equal(interruptedJobsAmount);
-          });
+        it('should show all the interrupted jobs', () => {
+          expect(jobs.instanceList.size).to.equal(interruptedJobsAmount);
         });
       });
 
       describe('harvester jobs', () => {
         beforeEach(async function () {
           await jobs.clickResetAll();
+          await jobs.jobTypeCheckbox.clickHarvesterCheckbox();
         });
 
-        describe('should', () => {
-          beforeEach(async function () {
-            await jobs.jobTypeCheckbox.clickHarvesterCheckbox();
-          });
-
-          it('show all the harvester jobs', () => {
-            expect(jobs.instanceList.size).to.equal(totalJobsAmount);
-          });
+        it('should show all the harvester jobs', () => {
+          expect(jobs.instanceList.size).to.equal(totalJobsAmount);
         });
       });
     });
