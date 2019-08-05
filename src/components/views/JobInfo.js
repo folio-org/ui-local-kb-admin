@@ -27,6 +27,7 @@ export default class JobInfo extends React.Component {
     }),
     isLoading: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
+    onDelete: PropTypes.func,
   };
 
   state = {
@@ -75,7 +76,7 @@ export default class JobInfo extends React.Component {
     this.setState({ sections });
   }
 
-  getActionMenu = () => {
+  getActionMenu = ({ onToggle }) => {
     const { data: { job } } = this.props;
     const isJobNotInProgress = get(job, 'status.value') !== 'in_progress';
 
@@ -85,6 +86,10 @@ export default class JobInfo extends React.Component {
           buttonStyle="dropdownItem"
           id="clickable-dropdown-delete-job"
           disabled={!isJobNotInProgress}
+          onClick={() => {
+            onToggle();
+            this.props.onDelete();
+          }}
         >
           <Icon icon="trash">
             <FormattedMessage id="ui-local-kb-admin.job.delete" />
