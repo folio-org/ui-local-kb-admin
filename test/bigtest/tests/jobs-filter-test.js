@@ -9,7 +9,6 @@ import { expect } from 'chai';
 import setupApplication from '../helpers/setup-application';
 import JobsInteractor from '../interactors/jobs';
 
-
 describe('Local kb admin Filters', () => {
   setupApplication();
   const jobs = new JobsInteractor();

@@ -92,7 +92,7 @@ describe('JobView', () => {
     });
   });
 
-  describe('click delete job and cancel confirmation modal', () => {
+  describe('click delete job and cancel the confirmation modal', () => {
     beforeEach(async function () {
       await jobsView.headerDropdown.click();
       await jobsView.headerDropdownMenu.clickDelete();
@@ -108,7 +108,7 @@ describe('JobView', () => {
     });
   });
 
-  describe('click delete job and confirm', () => {
+  describe('click delete job and confirm the confirmation modal', () => {
     beforeEach(async function () {
       await jobsView.headerDropdown.click();
       await jobsView.headerDropdownMenu.clickDelete();

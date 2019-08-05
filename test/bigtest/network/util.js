@@ -2,6 +2,7 @@ function decodeQueryParamPart(part) {
   return decodeURIComponent(part.replace(/\+/gm, '%20'));
 }
 
+// function to help parse multiple query parameter with same name correctly
 export default function parseQueryString(queryString) {
   const pairs = queryString.split('&'),
     queryParams = {};
