@@ -82,6 +82,9 @@ describe('Local kb admin Filters', () => {
 
     describe('filtering by', () => {
       beforeEach(async function () {
+        await jobs.clickResetAll();
+        await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
+        await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
         await jobs.resultCheckbox.clickSuccessResultCheckbox();
       });
 
