@@ -5,6 +5,7 @@
   "infoLog": "Info log",
   "infoLogNo": "No information notices for this job.",
   "errorLogNo": "No errors to report.",
+  "loading": "Loading...",
 
   "job.delete": "Delete job",
 
