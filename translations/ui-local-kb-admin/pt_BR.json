@@ -20,5 +20,9 @@
     "errorLogNo": "Nenhum erro para reportar.",
     "columns.errorLogMessage": "Erro",
     "columns.infoLogMessage": "Mensagem",
-    "columns.recordNumber": "Número do registro"
+    "columns.recordNumber": "Número do registro",
+    "job.delete.confirmLabel": "Excluir",
+    "job.delete.heading": "Excluir {name}?",
+    "job.delete.message": "Excluir job",
+    "job.delete.success": "O job {name} foi excluído com sucesso"
 }
