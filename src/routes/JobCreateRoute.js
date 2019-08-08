@@ -1,10 +1,8 @@
 import React from 'react';
 import compose from 'compose-function';
 import PropTypes from 'prop-types';
-
 import { stripesConnect } from '@folio/stripes/core';
 import withFileHandlers from './components/withFileHandlers';
-
 import View from '../components/views/JobForm';
 
 class JobCreateRoute extends React.Component {
