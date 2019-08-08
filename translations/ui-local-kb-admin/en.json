@@ -13,6 +13,9 @@
   "job.delete.message": "Delete job?",
   "job.delete.success": "The job {name} was successfully deleted",
 
+  "job.newJob": "New job",
+  "job.close": "Close job",
+
   "prop.class": "Job type",
   "prop.ended": "Ended",
   "prop.errors": "Errors",

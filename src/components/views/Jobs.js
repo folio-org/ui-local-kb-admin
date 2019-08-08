@@ -144,6 +144,26 @@ export default class Jobs extends React.Component {
     );
   }
 
+  renderResultsLastMenu() {
+    return (
+      <PaneMenu>
+        <FormattedMessage id="ui-local-kb-admin.job.createJob">
+          {ariaLabel => (
+            <Button
+              aria-label={ariaLabel}
+              buttonStyle="primary"
+              id="clickable-new-job"
+              marginBottom0
+              to={`local-kb-admin/create${this.props.searchString}`}
+            >
+              <FormattedMessage id="stripes-smart-components.new" />
+            </Button>
+          )}
+        </FormattedMessage>
+      </PaneMenu>
+    );
+  }
+
   renderResultsPaneSubtitle = (source) => {
     if (source && source.loaded()) {
       const count = source ? source.totalCount() : 0;
@@ -259,6 +279,7 @@ export default class Jobs extends React.Component {
                     appIcon={<AppIcon app="local-kb-admin" />}
                     defaultWidth="fill"
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
+                    lastMenu={this.renderResultsLastMenu()}
                     padContent={false}
                     paneTitle={<FormattedMessage id="ui-local-kb-admin.meta.title" />}
                     paneSub={this.renderResultsPaneSubtitle(source)}
