@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'redux-form';
-
 import { FileUploaderField } from '@folio/stripes-erm-components';
 import { AppIcon, TitleManager } from '@folio/stripes/core';
 import stripesForm from '@folio/stripes/form';
@@ -28,16 +27,6 @@ class JobForm extends React.Component {
     pristine: PropTypes.bool,
     submitting: PropTypes.bool,
   }
-
-  // validateDocIsSpecified = (value, allValues, props, fieldName) => {
-  //   const index = parseInt(/\[([0-9]*)\]/.exec(fieldName)[1], 10);
-  //   const { fileUpload, location, name, url } = get(allValues, [this.props.name, index], {});
-  //   if (name && (!fileUpload && !location && !url)) {
-  //     return <FormattedMessage id="stripes-erm-components.doc.error.docsMustHaveLocationOrURL" />;
-  //   }
-
-  //   return undefined;
-  // }
 
   renderFirstMenu() {
     return (
