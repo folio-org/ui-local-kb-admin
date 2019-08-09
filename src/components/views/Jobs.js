@@ -154,7 +154,7 @@ export default class Jobs extends React.Component {
               buttonStyle="primary"
               id="clickable-new-job"
               marginBottom0
-              to={`local-kb-admin/create${this.props.searchString}`}
+              to={`/local-kb-admin/create${this.props.searchString}`}
             >
               <FormattedMessage id="stripes-smart-components.new" />
             </Button>
