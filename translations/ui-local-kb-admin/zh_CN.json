@@ -20,5 +20,9 @@
     "errorLogNo": "No errors to report.",
     "columns.errorLogMessage": "Error",
     "columns.infoLogMessage": "Message",
-    "columns.recordNumber": "Record number"
+    "columns.recordNumber": "Record number",
+    "job.delete.confirmLabel": "Delete",
+    "job.delete.heading": "Delete {name}?",
+    "job.delete.message": "Delete job?",
+    "job.delete.success": "The job {name} was successfully deleted"
 }

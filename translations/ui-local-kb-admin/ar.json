@@ -20,5 +20,9 @@
     "errorLogNo": "لا يوجد أي أخطاء للتبليغ عنها",
     "columns.errorLogMessage": "خطأ",
     "columns.infoLogMessage": "رسالة",
-    "columns.recordNumber": "رقم التسجيلة"
+    "columns.recordNumber": "رقم التسجيلة",
+    "job.delete.confirmLabel": "حذف",
+    "job.delete.heading": "حذف {name}؟",
+    "job.delete.message": "حذف الوظيفة؟",
+    "job.delete.success": "تم حذف الوظيفة {name} بنجاح"
 }
