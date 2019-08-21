@@ -173,7 +173,7 @@ export default class Jobs extends React.Component {
       <div data-test-localkbadmin ref={contentRef}>
         <SearchAndSortQuery
           initialFilterState={{ status: ['Queued', 'In progress'] }}
-          initialSortState={{ sort: 'started' }}
+          initialSortState={{ sort: '-started' }}
           initialSearchState={{ query: '' }}
           queryGetter={queryGetter}
           querySetter={querySetter}
