@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Switch from 'react-router-dom/Switch';
 import { Route } from '@folio/stripes/core';
-import { Settings } from '@folio/stripes/smart-components';
+import Settings from './settings';
 
 import JobCreateRoute from './routes/JobCreateRoute';
 import JobsRoute from './routes/JobsRoute';

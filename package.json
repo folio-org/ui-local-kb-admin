@@ -1,6 +1,6 @@
 {
   "name": "@folio/local-kb-admin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "ERM KB Administration for FOLIO with Stripes",
   "main": "src/index.js",
   "publishConfig": {
@@ -22,31 +22,35 @@
     "@bigtest/mocha": "^0.5.2",
     "@bigtest/react": "^0.1.2",
     "@folio/eslint-config-stripes": "^3.2.1",
-    "@folio/stripes": "^2.0.0",
+    "@folio/stripes": "^2.9.0",
     "@folio/stripes-cli": "^1.8.0",
     "babel-eslint": "^9.0.0",
     "babel-polyfill": "^6.26.0",
     "chai": "^4.2.0",
     "eslint": "^5.5.0",
     "mocha": "^6.2.0",
-    "react": "~16.6.3",
-    "react-dom": "~16.6.3",
-    "react-redux": "~5.1.1",
-    "redux": "~3.7.2",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
+    "react-redux": "^5.1.0",
+    "redux": "^3.7.0",
     "sinon": "^7.3.2"
   },
   "dependencies": {
     "@folio/stripes-erm-components": "^1.4.0",
     "compose-function": "^3.0.3",
+    "final-form": "^4.18.5",
+    "final-form-arrays": "^3.0.1",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.0",
     "query-string": "^6.6.0",
+    "react-final-form": "^6.3.0",
+    "react-final-form-arrays": "^3.1.1",
     "react-intl": "^2.4.0",
     "react-router-dom": "^4.1.1",
     "redux-form": "^7.0.3"
   },
   "peerDependencies": {
-    "@folio/stripes": "^2.0.0",
+    "@folio/stripes": "^2.9.0",
     "react": "*",
     "react-dom": "*",
     "react-redux": "*",
@@ -70,7 +74,16 @@
         "permissionName": "module.local-kb-admin.enabled",
         "displayName": "UI: ui-local-kb-admin module is enabled",
         "visible": true
+      },
+      {
+        "permissionName": "settings.local-kb-admin.enabled",
+        "displayName": "Settings (Local KB Admin): display list of settings pages",
+        "visible": true,
+        "subPermissions": [
+          "settings.enabled"
+        ]
       }
+
     ],
     "icons": [
       {
