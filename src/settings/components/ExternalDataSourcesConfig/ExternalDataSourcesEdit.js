@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { Card, Checkbox, Col, Layout, Row, Select, TextArea, TextField } from '@folio/stripes/components';
-import { required } from '../../../util/validators';
+import { isURLValid, required } from '../../../util/validators';
 
 export default class ExternalDataSourcesEdit extends React.Component {
   static propTypes = {
@@ -29,9 +29,9 @@ export default class ExternalDataSourcesEdit extends React.Component {
         headerStart={(
           <strong>
             {value.id ?
-              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.editExternalKb" />
+              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.editExternalDataSource" />
               :
-              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.newExternalKb" />}
+              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.newExternalDataSource" />}
           </strong>
         )}
         headerEnd={actionButtons}
@@ -78,6 +78,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
           component={TextField}
           label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.uri" />}
           name={`${name}.uri`}
+          validate={isURLValid}
         />
         <Layout className="padding-bottom-gutter">
           <Row>

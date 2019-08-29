@@ -84,6 +84,7 @@ export default class ExternalDataSourcesFields extends React.Component {
             <FormattedMessage id="stripes-core.button.cancel" />
           </Button>
           <Button
+            buttonStyle="primary"
             data-test-external-data-source-save
             disabled={meta.invalid || meta.pristine || meta.submitting}
             marginBottom0

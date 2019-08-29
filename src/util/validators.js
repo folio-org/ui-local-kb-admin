@@ -5,6 +5,13 @@ const required = value => (
   value === undefined ? <FormattedMessage id="stripes-core.label.missingRequiredField" /> : undefined
 );
 
-export {
-  required, // eslint-disable-line import/prefer-default-export
+const isURLValid = (value) => {
+  const REGEXP_URL = new RegExp('^$|([Hh][Tt][Tt][Pp]|[Ff][Tt][Pp])([Ss])?://.+$');
+  const isTrue = REGEXP_URL.test(value);
+
+  if (value === undefined || isTrue) return undefined;
+
+  return <FormattedMessage id="ui-local-kb-admin.valid.isURLValid" />;
 };
+
+export { isURLValid, required };

@@ -26,7 +26,7 @@ export default class ExternalDataSourcesView extends React.Component {
     return (
       <Card
         data-test-external-data-source-view
-        headerStart={<strong><FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.externalKb" /></strong>}
+        headerStart={<strong><FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.externalDataSource" /></strong>}
         headerEnd={actionButtons}
       >
         <Row>
