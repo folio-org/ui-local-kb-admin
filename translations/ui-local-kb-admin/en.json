@@ -32,6 +32,8 @@
   "searchInputLabel": "Search jobs",
 
   "org.olf.general.jobs.PackageIngestJob": "Harvester",
+  "org.olf.general.jobs.PackageImportJob": "File import",
+
   "source": "Source",
 
   "columns.errorLogMessage": "Error",

@@ -27,7 +27,10 @@ export default class JobFilters extends React.Component {
   state = {
     status: [],
     result: [],
-    class: [{ value: 'Harvester', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageIngestJob" /> }],
+    class: [
+      { value: 'Harvester', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageIngestJob" /> },
+      { value: 'File import', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageImportJob" /> }
+    ],
   }
 
   static getDerivedStateFromProps(props, state) {

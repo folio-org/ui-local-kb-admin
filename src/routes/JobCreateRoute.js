@@ -9,7 +9,7 @@ class JobCreateRoute extends React.Component {
   static manifest = Object.freeze({
     jobs: {
       type: 'okapi',
-      path: 'erm/jobs',
+      path: 'erm/jobs/packageImport',
       fetch: false,
       shouldRefresh: () => false,
     },

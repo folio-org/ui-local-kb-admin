@@ -83,7 +83,7 @@ class JobForm extends React.Component {
                       data-test-document-field-file
                       id="fileUploadId"
                       label={<FormattedMessage id="stripes-erm-components.doc.file" />}
-                      name="fileUploadName"
+                      name="fileUpload"
                       onDownloadFile={onDownloadFile}
                       onUploadFile={onUploadFile}
                     />

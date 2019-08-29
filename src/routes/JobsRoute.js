@@ -24,7 +24,10 @@ class JobsRoute extends React.Component {
         searchKey: 'name',
         filterConfig: [{
           name: 'class',
-          values: [{ name: 'Harvester', value: 'org.olf.general.jobs.PackageIngestJob' }],
+          values: [
+            { name: 'Harvester', value: 'org.olf.general.jobs.PackageIngestJob' },
+            { name: 'File import', value: 'org.olf.general.jobs.PackageImportJob' }
+          ],
         }],
       })
     },
