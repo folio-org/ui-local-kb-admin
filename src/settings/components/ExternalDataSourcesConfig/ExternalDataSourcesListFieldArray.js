@@ -17,6 +17,10 @@ export default class ExternalDataSourcesListFieldArray extends React.Component {
     onSave: PropTypes.func.isRequired,
   }
 
+  state = {
+    disableNewButton: false,
+  }
+
   defaultValues = {
     active: false,
     activationEnabled: false,
@@ -33,15 +37,21 @@ export default class ExternalDataSourcesListFieldArray extends React.Component {
       onDelete(externalkb);
     } else {
       fields.remove(index);
+      this.setState({ disableNewButton: false });
     }
   }
 
   handleNew = () => {
     this.props.fields.unshift(this.defaultValues);
+    this.setState({ disableNewButton: true });
   }
 
   handleSave = (index) => {
     const externalkb = this.props.fields.value[index];
+
+    if (!externalkb.id) {
+      this.setState({ disableNewButton: false });
+    }
     return this.props.onSave(externalkb);
   }
 
@@ -51,7 +61,12 @@ export default class ExternalDataSourcesListFieldArray extends React.Component {
       <div>
         <Row end="sm">
           <Col>
-            <Button data-test-external-data-source-new onClick={this.handleNew}>
+            <Button
+              data-test-external-data-source-new
+              buttonStyle="primary"
+              disabled={this.state.disableNewButton}
+              onClick={this.handleNew}
+            >
               <FormattedMessage id="stripes-components.button.new" />
             </Button>
           </Col>
@@ -61,7 +76,7 @@ export default class ExternalDataSourcesListFieldArray extends React.Component {
             <Field
               component={ExternalDataSourcesFields}
               isEqual={isEqual}
-              key={externalkb.id || i}
+              key={externalkb.id || 'new'}
               mutators={mutators}
               name={`${fields.name}[${i}]`}
               onDelete={() => this.handleDelete(i)}
