@@ -66,6 +66,7 @@ export default class ExternalDataSourcesListFieldArray extends React.Component {
               name={`${fields.name}[${i}]`}
               onDelete={() => this.handleDelete(i)}
               onSave={() => this.handleSave(i)}
+              validate={() => { }}
             />
           ))
         }

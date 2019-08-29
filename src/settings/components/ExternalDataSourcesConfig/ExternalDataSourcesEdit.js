@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
-import { Card, Checkbox, Col, Layout, Row, Select, TextArea, TextField } from '@folio/stripes/components';
+import { Button, Card, Checkbox, Col, Layout, Row, Select, TextArea, TextField } from '@folio/stripes/components';
 import { isURLValid, required } from '../../../util/validators';
 
 export default class ExternalDataSourcesEdit extends React.Component {
   static propTypes = {
-    actionButtons: PropTypes.func,
     input: PropTypes.shape({
       name: PropTypes.string.isRequired,
       value: PropTypes.shape({
@@ -18,11 +17,19 @@ export default class ExternalDataSourcesEdit extends React.Component {
       invalid: PropTypes.bool,
       pristine: PropTypes.bool,
       submitting: PropTypes.bool,
-    })
+    }),
+    onCancel: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
   }
 
   render() {
-    const { actionButtons, input: { value, name } } = this.props;
+    const {
+      input: { value, name },
+      meta,
+      onCancel,
+      onSave,
+    } = this.props;
+
     return (
       <Card
         data-test-external-data-source-edit
@@ -34,7 +41,26 @@ export default class ExternalDataSourcesEdit extends React.Component {
               <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.newExternalDataSource" />}
           </strong>
         )}
-        headerEnd={actionButtons}
+        headerEnd={(
+          <span>
+            <Button
+              data-test-external-data-source-cancel
+              marginBottom0
+              onClick={onCancel}
+            >
+              <FormattedMessage id="stripes-core.button.cancel" />
+            </Button>
+            <Button
+              buttonStyle="primary"
+              data-test-external-data-source-save
+              disabled={meta.invalid || meta.pristine || meta.submitting}
+              marginBottom0
+              onClick={onSave}
+            >
+              <FormattedMessage id="stripes-core.button.save" />
+            </Button>
+          </span>
+        )}
       >
         <Row>
           <Col xs={4}>
