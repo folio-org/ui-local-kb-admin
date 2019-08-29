@@ -5,13 +5,17 @@ const required = value => (
   value === undefined ? <FormattedMessage id="stripes-core.label.missingRequiredField" /> : undefined
 );
 
-const isURLValid = (value) => {
-  const REGEXP_URL = new RegExp('^$|([Hh][Tt][Tt][Pp]|[Ff][Tt][Pp])([Ss])?://.+$');
-  const isTrue = REGEXP_URL.test(value);
+const validateURLIsValid = (value) => {
+  if (value) {
+    try {
+      // Test if the URL is valid
+      new URL(value); // eslint-disable-line no-new
+    } catch (_) {
+      return <FormattedMessage id="stripes-erm-components.doc.error.invalidURL" />;
+    }
+  }
 
-  if (value === undefined || isTrue) return undefined;
-
-  return <FormattedMessage id="ui-local-kb-admin.valid.isURLValid" />;
+  return undefined;
 };
 
-export { isURLValid, required };
+export { validateURLIsValid, required };

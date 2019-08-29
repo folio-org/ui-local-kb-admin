@@ -63,5 +63,5 @@
   "yes": "Yes",
   "no": "No",
 
-  "valid.isURLValid": "Must be a valid http or https URI"
+  "valid.isURLValid": "Please enter a valid URL (including \"http\" or \"https\")."
 }
