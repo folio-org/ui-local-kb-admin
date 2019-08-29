@@ -25,6 +25,7 @@ export default class LocalKbAdminSettings extends React.Component {
     return (
       <Settings
         {...this.props}
+        navPaneWidth="20%"
         paneTitle={<FormattedMessage id="ui-local-kb-admin.meta.title" />}
         sections={this.sections}
       />
