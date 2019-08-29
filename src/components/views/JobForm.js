@@ -65,7 +65,7 @@ class JobForm extends React.Component {
     const { handlers: { onDownloadFile, onUploadFile } } = this.props;
     return (
       <Paneset>
-        <FormattedMessage id="ui-agreements.create">
+        <FormattedMessage id="ui-local-kb-admin.create">
           {create => (
             <Pane
               appIcon={<AppIcon app="local-kb-admin" />}
