@@ -78,7 +78,7 @@ export default class ExternalDataSourcesEdit extends React.Component {
               component={Select}
               data-test-external-data-source-type-edit
               dataOptions={[
-                { value: 'org.olf.kb.adapters.EbscoKBAdapter', label: 'org.olf.kb.adapters.EbscoKBAdapter' }
+                { value: 'org.olf.kb.adapters.GOKbOAIAdapter', label: 'org.olf.kb.adapters.GOKbOAIAdapter' }
               ]}
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.type" />}
               name={`${name}.type`}

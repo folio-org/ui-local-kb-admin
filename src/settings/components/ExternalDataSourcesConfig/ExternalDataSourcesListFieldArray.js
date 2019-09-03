@@ -26,7 +26,7 @@ export default class ExternalDataSourcesListFieldArray extends React.Component {
     activationEnabled: false,
     rectype: 1,
     supportsHarvesting: true,
-    type: 'org.olf.kb.adapters.EbscoKBAdapter',
+    type: 'org.olf.kb.adapters.GOKbOAIAdapter',
   }
 
   handleDelete = (index) => {
