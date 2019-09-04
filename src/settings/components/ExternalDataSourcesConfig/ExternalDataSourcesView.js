@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { get } from 'lodash';
-import { Card, Col, Row, KeyValue, Layout } from '@folio/stripes/components';
+import { Button, Card, Col, Row, KeyValue, Layout } from '@folio/stripes/components';
 
 export default class ExternalDataSourcesView extends React.Component {
   static propTypes = {
-    actionButtons: PropTypes.func,
     input: PropTypes.shape({
       name: PropTypes.string.isRequired,
       value: PropTypes.shape({
@@ -17,17 +16,41 @@ export default class ExternalDataSourcesView extends React.Component {
       invalid: PropTypes.bool,
       pristine: PropTypes.bool,
       submitting: PropTypes.bool,
-    })
+    }),
+    onDelete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
   }
 
   render() {
-    const { actionButtons, input: { value } } = this.props;
+    const {
+      input: { value },
+      onDelete,
+      onEdit
+    } = this.props;
 
     return (
       <Card
         data-test-external-data-source-view
-        headerStart={<strong><FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.externalKb" /></strong>}
-        headerEnd={actionButtons}
+        headerStart={<strong><FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.externalDataSource" /></strong>}
+        headerEnd={(
+          <span>
+            <Button
+              buttonStyle="danger"
+              data-test-external-data-source-delete
+              marginBottom0
+              onClick={onDelete}
+            >
+              <FormattedMessage id="stripes-core.button.delete" />
+            </Button>
+            <Button
+              marginBottom0
+              data-test-external-data-source-edit
+              onClick={onEdit}
+            >
+              <FormattedMessage id="stripes-core.button.edit" />
+            </Button>
+          </span>
+        )}
       >
         <Row>
           <Col xs={3}>

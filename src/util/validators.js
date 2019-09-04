@@ -5,6 +5,17 @@ const required = value => (
   value === undefined ? <FormattedMessage id="stripes-core.label.missingRequiredField" /> : undefined
 );
 
-export {
-  required, // eslint-disable-line import/prefer-default-export
+const validateURLIsValid = (value) => {
+  if (value) {
+    try {
+      // Test if the URL is valid
+      new URL(value); // eslint-disable-line no-new
+    } catch (_) {
+      return <FormattedMessage id="stripes-erm-components.doc.error.invalidURL" />;
+    }
+  }
+
+  return undefined;
 };
+
+export { validateURLIsValid, required };
