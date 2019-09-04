@@ -17,7 +17,7 @@ describe('ExternalDataSources', () => {
     fullPrefix: 'test fullprefix',
     listPrefix: 'test listPrefix',
     principal: 'test principal',
-    type: 'org.olf.kb.adapters.EbscoKBAdapter',
+    type: 'org.olf.kb.adapters.GOKbOAIAdapter',
     uri: 'http://abcd.com',
     supportsHarvesting: true,
   };
@@ -137,7 +137,7 @@ describe('ExternalDataSources', () => {
 
   describe('Creating, editing and cancelling data source', () => {
     const name = 'aa';
-    const type = 'org.olf.kb.adapters.EbscoKBAdapter';
+    const type = 'org.olf.kb.adapters.GOKbOAIAdapter';
     const recordType = 'Package';
     const isActive = true;
     const supportsHarvesting = false;

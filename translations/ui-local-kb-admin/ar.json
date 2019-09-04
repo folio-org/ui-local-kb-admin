@@ -31,9 +31,6 @@
     "settings.externalDataSources": "مصادر البيانات الخارجية",
     "settings.general": "عام",
     "settings.externalDataSources.sourceCount": "{count, number} {count, plural, one {مصدر بيانات خارجي} other {مصادر بيانات خارجية}}",
-    "settings.externalDataSources.externalKb": "قاعدة معرفة خارجية",
-    "settings.externalDataSources.editExternalKb": "تحرير قاعدة المعرفة الخارجية",
-    "settings.externalDataSources.newExternalKb": "قاعدة معرفة خارجية جديدة",
     "settings.externalDataSources.name": "الاسم",
     "settings.externalDataSources.type": "النوع",
     "settings.externalDataSources.recordType": "نوع التسجيلة",
@@ -51,5 +48,9 @@
     "settings.externalDataSources.callout.delete.success": "تم حذف مصدر البيانات الخارجي بنجاح",
     "settings.externalDataSources.callout.delete.error": "حدث خطأ أثناء حذف مصدر البيانات الخارجي.{error}",
     "yes": "نعم",
-    "no": "لا"
+    "no": "لا",
+    "settings.externalDataSources.externalDataSource": "مصدر بيانات خارجي",
+    "settings.externalDataSources.editExternalDataSource": "تحرير مصدر البيانات الخارجي",
+    "settings.externalDataSources.newExternalDataSource": "مصدر بيانات خارجي جديد",
+    "valid.isURLValid": "يرجى إدخال عنوان URL صالح (متضمنًا \"http\" أو\"https\")"
 }

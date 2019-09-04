@@ -28,12 +28,9 @@
     "loading": "Loading...",
     "searchInputLabel": "Search jobs",
     "section.externalDataSources": "External data sources",
-    "settings.externalDataSources": "External Data Sources",
+    "settings.externalDataSources": "External data sources",
     "settings.general": "General",
     "settings.externalDataSources.sourceCount": "{count, number} {count, plural, one {external data source} other {external data sources}}",
-    "settings.externalDataSources.externalKb": "External Kb",
-    "settings.externalDataSources.editExternalKb": "Edit External Kb",
-    "settings.externalDataSources.newExternalKb": "New External Kb",
     "settings.externalDataSources.name": "Name",
     "settings.externalDataSources.type": "Type",
     "settings.externalDataSources.recordType": "Record type",
@@ -51,5 +48,9 @@
     "settings.externalDataSources.callout.delete.success": "External data source successfully deleted.",
     "settings.externalDataSources.callout.delete.error": "There was an error deleting the external data source.{error}",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "settings.externalDataSources.externalDataSource": "External data source",
+    "settings.externalDataSources.editExternalDataSource": "Edit external data source",
+    "settings.externalDataSources.newExternalDataSource": "New external data source",
+    "valid.isURLValid": "Please enter a valid URL (including \"http\" or \"https\")."
 }

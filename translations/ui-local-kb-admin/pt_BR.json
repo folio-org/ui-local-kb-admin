@@ -31,9 +31,6 @@
     "settings.externalDataSources": "Fontes de dados externas",
     "settings.general": "Geral",
     "settings.externalDataSources.sourceCount": "{count, number} {count, plural, one {fonte de dados externa} other {fontes de dados externas}}",
-    "settings.externalDataSources.externalKb": "Knowledge Base externo",
-    "settings.externalDataSources.editExternalKb": "Editar Knowledge Base externo",
-    "settings.externalDataSources.newExternalKb": "Novo Knowledge Base Externo",
     "settings.externalDataSources.name": "Nome",
     "settings.externalDataSources.type": "Tipo",
     "settings.externalDataSources.recordType": "Tipo de registro",
@@ -51,5 +48,9 @@
     "settings.externalDataSources.callout.delete.success": "Fonte de dados externa excluída com sucesso.",
     "settings.externalDataSources.callout.delete.error": "Houve um erro ao excluir a fonte de dados externa. {error}",
     "yes": "Sim",
-    "no": "Não"
+    "no": "Não",
+    "settings.externalDataSources.externalDataSource": "Fonte de dados externa",
+    "settings.externalDataSources.editExternalDataSource": "Editar fonte de dados externa",
+    "settings.externalDataSources.newExternalDataSource": "Nova fonte de dados externa",
+    "valid.isURLValid": "Por favor insira um URL válido (incluindo \"http\" ou \"https\")."
 }

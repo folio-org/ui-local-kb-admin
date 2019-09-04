@@ -7,7 +7,7 @@ export default Factory.extend({
   active: () => faker.random.boolean(),
   activationEnabled: () => faker.random.boolean(),
   lastCheck: () => faker.date.recent().toISOString(),
-  type: () => faker.random.arrayElement(['org.olf.kb.adapters.EbscoKBAdapter']),
+  type: () => faker.random.arrayElement(['org.olf.kb.adapters.GOKbOAIAdapter']),
   name: () => faker.random.words(),
   fullPrefix: () => faker.random.words(),
   listPrefix: () => faker.random.words(),
