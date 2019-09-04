@@ -79,4 +79,17 @@ export default function config() {
     const externalDataSourceData = JSON.parse(requestBody);
     return externalDataSources.find(params.id).update(externalDataSourceData);
   });
+
+  this.post('erm/jobs/packageImport', (schema, request) => {
+    const body = JSON.parse(request.requestBody);
+    const file = schema.files.find(body.fileUpload);
+    const jobCreated = server.create('job', { 'class': 'org.olf.general.jobs.PackageImportJob', 'name': file.name });
+    return { id: jobCreated.id };
+  });
+
+  this.post('erm/files', (_, request) => {
+    const file = request.requestBody.get('upload');
+    const fileCreated = server.create('file', { 'modified': file.lastModified, 'name': file.name });
+    return fileCreated;
+  });
 }

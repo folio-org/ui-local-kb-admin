@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'redux-form';
+import { get } from 'lodash';
 import { FileUploaderField } from '@folio/stripes-erm-components';
 import { AppIcon, TitleManager } from '@folio/stripes/core';
 import stripesForm from '@folio/stripes/form';
@@ -49,16 +50,22 @@ class JobForm extends React.Component {
     return (
       <PaneMenu>
         <Button
-          type="submit"
-          disabled={this.props.pristine || this.props.submitting}
-          onClick={this.props.handleSubmit}
           buttonStyle="primary paneHeaderNewButton"
+          data-test-save-button
+          disabled={this.props.pristine || this.props.submitting || this.props.invalid}
           marginBottom0
+          onClick={this.props.handleSubmit}
+          type="submit"
         >
           <FormattedMessage id="stripes-components.saveAndClose" />
         </Button>
       </PaneMenu>
     );
+  }
+
+  validateUploadFile(value) {
+    if (value === null) return <FormattedMessage id="ui-local-kb-admin.error.uploadFile" />;
+    return undefined;
   }
 
   render() {
@@ -86,6 +93,7 @@ class JobForm extends React.Component {
                       name="fileUpload"
                       onDownloadFile={onDownloadFile}
                       onUploadFile={onUploadFile}
+                      validate={this.validateUploadFile}
                     />
                   </div>
                 </form>

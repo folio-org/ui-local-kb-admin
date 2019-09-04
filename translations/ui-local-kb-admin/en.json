@@ -8,6 +8,8 @@
   "errorLogNo": "No errors to report.",
   "loading": "Loading...",
 
+  "error.uploadFile": "Please upload a file to continue",
+
   "job.delete": "Delete job",
 
   "job.delete.confirmLabel": "Delete",
