@@ -14,7 +14,7 @@ import JobViewInteractor from '../interactors/jobs-view';
 const uploaderInteractor = new FileUploaderInteractor();
 const uploaderFieldInteractor = new FileUploaderFieldInteractor();
 
-describe.only('JobCreate', () => {
+describe('JobCreate', () => {
   setupApplication();
   const interactor = new JobsCreateInteractor();
   const jobviewinteractor = new JobViewInteractor();
@@ -62,6 +62,28 @@ describe.only('JobCreate', () => {
 
         it('should render the expected job source', () => {
           expect(jobviewinteractor.source).to.equal('File import');
+        });
+      });
+
+      describe('Clicking the close button', () => {
+        beforeEach(async function () {
+          await interactor.closeButton();
+        });
+
+        it('should navigate to the jobs page', () => {
+          expect(interactor.isJobsPane).to.be.true;
+        });
+      });
+
+      describe('Uploading and deleteing a file', () => {
+        beforeEach(async function () {
+          await uploaderInteractor.dragEnter();
+          await uploaderInteractor.drop();
+          await uploaderFieldInteractor.clickDelete();
+        });
+
+        it('should render validation message', () => {
+          expect(interactor.errorText).to.equal('Please upload a file to continue');
         });
       });
     });
