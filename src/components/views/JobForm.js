@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'redux-form';
-import { get } from 'lodash';
 import { FileUploaderField } from '@folio/stripes-erm-components';
 import { AppIcon, TitleManager } from '@folio/stripes/core';
 import stripesForm from '@folio/stripes/form';
@@ -27,6 +26,7 @@ class JobForm extends React.Component {
     }),
     pristine: PropTypes.bool,
     submitting: PropTypes.bool,
+    invalid: PropTypes.bool
   }
 
   renderFirstMenu() {
