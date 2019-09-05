@@ -139,6 +139,7 @@ describe('ExternalDataSources', () => {
     const name = 'aa';
     const type = 'org.olf.kb.adapters.GOKbOAIAdapter';
     const recordType = 'Package';
+    const URI = 'http://abcd.com';
     const isActive = true;
     const supportsHarvesting = false;
     const activationEnabled = true;
@@ -149,6 +150,7 @@ describe('ExternalDataSources', () => {
       await externaldatasources.externalDataSourceList.itemsEdit(0).editName(name);
       await externaldatasources.externalDataSourceList.itemsEdit(0).editType(type);
       await externaldatasources.externalDataSourceList.itemsEdit(0).editRecordType(recordType);
+      await externaldatasources.externalDataSourceList.itemsEdit(0).editURI(URI);
       await externaldatasources.externalDataSourceList.itemsEdit(0).clickSaveButton();
     });
 

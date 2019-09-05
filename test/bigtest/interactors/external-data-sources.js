@@ -49,6 +49,7 @@ import KeyValueInteractor from '@folio/stripes-components/lib/KeyValue/tests/int
   clickCancelButton = clickable('[data-test-external-data-source-cancel]');
 
   editName = fillable('[data-test-external-data-source-name-edit]');
+  editURI = fillable('[data-test-external-data-source-URI]');
   editType = selectable('[data-test-external-data-source-type-edit]');
   editRecordType = selectable('[data-test-external-data-source-record-type-edit]');
   editIsActive = clickable('[data-test-external-data-source-is-active-edit]');
