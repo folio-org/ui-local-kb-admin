@@ -10,7 +10,7 @@
 
   "error.uploadFile": "Please upload a file to continue",
 
-  "job.delete": "Delete job",
+  "job.delete": "Delete",
 
   "job.delete.confirmLabel": "Delete",
   "job.delete.heading": "Delete {name}?",
