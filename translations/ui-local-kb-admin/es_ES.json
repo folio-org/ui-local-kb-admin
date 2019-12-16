@@ -1,5 +1,5 @@
 {
-    "meta.title": "Local KB admin",
+    "meta.title": "Administración local de KB",
     "errorLog": "Error log",
     "infoLog": "Info log",
     "job.delete": "Delete job",
@@ -25,8 +25,8 @@
     "job.delete.heading": "Delete {name}?",
     "job.delete.message": "Delete job?",
     "job.delete.success": "The job {name} was successfully deleted",
-    "loading": "Loading...",
-    "searchInputLabel": "Search jobs",
+    "loading": "Cargando...",
+    "searchInputLabel": "Buscar procesos",
     "section.externalDataSources": "Fuentes de datos externas.",
     "settings.externalDataSources": "Fuentes de datos externas.",
     "settings.general": "General",
