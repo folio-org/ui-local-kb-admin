@@ -17,7 +17,7 @@
     "org.olf.general.jobs.PackageIngestJob": "حاصد",
     "source": "المصدر",
     "infoLogNo": "لا توجد إخطارات معلومات لهذه الوظيفة",
-    "errorLogNo": "لا يوجد أي أخطاء للتبليغ عنها",
+    "errorLogNo": "لا توجد أي أخطاء للتبليغ عنها",
     "columns.errorLogMessage": "خطأ",
     "columns.infoLogMessage": "رسالة",
     "columns.recordNumber": "رقم التسجيلة",
