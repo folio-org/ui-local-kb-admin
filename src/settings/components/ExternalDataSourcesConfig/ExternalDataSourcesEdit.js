@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
 import { Button, Card, Checkbox, Col, Layout, Row, Select, TextArea, TextField } from '@folio/stripes/components';
+import { composeValidators, requiredValidator } from '@folio/stripes-erm-components';
 import { validateURLIsValid, required } from '../../../util/validators';
 
 export default class ExternalDataSourcesEdit extends React.Component {
@@ -20,6 +21,16 @@ export default class ExternalDataSourcesEdit extends React.Component {
     }),
     onCancel: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
+  }
+
+  validateUniqueName = (value, allValues) => {
+    const { externalKbs } = allValues;
+    const uniqueNameSources = externalKbs.filter(externalKb => externalKb.name.toLowerCase() === value.toLowerCase());
+    if (uniqueNameSources.length > 1) {
+      return <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.nameExists" />
+    }
+
+    return undefined;
   }
 
   render() {
@@ -70,7 +81,10 @@ export default class ExternalDataSourcesEdit extends React.Component {
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />}
               name={`${name}.name`}
               required
-              validate={required}
+              validate={composeValidators(
+                requiredValidator,
+                this.validateUniqueName,
+              )}
             />
           </Col>
           <Col xs={4}>

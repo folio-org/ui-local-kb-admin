@@ -67,6 +67,7 @@
   "settings.externalDataSources.callout.save.error": "There was an error saving the external data source. {error}",
   "settings.externalDataSources.callout.delete.success": "External data source successfully deleted.",
   "settings.externalDataSources.callout.delete.error": "There was an error deleting the external data source.{error}",
+  "settings.externalDataSources.nameExists": "This name already exists",
 
   "yes": "Yes",
   "no": "No",
