@@ -31,6 +31,8 @@ describe('Local kb admin Filters', () => {
       await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
       await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
       await jobs.whenInstancesArePresent(totalJobsAmount);
+      /* We click the inProgress and Queued checboxes in the above logic to make sure that we turn-off
+      all the default filters that are setup initially when we visit the local-kb-admin app */
     });
 
     describe('filtering by', () => {
