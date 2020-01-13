@@ -1,4 +1,5 @@
 import {
+  before,
   beforeEach,
   describe,
   it,
@@ -10,7 +11,10 @@ import setupApplication from '../helpers/setup-application';
 import JobsInteractor from '../interactors/jobs';
 
 describe('Local kb admin Filters', () => {
-  setupApplication();
+  before(function () {
+    setupApplication();
+  });
+
   const jobs = new JobsInteractor();
 
   describe('status filter tests', () => {
@@ -62,7 +66,7 @@ describe('Local kb admin Filters', () => {
     });
   });
 
-  describe('result filter tests', () => {
+  describe.only('result filter tests', () => {
     const successJobsAmount = 2;
     const partialSuccessJobsAmount = 3;
     const failureJobsAmount = 4;
@@ -74,27 +78,24 @@ describe('Local kb admin Filters', () => {
       this.server.createList('job', partialSuccessJobsAmount, { result: { value: 'partial_success', label: 'Partial success' } });
       this.server.createList('job', failureJobsAmount, { result: { value: 'failure', label: 'Failure' } });
       this.server.createList('job', interruptedJobsAmount, { result: { value: 'interrupted', label: 'Interrupted' } });
-      await this.visit('/local-kb-admin');
-      await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
-      await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
-      await jobs.whenInstancesArePresent(totalJobsAmount);
+      this.visit('/local-kb-admin');
     });
 
     describe('filtering by', () => {
-      beforeEach(async function () {
-        await jobs.clickResetAll();
-        await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
-        await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
-        await jobs.resultCheckbox.clickSuccessResultCheckbox();
-      });
+      describe('successful jobs', () => {
+        beforeEach(async function () {
+          await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
+          await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
+          await jobs.resultCheckbox.clickSuccessResultCheckbox();
+        });
 
-      it('success filter should show all successful jobs', () => {
-        expect(jobs.instanceList.size).to.equal(successJobsAmount);
+        it('should show all successful jobs', () => {
+          expect(jobs.instanceList.size).to.equal(successJobsAmount);
+        });
       });
 
       describe('partially successful jobs', () => {
         beforeEach(async function () {
-          await jobs.clickResetAll();
           await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
           await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
           await jobs.resultCheckbox.clickPartialSuccessResultCheckbox();
@@ -107,7 +108,6 @@ describe('Local kb admin Filters', () => {
 
       describe('failed jobs', () => {
         beforeEach(async function () {
-          await jobs.clickResetAll();
           await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
           await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
           await jobs.resultCheckbox.clickFailureResultCheckbox();
@@ -120,7 +120,6 @@ describe('Local kb admin Filters', () => {
 
       describe('interrupted jobs', () => {
         beforeEach(async function () {
-          await jobs.clickResetAll();
           await jobs.runningStatusCheckbox.clickInProgressJobCheckbox();
           await jobs.runningStatusCheckbox.clickQueuedJobCheckbox();
           await jobs.resultCheckbox.clickInterruptedResultCheckbox();
@@ -133,7 +132,6 @@ describe('Local kb admin Filters', () => {
 
       describe('harvester jobs', () => {
         beforeEach(async function () {
-          await jobs.clickResetAll();
           await jobs.jobTypeCheckbox.clickHarvesterCheckbox();
         });
 
