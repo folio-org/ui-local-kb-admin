@@ -66,7 +66,7 @@ describe('Local kb admin Filters', () => {
     });
   });
 
-  describe.only('result filter tests', () => {
+  describe('result filter tests', () => {
     const successJobsAmount = 2;
     const partialSuccessJobsAmount = 3;
     const failureJobsAmount = 4;
