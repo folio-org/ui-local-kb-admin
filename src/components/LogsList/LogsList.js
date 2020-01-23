@@ -33,7 +33,7 @@ export default class LogsList extends React.Component {
         maxHeight={800}
         onNeedMoreData={onNeedMoreLogs}
         pageAmount={resultCount.RESULT_COUNT_INCREMENT}
-        pagingType="scroll"
+        pagingType="click"
         virtualize
         visibleColumns={['recordNumber', 'message']}
       />
