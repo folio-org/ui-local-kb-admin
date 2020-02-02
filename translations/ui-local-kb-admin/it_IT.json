@@ -54,9 +54,9 @@
     "settings.externalDataSources.newExternalDataSource": "New external data source",
     "valid.isURLValid": "Please enter a valid URL (including \"http\" or \"https\").",
     "create": "Crea",
-    "error.uploadFile": "Please upload a file to continue",
+    "error.uploadFile": "Carica un file per continuare",
     "job.newJob": "Nuova procedura",
     "job.close": "Chiudi procedura",
-    "org.olf.general.jobs.PackageImportJob": "File import",
+    "org.olf.general.jobs.PackageImportJob": "Importazione file",
     "settings.externalDataSources.nameExists": "Questo nome esiste già"
 }
