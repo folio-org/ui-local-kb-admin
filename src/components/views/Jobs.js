@@ -148,21 +148,30 @@ export default class Jobs extends React.Component {
   renderResultsLastMenu() {
     return (
       <IfPermission perm="ui-local-kb-admin.jobs.edit">
-        <PaneMenu>
-          <FormattedMessage id="ui-local-kb-admin.job.newJob">
-            {ariaLabel => (
+        <FormattedMessage id="ui-local-kb-admin.job.newJob">
+          {ariaLabel => (
+            <React.Fragment>
               <Button
                 aria-label={ariaLabel}
-                buttonStyle="primary"
-                id="clickable-new-job"
+                buttonStyle="dropdownItem"
+                id="clickable-new-JSON-job"
                 marginBottom0
                 to={`/local-kb-admin/create${this.props.searchString}`}
               >
-                <FormattedMessage id="stripes-smart-components.new" />
+                <FormattedMessage id="ui-local-kb-admin.job.newJSONJob" />
               </Button>
-            )}
-          </FormattedMessage>
-        </PaneMenu>
+              <Button
+                aria-label={ariaLabel}
+                buttonStyle="dropdownItem"
+                id="clickable-new-KBART-job"
+                marginBottom0
+                to={`/local-kb-admin/create${this.props.searchString}`}
+              >
+                <FormattedMessage id="ui-local-kb-admin.job.newKBARTJob" />
+              </Button>
+            </React.Fragment>
+          )}
+        </FormattedMessage>
       </IfPermission>
     );
   }
@@ -283,7 +292,7 @@ export default class Jobs extends React.Component {
                     appIcon={<AppIcon app="local-kb-admin" />}
                     defaultWidth="fill"
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
-                    lastMenu={this.renderResultsLastMenu()}
+                    actionMenu={() => this.renderResultsLastMenu()}
                     padContent={false}
                     paneTitle={<FormattedMessage id="ui-local-kb-admin.meta.title" />}
                     paneSub={this.renderResultsPaneSubtitle(source)}

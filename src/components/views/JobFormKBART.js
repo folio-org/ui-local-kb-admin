@@ -17,7 +17,7 @@ import {
 
 import css from './JobForm.css';
 
-class JobForm extends React.Component {
+class JobFormKBART extends React.Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     handlers: PropTypes.shape({
@@ -97,7 +97,7 @@ class JobForm extends React.Component {
               footer={this.renderPaneFooter()}
               id="pane-job-form"
               firstMenu={this.renderFirstMenu()}
-              paneTitle={<FormattedMessage id="ui-local-kb-admin.job.newJSONJob" />}
+              paneTitle={<FormattedMessage id="ui-local-kb-admin.job.newKBARTJob" />}
             >
               <TitleManager record={create}>
                 <form>
@@ -126,4 +126,4 @@ class JobForm extends React.Component {
 export default stripesFinalForm({
   navigationCheck: true,
   keepDirtyOnReinitialize: true,
-})(JobForm);
+})(JobFormKBART);

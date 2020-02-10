@@ -19,6 +19,8 @@
 
   "job.newJob": "New job",
   "job.close": "Close job",
+  "job.newJSONJob": "New JSON job",
+  "job.newKBARTJob": "New KBART job",
 
   "prop.class": "Job type",
   "prop.ended": "Ended",
