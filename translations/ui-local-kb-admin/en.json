@@ -21,6 +21,10 @@
   "job.close": "Close job",
   "job.newJSONJob": "New JSON job",
   "job.newKBARTJob": "New KBART job",
+  "job.packageName": "Package name",
+  "job.packageSource": "Package source",
+  "job.packageReference": "Package reference",
+  "job.packageProvider": "Package provider",
 
   "prop.class": "Job type",
   "prop.ended": "Ended",

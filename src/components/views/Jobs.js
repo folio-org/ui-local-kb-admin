@@ -156,7 +156,7 @@ export default class Jobs extends React.Component {
                 buttonStyle="dropdownItem"
                 id="clickable-new-JSON-job"
                 marginBottom0
-                to={`/local-kb-admin/create${this.props.searchString}`}
+                to={`/local-kb-admin/create/JSON${this.props.searchString}`}
               >
                 <FormattedMessage id="ui-local-kb-admin.job.newJSONJob" />
               </Button>
@@ -165,7 +165,7 @@ export default class Jobs extends React.Component {
                 buttonStyle="dropdownItem"
                 id="clickable-new-KBART-job"
                 marginBottom0
-                to={`/local-kb-admin/create${this.props.searchString}`}
+                to={`/local-kb-admin/create/KBART${this.props.searchString}`}
               >
                 <FormattedMessage id="ui-local-kb-admin.job.newKBARTJob" />
               </Button>

@@ -3,13 +3,13 @@ import compose from 'compose-function';
 import PropTypes from 'prop-types';
 import { stripesConnect } from '@folio/stripes/core';
 import withFileHandlers from './components/withFileHandlers';
-import View from '../components/views/JobForm';
+import View from '../components/views/JobFormKBART';
 
 class JobCreateKBARTRoute extends React.Component {
   static manifest = Object.freeze({
     jobs: {
       type: 'okapi',
-      path: 'erm/jobs/packageImport',
+      path: 'erm/jobs/kbartImport',
       fetch: false,
       shouldRefresh: () => false,
     },

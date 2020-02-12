@@ -8,11 +8,14 @@ import stripesFinalForm from '@folio/stripes/final-form';
 
 import {
   Button,
+  Col,
   IconButton,
   Pane,
   PaneFooter,
   PaneMenu,
   Paneset,
+  Row,
+  TextField,
 } from '@folio/stripes/components';
 
 import css from './JobForm.css';
@@ -102,6 +105,40 @@ class JobFormKBART extends React.Component {
               <TitleManager record={create}>
                 <form>
                   <div className={css.jobForm}>
+                    <Row>
+                      <Col xs={12}>
+                        <Field
+                          component={TextField}
+                          name="packageName"
+                          label={<FormattedMessage id="ui-local-kb-admin.job.packageName" />}
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={4}>
+                        <Field
+                          component={TextField}
+                          name="packageSource"
+                          label={<FormattedMessage id="ui-local-kb-admin.job.packageSource" />}
+                        />
+                      </Col>
+                      <Col xs={8}>
+                        <Field
+                          component={TextField}
+                          name="packageReference"
+                          label={<FormattedMessage id="ui-local-kb-admin.job.packageReference" />}
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col xs={12}>
+                        <Field
+                          component={TextField}
+                          name="packageProvider"
+                          label={<FormattedMessage id="ui-local-kb-admin.job.packageProvider" />}
+                        />
+                      </Col>
+                    </Row>
                     <Field
                       component={FileUploaderField}
                       data-test-document-field-file
