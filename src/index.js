@@ -5,6 +5,7 @@ import { Route } from '@folio/stripes/core';
 
 const JobCreateRoute = lazy(() => import('./routes/JobCreateRoute'));
 const JobCreateKBARTRoute = lazy(() => import('./routes/JobCreateKBARTRoute'));
+const JobUpdateKBARTRoute = lazy(() => import('./routes/JobUpdateKBARTRoute'));
 const JobsRoute = lazy(() => import('./routes/JobsRoute'));
 const JobViewRoute = lazy(() => import('./routes/JobViewRoute'));
 
@@ -31,6 +32,7 @@ export default class App extends React.Component {
       <Suspense fallback={null}>
         <Switch>
           <Route path={`${path}/create/KBART`} component={JobCreateKBARTRoute} />
+          <Route path={`${path}/update/KBART`} component={JobUpdateKBARTRoute} />
           <Route path={`${path}/create/JSON`} component={JobCreateRoute} />
           <Route path={`${path}/:id?`} component={JobsRoute}>
             <Suspense fallback={null}>

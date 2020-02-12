@@ -25,6 +25,8 @@
   "job.packageSource": "Package source",
   "job.packageReference": "Package reference",
   "job.packageProvider": "Package provider",
+  "job.addNew": "Add new package",
+  "job.update": "Update package",
 
   "prop.class": "Job type",
   "prop.ended": "Ended",

@@ -17,6 +17,7 @@ import {
   Row,
   TextField,
 } from '@folio/stripes/components';
+import KBARTJobSwitchButton from './KBARTJobSwitchButton';
 
 import css from './JobForm.css';
 
@@ -89,7 +90,7 @@ class JobFormKBART extends React.Component {
   }
 
   render() {
-    const { handlers: { onDownloadFile, onUploadFile } } = this.props;
+    const { handlers: { onDownloadFile, onUploadFile }, location: { pathname } } = this.props;
     return (
       <Paneset>
         <FormattedMessage id="ui-local-kb-admin.create">
@@ -102,6 +103,7 @@ class JobFormKBART extends React.Component {
               firstMenu={this.renderFirstMenu()}
               paneTitle={<FormattedMessage id="ui-local-kb-admin.job.newKBARTJob" />}
             >
+              <KBARTJobSwitchButton pathname={pathname} />
               <TitleManager record={create}>
                 <form>
                   <div className={css.jobForm}>
