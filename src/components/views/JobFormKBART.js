@@ -110,6 +110,7 @@ class JobFormKBART extends React.Component {
                     <Row>
                       <Col xs={12}>
                         <Field
+                          data-test-field-package-name
                           component={TextField}
                           name="packageName"
                           label={<FormattedMessage id="ui-local-kb-admin.job.packageName" />}
@@ -121,6 +122,7 @@ class JobFormKBART extends React.Component {
                     <Row>
                       <Col xs={4}>
                         <Field
+                          data-test-field-package-source
                           component={TextField}
                           name="packageSource"
                           label={<FormattedMessage id="ui-local-kb-admin.job.packageSource" />}
@@ -130,6 +132,7 @@ class JobFormKBART extends React.Component {
                       </Col>
                       <Col xs={8}>
                         <Field
+                          data-test-field-package-reference
                           component={TextField}
                           name="packageReference"
                           label={<FormattedMessage id="ui-local-kb-admin.job.packageReference" />}
@@ -141,6 +144,7 @@ class JobFormKBART extends React.Component {
                     <Row>
                       <Col xs={12}>
                         <Field
+                          data-test-field-package-provider
                           component={TextField}
                           name="packageProvider"
                           label={<FormattedMessage id="ui-local-kb-admin.job.packageProvider" />}

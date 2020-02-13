@@ -14,7 +14,7 @@ import JobViewInteractor from '../interactors/jobs-view';
 const uploaderInteractor = new FileUploaderInteractor();
 const uploaderFieldInteractor = new FileUploaderFieldInteractor();
 
-describe('JobCreate KBART', () => {
+describe.only('JobCreate KBART', () => {
   setupApplication();
   const interactor = new JobsCreateInteractor();
   const jobviewinteractor = new JobViewInteractor();
@@ -26,6 +26,22 @@ describe('JobCreate KBART', () => {
   describe('job create KBART pane', () => {
     it('should display file uploader component', () => {
       expect(interactor.isFileUploaderPresent).to.be.true;
+    });
+
+    it('should display package name field', () => {
+      expect(JobsCreateInteractor.isPackageNameFieldPresent).to.be.true;
+    });
+
+    it('should display package source field', () => {
+      expect(JobsCreateInteractor.isPackageSourceFieldPresent).to.be.true;
+    });
+
+    it('should display package reference field', () => {
+      expect(JobsCreateInteractor.isPackageReferenceFieldPresent).to.be.true;
+    });
+
+    it('should display package provider field', () => {
+      expect(JobsCreateInteractor.isPackageProviderFieldPresent).to.be.true;
     });
 
     describe('Upload file', () => {
