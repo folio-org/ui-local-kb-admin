@@ -18,6 +18,8 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
+import { required } from '../../util/validators';
+
 import css from './JobForm.css';
 
 class JobFormKBART extends React.Component {
@@ -111,6 +113,8 @@ class JobFormKBART extends React.Component {
                           component={TextField}
                           name="packageName"
                           label={<FormattedMessage id="ui-local-kb-admin.job.packageName" />}
+                          required
+                          validate={required}
                         />
                       </Col>
                     </Row>
@@ -120,6 +124,8 @@ class JobFormKBART extends React.Component {
                           component={TextField}
                           name="packageSource"
                           label={<FormattedMessage id="ui-local-kb-admin.job.packageSource" />}
+                          required
+                          validate={required}
                         />
                       </Col>
                       <Col xs={8}>
@@ -127,6 +133,8 @@ class JobFormKBART extends React.Component {
                           component={TextField}
                           name="packageReference"
                           label={<FormattedMessage id="ui-local-kb-admin.job.packageReference" />}
+                          required
+                          validate={required}
                         />
                       </Col>
                     </Row>
