@@ -42,11 +42,11 @@
 
   "searchInputLabel": "Search jobs",
 
-  "org.olf.general.jobs.PackageIngestJob": "Harvester",
-  "org.olf.general.jobs.PackageImportJob": "File import",
+  "org.olf.general.jobs.PackageIngestJob": "JSON Harvester",
+  "org.olf.general.jobs.PackageImportJob": "JSON File import",
 
-  "org.olf.general.jobs.KbartIngestJob": "Harvester",
-  "org.olf.general.jobs.KbartImportJob": "File import",
+  "org.olf.general.jobs.KbartIngestJob": "KBART Harvester",
+  "org.olf.general.jobs.KbartImportJob": "KBART File import",
 
   "source": "Source",
 
