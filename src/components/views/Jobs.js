@@ -7,6 +7,8 @@ import { AppIcon, IfPermission } from '@folio/stripes/core';
 
 import {
   Button,
+  Dropdown,
+  DropdownMenu,
   Icon,
   MultiColumnList,
   Pane,
@@ -145,33 +147,50 @@ export default class Jobs extends React.Component {
     );
   }
 
+  renderNewJobMenu = ({ onToggle }) => (
+    <DropdownMenu
+      data-role="menu"
+      aria-label="available job types"
+      onToggle={onToggle}
+    >
+      <FormattedMessage id="ui-local-kb-admin.job.newJob">
+        {ariaLabel => (
+          <React.Fragment>
+            <Button
+              aria-label={ariaLabel}
+              buttonStyle="dropdownItem"
+              id="clickable-new-JSON-job"
+              marginBottom0
+              to={`/local-kb-admin/create/JSON${this.props.searchString}`}
+            >
+              <FormattedMessage id="ui-local-kb-admin.job.newJSONJob" />
+            </Button>
+            <Button
+              aria-label={ariaLabel}
+              buttonStyle="dropdownItem"
+              id="clickable-new-KBART-job"
+              marginBottom0
+              to={`/local-kb-admin/create/KBART${this.props.searchString}`}
+            >
+              <FormattedMessage id="ui-local-kb-admin.job.newKBARTJob" />
+            </Button>
+          </React.Fragment>
+        )}
+      </FormattedMessage>
+    </DropdownMenu>
+  );
+
   renderResultsLastMenu() {
+    const buttonProps = {
+      buttonStyle: 'primary'
+    }
     return (
       <IfPermission perm="ui-local-kb-admin.jobs.edit">
-        <FormattedMessage id="ui-local-kb-admin.job.newJob">
-          {ariaLabel => (
-            <React.Fragment>
-              <Button
-                aria-label={ariaLabel}
-                buttonStyle="dropdownItem"
-                id="clickable-new-JSON-job"
-                marginBottom0
-                to={`/local-kb-admin/create/JSON${this.props.searchString}`}
-              >
-                <FormattedMessage id="ui-local-kb-admin.job.newJSONJob" />
-              </Button>
-              <Button
-                aria-label={ariaLabel}
-                buttonStyle="dropdownItem"
-                id="clickable-new-KBART-job"
-                marginBottom0
-                to={`/local-kb-admin/create/KBART${this.props.searchString}`}
-              >
-                <FormattedMessage id="ui-local-kb-admin.job.newKBARTJob" />
-              </Button>
-            </React.Fragment>
-          )}
-        </FormattedMessage>
+        <Dropdown
+          label={<FormattedMessage id="ui-local-kb-admin.job.new" />}
+          renderMenu={this.renderNewJobMenu}
+          buttonProps={buttonProps}
+        />
       </IfPermission>
     );
   }
@@ -292,7 +311,7 @@ export default class Jobs extends React.Component {
                     appIcon={<AppIcon app="local-kb-admin" />}
                     defaultWidth="fill"
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
-                    actionMenu={() => this.renderResultsLastMenu()}
+                    lastMenu={this.renderResultsLastMenu()}
                     padContent={false}
                     paneTitle={<FormattedMessage id="ui-local-kb-admin.meta.title" />}
                     paneSub={this.renderResultsPaneSubtitle(source)}

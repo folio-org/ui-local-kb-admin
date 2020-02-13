@@ -17,6 +17,7 @@
   "job.delete.message": "Delete job?",
   "job.delete.success": "The job {name} was successfully deleted",
 
+  "job.new": "New",
   "job.newJob": "New job",
   "job.close": "Close job",
   "job.newJSONJob": "New JSON job",
