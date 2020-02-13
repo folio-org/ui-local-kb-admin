@@ -29,23 +29,28 @@ describe.only('JobCreate KBART', () => {
     });
 
     it('should display package name field', () => {
-      expect(JobsCreateInteractor.isPackageNameFieldPresent).to.be.true;
+      expect(interactor.isPackageNameFieldPresent).to.be.true;
     });
 
     it('should display package source field', () => {
-      expect(JobsCreateInteractor.isPackageSourceFieldPresent).to.be.true;
+      expect(interactor.isPackageSourceFieldPresent).to.be.true;
     });
 
     it('should display package reference field', () => {
-      expect(JobsCreateInteractor.isPackageReferenceFieldPresent).to.be.true;
+      expect(interactor.isPackageReferenceFieldPresent).to.be.true;
     });
 
     it('should display package provider field', () => {
-      expect(JobsCreateInteractor.isPackageProviderFieldPresent).to.be.true;
+      expect(interactor.isPackageProviderFieldPresent).to.be.true;
     });
 
     describe('Upload file', () => {
       beforeEach(async function () {
+        await interactor.fillPackageName('Test package');
+        await interactor.fillPackageSource('Test package source');
+        await interactor.fillPackageReference('Test package reference');
+        await interactor.fillPackageProvider('Test package provider');
+
         await uploaderInteractor.dragEnter();
         await uploaderInteractor.drop();
       });
