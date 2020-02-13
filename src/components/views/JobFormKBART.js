@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { Field } from 'react-final-form';
 import { FileUploaderField } from '@folio/stripes-erm-components';
 import { AppIcon, TitleManager } from '@folio/stripes/core';
@@ -10,6 +11,7 @@ import {
   Button,
   Col,
   IconButton,
+  MessageBanner,
   Pane,
   PaneFooter,
   PaneMenu,
@@ -107,6 +109,13 @@ class JobFormKBART extends React.Component {
               <TitleManager record={create}>
                 <form>
                   <div className={css.jobForm}>
+                    <Row>
+                      <Col xs={12}>
+                        <MessageBanner>
+                          <SafeHTMLMessage id="ui-local-kb-admin.job.sourceReferenceWarning" />
+                        </MessageBanner>
+                      </Col>
+                    </Row>
                     <Row>
                       <Col xs={12}>
                         <Field

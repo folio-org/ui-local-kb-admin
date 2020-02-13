@@ -29,6 +29,8 @@
   "job.addNew": "Add new package",
   "job.update": "Update package",
 
+  "job.sourceReferenceWarning": "The <strong>Source</strong>  and <strong>Reference</strong> field combination is used to control whether  the package is either <strong>updated</strong> or added as <strong>new</strong> to the local knowledgebase in thr Agreements app.",
+
   "prop.class": "Job type",
   "prop.ended": "Ended",
   "prop.errors": "Errors",
