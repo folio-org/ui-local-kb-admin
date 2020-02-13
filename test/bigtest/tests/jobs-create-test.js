@@ -14,13 +14,13 @@ import JobViewInteractor from '../interactors/jobs-view';
 const uploaderInteractor = new FileUploaderInteractor();
 const uploaderFieldInteractor = new FileUploaderFieldInteractor();
 
-describe('JobCreate', () => {
+describe('JobCreate JSON', () => {
   setupApplication();
   const interactor = new JobsCreateInteractor();
   const jobviewinteractor = new JobViewInteractor();
 
   beforeEach(async function () {
-    this.visit('/local-kb-admin/create/KBART');
+    this.visit('/local-kb-admin/create/JSON');
   });
 
   describe('job create JSON pane', () => {

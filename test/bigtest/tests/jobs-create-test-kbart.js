@@ -14,16 +14,16 @@ import JobViewInteractor from '../interactors/jobs-view';
 const uploaderInteractor = new FileUploaderInteractor();
 const uploaderFieldInteractor = new FileUploaderFieldInteractor();
 
-describe.only('JobCreate', () => {
+describe('JobCreate KBART', () => {
   setupApplication();
   const interactor = new JobsCreateInteractor();
   const jobviewinteractor = new JobViewInteractor();
 
   beforeEach(async function () {
-    this.visit('/local-kb-admin/create/JSON');
+    this.visit('/local-kb-admin/create/KBART');
   });
 
-  describe('job create JSON pane', () => {
+  describe('job create KBART pane', () => {
     it('should display file uploader component', () => {
       expect(interactor.isFileUploaderPresent).to.be.true;
     });
