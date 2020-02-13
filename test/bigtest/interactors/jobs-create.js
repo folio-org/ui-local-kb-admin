@@ -28,6 +28,7 @@ export default @interactor class JobsCreate {
   fillPackageProvider = fillable('[data-test-field-package-provider]');
   saveButton = new Button('[data-test-save-button]');
   closeButton = clickable('#close-job-form-button');
+  confirmCloseButton = clickable('[data-test-confirmation-modal-cancel-button]');
   isJobsPane = isPresent('[data-test-localkbadmin]');
   errorText = text('[data-test-error-msg]');
 }

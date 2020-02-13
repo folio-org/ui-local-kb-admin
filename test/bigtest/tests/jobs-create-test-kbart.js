@@ -46,13 +46,13 @@ describe.only('JobCreate KBART', () => {
 
     describe('Upload file', () => {
       beforeEach(async function () {
+        await uploaderInteractor.dragEnter();
+        await uploaderInteractor.drop();
+
         await interactor.fillPackageName('Test package');
         await interactor.fillPackageSource('Test package source');
         await interactor.fillPackageReference('Test package reference');
         await interactor.fillPackageProvider('Test package provider');
-
-        await uploaderInteractor.dragEnter();
-        await uploaderInteractor.drop();
       });
 
       it('should display the uploaded file name', () => {
@@ -89,6 +89,7 @@ describe.only('JobCreate KBART', () => {
       describe('Clicking the close button', () => {
         beforeEach(async function () {
           await interactor.closeButton();
+          await interactor.confirmCloseButton();
         });
 
         it('should navigate to the jobs page', () => {

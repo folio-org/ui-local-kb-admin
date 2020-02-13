@@ -159,6 +159,7 @@ class JobFormKBART extends React.Component {
                       name="fileUpload"
                       onDownloadFile={onDownloadFile}
                       onUploadFile={onUploadFile}
+                      required
                       validate={this.validateUploadFile}
                     />
                   </div>
