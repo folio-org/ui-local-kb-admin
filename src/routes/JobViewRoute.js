@@ -4,7 +4,7 @@ import { get } from 'lodash';
 import { stripesConnect } from '@folio/stripes/core';
 import { FormattedMessage } from 'react-intl';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
-import { ConfirmationModal } from '@folio/stripes/components';
+import { Callout, ConfirmationModal } from '@folio/stripes/components';
 import JobInfo from '../components/views/JobInfo';
 
 class JobViewRoute extends React.Component {
@@ -36,7 +36,33 @@ class JobViewRoute extends React.Component {
     }).isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.callout = React.createRef();
+  }
+
   state = { showConfirmDelete: false };
+
+  componentDidUpdate(prevProps) {
+    const prevCreatedJobId = get(prevProps, 'location.state.createdJobId', '');
+    const currentCreatedJobId = get(this.props, 'location.state.createdJobId', '');
+    if (prevCreatedJobId !== currentCreatedJobId) {
+      const name = get(this.props, 'location.state.createdJobName', '');
+      if (name !== '') this.showToast('ui-local-kb-admin.job.create.success', get(this.props, 'location.state.createdJobClass', ''), 'success', { name });
+    }
+  }
+
+  showToast = (messageId, jobClass, messageType = 'success', values = {}) => {
+    let classMessageId = messageId;
+    if (jobClass !== '') {
+      classMessageId = messageId.concat(`.${jobClass}`);
+    }
+    return this.callout.current.sendCallout({
+      message: <SafeHTMLMessage id={classMessageId} values={values} />,
+      type: messageType,
+    });
+  }
 
   handleDelete = () => {
     const { resources } = this.props;
@@ -101,6 +127,7 @@ class JobViewRoute extends React.Component {
             open
           />
         )}
+        <Callout ref={this.callout} />
       </React.Fragment>
     );
   }

@@ -32,6 +32,12 @@
   "job.delete.success.org.olf.general.jobs.PackageImportJob": "JSON package import job <strong>{name}</strong> was successfully <strong>deleted</strong>",
   "job.delete.success.org.olf.general.jobs.PackageIngestJob": "JSON package ingest job <strong>{name}</strong> was successfully <strong>deleted</strong>",
 
+  "job.create.success": "Job <strong>{name}</strong> was successfully <strong>create</strong>",
+  "job.create.success.org.olf.general.jobs.KbartImportJob": "KBART package import job <strong>{name}</strong> was successfully <strong>create</strong>",
+  "job.create.success.org.olf.general.jobs.KbartIngestJob": "KBART package ingest job <strong>{name}</strong> was successfully <strong>create</strong>",
+  "job.create.success.org.olf.general.jobs.PackageImportJob": "JSON package import job <strong>{name}</strong> was successfully <strong>create</strong>",
+  "job.create.success.org.olf.general.jobs.PackageIngestJob": "JSON package ingest job <strong>{name}</strong> was successfully <strong>create</strong>",
+
   "job.new": "New",
   "job.newJob": "New job",
   "job.close": "Close job",
