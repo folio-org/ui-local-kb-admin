@@ -69,6 +69,8 @@ class JobViewRoute extends React.Component {
     const name = get(job, 'name', '');
     const jobClass = get(job, 'class', '');
 
+    console.log("Location state: %o", this.props?.history?.location?.state);
+
     let deleteMessageId = 'ui-local-kb-admin.job.delete.message';
     let deleteHeadingId = 'ui-local-kb-admin.job.delete.heading';
 
