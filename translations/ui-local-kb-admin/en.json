@@ -29,8 +29,7 @@
   "job.addNew": "Add new package",
   "job.update": "Update package",
 
-  "job.sourceReferenceWarning": "The <strong>Source</strong>  and <strong>Reference</strong> field combination is used to control whether  the package is either <strong>updated</strong> or added as <strong>new</strong> to the local knowledgebase in the Agreements app.",
-
+  "job.sourceReferenceWarning": "The <strong>Source</strong> and <strong>Reference</strong> fields are used together as a unique identifier for packages. If a package with the given <strong>Source</strong>+<strong>Reference</strong> already exists it will be updated, otherwise a new package will be created. If the <strong>Provider</strong> entered does not exist, a new one will be created in the local knowledgebase in the Agreements app.",
   "prop.class": "Job type",
   "prop.ended": "Ended",
   "prop.errors": "Errors",
