@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { stripesConnect } from '@folio/stripes/core';
 import { FormattedMessage } from 'react-intl';
+import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { ConfirmationModal } from '@folio/stripes/components';
 import JobInfo from '../components/views/JobInfo';
 
@@ -66,12 +67,21 @@ class JobViewRoute extends React.Component {
     const { resources } = this.props;
     const job = get(resources, 'job.records[0]', {});
     const name = get(job, 'name', '');
+    const jobClass = get(job, 'class', '');
+
+    let deleteMessageId = 'ui-local-kb-admin.job.delete.message';
+    let deleteHeadingId = 'ui-local-kb-admin.job.delete.heading';
+
+    if (jobClass !== '') {
+      deleteMessageId = deleteMessageId.concat(`.${jobClass}`);
+      deleteHeadingId = deleteHeadingId.concat(`.${jobClass}`);
+    }
 
     return (
       <React.Fragment>
         <JobInfo
           data={{
-            job: get(resources, 'job.records[0]', {}),
+            job
           }}
           onClose={this.handleClose}
           onDelete={this.showDeleteConfirmationModal}
@@ -81,10 +91,11 @@ class JobViewRoute extends React.Component {
           <ConfirmationModal
             id="delete-job-confirmation"
             confirmLabel={<FormattedMessage id="ui-local-kb-admin.job.delete.confirmLabel" />}
-            heading={<FormattedMessage id="ui-local-kb-admin.job.delete.heading" values={{ name }} />}
-            message={<FormattedMessage id="ui-local-kb-admin.job.delete.message" />}
+            heading={<FormattedMessage id={deleteHeadingId} />}
+            message={<SafeHTMLMessage id={deleteMessageId} values={{ name }} />}
             onCancel={this.hideDeleteConfirmationModal}
             onConfirm={this.handleDelete}
+            buttonStyle="danger"
             open
           />
         )}
