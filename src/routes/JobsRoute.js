@@ -103,7 +103,7 @@ class JobsRoute extends React.Component {
     const currentDeletedJobId = get(this.props, 'location.state.deletedJobId', '');
     if (prevDeletedJobId !== currentDeletedJobId) {
       const name = get(this.props, 'location.state.deletedJobName', '');
-      if (name !== '') this.showToast('ui-local-kb-admin.job.delete.success', get(prevProps, 'location.state.deletedJobClass', ''), 'success', { name });
+      if (name !== '') this.showToast('ui-local-kb-admin.job.delete.success', get(this.props, 'location.state.deletedJobClass', ''), 'success', { name });
     }
   }
 
@@ -126,7 +126,10 @@ class JobsRoute extends React.Component {
   }
 
   showToast = (messageId, jobClass, messageType = 'success', values = {}) => {
-    const classMessageId = messageId.concat(`.${jobClass}`)
+    let classMessageId = messageId;
+    if (jobClass !== '') {
+      classMessageId = messageId.concat(`.${jobClass}`);
+    }
     return this.callout.current.sendCallout({
       message: <SafeHTMLMessage id={classMessageId} values={values} />,
       type: messageType,

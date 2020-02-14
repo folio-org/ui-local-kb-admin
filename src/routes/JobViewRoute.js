@@ -51,7 +51,7 @@ class JobViewRoute extends React.Component {
           search: `${this.props.location.search}`,
           state: { deletedJobId: id, deletedJobName: name, deletedJobClass: jobClass }
         }
-      )); // push deleted job id and name to location state so that it could be used to show the callout in jobsRoute
+      )); // push deleted job id name and class to location state so that it could be used to show the callout in jobsRoute
   };
 
   handleClose = () => {

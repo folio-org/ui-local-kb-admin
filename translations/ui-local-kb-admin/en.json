@@ -15,6 +15,8 @@
   "job.delete.confirmLabel": "Delete",
   "job.delete.heading": "Delete {name}?",
   "job.delete.message": "Delete job?",
+
+  "job.delete.success": "Job <strong>{name}</strong> was successfully <strong>deleted</strong>",
   "job.delete.success.org.olf.general.jobs.KbartImportJob": "KBART package import job <strong>{name}</strong> was successfully <strong>deleted</strong>",
   "job.delete.success.org.olf.general.jobs.KbartIngestJob": "KBART package ingest job <strong>{name}</strong> was successfully <strong>deleted</strong>",
   "job.delete.success.org.olf.general.jobs.PackageImportJob": "JSON package import job <strong>{name}</strong> was successfully <strong>deleted</strong>",
