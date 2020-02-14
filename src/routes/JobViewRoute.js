@@ -42,14 +42,14 @@ class JobViewRoute extends React.Component {
     const job = get(resources, 'job.records[0]', {});
     const name = get(job, 'name', '');
     const id = get(job, 'id', '');
-
+    const jobClass = get(job, 'class', '');
     this.props.mutator.job
       .DELETE(job)
       .then(() => this.props.history.replace(
         {
           pathname: '/local-kb-admin',
           search: `${this.props.location.search}`,
-          state: { deletedJobId: id, deletedJobName: name }
+          state: { deletedJobId: id, deletedJobName: name, deletedJobClass: jobClass }
         }
       )); // push deleted job id and name to location state so that it could be used to show the callout in jobsRoute
   };

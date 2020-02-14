@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { getSASParams } from '@folio/stripes-erm-components';
-import { FormattedMessage } from 'react-intl';
+import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
 import { Callout } from '@folio/stripes/components';
@@ -103,7 +103,7 @@ class JobsRoute extends React.Component {
     const currentDeletedJobId = get(this.props, 'location.state.deletedJobId', '');
     if (prevDeletedJobId !== currentDeletedJobId) {
       const name = get(this.props, 'location.state.deletedJobName', '');
-      if (name !== '') this.showToast('ui-local-kb-admin.job.delete.success', 'success', { name });
+      if (name !== '') this.showToast('ui-local-kb-admin.job.delete.success', get(prevProps, 'location.state.deletedJobClass', ''), 'success', { name });
     }
   }
 
@@ -125,9 +125,10 @@ class JobsRoute extends React.Component {
     return get(this.props.resources, 'query', {});
   }
 
-  showToast = (messageId, messageType = 'success', values = {}) => {
+  showToast = (messageId, jobClass, messageType = 'success', values = {}) => {
+    const classMessageId = messageId.concat(`.${jobClass}`)
     return this.callout.current.sendCallout({
-      message: <FormattedMessage id={messageId} values={values} />,
+      message: <SafeHTMLMessage id={classMessageId} values={values} />,
       type: messageType,
     });
   }
