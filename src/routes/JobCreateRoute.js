@@ -1,5 +1,6 @@
 import React from 'react';
 import compose from 'compose-function';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { stripesConnect } from '@folio/stripes/core';
 import withFileHandlers from './components/withFileHandlers';
@@ -19,6 +20,7 @@ class JobCreateRoute extends React.Component {
     handlers: PropTypes.object,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
+      replace: PropTypes.func,
     }).isRequired,
     location: PropTypes.shape({
       search: PropTypes.string.isRequired,

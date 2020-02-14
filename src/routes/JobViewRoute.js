@@ -40,9 +40,8 @@ class JobViewRoute extends React.Component {
     super(props);
 
     this.callout = React.createRef();
+    this.state = { showConfirmDelete: false };
   }
-
-  state = { showConfirmDelete: false };
 
   componentDidUpdate(prevProps) {
     const prevCreatedJobId = get(prevProps, 'location.state.createdJobId', '');
@@ -95,8 +94,6 @@ class JobViewRoute extends React.Component {
     const name = get(job, 'name', '');
     const jobClass = get(job, 'class', '');
 
-    console.log("Location state: %o", this.props?.history?.location?.state);
-
     let deleteMessageId = 'ui-local-kb-admin.job.delete.message';
     let deleteHeadingId = 'ui-local-kb-admin.job.delete.heading';
 
@@ -106,7 +103,7 @@ class JobViewRoute extends React.Component {
     }
 
     return (
-      <React.Fragment>
+      <>
         <JobInfo
           data={{
             job
@@ -128,7 +125,7 @@ class JobViewRoute extends React.Component {
           />
         )}
         <Callout ref={this.callout} />
-      </React.Fragment>
+      </>
     );
   }
 }

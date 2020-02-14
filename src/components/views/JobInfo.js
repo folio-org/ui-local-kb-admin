@@ -30,11 +30,15 @@ export default class JobInfo extends React.Component {
     onDelete: PropTypes.func,
   };
 
-  state = {
-    sections: {
-      errorLogs: false,
-      infoLogs: false,
-    }
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      sections: {
+        errorLogs: false,
+        infoLogs: false,
+      }
+    };
   }
 
   renderLoadingPane = () => {
@@ -82,7 +86,7 @@ export default class JobInfo extends React.Component {
 
     return (
       <IfPermission perm="ui-local-kb-admin.jobs.delete">
-        <React.Fragment>
+        <>
           <Button
             buttonStyle="dropdownItem"
             id="clickable-dropdown-delete-job"
@@ -96,7 +100,7 @@ export default class JobInfo extends React.Component {
               <FormattedMessage id="ui-local-kb-admin.job.delete" />
             </Icon>
           </Button>
-        </React.Fragment>
+        </>
       </IfPermission>
     );
   }

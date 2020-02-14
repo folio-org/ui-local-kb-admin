@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
 
 import LogsList from '../../components/LogsList';
 import { resultCount } from '../../constants';
@@ -41,6 +40,7 @@ export default class JobLogContainer extends React.Component {
     }).isRequired,
     resources: PropTypes.shape({
       logs: PropTypes.object,
+      resultCount: PropTypes.number,
     }),
     // eslint-disable-next-line react/no-unused-prop-types
     type: PropTypes.string, // used in `logs` manifest

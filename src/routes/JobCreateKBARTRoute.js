@@ -20,6 +20,7 @@ class JobCreateKBARTRoute extends React.Component {
     handlers: PropTypes.object,
     history: PropTypes.shape({
       push: PropTypes.func.isRequired,
+      replace: PropTypes.func,
     }).isRequired,
     location: PropTypes.shape({
       search: PropTypes.string.isRequired,

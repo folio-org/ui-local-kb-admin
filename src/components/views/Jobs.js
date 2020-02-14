@@ -45,8 +45,10 @@ export default class Jobs extends React.Component {
     searchString: '',
   }
 
-  state = {
-    filterPaneIsVisible: true,
+  constructor(props) {
+    super(props);
+
+    this.state = { filterPaneIsVisible: true };
   }
 
   columnMapping = {
@@ -155,7 +157,7 @@ export default class Jobs extends React.Component {
     >
       <FormattedMessage id="ui-local-kb-admin.job.newJob">
         {ariaLabel => (
-          <React.Fragment>
+          <>
             <Button
               aria-label={ariaLabel}
               buttonStyle="dropdownItem"
@@ -174,7 +176,7 @@ export default class Jobs extends React.Component {
             >
               <FormattedMessage id="ui-local-kb-admin.job.newKBARTJob" />
             </Button>
-          </React.Fragment>
+          </>
         )}
       </FormattedMessage>
     </DropdownMenu>
@@ -183,7 +185,7 @@ export default class Jobs extends React.Component {
   renderResultsLastMenu() {
     const buttonProps = {
       buttonStyle: 'primary'
-    }
+    };
     return (
       <IfPermission perm="ui-local-kb-admin.jobs.edit">
         <Dropdown
@@ -305,8 +307,7 @@ export default class Jobs extends React.Component {
                           filterHandlers={getFilterHandlers()}
                         />
                       </form>
-                    </Pane>
-                  }
+                    </Pane> }
                   <Pane
                     appIcon={<AppIcon app="local-kb-admin" />}
                     defaultWidth="fill"
