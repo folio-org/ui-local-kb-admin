@@ -6,7 +6,7 @@ export default Factory.extend({
   dateCreated: () => faker.date.recent().toISOString(),
   name: () => faker.random.words(),
   ended: () => faker.date.recent().getTime(),
-  source: () => faker.random.arrayElement(['Harvester']),
+  source: () => faker.random.arrayElement(['JSON Harvester']),
   started: () => faker.date.recent().getTime(),
   status: () => {
     const val = faker.random.arrayElement(['Queued', 'In progress', 'Ended']);

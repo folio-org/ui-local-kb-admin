@@ -82,7 +82,7 @@ describe('JobCreate KBART', () => {
         });
 
         it('should render the expected job source', () => {
-          expect(jobviewinteractor.source).to.equal('File import');
+          expect(jobviewinteractor.source).to.equal('KBART File import');
         });
       });
 
