@@ -5,7 +5,6 @@ import { getSASParams } from '@folio/stripes-erm-components';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
 import { Callout } from '@folio/stripes/components';
-import showToast from './components/showToast';
 import calloutLogic from './components/calloutLogic';
 import View from '../components/views/Jobs';
 

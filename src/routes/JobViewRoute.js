@@ -5,7 +5,6 @@ import { stripesConnect } from '@folio/stripes/core';
 import { FormattedMessage } from 'react-intl';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { Callout, ConfirmationModal } from '@folio/stripes/components';
-import showToast from './components/showToast';
 import calloutLogic from './components/calloutLogic';
 import JobInfo from '../components/views/JobInfo';
 
