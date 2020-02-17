@@ -45,7 +45,7 @@ export default class Jobs extends React.Component {
     searchString: '',
   }
 
-  state = { 
+  state = {
     filterPaneIsVisible: true
   }
 
