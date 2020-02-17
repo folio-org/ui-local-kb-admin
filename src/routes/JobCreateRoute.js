@@ -72,6 +72,7 @@ class JobCreateRoute extends React.Component {
           onClose: this.handleClose
         }}
         onSubmit={this.handleSubmit}
+        format="JSON"
       />
     );
   }

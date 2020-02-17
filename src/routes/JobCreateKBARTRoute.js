@@ -4,7 +4,7 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { stripesConnect } from '@folio/stripes/core';
 import withFileHandlers from './components/withFileHandlers';
-import View from '../components/views/JobFormKBART';
+import View from '../components/views/JobForm';
 
 class JobCreateKBARTRoute extends React.Component {
   static manifest = Object.freeze({
@@ -72,6 +72,7 @@ class JobCreateKBARTRoute extends React.Component {
           onClose: this.handleClose
         }}
         onSubmit={this.handleSubmit}
+        format="KBART"
       />
     );
   }
