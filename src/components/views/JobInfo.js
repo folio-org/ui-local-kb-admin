@@ -30,15 +30,11 @@ export default class JobInfo extends React.Component {
     onDelete: PropTypes.func,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      sections: {
-        errorLogs: false,
-        infoLogs: false,
-      }
-    };
+  state = {
+    sections: {
+      errorLogs: false,
+      infoLogs: false,
+    }
   }
 
   renderLoadingPane = () => {

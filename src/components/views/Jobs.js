@@ -45,10 +45,8 @@ export default class Jobs extends React.Component {
     searchString: '',
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = { filterPaneIsVisible: true };
+  state = { 
+    filterPaneIsVisible: true
   }
 
   columnMapping = {

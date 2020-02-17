@@ -5,6 +5,7 @@ import { stripesConnect } from '@folio/stripes/core';
 import { FormattedMessage } from 'react-intl';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { Callout, ConfirmationModal } from '@folio/stripes/components';
+import showToast from './components/showToast';
 import JobInfo from '../components/views/JobInfo';
 
 class JobViewRoute extends React.Component {
@@ -48,20 +49,10 @@ class JobViewRoute extends React.Component {
     const currentCreatedJobId = get(this.props, 'location.state.createdJobId', '');
     if (prevCreatedJobId !== currentCreatedJobId) {
       const name = get(this.props, 'location.state.createdJobName', '');
-      if (name !== '') this.showToast('ui-local-kb-admin.job.create.success', get(this.props, 'location.state.createdJobClass', ''), 'success', { name });
+      if (name !== '') this.callout.current.sendCallout(showToast('ui-local-kb-admin.job.create.success', get(this.props, 'location.state.createdJobClass', ''), 'success', { name }));
     }
   }
 
-  showToast = (messageId, jobClass, messageType = 'success', values = {}) => {
-    let classMessageId = messageId;
-    if (jobClass !== '') {
-      classMessageId = messageId.concat(`.${jobClass}`);
-    }
-    return this.callout.current.sendCallout({
-      message: <SafeHTMLMessage id={classMessageId} values={values} />,
-      type: messageType,
-    });
-  }
 
   handleDelete = () => {
     const { resources } = this.props;

@@ -6,6 +6,7 @@ import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
 import { Callout } from '@folio/stripes/components';
+import showToast from './components/showToast';
 import View from '../components/views/Jobs';
 
 const INITIAL_RESULT_COUNT = 100;
@@ -103,7 +104,7 @@ class JobsRoute extends React.Component {
     const currentDeletedJobId = get(this.props, 'location.state.deletedJobId', '');
     if (prevDeletedJobId !== currentDeletedJobId) {
       const name = get(this.props, 'location.state.deletedJobName', '');
-      if (name !== '') this.showToast('ui-local-kb-admin.job.delete.success', get(this.props, 'location.state.deletedJobClass', ''), 'success', { name });
+      if (name !== '') this.callout.current.sendCallout(showToast('ui-local-kb-admin.job.delete.success', get(this.props, 'location.state.deletedJobClass', ''), 'success', { name }));
     }
   }
 
@@ -125,17 +126,6 @@ class JobsRoute extends React.Component {
     return get(this.props.resources, 'query', {});
   }
 
-  showToast = (messageId, jobClass, messageType = 'success', values = {}) => {
-    let classMessageId = messageId;
-    if (jobClass !== '') {
-      classMessageId = messageId.concat(`.${jobClass}`);
-    }
-    return this.callout.current.sendCallout({
-      message: <SafeHTMLMessage id={classMessageId} values={values} />,
-      type: messageType,
-    });
-  }
-
   render() {
     const { children, location, match, resources } = this.props;
     if (this.source) {
@@ -154,6 +144,7 @@ class JobsRoute extends React.Component {
           queryGetter={this.queryGetter}
           querySetter={this.querySetter}
           searchString={location.search}
+          showCallout={this.showToast}
           source={this.source}
         >
           {children}
