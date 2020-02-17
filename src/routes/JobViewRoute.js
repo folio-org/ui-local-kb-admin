@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { Callout, ConfirmationModal } from '@folio/stripes/components';
 import showToast from './components/showToast';
+import calloutLogic from './components/calloutLogic';
 import JobInfo from '../components/views/JobInfo';
 
 class JobViewRoute extends React.Component {
@@ -45,12 +46,7 @@ class JobViewRoute extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const prevCreatedJobId = get(prevProps, 'location.state.createdJobId', '');
-    const currentCreatedJobId = get(this.props, 'location.state.createdJobId', '');
-    if (prevCreatedJobId !== currentCreatedJobId) {
-      const name = get(this.props, 'location.state.createdJobName', '');
-      if (name !== '') this.callout.current.sendCallout(showToast('ui-local-kb-admin.job.create.success', get(this.props, 'location.state.createdJobClass', ''), 'success', { name }));
-    }
+    calloutLogic(this.props, prevProps, 'created', this.callout.current.sendCallout);
   }
 
 

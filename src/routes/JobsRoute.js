@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { getSASParams } from '@folio/stripes-erm-components';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
 import { Callout } from '@folio/stripes/components';
 import showToast from './components/showToast';
+import calloutLogic from './components/calloutLogic';
 import View from '../components/views/Jobs';
 
 const INITIAL_RESULT_COUNT = 100;
@@ -99,13 +99,7 @@ class JobsRoute extends React.Component {
         history.push(`/local-kb-admin/${record.id}${location.search}`);
       }
     }
-
-    const prevDeletedJobId = get(prevProps, 'location.state.deletedJobId', '');
-    const currentDeletedJobId = get(this.props, 'location.state.deletedJobId', '');
-    if (prevDeletedJobId !== currentDeletedJobId) {
-      const name = get(this.props, 'location.state.deletedJobName', '');
-      if (name !== '') this.callout.current.sendCallout(showToast('ui-local-kb-admin.job.delete.success', get(this.props, 'location.state.deletedJobClass', ''), 'success', { name }));
-    }
+    calloutLogic(this.props, prevProps, 'deleted', this.callout.current.sendCallout);
   }
 
   querySetter = ({ nsValues, state }) => {
