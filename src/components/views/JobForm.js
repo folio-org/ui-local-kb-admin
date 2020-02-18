@@ -24,8 +24,9 @@ import { required } from '../../util/validators';
 
 import css from './JobForm.css';
 
-class JobFormKBART extends React.Component {
+class JobForm extends React.Component {
   static propTypes = {
+    format: PropTypes.string.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     handlers: PropTypes.shape({
       onClose: PropTypes.func.isRequired,
@@ -33,8 +34,7 @@ class JobFormKBART extends React.Component {
       onUploadFile: PropTypes.func.isRequired,
     }),
     pristine: PropTypes.bool,
-    submitting: PropTypes.bool,
-    format: PropTypes.string.isRequired
+    submitting: PropTypes.bool
   }
 
   renderPaneFooter() {
@@ -189,4 +189,4 @@ class JobFormKBART extends React.Component {
 export default stripesFinalForm({
   navigationCheck: true,
   keepDirtyOnReinitialize: true,
-})(JobFormKBART);
+})(JobForm);

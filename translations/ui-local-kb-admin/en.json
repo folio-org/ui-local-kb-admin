@@ -40,6 +40,7 @@
 
   "job.new": "New",
   "job.newJob": "New job",
+  "job.availableJobTypes": "Available job types",
   "job.close": "Close job",
   "job.newJSONJob": "New JSON job",
   "job.newKBARTJob": "New KBART job",
