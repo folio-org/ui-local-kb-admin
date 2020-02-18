@@ -9,7 +9,14 @@ export default class ExternalDataSourcesView extends React.Component {
     input: PropTypes.shape({
       name: PropTypes.string.isRequired,
       value: PropTypes.shape({
+        activationEnabled: PropTypes.bool,
+        active: PropTypes.bool,
         id: PropTypes.string,
+        name: PropTypes.string,
+        readonly: PropTypes.bool,
+        rectype: PropTypes.number,
+        supportsHarvesting: PropTypes.bool,
+        type: PropTypes.string,
       }).isRequired,
     }).isRequired,
     meta: PropTypes.shape({

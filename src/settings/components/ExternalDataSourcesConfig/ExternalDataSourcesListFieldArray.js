@@ -9,6 +9,8 @@ import ExternalDataSourcesFields from './ExternalDataSourcesFields';
 export default class ExternalDataSourcesListFieldArray extends React.Component {
   static propTypes = {
     fields: PropTypes.shape({
+      name: PropTypes.string,
+      remove: PropTypes.func,
       unshift: PropTypes.func.isRequired,
       value: PropTypes.array.isRequired,
     }).isRequired,
