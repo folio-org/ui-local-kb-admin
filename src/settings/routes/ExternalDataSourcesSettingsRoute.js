@@ -43,7 +43,7 @@ class ExternalDataSourcesSettingsRoute extends React.Component {
 
   render() {
     if (!this.props.resources.externalKbs) return <div />;
-    const externalKbs = get(this.props, 'resources.externalKbs.records', []);
+    const externalKbs = this.props?.resources?.externalKbs?.records ?? [];
 
     return (
       <ExternalDataSourcesForm

@@ -78,7 +78,7 @@ export default class JobInfo extends React.Component {
 
   getActionMenu = ({ onToggle }) => {
     const { data: { job } } = this.props;
-    const isJobNotInProgress = get(job, 'status.value') !== 'in_progress';
+    const isJobNotInProgress = job?.status?.value !== 'in_progress';
 
     return (
       <IfPermission perm="ui-local-kb-admin.jobs.delete">
@@ -105,7 +105,7 @@ export default class JobInfo extends React.Component {
     const { data: { job }, isLoading } = this.props;
 
     if (isLoading) return this.renderLoadingPane();
-    const isJobNotQueued = get(job, 'status.value') !== 'queued';
+    const isJobNotQueued = job?.status?.value !== 'queued';
 
     return (
       <Pane
@@ -136,7 +136,7 @@ export default class JobInfo extends React.Component {
               <Col xs={4}>
                 <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.runningStatus" />}>
                   <div data-test-job-status>
-                    {get(job, 'status.label', '-')}
+                    {job?.status?.label ?? '-'}
                   </div>
                 </KeyValue>
               </Col>
@@ -145,7 +145,7 @@ export default class JobInfo extends React.Component {
                   <Col xs={4}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.outcome" />}>
                       <div data-test-job-result>
-                        {get(job, 'result.label', '-')}
+                        {job?.result?.label ?? '-'}
                       </div>
                     </KeyValue>
                   </Col>

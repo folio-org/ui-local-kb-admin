@@ -85,7 +85,7 @@ export default class ExternalDataSourcesView extends React.Component {
         <KeyValue
           data-test-external-data-source-uri
           label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.uri" />}
-          value={get(value, 'uri', '-')}
+          value={value?.uri ?? '-'}
         />
         <Layout className="padding-bottom-gutter">
           <Row>
@@ -117,28 +117,28 @@ export default class ExternalDataSourcesView extends React.Component {
             <KeyValue
               data-test-external-data-source-listprefix
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.listPrefix" />}
-              value={get(value, 'listPrefix', '-')}
+              value={value?.listPrefix ?? '-'}
             />
           </Col>
           <Col xs={5}>
             <KeyValue
               data-test-external-data-source-fullprefix
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.fullPrefix" />}
-              value={get(value, 'fullPrefix', '-')}
+              value={value?.fullPrefix ?? '-'}
             />
           </Col>
           <Col xs={4}>
             <KeyValue
               data-test-external-data-source-principal
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.principal" />}
-              value={get(value, 'principal', '-')}
+              value={value?.principal ?? '-'}
             />
           </Col>
         </Row>
         <KeyValue
           data-test-external-data-source-credentials
           label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.credentials" />}
-          value={get(value, 'credentials', '-')}
+          value={value?.credentials ?? '-'}
         />
       </Card>
     );

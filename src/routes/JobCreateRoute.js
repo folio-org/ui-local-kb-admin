@@ -62,9 +62,9 @@ class JobCreateRoute extends React.Component {
     mutator.jobs
       .POST(job)
       .then(response => {
-        jobName = get(response, 'name', '');
-        jobId = get(response, 'id', '');
-        jobClass = get(response, 'class', '');
+        jobName = response?.name ?? '';
+        jobId = response?.id ?? '';
+        jobClass = response?.class ?? '';
         history.push(`/local-kb-admin/${jobId}${location.search}`);
       })
       .then(() => history.replace(

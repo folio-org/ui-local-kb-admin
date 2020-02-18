@@ -116,7 +116,7 @@ class JobsRoute extends React.Component {
   }
 
   queryGetter = () => {
-    return get(this.props.resources, 'query', {});
+    return this.props?.resources?.query ?? {};
   }
 
   render() {
@@ -129,9 +129,9 @@ class JobsRoute extends React.Component {
       <div>
         <View
           data={{
-            jobs: get(resources, 'jobs.records', []),
-            resultValues: get(resources, 'resultValues.records', []),
-            statusValues: get(resources, 'statusValues.records', []),
+            jobs: resources?.jobs?.records ?? [],
+            resultValues: resources?.resultValues?.records ?? [],
+            statusValues: resources?.statusValues?.records ?? [],
           }}
           selectedRecordId={match.params.id}
           queryGetter={this.queryGetter}

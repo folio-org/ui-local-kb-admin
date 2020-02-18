@@ -60,7 +60,7 @@ class ExternalDataSourcesForm extends React.Component {
   render() {
     const { form: { mutators } } = this.props;
 
-    const count = get(this.props, 'initialValues.externalKbs.length', 0);
+    const count = this.props?.initialValues?.externalKbs?.length ?? 0;
     return (
       <Pane
         data-test-external-data-sources

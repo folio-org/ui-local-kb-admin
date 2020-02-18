@@ -51,10 +51,10 @@ class JobViewRoute extends React.Component {
 
   handleDelete = () => {
     const { resources } = this.props;
-    const job = get(resources, 'job.records[0]', {});
-    const name = get(job, 'name', '');
-    const id = get(job, 'id', '');
-    const jobClass = get(job, 'class', '');
+    const job = resources?.job?.records?.[0] ?? {};
+    const name = job?.name ?? '';
+    const id = job?.id ?? '';
+    const jobClass = job?.class ?? '';
     this.props.mutator.job
       .DELETE(job)
       .then(() => this.props.history.replace(
@@ -76,9 +76,9 @@ class JobViewRoute extends React.Component {
 
   render() {
     const { resources } = this.props;
-    const job = get(resources, 'job.records[0]', {});
-    const name = get(job, 'name', '');
-    const jobClass = get(job, 'class', '');
+    const job = resources?.job?.records?.[0] ?? {};
+    const name = job?.name ?? '';
+    const jobClass = job?.class ?? '';
 
     let deleteMessageId = 'ui-local-kb-admin.job.delete.message';
     let deleteHeadingId = 'ui-local-kb-admin.job.delete.heading';
@@ -96,7 +96,7 @@ class JobViewRoute extends React.Component {
           }}
           onClose={this.handleClose}
           onDelete={this.showDeleteConfirmationModal}
-          isLoading={get(resources, 'job.isPending', true)}
+          isLoading={resources?.job?.isPending ?? true}
         />
         {this.state.showConfirmDelete && (
           <ConfirmationModal
