@@ -30,7 +30,7 @@ export default class App extends React.Component {
     return (
       <Suspense fallback={null}>
         <Switch>
-          <Route path={`${path}/create/KBART`} component={JobCreateKBARTRoute} />
+          <Route path={`${path}/create/KBART`} component={JobCreateRoute} />
           <Route path={`${path}/create/JSON`} component={JobCreateRoute} />
           <Route path={`${path}/:id?`} component={JobsRoute}>
             <Suspense fallback={null}>
