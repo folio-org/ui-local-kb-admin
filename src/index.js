@@ -4,7 +4,6 @@ import Switch from 'react-router-dom/Switch';
 import { Route } from '@folio/stripes/core';
 
 const JobCreateRoute = lazy(() => import('./routes/JobCreateRoute'));
-const JobCreateKBARTRoute = lazy(() => import('./routes/JobCreateKBARTRoute'));
 const JobsRoute = lazy(() => import('./routes/JobsRoute'));
 const JobViewRoute = lazy(() => import('./routes/JobViewRoute'));
 

@@ -75,7 +75,7 @@ class JobCreateRoute extends React.Component {
   }
 
   render() {
-    const { handlers, match: {path} } = this.props;
+    const { handlers, match: { path } } = this.props;
     let format;
     if (path === '/local-kb-admin/create/KBART') {
       format = 'KBART';
