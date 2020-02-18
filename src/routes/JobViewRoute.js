@@ -4,7 +4,6 @@ import { stripesConnect } from '@folio/stripes/core';
 import { FormattedMessage } from 'react-intl';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { Callout, ConfirmationModal } from '@folio/stripes/components';
-import calloutLogic from './components/calloutLogic';
 import JobInfo from '../components/views/JobInfo';
 
 class JobViewRoute extends React.Component {
@@ -42,11 +41,6 @@ class JobViewRoute extends React.Component {
     this.callout = React.createRef();
     this.state = { showConfirmDelete: false };
   }
-
-  componentDidUpdate(prevProps) {
-    calloutLogic(this.props, prevProps, 'created', this.callout.current.sendCallout);
-  }
-
 
   handleDelete = () => {
     const { resources } = this.props;

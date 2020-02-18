@@ -98,6 +98,7 @@ class JobsRoute extends React.Component {
       }
     }
     calloutLogic(this.props, prevProps, 'deleted', this.callout.current.sendCallout);
+    calloutLogic(this.props, prevProps, 'created', this.callout.current.sendCallout);
   }
 
   querySetter = ({ nsValues, state }) => {
