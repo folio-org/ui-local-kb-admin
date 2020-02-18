@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { get } from 'lodash';
 import { Button, Card, Col, Row, KeyValue, Layout } from '@folio/stripes/components';
 
 export default class ExternalDataSourcesView extends React.Component {
