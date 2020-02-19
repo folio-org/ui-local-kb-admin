@@ -118,7 +118,6 @@ class JobsRoute extends React.Component {
     }
   }
 
-
   querySetter = ({ nsValues, state }) => {
     const defaults = {
       filters: null,
@@ -155,7 +154,6 @@ class JobsRoute extends React.Component {
           queryGetter={this.queryGetter}
           querySetter={this.querySetter}
           searchString={location.search}
-          showCallout={this.showToast}
           source={this.source}
         >
           {children}

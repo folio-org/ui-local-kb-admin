@@ -15,6 +15,7 @@ import {
   PaneMenu,
   Paneset,
   SearchField,
+  NoValue,
 } from '@folio/stripes/components';
 
 import {
@@ -68,12 +69,12 @@ export default class Jobs extends React.Component {
   }
 
   formatter = {
-    ended: ({ ended }) => (ended ? <FormattedDateTime date={ended} /> : '-'),
+    ended: ({ ended }) => (ended ? <FormattedDateTime date={ended} /> : <NoValue />),
     errors: ({ errorLogCount }) => errorLogCount,
     jobname: ({ name }) => name,
     runningStatus: ({ status }) => status && status.label,
     result: ({ result }) => result && result.label,
-    started: ({ started }) => (started ? <FormattedDateTime date={started} /> : '-'),
+    started: ({ started }) => (started ? <FormattedDateTime date={started} /> : <NoValue />),
   }
 
   rowFormatter = (row) => {

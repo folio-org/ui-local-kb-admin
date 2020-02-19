@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Button, Card, Col, Row, KeyValue, Layout } from '@folio/stripes/components';
+import { Button, Card, Col, Row, KeyValue, Layout, NoValue } from '@folio/stripes/components';
 
 export default class ExternalDataSourcesView extends React.Component {
   static propTypes = {
@@ -84,7 +84,7 @@ export default class ExternalDataSourcesView extends React.Component {
         <KeyValue
           data-test-external-data-source-uri
           label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.uri" />}
-          value={value?.uri ?? '-'}
+          value={value?.uri ?? <NoValue />}
         />
         <Layout className="padding-bottom-gutter">
           <Row>
@@ -116,28 +116,28 @@ export default class ExternalDataSourcesView extends React.Component {
             <KeyValue
               data-test-external-data-source-listprefix
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.listPrefix" />}
-              value={value?.listPrefix ?? '-'}
+              value={value?.listPrefix ?? <NoValue />}
             />
           </Col>
           <Col xs={5}>
             <KeyValue
               data-test-external-data-source-fullprefix
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.fullPrefix" />}
-              value={value?.fullPrefix ?? '-'}
+              value={value?.fullPrefix ?? <NoValue />}
             />
           </Col>
           <Col xs={4}>
             <KeyValue
               data-test-external-data-source-principal
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.principal" />}
-              value={value?.principal ?? '-'}
+              value={value?.principal ?? <NoValue />}
             />
           </Col>
         </Row>
         <KeyValue
           data-test-external-data-source-credentials
           label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.credentials" />}
-          value={value?.credentials ?? '-'}
+          value={value?.credentials ?? <NoValue />}
         />
       </Card>
     );
