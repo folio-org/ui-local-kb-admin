@@ -150,7 +150,6 @@ export default class Jobs extends React.Component {
   renderNewJobMenu = ({ onToggle }) => (
     <DropdownMenu
       data-role="menu"
-      aria-label={<FormattedMessage id="ui-local-kb-admin.job.availableJobTypes" />}
       onToggle={onToggle}
     >
       <FormattedMessage id="ui-local-kb-admin.job.newJob">
