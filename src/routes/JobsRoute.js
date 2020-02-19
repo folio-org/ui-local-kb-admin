@@ -99,10 +99,11 @@ class JobsRoute extends React.Component {
       }
     }
 
-
     if (this.props?.location?.state?.created) {
       this.renderJobChangeCallout(this.props, prevProps, 'created', this.callout.current.sendCallout);
-    } else if (this.props?.location?.state?.deleted) {
+    }
+
+    if (this.props?.location?.state?.deleted) {
       this.renderJobChangeCallout(this.props, prevProps, 'deleted', this.callout.current.sendCallout);
     }
   }
@@ -111,9 +112,9 @@ class JobsRoute extends React.Component {
   renderJobChangeCallout(props, prevProps, keyString, calloutFunc) {
     const prevJobId = get(prevProps, `location.state.${keyString}JobId`, '');
     const currentJobId = get(props, `location.state.${keyString}JobId`, '');
-    if (prevJobId !== currentJobId) {
-      const name = get(props, `location.state.${keyString}JobName`, '');
-      if (name !== '') calloutFunc(showToast(`ui-local-kb-admin.job.${keyString}.success`, get(props, `location.state.${keyString}JobClass`, ''), 'success', { name }));
+    const name = get(props, `location.state.${keyString}JobName`, '');
+    if (prevJobId !== currentJobId && name !== '') {
+      calloutFunc(showToast(`ui-local-kb-admin.job.${keyString}.success`, get(props, `location.state.${keyString}JobClass`, ''), 'success', { name }));
     }
   }
 
