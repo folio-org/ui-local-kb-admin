@@ -9,10 +9,10 @@ class JobCreateRoute extends React.Component {
   static manifest = Object.freeze({
     jobs: {
       type: 'okapi',
-      path: (_q, _p, _r, _l, props) => {
-        const { match: { path } } = props;
+      path: (_q, params) => {
+        const format = params?.format;
         let endpointPath;
-        if (path === '/local-kb-admin/create/KBART') {
+        if (format === 'KBART') {
           endpointPath = 'erm/jobs/kbartImport';
         } else {
           endpointPath = 'erm/jobs/packageImport';
@@ -34,7 +34,9 @@ class JobCreateRoute extends React.Component {
       search: PropTypes.string.isRequired,
     }).isRequired,
     match: PropTypes.shape({
-      path: PropTypes.string,
+      params: PropTypes.shape({
+        format: PropTypes.string,
+      }),
     }),
     mutator: PropTypes.shape({
       jobs: PropTypes.shape({
@@ -74,13 +76,7 @@ class JobCreateRoute extends React.Component {
   }
 
   render() {
-    const { handlers, match: { path } } = this.props;
-    let format;
-    if (path === '/local-kb-admin/create/KBART') {
-      format = 'KBART';
-    } else {
-      format = 'JSON';
-    }
+    const { handlers, match: { params: { format } } } = this.props;
 
     return (
       <View

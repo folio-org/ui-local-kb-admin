@@ -180,15 +180,12 @@ export default class Jobs extends React.Component {
   );
 
   renderResultsLastMenu() {
-    const buttonProps = {
-      buttonStyle: 'primary'
-    };
     return (
       <IfPermission perm="ui-local-kb-admin.jobs.edit">
         <Dropdown
           label={<FormattedMessage id="ui-local-kb-admin.job.new" />}
           renderMenu={this.renderNewJobMenu}
-          buttonProps={buttonProps}
+          buttonProps={{ buttonStyle: 'primary' }}
         />
       </IfPermission>
     );
