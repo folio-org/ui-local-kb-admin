@@ -77,8 +77,8 @@ class JobViewRoute extends React.Component {
     let deleteHeadingId = 'ui-local-kb-admin.job.delete.heading';
 
     if (jobClass !== '') {
-      deleteMessageId = deleteMessageId.concat(`.${jobClass}`);
-      deleteHeadingId = deleteHeadingId.concat(`.${jobClass}`);
+      deleteMessageId = `${deleteMessageId}.${jobClass}`;
+      deleteHeadingId = `${deleteHeadingId}.${jobClass}`;
     }
 
     return (

@@ -101,14 +101,14 @@ class JobsRoute extends React.Component {
 
 
     if (this.props?.location?.state?.created) {
-      this.calloutLogic(this.props, prevProps, 'created', this.callout.current.sendCallout);
+      this.renderJobChangeCallout(this.props, prevProps, 'created', this.callout.current.sendCallout);
     } else if (this.props?.location?.state?.deleted) {
-      this.calloutLogic(this.props, prevProps, 'deleted', this.callout.current.sendCallout);
+      this.renderJobChangeCallout(this.props, prevProps, 'deleted', this.callout.current.sendCallout);
     }
   }
 
   // In future it may be worth abstracting this function out, as we will need similar callout logic for creation/deletion/editing elsewhere in ERM too.
-  calloutLogic(props, prevProps, keyString, calloutFunc) {
+  renderJobChangeCallout(props, prevProps, keyString, calloutFunc) {
     const prevJobId = get(prevProps, `location.state.${keyString}JobId`, '');
     const currentJobId = get(props, `location.state.${keyString}JobId`, '');
     if (prevJobId !== currentJobId) {
