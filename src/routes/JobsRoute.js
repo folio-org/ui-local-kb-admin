@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 import { getSASParams } from '@folio/stripes-erm-components';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
 import { Callout } from '@folio/stripes/components';
-import calloutLogic from './components/calloutLogic';
+import showToast from './components/showToast';
 import View from '../components/views/Jobs';
 
 const INITIAL_RESULT_COUNT = 100;
@@ -97,9 +98,25 @@ class JobsRoute extends React.Component {
         history.push(`/local-kb-admin/${record.id}${location.search}`);
       }
     }
-    calloutLogic(this.props, prevProps, 'deleted', this.callout.current.sendCallout);
-    calloutLogic(this.props, prevProps, 'created', this.callout.current.sendCallout);
+
+
+    if (this.props?.location?.state?.created) {
+      this.calloutLogic(this.props, prevProps, 'created', this.callout.current.sendCallout);
+    } else if (this.props?.location?.state?.deleted) {
+      this.calloutLogic(this.props, prevProps, 'deleted', this.callout.current.sendCallout);
+    }
   }
+
+  // In future it may be worth abstracting this function out, as we will need similar callout logic for creation/deletion/editing elsewhere in ERM too.
+  calloutLogic(props, prevProps, keyString, calloutFunc) {
+    const prevJobId = get(prevProps, `location.state.${keyString}JobId`, '');
+    const currentJobId = get(props, `location.state.${keyString}JobId`, '');
+    if (prevJobId !== currentJobId) {
+      const name = get(props, `location.state.${keyString}JobName`, '');
+      if (name !== '') calloutFunc(showToast('ui-local-kb-admin.job.create.success', get(props, `location.state.${keyString}JobClass`, ''), 'success', { name }));
+    }
+  }
+
 
   querySetter = ({ nsValues, state }) => {
     const defaults = {

@@ -54,7 +54,7 @@ class JobViewRoute extends React.Component {
         {
           pathname: '/local-kb-admin',
           search: `${this.props.location.search}`,
-          state: { deletedJobId: id, deletedJobName: name, deletedJobClass: jobClass }
+          state: { deletedJobId: id, deletedJobName: name, deletedJobClass: jobClass, deleted: true }
         }
       )); // push deleted job id name and class to location state so that it could be used to show the callout in jobsRoute
   };

@@ -68,7 +68,7 @@ class JobCreateRoute extends React.Component {
       })
       .then(() => history.replace(
         {
-          state: { createdJobId: jobId, createdJobName: jobName, createdJobClass: jobClass }
+          state: { createdJobId: jobId, createdJobName: jobName, createdJobClass: jobClass, created: true }
         }
       ));
   }
