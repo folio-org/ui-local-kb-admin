@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Button, Card, Col, Row, KeyValue, Layout, NoValue } from '@folio/stripes/components';
+import { Button, Card, Col, KeyValue, Layout, NoValue, Row } from '@folio/stripes/components';
 
 export default class ExternalDataSourcesView extends React.Component {
   static propTypes = {

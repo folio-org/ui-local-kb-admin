@@ -11,11 +11,11 @@ import {
   DropdownMenu,
   Icon,
   MultiColumnList,
+  NoValue,
   Pane,
   PaneMenu,
   Paneset,
   SearchField,
-  NoValue,
 } from '@folio/stripes/components';
 
 import {

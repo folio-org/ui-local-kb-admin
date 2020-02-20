@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import compose from 'compose-function';
 import PropTypes from 'prop-types';
 import { stripesConnect } from '@folio/stripes/core';
@@ -75,8 +75,10 @@ class JobCreateRoute extends React.Component {
         jobId = response?.id ?? '';
         jobClass = response?.class ?? '';
 
-        //TODO This DOESN'T WORK yet
-        this.callout.current.sendCallout(showToast('ui-local-kb-admin.job.created.success', jobClass, 'success', { name: jobName }));
+        const calloutObj = showToast('ui-local-kb-admin.job.created.success', jobClass, 'success', { name: jobName });
+
+        // ToDo This doesn't work yet
+        this.callout.current.sendCallout(calloutObj);
 
         history.push(`/local-kb-admin/${jobId}${location.search}`);
       });
@@ -84,7 +86,6 @@ class JobCreateRoute extends React.Component {
 
   render() {
     const { handlers, match: { params: { format } } } = this.props;
-
     return (
       <>
         <View

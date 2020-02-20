@@ -10,10 +10,10 @@ import {
   Icon,
   KeyValue,
   Layout,
+  NoValue,
   Pane,
   Row,
-  Spinner,
-  NoValue,
+  Spinner
 } from '@folio/stripes/components';
 import { IfPermission, TitleManager } from '@folio/stripes/core';
 

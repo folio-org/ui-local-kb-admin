@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import { MultiColumnList, Spinner, NoValue } from '@folio/stripes/components';
+import { MultiColumnList, NoValue, Spinner } from '@folio/stripes/components';
 import { resultCount } from '../../constants';
 
 export default class LogsList extends React.Component {
@@ -27,7 +27,7 @@ export default class LogsList extends React.Component {
           message: <FormattedMessage id={`ui-local-kb-admin.columns.${type}LogMessage`} />,
         }}
         contentData={logs}
-        formatter={{ recordNumber: ({ recordNumber }) => (recordNumber !== undefined ? recordNumber : <NoValue />) }}
+        formatter={{ recordNumber: ({ recordNumber }) => (recordNumber ?? <NoValue />) }}
         id={`list-${type}Log`}
         interactive={false}
         maxHeight={800}
