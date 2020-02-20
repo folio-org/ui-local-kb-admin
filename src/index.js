@@ -20,10 +20,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.callout = React.createRef();
-    this.showCallout = this.showCallout.bind(this);
   }
 
-  showCallout(messageId, jobClass, messageType = 'success', values = {}) {
+  showCallout = (messageId, jobClass, messageType = 'success', values = {}) => {
     this.callout.current.sendCallout(makeToast(messageId, jobClass, messageType, values));
   }
 
