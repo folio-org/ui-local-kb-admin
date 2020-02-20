@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { stripesConnect } from '@folio/stripes/core';
 import { FormattedMessage } from 'react-intl';
 import SafeHTMLMessage from '@folio/react-intl-safe-html';
-import { Callout, ConfirmationModal } from '@folio/stripes/components';
+import { ConfirmationModal } from '@folio/stripes/components';
 import JobInfo from '../components/views/JobInfo';
 
 class JobViewRoute extends React.Component {
