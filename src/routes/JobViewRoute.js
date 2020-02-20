@@ -30,6 +30,7 @@ class JobViewRoute extends React.Component {
     resources: PropTypes.shape({
       job: PropTypes.object,
     }).isRequired,
+    showCallout: PropTypes.func.isRequired,
     stripes: PropTypes.shape({
       okapi: PropTypes.object.isRequired,
     }).isRequired,
@@ -37,8 +38,6 @@ class JobViewRoute extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.callout = React.createRef();
     this.state = { showConfirmDelete: false };
   }
 
@@ -46,7 +45,6 @@ class JobViewRoute extends React.Component {
     const { resources } = this.props;
     const job = resources?.job?.records?.[0] ?? {};
     const name = job?.name ?? '';
-    const id = job?.id ?? '';
     const jobClass = job?.class ?? '';
     this.props.mutator.job
       .DELETE(job)
@@ -54,9 +52,9 @@ class JobViewRoute extends React.Component {
         {
           pathname: '/local-kb-admin',
           search: `${this.props.location.search}`,
-          state: { deletedJobId: id, deletedJobName: name, deletedJobClass: jobClass, deleted: true }
         }
-      )); // push deleted job id name and class to location state so that it could be used to show the callout in jobsRoute
+      ),
+      this.props.showCallout('ui-local-kb-admin.job.deleted.success', jobClass, 'success', { name }));
   };
 
   handleClose = () => {
@@ -103,7 +101,6 @@ class JobViewRoute extends React.Component {
             open
           />
         )}
-        <Callout ref={this.callout} />
       </>
     );
   }

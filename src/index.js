@@ -45,7 +45,7 @@ export default class App extends React.Component {
             <Route path={`${path}/create/:format`} render={(props) => <JobCreateRoute showCallout={this.showCallout} {...props} />} />
             <Route path={`${path}/:id?`} component={JobsRoute}>
               <Suspense fallback={null}>
-                <Route path={`${path}/:id`} component={JobViewRoute} />
+                <Route path={`${path}/:id`} render={(props) => <JobViewRoute showCallout={this.showCallout} {...props} />} />
               </Suspense>
             </Route>
           </Switch>

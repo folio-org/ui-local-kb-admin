@@ -20,11 +20,11 @@
   "job.delete.heading.org.olf.general.jobs.PackageImportJob": "Delete JSON package import job",
   "job.delete.heading.org.olf.general.jobs.PackageIngestJob": "Delete JSON package ingest job",
 
-  "job.deleted.message": "Job <strong>{name}</strong> will be <strong>deleted</strong>",
-  "job.deleted.message.org.olf.general.jobs.KbartImportJob": "KBART package import job <strong>{name}</strong> will be <strong>deleted</strong>.",
-  "job.deleted.message.org.olf.general.jobs.KbartIngestJob": "KBART package ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
-  "job.deleted.message.org.olf.general.jobs.PackageImportJob": "JSON package import job <strong>{name}</strong> will be <strong>deleted</strong>.",
-  "job.deleted.message.org.olf.general.jobs.PackageIngestJob": "JSON package ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
+  "job.delete.message": "Job <strong>{name}</strong> will be <strong>deleted</strong>",
+  "job.delete.message.org.olf.general.jobs.KbartImportJob": "KBART package import job <strong>{name}</strong> will be <strong>deleted</strong>.",
+  "job.delete.message.org.olf.general.jobs.KbartIngestJob": "KBART package ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
+  "job.delete.message.org.olf.general.jobs.PackageImportJob": "JSON package import job <strong>{name}</strong> will be <strong>deleted</strong>.",
+  "job.delete.message.org.olf.general.jobs.PackageIngestJob": "JSON package ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
 
   "job.deleted.success": "Job <strong>{name}</strong> was successfully <strong>deleted</strong>",
   "job.deleted.success.org.olf.general.jobs.KbartImportJob": "<strong>KBART package import job deleted </strong>: {name}",

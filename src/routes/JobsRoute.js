@@ -71,7 +71,6 @@ class JobsRoute extends React.Component {
 
     this.logger = props.stripes.logger;
     this.searchField = React.createRef();
-    this.callout = React.createRef();
   }
 
   componentDidMount() {
@@ -97,24 +96,6 @@ class JobsRoute extends React.Component {
         const record = newRecords[0];
         history.push(`/local-kb-admin/${record.id}${location.search}`);
       }
-    }
-
-    if (this.props?.location?.state?.created) {
-      this.renderJobChangeCallout(this.props, prevProps, 'created', this.callout.current.sendCallout);
-    }
-
-    if (this.props?.location?.state?.deleted) {
-      this.renderJobChangeCallout(this.props, prevProps, 'deleted', this.callout.current.sendCallout);
-    }
-  }
-
-  // In future it may be worth abstracting this function out, as we will need similar callout logic for creation/deletion/editing elsewhere in ERM too.
-  renderJobChangeCallout(props, prevProps, keyString, calloutFunc) {
-    const prevJobId = get(prevProps, `location.state.${keyString}JobId`, '');
-    const currentJobId = get(props, `location.state.${keyString}JobId`, '');
-    const name = get(props, `location.state.${keyString}JobName`, '');
-    if (prevJobId !== currentJobId && name !== '') {
-      calloutFunc(makeToast(`ui-local-kb-admin.job.${keyString}.success`, get(props, `location.state.${keyString}JobClass`, ''), 'success', { name }));
     }
   }
 
@@ -143,24 +124,20 @@ class JobsRoute extends React.Component {
     }
 
     return (
-      <div>
-        <View
-          data={{
-            jobs: resources?.jobs?.records ?? [],
-            resultValues: resources?.resultValues?.records ?? [],
-            statusValues: resources?.statusValues?.records ?? [],
-          }}
-          selectedRecordId={match.params.id}
-          queryGetter={this.queryGetter}
-          querySetter={this.querySetter}
-          searchString={location.search}
-          source={this.source}
-        >
-          {children}
-        </View>
-        <Callout ref={this.callout} />
-      </div>
-
+      <View
+        data={{
+          jobs: resources?.jobs?.records ?? [],
+          resultValues: resources?.resultValues?.records ?? [],
+          statusValues: resources?.statusValues?.records ?? [],
+        }}
+        selectedRecordId={match.params.id}
+        queryGetter={this.queryGetter}
+        querySetter={this.querySetter}
+        searchString={location.search}
+        source={this.source}
+      >
+        {children}
+      </View>
     );
   }
 }
