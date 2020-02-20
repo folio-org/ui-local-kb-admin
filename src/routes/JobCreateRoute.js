@@ -1,11 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import compose from 'compose-function';
 import PropTypes from 'prop-types';
 import { stripesConnect } from '@folio/stripes/core';
-import { Callout } from '@folio/stripes/components';
 import withFileHandlers from './components/withFileHandlers';
 import View from '../components/views/JobForm';
-import makeToast from './components/makeToast';
 
 class JobCreateRoute extends React.Component {
   static manifest = Object.freeze({
@@ -45,16 +43,11 @@ class JobCreateRoute extends React.Component {
         POST: PropTypes.func.isRequired,
       }).isRequired,
     }).isRequired,
+    showCallout: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     handlers: {},
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.callout = React.createRef();
   }
 
   handleClose = () => {
@@ -71,11 +64,7 @@ class JobCreateRoute extends React.Component {
         const jobId = response?.id ?? '';
         const jobClass = response?.class ?? '';
 
-        const calloutObj = makeToast('ui-local-kb-admin.job.created.success', jobClass, 'success', { name: jobName });
-
-        // ToDo This doesn't work yet
-        this.callout.current.sendCallout(calloutObj);
-
+        this.props.showCallout('ui-local-kb-admin.job.created.success', jobClass, 'success', { name: jobName });
         history.push(`/local-kb-admin/${jobId}${location.search}`);
       });
   }
@@ -83,17 +72,14 @@ class JobCreateRoute extends React.Component {
   render() {
     const { handlers, match: { params: { format } } } = this.props;
     return (
-      <>
-        <View
-          handlers={{
-            ...handlers,
-            onClose: this.handleClose
-          }}
-          onSubmit={this.handleSubmit}
-          format={format}
-        />
-        <Callout ref={this.callout} />
-      </>
+      <View
+        handlers={{
+          ...handlers,
+          onClose: this.handleClose
+        }}
+        onSubmit={this.handleSubmit}
+        format={format}
+      />
     );
   }
 }
