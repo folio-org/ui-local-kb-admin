@@ -154,10 +154,9 @@ export default class Jobs extends React.Component {
       onToggle={onToggle}
     >
       <FormattedMessage id="ui-local-kb-admin.job.newJob">
-        {ariaLabel => (
+        {() => (
           <>
             <Button
-              aria-label={ariaLabel}
               buttonStyle="dropdownItem"
               id="clickable-new-JSON-job"
               marginBottom0
@@ -166,7 +165,6 @@ export default class Jobs extends React.Component {
               <FormattedMessage id="ui-local-kb-admin.job.newJSONJob" />
             </Button>
             <Button
-              aria-label={ariaLabel}
               buttonStyle="dropdownItem"
               id="clickable-new-KBART-job"
               marginBottom0

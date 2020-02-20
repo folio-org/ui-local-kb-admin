@@ -2,8 +2,10 @@ import React from 'react';
 import compose from 'compose-function';
 import PropTypes from 'prop-types';
 import { stripesConnect } from '@folio/stripes/core';
+import { Callout } from '@folio/stripes/components';
 import withFileHandlers from './components/withFileHandlers';
 import View from '../components/views/JobForm';
+import showToast from './components/showToast';
 
 class JobCreateRoute extends React.Component {
   static manifest = Object.freeze({
@@ -49,6 +51,12 @@ class JobCreateRoute extends React.Component {
     handlers: {},
   }
 
+  constructor(props) {
+    super(props);
+
+    this.callout = React.createRef();
+  }
+
   handleClose = () => {
     const { location } = this.props;
     this.props.history.push(`/local-kb-admin${location.search}`);
@@ -66,27 +74,29 @@ class JobCreateRoute extends React.Component {
         jobName = response?.name ?? '';
         jobId = response?.id ?? '';
         jobClass = response?.class ?? '';
+
+        //TODO This DOESN'T WORK yet
+        this.callout.current.sendCallout(showToast('ui-local-kb-admin.job.created.success', jobClass, 'success', { name: jobName }));
+
         history.push(`/local-kb-admin/${jobId}${location.search}`);
-      })
-      .then(() => history.replace(
-        {
-          state: { createdJobId: jobId, createdJobName: jobName, createdJobClass: jobClass, created: true }
-        }
-      ));
+      });
   }
 
   render() {
     const { handlers, match: { params: { format } } } = this.props;
 
     return (
-      <View
-        handlers={{
-          ...handlers,
-          onClose: this.handleClose
-        }}
-        onSubmit={this.handleSubmit}
-        format={format}
-      />
+      <>
+        <View
+          handlers={{
+            ...handlers,
+            onClose: this.handleClose
+          }}
+          onSubmit={this.handleSubmit}
+          format={format}
+        />
+        <Callout ref={this.callout} />
+      </>
     );
   }
 }
