@@ -12,7 +12,7 @@ import {
   TextField,
 } from '@folio/stripes/components';
 
-export default class JobForm extends React.Component {
+export default class KbartFields extends React.Component {
   render() {
     return (
       <>
