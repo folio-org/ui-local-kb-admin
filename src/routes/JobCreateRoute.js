@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useContext } from 'react';
 import compose from 'compose-function';
 import PropTypes from 'prop-types';
 import { stripesConnect } from '@folio/stripes/core';
 import { Callout } from '@folio/stripes/components';
 import withFileHandlers from './components/withFileHandlers';
 import View from '../components/views/JobForm';
-import showToast from './components/showToast';
+import makeToast from './components/makeToast';
 
 class JobCreateRoute extends React.Component {
   static manifest = Object.freeze({
@@ -64,18 +64,14 @@ class JobCreateRoute extends React.Component {
 
   handleSubmit = (job) => {
     const { history, location, mutator } = this.props;
-    let jobName = '';
-    let jobId = '';
-    let jobClass = '';
-
     mutator.jobs
       .POST(job)
       .then(response => {
-        jobName = response?.name ?? '';
-        jobId = response?.id ?? '';
-        jobClass = response?.class ?? '';
+        const jobName = response?.name ?? '';
+        const jobId = response?.id ?? '';
+        const jobClass = response?.class ?? '';
 
-        const calloutObj = showToast('ui-local-kb-admin.job.created.success', jobClass, 'success', { name: jobName });
+        const calloutObj = makeToast('ui-local-kb-admin.job.created.success', jobClass, 'success', { name: jobName });
 
         // ToDo This doesn't work yet
         this.callout.current.sendCallout(calloutObj);

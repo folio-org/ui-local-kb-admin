@@ -5,7 +5,7 @@ import { getSASParams } from '@folio/stripes-erm-components';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
 import { Callout } from '@folio/stripes/components';
-import showToast from './components/showToast';
+import makeToast from './components/makeToast';
 import View from '../components/views/Jobs';
 
 const INITIAL_RESULT_COUNT = 100;
@@ -114,7 +114,7 @@ class JobsRoute extends React.Component {
     const currentJobId = get(props, `location.state.${keyString}JobId`, '');
     const name = get(props, `location.state.${keyString}JobName`, '');
     if (prevJobId !== currentJobId && name !== '') {
-      calloutFunc(showToast(`ui-local-kb-admin.job.${keyString}.success`, get(props, `location.state.${keyString}JobClass`, ''), 'success', { name }));
+      calloutFunc(makeToast(`ui-local-kb-admin.job.${keyString}.success`, get(props, `location.state.${keyString}JobClass`, ''), 'success', { name }));
     }
   }
 
