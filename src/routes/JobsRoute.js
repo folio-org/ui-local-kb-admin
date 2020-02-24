@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
+import { Callout } from '@folio/stripes/components';
 import { getSASParams } from '@folio/stripes-erm-components';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
 import View from '../components/views/Jobs';
-import { Callout } from '@folio/stripes/components';
 import makeToast from './components/makeToast';
 
 const INITIAL_RESULT_COUNT = 100;
