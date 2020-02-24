@@ -2,8 +2,6 @@ import React, { lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import Switch from 'react-router-dom/Switch';
 import { Route } from '@folio/stripes/core';
-import { Callout } from '@folio/stripes/components';
-import makeToast from './routes/components/makeToast';
 
 const JobCreateRoute = lazy(() => import('./routes/JobCreateRoute'));
 const JobsRoute = lazy(() => import('./routes/JobsRoute'));
@@ -15,15 +13,6 @@ export default class App extends React.Component {
   static propTypes = {
     actAs: PropTypes.string.isRequired,
     match: PropTypes.object.isRequired,
-  }
-
-  constructor(props) {
-    super(props);
-    this.callout = React.createRef();
-  }
-
-  showCallout = (messageId, jobClass, messageType = 'success', values = {}) => {
-    this.callout.current.sendCallout(makeToast(messageId, jobClass, messageType, values));
   }
 
   render() {
@@ -38,19 +27,16 @@ export default class App extends React.Component {
     }
 
     return (
-      <>
-        <Suspense fallback={null}>
-          <Switch>
-            <Route path={`${path}/create/:format`} render={(props) => <JobCreateRoute showCallout={this.showCallout} {...props} />} />
-            <Route path={`${path}/:id?`} component={JobsRoute}>
-              <Suspense fallback={null}>
-                <Route path={`${path}/:id`} render={(props) => <JobViewRoute showCallout={this.showCallout} {...props} />} />
-              </Suspense>
-            </Route>
-          </Switch>
-        </Suspense>
-        <Callout ref={this.callout} />
-      </>
+      <Suspense fallback={null}>
+        <Switch>
+          <Route path={`${path}/create/:format`} component={JobCreateRoute} />
+          <Route path={`${path}/:id?`} component={JobsRoute}>
+            <Suspense fallback={null}>
+              <Route path={`${path}/:id`} component={JobViewRoute} />
+            </Suspense>
+          </Route>
+        </Switch>
+      </Suspense>
     );
   }
 }

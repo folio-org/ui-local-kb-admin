@@ -30,7 +30,6 @@ class JobViewRoute extends React.Component {
     resources: PropTypes.shape({
       job: PropTypes.object,
     }).isRequired,
-    showCallout: PropTypes.func.isRequired,
     stripes: PropTypes.shape({
       okapi: PropTypes.object.isRequired,
     }).isRequired,
@@ -46,15 +45,16 @@ class JobViewRoute extends React.Component {
     const job = resources?.job?.records?.[0] ?? {};
     const name = job?.name ?? '';
     const jobClass = job?.class ?? '';
+    const id = job?.id ?? '';
     this.props.mutator.job
       .DELETE(job)
       .then(() => this.props.history.replace(
         {
           pathname: '/local-kb-admin',
           search: `${this.props.location.search}`,
+          state: { deletedJobId: id, deletedJobName: name, deletedJobClass: jobClass }
         }
-      ),
-      this.props.showCallout('ui-local-kb-admin.job.deleted.success', jobClass, 'success', { name }));
+      ));
   };
 
   handleClose = () => {

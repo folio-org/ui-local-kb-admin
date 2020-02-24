@@ -43,7 +43,6 @@ class JobCreateRoute extends React.Component {
         POST: PropTypes.func.isRequired,
       }).isRequired,
     }).isRequired,
-    showCallout: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -60,11 +59,7 @@ class JobCreateRoute extends React.Component {
     mutator.jobs
       .POST(job)
       .then(response => {
-        const jobName = response?.name ?? '';
         const jobId = response?.id ?? '';
-        const jobClass = response?.class ?? '';
-
-        this.props.showCallout('ui-local-kb-admin.job.created.success', jobClass, 'success', { name: jobName });
         history.push(`/local-kb-admin/${jobId}${location.search}`);
       });
   }

@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 import { getSASParams } from '@folio/stripes-erm-components';
 import { StripesConnectedSource } from '@folio/stripes/smart-components';
 import { stripesConnect } from '@folio/stripes/core';
 import View from '../components/views/Jobs';
+import { Callout } from '@folio/stripes/components';
+import makeToast from './components/makeToast';
 
 const INITIAL_RESULT_COUNT = 100;
 const RESULT_COUNT_INCREMENT = 100;
@@ -68,6 +71,7 @@ class JobsRoute extends React.Component {
 
     this.logger = props.stripes.logger;
     this.searchField = React.createRef();
+    this.callout = React.createRef();
   }
 
   componentDidMount() {
@@ -93,6 +97,14 @@ class JobsRoute extends React.Component {
         const record = newRecords[0];
         history.push(`/local-kb-admin/${record.id}${location.search}`);
       }
+    }
+
+    const prevDeletedJobId = get(prevProps, 'location.state.deletedJobId', '');
+    const currentDeletedJobId = get(this.props, 'location.state.deletedJobId', '');
+    if (prevDeletedJobId !== currentDeletedJobId) {
+      const name = get(this.props, 'location.state.deletedJobName', '');
+      const jobClass = get(this.props, 'location.state.deletedJobClass', '');
+      if (name !== '') this.callout.current.sendCallout(makeToast('ui-local-kb-admin.job.deleted.success', jobClass, 'success', { name }));
     }
   }
 
@@ -121,20 +133,23 @@ class JobsRoute extends React.Component {
     }
 
     return (
-      <View
-        data={{
-          jobs: resources?.jobs?.records ?? [],
-          resultValues: resources?.resultValues?.records ?? [],
-          statusValues: resources?.statusValues?.records ?? [],
-        }}
-        selectedRecordId={match.params.id}
-        queryGetter={this.queryGetter}
-        querySetter={this.querySetter}
-        searchString={location.search}
-        source={this.source}
-      >
-        {children}
-      </View>
+      <>
+        <View
+          data={{
+            jobs: resources?.jobs?.records ?? [],
+            resultValues: resources?.resultValues?.records ?? [],
+            statusValues: resources?.statusValues?.records ?? [],
+          }}
+          selectedRecordId={match.params.id}
+          queryGetter={this.queryGetter}
+          querySetter={this.querySetter}
+          searchString={location.search}
+          source={this.source}
+        >
+          {children}
+        </View>
+        <Callout ref={this.callout} />
+      </>
     );
   }
 }
