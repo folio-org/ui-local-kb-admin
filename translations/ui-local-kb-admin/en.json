@@ -42,6 +42,8 @@
   "job.newJob": "New job",
   "job.availableJobTypes": "Available job types",
   "job.close": "Close job",
+  "job.JSONImportJob": "JSON import job",
+  "job.KBARTImportJob": "KBART import job",
   "job.newJSONJob": "New JSON job",
   "job.newKBARTJob": "New KBART job",
   "job.packageName": "Package name",

@@ -162,7 +162,7 @@ export default class Jobs extends React.Component {
               marginBottom0
               to={`/local-kb-admin/create/JSON${this.props.searchString}`}
             >
-              <FormattedMessage id="ui-local-kb-admin.job.newJSONJob" />
+              <FormattedMessage id="ui-local-kb-admin.job.JSONImportJob" />
             </Button>
             <Button
               buttonStyle="dropdownItem"
@@ -170,7 +170,7 @@ export default class Jobs extends React.Component {
               marginBottom0
               to={`/local-kb-admin/create/KBART${this.props.searchString}`}
             >
-              <FormattedMessage id="ui-local-kb-admin.job.newKBARTJob" />
+              <FormattedMessage id="ui-local-kb-admin.job.KBARTImportJob" />
             </Button>
           </>
         )}
