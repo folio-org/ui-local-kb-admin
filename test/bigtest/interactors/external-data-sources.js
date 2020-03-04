@@ -9,6 +9,11 @@ import {
 } from '@bigtest/interactor';
 import KeyValueInteractor from '@folio/stripes-components/lib/KeyValue/tests/interactor'; // eslint-disable-line
 
+@interactor class ConfirmationModalInteractor {
+  isDeleteConfirmationButtonPresent = isPresent('[data-test-confirmation-modal-confirm-button]')
+  clickConfirmDeleteButton = clickable('[data-test-confirmation-modal-confirm-button]')
+}
+
 @interactor class ExternalDataSourceViewInteractor {
   isDeleteButtonPresent = isPresent('[data-test-external-data-source-delete]');
   isEditButtonPresent = isPresent('[data-test-external-data-source-edit]');
@@ -39,6 +44,8 @@ import KeyValueInteractor from '@folio/stripes-components/lib/KeyValue/tests/int
   fullPrefix = new KeyValueInteractor('[data-test-external-data-source-fullprefix]');
   principal = new KeyValueInteractor('[data-test-external-data-source-principal]');
   credentials = new KeyValueInteractor('[data-test-external-data-source-credentials]');
+
+  confirmation = new ConfirmationModalInteractor(['data-test-confirmationModal']);
 }
 
 @interactor class ExternalDataSourceEditInteractor {
