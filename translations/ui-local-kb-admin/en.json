@@ -100,6 +100,11 @@
   "settings.externalDataSources.package": "Package",
   "settings.externalDataSources.principal": "Principal",
   "settings.externalDataSources.credentials": "Credentials",
+
+  "settings.externalDataSources.delete.confirmLabel": "Delete",
+  "settings.externalDataSources.delete.confirmHeading": "Delete external data source",
+  "settings.externalDataSources.delete.confirmMessage": "External data source <strong>{name}</strong> will be <strong>deleted</strong>.",
+
   "settings.externalDataSources.callout.save.success": "External data source successfully saved.",
   "settings.externalDataSources.callout.save.error": "There was an error saving the external data source. {error}",
   "settings.externalDataSources.callout.delete.success": "External data source successfully deleted.",
