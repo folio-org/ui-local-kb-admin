@@ -249,7 +249,7 @@ describe('External Data Source Settings', () => {
       this.visit('/settings/local-kb-admin/external-data-sources');
     });
 
-    describe.only('viewing the data sources', () => {
+    describe('viewing the data sources', () => {
       it('renders the list of external data sources', () => {
         expect(externaldatasources.isFormPresent).to.be.true;
       });
@@ -275,7 +275,7 @@ describe('External Data Source Settings', () => {
           it('reduces the count of data sources by 1', () => {
             expect(externaldatasources.externalDataSourceList.size).to.equal(externalDataSourceCount - 1);
           });
-          
+
           it('reduces the count of data sources by 1', () => {
             expect(externaldatasources.externalDataSourceList.size).to.equal(externalDataSourceCount - 1);
           });
