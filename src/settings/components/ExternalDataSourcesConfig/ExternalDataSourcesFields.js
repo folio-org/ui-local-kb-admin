@@ -72,14 +72,14 @@ export default class ExternalDataSourcesFields extends React.Component {
     const custPropName = this.props?.input?.value?.name;
     return (
       <>
-      <ExternalDataSourceComponent
-        {...this.props}
-        onCancel={this.handleCancel}
-        onDelete={this.showDeleteConfirmationModal}
-        onSave={this.handleSave}
-        onEdit={this.handleEdit}
-      />
-      {this.state.showConfirmDelete && (
+        <ExternalDataSourceComponent
+          {...this.props}
+          onCancel={this.handleCancel}
+          onDelete={this.showDeleteConfirmationModal}
+          onSave={this.handleSave}
+          onEdit={this.handleEdit}
+        />
+        {this.state.showConfirmDelete && (
           <ConfirmationModal
             id="delete-external-data-source-confirmation"
             data-test-confirmationModal
