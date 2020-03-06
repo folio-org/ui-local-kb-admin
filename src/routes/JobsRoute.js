@@ -127,9 +127,9 @@ class JobsRoute extends React.Component {
           resultValues: resources?.resultValues?.records ?? [],
           statusValues: resources?.statusValues?.records ?? [],
         }}
-        selectedRecordId={match.params.id}
         queryGetter={this.queryGetter}
         querySetter={this.querySetter}
+        selectedRecordId={match.params.id}
         searchString={location.search}
         source={this.source}
       >

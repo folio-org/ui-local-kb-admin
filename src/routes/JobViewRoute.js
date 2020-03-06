@@ -52,7 +52,7 @@ class JobViewRoute extends React.Component {
         this.props.history.replace(
           {
             pathname: '/local-kb-admin',
-            search: `${this.props.location.search}`,
+            search: this.props.location.search,
           }
         );
         this.context.sendCallout({ message: <SafeHTMLMessage id={`ui-local-kb-admin.job.deleted.success.${jobClass}`} values={{ name }} /> });
@@ -87,19 +87,19 @@ class JobViewRoute extends React.Component {
           data={{
             job
           }}
+          isLoading={resources?.job?.isPending ?? true}
           onClose={this.handleClose}
           onDelete={this.showDeleteConfirmationModal}
-          isLoading={resources?.job?.isPending ?? true}
         />
         {this.state.showConfirmDelete && (
           <ConfirmationModal
-            id="delete-job-confirmation"
+            buttonStyle="danger"
             confirmLabel={<FormattedMessage id="ui-local-kb-admin.job.delete.confirmLabel" />}
             heading={<FormattedMessage id={deleteHeadingId} />}
+            id="delete-job-confirmation"
             message={<SafeHTMLMessage id={deleteMessageId} values={{ name }} />}
             onCancel={this.hideDeleteConfirmationModal}
             onConfirm={this.handleDelete}
-            buttonStyle="danger"
             open
           />
         )}

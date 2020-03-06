@@ -81,17 +81,17 @@ export default class ExternalDataSourcesFields extends React.Component {
         />
         {this.state.showConfirmDelete && (
           <ConfirmationModal
-            id="delete-external-data-source-confirmation"
-            data-test-confirmationModal
+            buttonStyle="danger"
             confirmLabel={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmLabel" />}
+            data-test-confirmationModal
             heading={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmHeading" />}
+            id="delete-external-data-source-confirmation"
             message={<SafeHTMLMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmMessage" values={{ name: custPropName }} />}
             onCancel={this.hideDeleteConfirmationModal}
             onConfirm={() => {
               this.props.onDelete();
               this.hideDeleteConfirmationModal();
             }}
-            buttonStyle="danger"
             open
           />
         )}
