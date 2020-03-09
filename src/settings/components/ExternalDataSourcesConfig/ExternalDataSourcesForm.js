@@ -65,8 +65,8 @@ class ExternalDataSourcesForm extends React.Component {
         data-test-external-data-sources
         defaultWidth="fill"
         id="settings-external-data-sources"
-        paneTitle={<FormattedMessage id="ui-local-kb-admin.section.externalDataSources" />}
         paneSub={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.sourceCount" values={{ count }} />}
+        paneTitle={<FormattedMessage id="ui-local-kb-admin.section.externalDataSources" />}
       >
         <form>
           <FieldArray

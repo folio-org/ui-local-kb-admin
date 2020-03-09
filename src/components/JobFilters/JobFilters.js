@@ -54,9 +54,9 @@ export default class JobFilters extends React.Component {
     const groupFilters = activeFilters[name] || [];
     return (
       <Accordion
-        id={`filter-accordion-${name}`}
         displayClearButton={groupFilters.length > 0}
         header={FilterAccordionHeader}
+        id={`filter-accordion-${name}`}
         label={<FormattedMessage id={`ui-local-kb-admin.prop.${name}`} />}
         onClearFilter={() => { this.props.filterHandlers.clearGroup(name); }}
         separator={false}

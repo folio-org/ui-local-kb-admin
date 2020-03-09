@@ -64,8 +64,8 @@ export default class ExternalDataSourcesListFieldArray extends React.Component {
         <Row end="sm">
           <Col>
             <Button
-              data-test-external-data-source-new
               buttonStyle="primary"
+              data-test-external-data-source-new
               disabled={this.state.disableNewButton}
               onClick={this.handleNew}
             >
@@ -76,9 +76,9 @@ export default class ExternalDataSourcesListFieldArray extends React.Component {
         {
           fields.value.map((externalkb, i) => (
             <Field
+              key={externalkb.id || 'new'}
               component={ExternalDataSourcesFields}
               isEqual={isEqual}
-              key={externalkb.id || 'new'}
               mutators={mutators}
               name={`${fields.name}[${i}]`}
               onDelete={() => this.handleDelete(i)}

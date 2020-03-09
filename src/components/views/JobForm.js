@@ -59,8 +59,8 @@ class JobForm extends React.Component {
 
     return (
       <PaneFooter
-        renderStart={startButton}
         renderEnd={endButton}
+        renderStart={startButton}
       />
     );
   }
@@ -71,10 +71,10 @@ class JobForm extends React.Component {
         <FormattedMessage id="ui-local-kb-admin.job.close">
           {ariaLabel => (
             <IconButton
+              aria-label={ariaLabel}
               icon="times"
               id="close-job-form-button"
               onClick={this.props.handlers.onClose}
-              aria-label={ariaLabel}
             />
           )}
         </FormattedMessage>
@@ -96,9 +96,9 @@ class JobForm extends React.Component {
             <Pane
               appIcon={<AppIcon app="local-kb-admin" />}
               defaultWidth="100%"
+              firstMenu={this.renderFirstMenu()}
               footer={this.renderPaneFooter()}
               id="pane-job-form"
-              firstMenu={this.renderFirstMenu()}
               paneTitle={<FormattedMessage id={`ui-local-kb-admin.job.new${format}Job`} />}
             >
               <TitleManager record={create}>

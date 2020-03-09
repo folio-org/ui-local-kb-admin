@@ -84,8 +84,8 @@ export default class JobInfo extends React.Component {
       <IfPermission perm="ui-local-kb-admin.jobs.delete">
         <Button
           buttonStyle="dropdownItem"
-          id="clickable-dropdown-delete-job"
           disabled={!isJobNotInProgress}
+          id="clickable-dropdown-delete-job"
           onClick={() => {
             onToggle();
             this.props.onDelete();
@@ -107,8 +107,8 @@ export default class JobInfo extends React.Component {
 
     return (
       <Pane
-        data-test-job-details
         actionMenu={this.getActionMenu}
+        data-test-job-details
         defaultWidth="45%"
         dismissible
         id="pane-view-job"

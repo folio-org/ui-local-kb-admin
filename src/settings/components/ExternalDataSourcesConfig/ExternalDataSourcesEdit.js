@@ -44,14 +44,6 @@ export default class ExternalDataSourcesEdit extends React.Component {
     return (
       <Card
         data-test-external-data-source-edit
-        headerStart={(
-          <strong>
-            {value.id ?
-              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.editExternalDataSource" />
-              :
-              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.newExternalDataSource" />}
-          </strong>
-        )}
         headerEnd={(
           <span>
             <Button
@@ -71,6 +63,14 @@ export default class ExternalDataSourcesEdit extends React.Component {
               <FormattedMessage id="stripes-core.button.save" />
             </Button>
           </span>
+        )}
+        headerStart={(
+          <strong>
+            {value.id ?
+              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.editExternalDataSource" />
+              :
+              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.newExternalDataSource" />}
+          </strong>
         )}
       >
         <Row>

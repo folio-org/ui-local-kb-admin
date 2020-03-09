@@ -20,40 +20,40 @@ export default class KbartFields extends React.Component {
           <SafeHTMLMessage id="ui-local-kb-admin.job.sourceReferenceWarning" />
         </MessageBanner>
         <Field
-          data-test-field-package-name
           component={TextField}
-          name="packageName"
+          data-test-field-package-name
           label={<FormattedMessage id="ui-local-kb-admin.job.packageName" />}
+          name="packageName"
           required
           validate={requiredValidator}
         />
         <Row>
           <Col xs={4}>
             <Field
-              data-test-field-package-source
               component={TextField}
-              name="packageSource"
+              data-test-field-package-source
               label={<FormattedMessage id="ui-local-kb-admin.job.packageSource" />}
+              name="packageSource"
               required
               validate={requiredValidator}
             />
           </Col>
           <Col xs={8}>
             <Field
-              data-test-field-package-reference
               component={TextField}
-              name="packageReference"
+              data-test-field-package-reference
               label={<FormattedMessage id="ui-local-kb-admin.job.packageReference" />}
+              name="packageReference"
               required
               validate={requiredValidator}
             />
           </Col>
         </Row>
         <Field
-          data-test-field-package-provider
           component={TextField}
-          name="packageProvider"
+          data-test-field-package-provider
           label={<FormattedMessage id="ui-local-kb-admin.job.packageProvider" />}
+          name="packageProvider"
         />
       </>
     );

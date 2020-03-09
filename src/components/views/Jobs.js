@@ -82,10 +82,10 @@ export default class Jobs extends React.Component {
 
     return (
       <Link
+        key={`row-${rowIndex}`}
         aria-rowindex={rowIndex + 2}
         className={rowClass}
         data-label={rowData.name}
-        key={`row-${rowIndex}`}
         role="row"
         to={this.rowURL(rowData.id)}
         {...rowProps}
@@ -113,9 +113,9 @@ export default class Jobs extends React.Component {
     return (
       <div data-test-jobs-no-results-message>
         <NoResultsMessage
-          source={source}
-          searchTerm={query.query || ''}
           filterPaneIsVisible
+          searchTerm={query.query || ''}
+          source={source}
           toggleFilterPane={noop}
         />
       </div>
@@ -135,10 +135,10 @@ export default class Jobs extends React.Component {
             <FormattedMessage id={hideOrShowMessageId}>
               {hideOrShowMessage => (
                 <FilterPaneToggle
-                  visible={filterPaneIsVisible}
                   aria-label={`${hideOrShowMessage}...${appliedFiltersMessage}`}
-                  onClick={this.toggleFilterPane}
                   badge={!filterPaneIsVisible && filterCount ? filterCount : undefined}
+                  onClick={this.toggleFilterPane}
+                  visible={filterPaneIsVisible}
                 />
               )}
             </FormattedMessage>
@@ -182,9 +182,9 @@ export default class Jobs extends React.Component {
     return (
       <IfPermission perm="ui-local-kb-admin.jobs.edit">
         <Dropdown
+          buttonProps={{ buttonStyle: 'primary' }}
           label={<FormattedMessage id="ui-local-kb-admin.job.new" />}
           renderMenu={this.renderNewJobMenu}
-          buttonProps={{ buttonStyle: 'primary' }}
         />
       </IfPermission>
     );
@@ -217,11 +217,11 @@ export default class Jobs extends React.Component {
     const visibleColumns = ['jobname', 'runningStatus', 'result', 'errors', 'started', 'ended'];
 
     return (
-      <div data-test-localkbadmin ref={contentRef}>
+      <div ref={contentRef} data-test-localkbadmin>
         <SearchAndSortQuery
           initialFilterState={{ status: ['Queued', 'In progress'] }}
-          initialSortState={{ sort: '-started' }}
           initialSearchState={{ query: '' }}
+          initialSortState={{ sort: '-started' }}
           queryGetter={queryGetter}
           querySetter={querySetter}
         >
@@ -285,8 +285,8 @@ export default class Jobs extends React.Component {
                         <div className={css.resetButtonWrap}>
                           <Button
                             buttonStyle="none"
-                            id="clickable-reset-all"
                             disabled={disableReset()}
+                            id="clickable-reset-all"
                             onClick={resetAll}
                           >
                             <Icon icon="times-circle-solid">
@@ -307,8 +307,8 @@ export default class Jobs extends React.Component {
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
                     lastMenu={this.renderResultsLastMenu()}
                     padContent={false}
-                    paneTitle={<FormattedMessage id="ui-local-kb-admin.meta.title" />}
                     paneSub={this.renderResultsPaneSubtitle(source)}
+                    paneTitle={<FormattedMessage id="ui-local-kb-admin.meta.title" />}
                   >
                     <MultiColumnList
                       autosize
@@ -318,9 +318,9 @@ export default class Jobs extends React.Component {
                       formatter={this.formatter}
                       id="list-jobs"
                       isEmptyMessage={this.renderIsEmptyMessage(query, source)}
+                      isSelected={({ item }) => item.id === selectedRecordId}
                       onHeaderClick={onSort}
                       onNeedMoreData={onNeedMoreData}
-                      isSelected={({ item }) => item.id === selectedRecordId}
                       rowFormatter={this.rowFormatter}
                       sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'}
                       sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}

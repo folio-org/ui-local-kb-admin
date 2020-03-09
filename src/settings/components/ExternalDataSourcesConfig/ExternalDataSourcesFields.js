@@ -76,8 +76,8 @@ export default class ExternalDataSourcesFields extends React.Component {
           {...this.props}
           onCancel={this.handleCancel}
           onDelete={this.showDeleteConfirmationModal}
-          onSave={this.handleSave}
           onEdit={this.handleEdit}
+          onSave={this.handleSave}
         />
         {this.state.showConfirmDelete && (
           <ConfirmationModal

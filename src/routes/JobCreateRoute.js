@@ -77,12 +77,12 @@ class JobCreateRoute extends React.Component {
     const { handlers, match: { params: { format } } } = this.props;
     return (
       <View
+        format={format}
         handlers={{
           ...handlers,
           onClose: this.handleClose
         }}
         onSubmit={this.handleSubmit}
-        format={format}
       />
     );
   }

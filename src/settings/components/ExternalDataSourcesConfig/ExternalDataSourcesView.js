@@ -37,7 +37,6 @@ export default class ExternalDataSourcesView extends React.Component {
     return (
       <Card
         data-test-external-data-source-view
-        headerStart={<strong><FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.externalDataSource" /></strong>}
         headerEnd={value.readonly ? undefined : (
           <span>
             <Button
@@ -49,14 +48,15 @@ export default class ExternalDataSourcesView extends React.Component {
               <FormattedMessage id="stripes-core.button.delete" />
             </Button>
             <Button
-              marginBottom0
               data-test-external-data-source-edit
+              marginBottom0
               onClick={onEdit}
             >
               <FormattedMessage id="stripes-core.button.edit" />
             </Button>
           </span>
         )}
+        headerStart={<strong><FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.externalDataSource" /></strong>}
       >
         <Row>
           <Col xs={3}>
