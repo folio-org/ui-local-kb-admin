@@ -60,12 +60,14 @@ class JobCreateRoute extends React.Component {
 
   handleSubmit = (job) => {
     const { history, location, mutator } = this.props;
-    mutator.jobs
+
+    return mutator.jobs
       .POST(job)
       .then(response => {
         const jobId = response?.id ?? '';
         const jobClass = response?.class ?? '';
         const name = response?.name ?? '';
+
         history.push(`/local-kb-admin/${jobId}${location.search}`);
         this.context.sendCallout({ message: <SafeHTMLMessage id={`ui-local-kb-admin.job.created.success.${jobClass}`} values={{ name }} /> });
       });
