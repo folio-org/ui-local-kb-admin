@@ -6,6 +6,7 @@ import { resultCount } from '../../constants';
 
 export default class LogsList extends React.Component {
   static propTypes = {
+    job: PropTypes.object,
     logs: PropTypes.arrayOf(PropTypes.shape({
       recordNumber: PropTypes.string,
       message: PropTypes.string,
@@ -15,7 +16,7 @@ export default class LogsList extends React.Component {
   };
 
   render() {
-    const { logs, onNeedMoreLogs, type } = this.props;
+    const { job, logs, onNeedMoreLogs, type } = this.props;
 
     if (!logs) return <Spinner />;
     if (!logs.length) return <FormattedMessage id={`ui-local-kb-admin.${type}LogNo`} />;
@@ -34,6 +35,7 @@ export default class LogsList extends React.Component {
         onNeedMoreData={onNeedMoreLogs}
         pageAmount={resultCount.RESULT_COUNT_INCREMENT}
         pagingType="click"
+        totalCount={job[`${type}LogCount`]}
         virtualize
         visibleColumns={['recordNumber', 'message']}
       />
