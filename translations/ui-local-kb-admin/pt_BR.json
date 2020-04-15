@@ -94,8 +94,8 @@
     "settings.externalDataSources.delete.confirmLabel": "Excluir",
     "settings.externalDataSources.delete.confirmHeading": "Excluir fonte de dados externa",
     "settings.externalDataSources.delete.confirmMessage": "A fonte de dados externa <strong>{name}</strong> será <strong>excluída</strong>.",
-    "permission.jobs.view": "Local KB admin: View jobs",
-    "permission.jobs.edit": "Local KB admin: Create jobs",
-    "permission.jobs.delete": "Local KB admin: Delete jobs",
-    "permission.kbs.manage": "Local KB admin: Manage remote KB configuration"
+    "permission.jobs.view": "Administrador da KB local: Ver jobs",
+    "permission.jobs.edit": "Administrador da KB local: Criar jobs",
+    "permission.jobs.delete": "Administrador da KB local: excluir jobs",
+    "permission.kbs.manage": "Administrador da KB local: Gerenciar a configuração remota da KB"
 }
