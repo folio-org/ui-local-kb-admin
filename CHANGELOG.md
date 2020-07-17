@@ -1,6 +1,9 @@
 # Change history for ui-local-kb-admin
 
-## 2.0.0 IN PROGRESS
+## 3.0.0 In Progress
+* Upgrade to Stripes 5.0
+
+## 2.0.0 2020-06-10
 * Upgrade to Stripes 4.0
 * Added translations
 * Added ability to set "Trusted for title instance metadata" value for local KB data sources. ERM-794 795
