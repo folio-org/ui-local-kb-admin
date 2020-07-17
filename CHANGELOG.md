@@ -2,6 +2,7 @@
 
 ## 3.0.0 In Progress
 * Upgrade to Stripes 5.0
+* Refactor to `miragejs` from `bigtest/mirage`.
 
 ## 2.0.0 2020-06-10
 * Upgrade to Stripes 4.0
