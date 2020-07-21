@@ -86,7 +86,7 @@
     "job.packageProvider": "Paketanbieter",
     "job.addNew": "Neues Paket hinzufügen",
     "job.update": "Paket aktualisieren",
-    "job.sourceReferenceWarning": "Die Felder <strong>Quelle</strong> und <strong>Referenz</strong> werden zusammen als eindeutige Kennung für Pakete verwendet. Wenn ein Paket mit der angegebenen <strong>Quelle</strong>+<strong>Referenz</strong> bereits existiert, wird es aktualisiert, andernfalls wird ein neues Paket erstellt. Wenn der eingegebene <strong>Provider</strong> nicht existiert, wird in der lokalen Knowledgebase in der eManagement-Anwendung ein neuer erstellt.",
+    "job.sourceReferenceWarning": "Die Felder <strong>Quelle</strong> und <strong>Referenz</strong> werden zusammen als eindeutige Kennung für Pakete verwendet. Wenn ein Paket mit der angegebenen <strong>Quelle</strong>+<strong>Referenz</strong> bereits existiert, wird es aktualisiert, andernfalls wird ein neues Paket erstellt. Wenn der eingegebene <strong>Anbieter</strong> nicht existiert, wird in der lokalen Knowledgebase in der eManagement-Anwendung ein neuer erstellt.",
     "org.olf.general.jobs.KbartIngestJob": "KBART-Harvester",
     "org.olf.general.jobs.KbartImportJob": "KBART-Dateiimport",
     "job.JSONImportJob": "JSON-Importjob",
