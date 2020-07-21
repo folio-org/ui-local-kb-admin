@@ -5,7 +5,7 @@ import { Accordion, Badge } from '@folio/stripes/components';
 
 import JobLogContainer from '../../containers/JobLogContainer';
 
-export default class LogsList extends React.Component {
+export default class Logs extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     job: PropTypes.object,
