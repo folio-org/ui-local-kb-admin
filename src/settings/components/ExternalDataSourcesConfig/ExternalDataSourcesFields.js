@@ -14,6 +14,7 @@ export default class ExternalDataSourcesFields extends React.Component {
       name: PropTypes.string.isRequired,
       value: PropTypes.shape({
         id: PropTypes.string,
+        name: PropTypes.string,
       }).isRequired,
     }).isRequired,
     mutators: PropTypes.shape({
