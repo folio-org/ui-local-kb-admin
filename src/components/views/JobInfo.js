@@ -7,6 +7,7 @@ import {
   Button,
   Col,
   ExpandAllButton,
+  Headline,
   Icon,
   KeyValue,
   Layout,
@@ -122,16 +123,18 @@ export default class JobInfo extends React.Component {
         <TitleManager data-test-title-name record={job.name}>
           <div>
             <Row>
-              <Col xs={9}>
-                <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.jobName" />}>
-                  <div data-test-job-name>
-                    <strong>{job.name}</strong>
-                  </div>
-                </KeyValue>
+              <Col xs={12}>
+                <Headline
+                  data-test-job-name
+                  size="xx-large"
+                  tag="h2"
+                >
+                  {job.name}
+                </Headline>
               </Col>
             </Row>
             <Row>
-              <Col xs={4}>
+              <Col xs={3}>
                 <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.runningStatus" />}>
                   <div data-test-job-status>
                     {job?.status?.label ?? <NoValue />}
@@ -140,7 +143,7 @@ export default class JobInfo extends React.Component {
               </Col>
               {
                 isJobNotQueued && (
-                  <Col xs={4}>
+                  <Col xs={3}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.outcome" />}>
                       <div data-test-job-result>
                         {job?.result?.label ?? <NoValue />}
@@ -151,20 +154,7 @@ export default class JobInfo extends React.Component {
               }
               {
                 isJobNotQueued && (
-                  <Col xs={4}>
-                    <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.errors" />}>
-                      <div data-test-job-errors>
-                        {job.errorLog ? job.errorLog.length : '0'}
-                      </div>
-                    </KeyValue>
-                  </Col>
-                )
-              }
-            </Row>
-            <Row>
-              {
-                isJobNotQueued && (
-                  <Col xs={4}>
+                  <Col xs={3}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.started" />}>
                       <div data-test-job-started>
                         {job.started ? <FormattedDateTime date={job.started} /> : <NoValue />}
@@ -175,7 +165,7 @@ export default class JobInfo extends React.Component {
               }
               {
                 isJobNotQueued && (
-                  <Col xs={4}>
+                  <Col xs={3}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.ended" />}>
                       <div data-test-job-ended>
                         {job.ended ? <FormattedDateTime date={job.ended} /> : <NoValue />}
@@ -184,7 +174,20 @@ export default class JobInfo extends React.Component {
                   </Col>
                 )
               }
-              <Col xs={4}>
+            </Row>
+            <Row>
+              {
+                isJobNotQueued && (
+                  <Col xs={3}>
+                    <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.errors" />}>
+                      <div data-test-job-errors>
+                        {job.errorLog ? job.errorLog.length : '0'}
+                      </div>
+                    </KeyValue>
+                  </Col>
+                )
+              }
+              <Col xs={3}>
                 {
                   job.fileName ? (
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.filename" />}>
