@@ -10,13 +10,18 @@ export default class ExternalDataSourcesView extends React.Component {
       value: PropTypes.shape({
         activationEnabled: PropTypes.bool,
         active: PropTypes.bool,
+        credentials: PropTypes.string,
+        fullPrefix: PropTypes.string,
         id: PropTypes.string,
+        listPrefix: PropTypes.string,
         name: PropTypes.string,
+        principal: PropTypes.string,
         readonly: PropTypes.bool,
         rectype: PropTypes.number,
         supportsHarvesting: PropTypes.bool,
         trustedSourceTI: PropTypes.bool,
         type: PropTypes.string,
+        uri: PropTypes.string,
       }).isRequired,
     }).isRequired,
     meta: PropTypes.shape({
