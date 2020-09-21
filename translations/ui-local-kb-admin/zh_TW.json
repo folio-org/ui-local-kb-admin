@@ -84,7 +84,7 @@
     "job.packageSource": "Package source",
     "job.packageReference": "Package reference",
     "job.packageProvider": "Package provider",
-    "job.addNew": "Add new package",
+    "job.addNew": "新增資源包",
     "job.update": "Update package",
     "job.sourceReferenceWarning": "The <strong>Source</strong> and <strong>Reference</strong> fields are used together as a unique identifier for packages. If a package with the given <strong>Source</strong>+<strong>Reference</strong> already exists it will be updated, otherwise a new package will be created. If the <strong>Provider</strong> entered does not exist, a new one will be created in the local knowledgebase in the Agreements app.",
     "org.olf.general.jobs.KbartIngestJob": "KBART Harvester",
