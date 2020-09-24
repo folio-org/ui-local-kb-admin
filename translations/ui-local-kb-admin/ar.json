@@ -23,7 +23,7 @@
     "columns.recordNumber": "رقم التسجيلة",
     "job.delete.confirmLabel": "حذف",
     "job.delete.heading": "حذف الوظيفة",
-    "job.delete.message": "حذف الوظيفة؟",
+    "job.delete.message": "سيتم <strong>حذف</strong> المهمة <strong>{name}</strong>",
     "loading": "جاري التحميل...",
     "searchInputLabel": "بحث الوظائف",
     "section.externalDataSources": "مصادر البيانات الخارجية",

@@ -23,7 +23,7 @@
     "columns.recordNumber": "记录号",
     "job.delete.confirmLabel": "删除",
     "job.delete.heading": "删除 {name} 任務 ？",
-    "job.delete.message": "删除任务？",
+    "job.delete.message": "Job <strong>{name}</strong> will be <strong>deleted</strong>",
     "loading": "载入中...",
     "searchInputLabel": "查詢任務",
     "section.externalDataSources": "外部数据源",
