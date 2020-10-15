@@ -12,7 +12,7 @@ export default class ExternalDataSourcesListFieldArray extends React.Component {
       name: PropTypes.string,
       remove: PropTypes.func,
       unshift: PropTypes.func.isRequired,
-      value: PropTypes.array.isRequired,
+      value: PropTypes.arrayOf(PropTypes.object).isRequired,
     }).isRequired,
     mutators: PropTypes.object,
     onDelete: PropTypes.func.isRequired,
