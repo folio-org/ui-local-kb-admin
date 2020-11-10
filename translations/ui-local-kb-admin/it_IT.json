@@ -56,7 +56,7 @@
     "error.uploadFile": "Carica un file per continuare",
     "job.newJob": "Nuova procedura",
     "job.close": "Chiudi procedura",
-    "org.olf.general.jobs.PackageImportJob": "Importazione file",
+    "org.olf.general.jobs.PackageImportJob": "Importazione di file JSON",
     "settings.externalDataSources.nameExists": "Questo nome esiste già",
     "job.delete.heading.org.olf.general.jobs.KbartImportJob": "Delete KBART package import job",
     "job.delete.heading.org.olf.general.jobs.KbartIngestJob": "Delete KBART package ingest job",
