@@ -4,6 +4,7 @@ import { Settings } from '@folio/stripes/smart-components';
 
 import {
   ExternalDataSourcesSettingsRoute,
+  ProxyServerSettingsRoute,
 } from './routes';
 
 export default class LocalKbAdminSettings extends React.Component {
@@ -16,6 +17,11 @@ export default class LocalKbAdminSettings extends React.Component {
           label: <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources" />,
           perm: 'ui-local-kb-admin.kbs.manage',
           route: 'external-data-sources',
+        },
+        {
+          component: ProxyServerSettingsRoute,
+          label: <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings" />,
+          route: 'proxy-server-settings',
         }
       ]
     },

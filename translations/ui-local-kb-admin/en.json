@@ -87,8 +87,11 @@
   "columns.recordNumber": "Record number",
 
   "section.externalDataSources": "External data sources",
+  "section.proxyServerSettings": "Proxy server settings",
 
   "settings.externalDataSources": "External data sources",
+  "settings.proxyServerSettings": "Proxy server settings",
+
   "settings.general": "General",
   "settings.externalDataSources.sourceCount": "{count, number} {count, plural, one {external data source} other {external data sources}}",
   "settings.externalDataSources.externalDataSource": "External data source",
@@ -107,6 +110,23 @@
   "settings.externalDataSources.package": "Package",
   "settings.externalDataSources.principal": "Principal",
   "settings.externalDataSources.credentials": "Credentials",
+
+  "settings.proxyServerSettings.count": "{count, number} {count, plural, one {proxy server setting} other {proxy server settings}}",
+  "settings.proxyServerSettings.name": "Name",
+  "settings.proxyServerSettings.newProxyServerSetting": "New proxy server setting",
+  "settings.proxyServerSettings.proxyServerSetting": "Proxy server setting",
+  "settings.proxyServerSettings.urlCustomizationCode": "URL customization code",
+  "settings.externalDataSources.editProxyServerSetting": "Edit proxy server setting",
+  "settings.externalDataSources.newProxyServerSetting": "New proxy server setting",
+  "settings.proxyServerSettings.delete.confirmLabel": "Delete",
+  "settings.proxyServerSettings.delete.confirmHeading": "Delete proxy server setting",
+  "settings.proxyServerSettings.delete.confirmMessage": "Proxy server setting <strong>{name}</strong> will be <strong>deleted</strong>.",
+
+  "settings.proxyServerSettings.callout.save.success": "Proxy server setting successfully saved.",
+  "settings.proxyServerSettings.callout.save.error": "There was an error saving the proxy server setting. {error}",
+  "settings.proxyServerSettings.callout.delete.success": "Proxy server setting successfully deleted.",
+  "settings.proxyServerSettings.callout.delete.error": "There was an error deleting the proxy server setting.{error}",
+  "settings.proxyServerSettings.nameExists": "This name already exists",
 
   "settings.externalDataSources.delete.confirmLabel": "Delete",
   "settings.externalDataSources.delete.confirmHeading": "Delete external data source",
