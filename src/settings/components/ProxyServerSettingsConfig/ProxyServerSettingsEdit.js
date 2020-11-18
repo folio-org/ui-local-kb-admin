@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
-import { Button, Card, Checkbox, Col, Layout, Row, TextArea, TextField } from '@folio/stripes/components';
+import { Button, Card, Checkbox, Col, Layout, Row, TextArea, TextField, MultiSelection } from '@folio/stripes/components';
 import { composeValidators, requiredValidator } from '@folio/stripes-erm-components';
-import { MultiSelectionFilter } from '@folio/stripes/smart-components';
+
 import { validateURLIsValid } from '../../../util/validators';
 
 export default class ProxyServerSettingsEdit extends React.Component {
@@ -99,19 +99,27 @@ export default class ProxyServerSettingsEdit extends React.Component {
             fullWidth
             label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode" />}
             name={`${name}.rule`}
+            required
+            validate={requiredValidator}
           />
         </Row>
         <Row>
           <Field
-            component={TextArea}
+            component={MultiSelection}
             data-test-proxy-server-setting-platforms-exclude
-            disabled={value.readonly}
-            fullWidth
-            label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.credentials" />}
-            name={`${name}.credentials`}
+            dataOptions={this.props.platforms.map(platform => {
+              return {
+                label: platform.name,
+                value: platform.id
+              };
+            })}
+            label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />}
+            name={`${name}.idScopes`}
+            renderToOverlay
           />
         </Row>
       </Card>
+
     );
   }
 }

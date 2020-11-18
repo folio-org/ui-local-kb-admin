@@ -23,13 +23,7 @@ export default class ProxyServerSettingsListFieldArray extends React.Component {
     disableNewButton: false,
   }
 
-  defaultValues = {
-    active: false,
-    activationEnabled: false,
-    rectype: 1,
-    supportsHarvesting: true,
-    type: 'org.olf.kb.adapters.GOKbOAIAdapter',
-  }
+  defaultValues = {}
 
   handleDelete = (index) => {
     const { fields, onDelete } = this.props;

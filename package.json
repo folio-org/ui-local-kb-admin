@@ -88,13 +88,12 @@
         ]
       },
       {
-        "permissionName": "ui-local-kb-admin.jaffa.view",
-        "displayName": "jaffa: Search & view platforms",
+        "permissionName": "ui-local-kb-admin.proxyServer.manage",
+        "displayName": "Local KB admin: Manage proxy server configuration",
         "visible": true,
         "subPermissions": [
-          "erm.sts.view",
-          "erm.sts.item.post",
-          "erm.sts.item.put"
+          "erm.sts.manage",
+          "settings.enabled"
         ]
       },
       {

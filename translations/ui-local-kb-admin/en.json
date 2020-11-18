@@ -5,6 +5,7 @@
   "permission.jobs.edit": "Local KB admin: Create jobs",
   "permission.jobs.delete": "Local KB admin: Delete jobs",
   "permission.kbs.manage": "Local KB admin: Manage remote KB configuration",
+  "permission.proxyServer.manage": "Local KB admin: Manage proxy server configuration",
 
   "create": "Create",
   "errorLog": "Error log",
@@ -114,6 +115,7 @@
   "settings.proxyServerSettings.count": "{count, number} {count, plural, one {proxy server setting} other {proxy server settings}}",
   "settings.proxyServerSettings.name": "Name",
   "settings.proxyServerSettings.newProxyServerSetting": "New proxy server setting",
+  "settings.proxyServerSettings.platformsToExclude": "Platforms to exclude from proxy server setting",
   "settings.proxyServerSettings.proxyServerSetting": "Proxy server setting",
   "settings.proxyServerSettings.urlCustomizationCode": "URL customization code",
   "settings.externalDataSources.editProxyServerSetting": "Edit proxy server setting",

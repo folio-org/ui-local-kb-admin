@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { Button, Card, Col, KeyValue, Layout, NoValue, Row } from '@folio/stripes/components';
+import { Button, Card, Col, KeyValue, List, NoValue, Row } from '@folio/stripes/components';
 
 export default class ProxyServerSettingsView extends React.Component {
   static propTypes = {
@@ -40,6 +40,7 @@ export default class ProxyServerSettingsView extends React.Component {
       onEdit
     } = this.props;
 
+    const { idScopes = [] } = value;
     return (
       <Card
         data-test-external-data-source-view
@@ -81,6 +82,16 @@ export default class ProxyServerSettingsView extends React.Component {
               label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode" />}
               value={value?.rule ?? <NoValue />}
             />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <KeyValue label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />}>
+              <List
+                items={idScopes?.map(ids => ids.label)}
+                listStyle="bullets"
+              />
+            </KeyValue>
           </Col>
         </Row>
       </Card>
