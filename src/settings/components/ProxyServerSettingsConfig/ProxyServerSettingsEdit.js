@@ -99,6 +99,7 @@ export default class ProxyServerSettingsEdit extends React.Component {
               </>
             }
             name={`${name}.name`}
+            required
             validate={composeValidators(
               requiredValidator,
               this.validateUniqueName,
