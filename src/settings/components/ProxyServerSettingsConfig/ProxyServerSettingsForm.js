@@ -14,6 +14,7 @@ class ProxyServerSettingsForm extends React.Component {
     initialValues: PropTypes.shape({
       stringTemplates: PropTypes.arrayOf(PropTypes.object),
     }),
+    platforms: PropTypes.arrayOf(PropTypes.object),
     onDelete: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
   }

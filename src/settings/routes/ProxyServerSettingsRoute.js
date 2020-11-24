@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { stripesConnect } from '@folio/stripes/core';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isEmpty } from 'lodash';
 import ProxyServerSettingsForm from '../components/ProxyServerSettingsConfig/ProxyServerSettingsForm';
 
 class ProxyServerSettingsRoute extends React.Component {
   static propTypes = {
     resources: PropTypes.shape({
+      platforms: PropTypes.arrayOf(PropTypes.object),
       stringTemplates: PropTypes.object,
     }),
     mutator: PropTypes.shape({
@@ -23,12 +24,17 @@ class ProxyServerSettingsRoute extends React.Component {
       type: 'okapi',
       path: 'erm/sts',
       clientGeneratePk: false,
+      params: {
+        filters: 'context.value=urlproxier',
+      },
       throwErrors: false
     },
     platforms: {
       type: 'okapi',
       path: 'erm/platforms',
       clientGeneratePk: false,
+      limitParam: 'perPage',
+      perRequest: 100,
       throwErrors: false
     },
   });
@@ -62,11 +68,11 @@ class ProxyServerSettingsRoute extends React.Component {
   handleSave = (proxyServer) => {
     const mutator = this.props.mutator.stringTemplates;
     const { idScopes = [] } = proxyServer;
-    const idScopeValues = idScopes.map(ids => ids.value);
+    const idScopeValues = isEmpty(idScopes) ? [''] : idScopes.map(ids => ids.value); // fix logic once backend issue with [''] is fixed in the toolkit
     const proxyServerPayload = { ...proxyServer, ...{ idScopes: idScopeValues }, 'context': 'urlProxier' };
 
     const promise = proxyServerPayload.id ?
-      mutator.PUT(proxyServerPayload, { pk: proxyServerPayload.id }) :
+      mutator.PUT(proxyServerPayload) :
       mutator.POST(proxyServerPayload);
     return promise;
   }

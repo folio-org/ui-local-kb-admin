@@ -17,6 +17,7 @@ export default class ProxyServerSettingsListFieldArray extends React.Component {
     mutators: PropTypes.object,
     onDelete: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
+    platforms: PropTypes.arrayOf(PropTypes.object),
   }
 
   state = {

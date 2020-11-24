@@ -2,10 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
-import { Button, Card, Checkbox, Col, Layout, Row, TextArea, TextField, MultiSelection } from '@folio/stripes/components';
+import {
+  Button,
+  Card,
+  InfoPopover,
+  Layout,
+  Row,
+  TextArea,
+  TextField,
+  MultiSelection
+} from '@folio/stripes/components';
 import { composeValidators, requiredValidator } from '@folio/stripes-erm-components';
-
-import { validateURLIsValid } from '../../../util/validators';
+import css from './ProxyServerSettingsEdit.css';
 
 export default class ProxyServerSettingsEdit extends React.Component {
   static propTypes = {
@@ -21,6 +29,7 @@ export default class ProxyServerSettingsEdit extends React.Component {
       pristine: PropTypes.bool,
       submitting: PropTypes.bool,
     }),
+    platforms: PropTypes.arrayOf(PropTypes.object),
     onCancel: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
   }
@@ -82,7 +91,15 @@ export default class ProxyServerSettingsEdit extends React.Component {
             component={TextField}
             data-test-proxy-server-setting-name-edit
             disabled={value.readonly}
-            label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />}
+            label={
+              <>
+                <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />
+                <InfoPopover
+                  content={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.name.info" />}
+                  contentClass={css.infoPopoverContent}
+                />
+              </>
+            }
             name={`${name}.name`}
             required={!value.readonly}
             validate={composeValidators(
@@ -97,11 +114,29 @@ export default class ProxyServerSettingsEdit extends React.Component {
             data-test-proxy-server-setting-url-customization-code
             disabled={value.readonly}
             fullWidth
-            label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode" />}
+            label={
+              <>
+                <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode" />
+                <InfoPopover
+                  allowAnchorClick
+                  buttonHref="https://wiki.folio.org/display/FOLIOtips/Proxy+server+configuration+and+URL+customizations"
+                  buttonLabel={<FormattedMessage id="ui-local-kb-admin.settings.urlCustomizationCode.learnMore" />}
+                  content={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode.info" />}
+                  contentClass={css.infoPopoverContent}
+                  hideOnButtonClick
+                />
+              </>
+          }
             name={`${name}.rule`}
             required
             validate={requiredValidator}
           />
+        </Row>
+        <Row>
+          <Layout className="display-flex flex-direction-column padding-bottom-gutter">
+            <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode.variables" tagName="div" />
+            <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode.handleBarHelpers" tagName="div" />
+          </Layout>
         </Row>
         <Row>
           <Field
@@ -113,13 +148,20 @@ export default class ProxyServerSettingsEdit extends React.Component {
                 value: platform.id
               };
             })}
-            label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />}
+            label={
+              <>
+                <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />
+                <InfoPopover
+                  content={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude.info" />}
+                  contentClass={css.infoPopoverContent}
+                />
+              </>
+            }
             name={`${name}.idScopes`}
             renderToOverlay
           />
         </Row>
       </Card>
-
     );
   }
 }

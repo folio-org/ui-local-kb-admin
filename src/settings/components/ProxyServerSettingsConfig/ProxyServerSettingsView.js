@@ -8,18 +8,10 @@ export default class ProxyServerSettingsView extends React.Component {
     input: PropTypes.shape({
       name: PropTypes.string.isRequired,
       value: PropTypes.shape({
-        activationEnabled: PropTypes.bool,
-        active: PropTypes.bool,
-        credentials: PropTypes.string,
-        fullPrefix: PropTypes.string,
         id: PropTypes.string,
-        listPrefix: PropTypes.string,
+        idScopes: PropTypes.arrayOf(PropTypes.object),
         name: PropTypes.string,
-        principal: PropTypes.string,
         readonly: PropTypes.bool,
-        rectype: PropTypes.number,
-        supportsHarvesting: PropTypes.bool,
-        trustedSourceTI: PropTypes.bool,
         type: PropTypes.string,
         rule: PropTypes.string,
       }).isRequired,
@@ -46,7 +38,6 @@ export default class ProxyServerSettingsView extends React.Component {
         data-test-external-data-source-view
         headerEnd={(
           <span>
-            {value.readonly ? undefined :
             <Button
               buttonStyle="danger"
               data-test-external-data-source-delete
@@ -54,7 +45,7 @@ export default class ProxyServerSettingsView extends React.Component {
               onClick={onDelete}
             >
               <FormattedMessage id="stripes-core.button.delete" />
-            </Button>}
+            </Button>
             <Button
               data-test-external-data-source-edit
               marginBottom0
