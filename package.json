@@ -1,6 +1,6 @@
 {
   "name": "@folio/local-kb-admin",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "ERM KB Administration for FOLIO with Stripes",
   "main": "src/index.js",
   "publishConfig": {
@@ -85,6 +85,15 @@
           "module.local-kb-admin.enabled",
           "erm.jobs.view",
           "erm.refdata.view"
+        ]
+      },
+      {
+        "permissionName": "ui-local-kb-admin.proxyServer.manage",
+        "displayName": "Local KB admin: Manage proxy server configuration",
+        "visible": true,
+        "subPermissions": [
+          "erm.sts.manage",
+          "settings.enabled"
         ]
       },
       {
