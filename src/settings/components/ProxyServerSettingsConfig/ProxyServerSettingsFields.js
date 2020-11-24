@@ -70,7 +70,7 @@ export default class ProxyServerSettingsFields extends React.Component {
 
   render() {
     const ProxyServerSettingComponent = this.state.editing ? ProxyServerSettingsEdit : ProxyServerSettingsView;
-    const custPropName = this.props?.input?.value?.name;
+    const proxyServerSettingName = this.props?.input?.value?.name;
     return (
       <>
         <ProxyServerSettingComponent
@@ -87,7 +87,7 @@ export default class ProxyServerSettingsFields extends React.Component {
             data-test-confirmationModal
             heading={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmHeading" />}
             id="delete-proxy-server-setting-confirmation"
-            message={<SafeHTMLMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmMessage" values={{ name: custPropName }} />}
+            message={<SafeHTMLMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmMessage" values={{ name: proxyServerSettingName }} />}
             onCancel={this.hideDeleteConfirmationModal}
             onConfirm={() => {
               this.props.onDelete();

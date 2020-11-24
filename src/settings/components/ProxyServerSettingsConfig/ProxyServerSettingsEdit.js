@@ -21,7 +21,6 @@ export default class ProxyServerSettingsEdit extends React.Component {
       name: PropTypes.string.isRequired,
       value: PropTypes.shape({
         id: PropTypes.string,
-        readonly: PropTypes.bool,
       }).isRequired,
     }).isRequired,
     meta: PropTypes.shape({
@@ -90,7 +89,6 @@ export default class ProxyServerSettingsEdit extends React.Component {
           <Field
             component={TextField}
             data-test-proxy-server-setting-name-edit
-            disabled={value.readonly}
             label={
               <>
                 <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />
@@ -101,7 +99,6 @@ export default class ProxyServerSettingsEdit extends React.Component {
               </>
             }
             name={`${name}.name`}
-            required={!value.readonly}
             validate={composeValidators(
               requiredValidator,
               this.validateUniqueName,
@@ -112,7 +109,6 @@ export default class ProxyServerSettingsEdit extends React.Component {
           <Field
             component={TextArea}
             data-test-proxy-server-setting-url-customization-code
-            disabled={value.readonly}
             fullWidth
             label={
               <>
