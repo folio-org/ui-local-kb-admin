@@ -132,7 +132,7 @@ export default class ProxyServerSettingsEdit extends React.Component {
         <Row>
           <Layout className="display-flex flex-direction-column padding-bottom-gutter">
             <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode.variables" tagName="div" />
-            <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode.handleBarHelpers" tagName="div" />
+            <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode.helpers" tagName="div" />
           </Layout>
         </Row>
         <Row>

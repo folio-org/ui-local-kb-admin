@@ -110,7 +110,7 @@
     "settings.proxyServerSettings.platformsToExclude": "Platforms to exclude from proxy server setting",
     "settings.proxyServerSettings.platformsToExclude.info": "The proxy server template will not be used to generate proxied URLs for any platforms listed here",
     "settings.proxyServerSettings.urlCustomizationCode.variables": "Variables: inputUrl, platformLocalCode",
-    "settings.proxyServerSettings.urlCustomizationCode.handleBarHelpers": "Handlebar helpers: replace, encodeUrl, removeProtocol",
+    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: encodeUrl, insertAfter, insertAfterAll, insertBefore, insertBeforeAll, encodeUrl, removeProtocol, replace",
     "settings.proxyServerSettings.proxyServerSetting": "Proxy server setting",
     "settings.proxyServerSettings.urlCustomizationCode": "URL customization code",
     "settings.proxyServerSettings.urlCustomizationCode.info": "The template that will be used to generate a proxied URL.",
