@@ -16,12 +16,12 @@ import {
   Row,
   Spinner
 } from '@folio/stripes/components';
-import { IfPermission, TitleManager } from '@folio/stripes/core';
+import { TitleManager, withStripes } from '@folio/stripes/core';
 
 import Logs from '../Logs';
 import FormattedDateTime from '../FormattedDateTime';
 
-export default class JobInfo extends React.Component {
+class JobInfo extends React.Component {
   static propTypes = {
     data: PropTypes.shape({
       job: PropTypes.object,
@@ -29,6 +29,9 @@ export default class JobInfo extends React.Component {
     isLoading: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
     onDelete: PropTypes.func,
+    stripes: PropTypes.shape({
+      hasPerm: PropTypes.func
+    })
   };
 
   state = {
@@ -78,26 +81,24 @@ export default class JobInfo extends React.Component {
   }
 
   getActionMenu = ({ onToggle }) => {
-    const { data: { job } } = this.props;
+    const { data: { job }, stripes } = this.props;
     const isJobNotInProgress = job?.status?.value !== 'in_progress';
 
-    return (
-      <IfPermission perm="ui-local-kb-admin.jobs.delete">
-        <Button
-          buttonStyle="dropdownItem"
-          disabled={!isJobNotInProgress}
-          id="clickable-dropdown-delete-job"
-          onClick={() => {
-            onToggle();
-            this.props.onDelete();
-          }}
-        >
-          <Icon icon="trash">
-            <FormattedMessage id="ui-local-kb-admin.job.delete" />
-          </Icon>
-        </Button>
-      </IfPermission>
-    );
+    return stripes.hasPerm('ui-local-kb-admin.jobs.delete') ? (
+      <Button
+        buttonStyle="dropdownItem"
+        disabled={!isJobNotInProgress}
+        id="clickable-dropdown-delete-job"
+        onClick={() => {
+          onToggle();
+          this.props.onDelete();
+        }}
+      >
+        <Icon icon="trash">
+          <FormattedMessage id="ui-local-kb-admin.job.delete" />
+        </Icon>
+      </Button>
+    ) : null;
   }
 
   render() {
@@ -232,3 +233,5 @@ export default class JobInfo extends React.Component {
     );
   }
 }
+
+export default withStripes(JobInfo);
