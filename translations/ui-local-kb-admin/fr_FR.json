@@ -113,7 +113,7 @@
     "settings.proxyServerSettings.proxyServerSetting": "Proxy server setting",
     "settings.proxyServerSettings.urlCustomizationCode": "URL customization code",
     "settings.proxyServerSettings.urlCustomizationCode.info": "The template that will be used to generate a proxied URL.",
-    "settings.urlCustomizationCode.learnMore": "Learn more",
+    "settings.urlCustomizationCode.learnMore": "En savoir plus",
     "settings.proxyServerSettings.editProxyServerSetting": "Edit proxy server setting",
     "settings.proxyServerSettings.delete.confirmLabel": "Supprimer",
     "settings.proxyServerSettings.delete.confirmHeading": "Delete proxy server setting",
