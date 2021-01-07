@@ -1,5 +1,8 @@
 # Change history for ui-local-kb-admin
 
+## 4.0.0 IN PROGRESS
+* Upgrade to Stripes 6.0
+
 ## 3.0.0 2020-10-15
 * Upgrade to Stripes 5.0
 * Refactor to `miragejs` from `bigtest/mirage`.
