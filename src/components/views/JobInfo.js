@@ -4,9 +4,11 @@ import { FormattedMessage } from 'react-intl';
 
 import {
   AccordionSet,
+  AccordionStatus,
   Button,
   Col,
   ExpandAllButton,
+  HasCommand,
   Headline,
   Icon,
   KeyValue,
@@ -17,6 +19,9 @@ import {
   Spinner
 } from '@folio/stripes/components';
 import { TitleManager, withStripes } from '@folio/stripes/core';
+
+import { checkScope, collapseAllSections, expandAllSections } from '@folio/stripes-erm-components';
+
 
 import Logs from '../Logs';
 import FormattedDateTime from '../FormattedDateTime';
@@ -34,11 +39,16 @@ class JobInfo extends React.Component {
     })
   };
 
-  state = {
-    sections: {
+  constructor(props) {
+    super(props);
+    this.accordionStatusRef = React.createRef();
+  }
+
+  getInitialAccordionsState = () => {
+    return {
       errorLogs: false,
       infoLogs: false,
-    }
+    };
   }
 
   renderLoadingPane = () => {
@@ -62,22 +72,7 @@ class JobInfo extends React.Component {
     return {
       id,
       job,
-      onToggle: this.handleSectionToggle,
-      open: this.state.sections[id],
     };
-  }
-
-  handleSectionToggle = ({ id }) => {
-    this.setState((prevState) => ({
-      sections: {
-        ...prevState.sections,
-        [id]: !prevState.sections[id],
-      }
-    }));
-  }
-
-  handleAllSectionsToggle = (sections) => {
-    this.setState({ sections });
   }
 
   getActionMenu = ({ onToggle }) => {
@@ -107,42 +102,59 @@ class JobInfo extends React.Component {
     if (isLoading) return this.renderLoadingPane();
     const isJobNotQueued = job?.status?.value !== 'queued';
 
+    const shortcuts = [
+      {
+        name: 'expandAllSections',
+        handler: (e) => expandAllSections(e, this.accordionStatusRef),
+      },
+      {
+        name: 'collapseAllSections',
+        handler: (e) => collapseAllSections(e, this.accordionStatusRef)
+      },
+    ];
+
     return (
-      <Pane
-        actionMenu={this.getActionMenu}
-        data-test-job-details
-        defaultWidth="45%"
-        dismissible
-        id="pane-view-job"
-        onClose={this.props.onClose}
-        paneTitle={
-          <span data-test-header-title>
-            {job.name}
-          </span>
-        }
+      <HasCommand
+        commands={shortcuts}
+        isWithinScope={checkScope}
+        scope={document.body}
       >
-        <TitleManager data-test-title-name record={job.name}>
-          <div>
-            <Row>
-              <Col xs={12}>
-                <Headline
-                  data-test-job-name
-                  size="xx-large"
-                  tag="h2"
-                >
-                  {job.name}
-                </Headline>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={3}>
-                <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.runningStatus" />}>
-                  <div data-test-job-status>
-                    {job?.status?.label ?? <NoValue />}
-                  </div>
-                </KeyValue>
-              </Col>
-              {
+        <>
+          <Pane
+            actionMenu={this.getActionMenu}
+            data-test-job-details
+            defaultWidth="45%"
+            dismissible
+            id="pane-view-job"
+            onClose={this.props.onClose}
+            paneTitle={
+              <span data-test-header-title>
+                {job.name}
+              </span>
+        }
+          >
+            <TitleManager data-test-title-name record={job.name}>
+              <div>
+                <Row>
+                  <Col xs={12}>
+                    <Headline
+                      data-test-job-name
+                      size="xx-large"
+                      tag="h2"
+                    >
+                      {job.name}
+                    </Headline>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={3}>
+                    <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.runningStatus" />}>
+                      <div data-test-job-status>
+                        {job?.status?.label ?? <NoValue />}
+                      </div>
+                    </KeyValue>
+                  </Col>
+                  {
                 isJobNotQueued && (
                   <Col xs={3}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.outcome" />}>
@@ -153,7 +165,7 @@ class JobInfo extends React.Component {
                   </Col>
                 )
               }
-              {
+                  {
                 isJobNotQueued && (
                   <Col xs={3}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.started" />}>
@@ -164,7 +176,7 @@ class JobInfo extends React.Component {
                   </Col>
                 )
               }
-              {
+                  {
                 isJobNotQueued && (
                   <Col xs={3}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.ended" />}>
@@ -175,9 +187,9 @@ class JobInfo extends React.Component {
                   </Col>
                 )
               }
-            </Row>
-            <Row>
-              {
+                </Row>
+                <Row>
+                  {
                 isJobNotQueued && (
                   <Col xs={3}>
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.errors" />}>
@@ -188,8 +200,8 @@ class JobInfo extends React.Component {
                   </Col>
                 )
               }
-              <Col xs={3}>
-                {
+                  <Col xs={3}>
+                    {
                   job.fileName ? (
                     <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.filename" />}>
                       <div data-test-job-filename>
@@ -202,34 +214,35 @@ class JobInfo extends React.Component {
                         </div>
                       </KeyValue>)
                 }
-              </Col>
-            </Row>
-          </div>
-          {
-            isJobNotQueued ? (
-              <AccordionSet>
-                <Row end="xs">
-                  <Col xs>
-                    <ExpandAllButton
-                      accordionStatus={this.state.sections}
-                      id="clickable-expand-all"
-                      onToggle={this.handleAllSectionsToggle}
-                    />
                   </Col>
                 </Row>
-                <Logs
-                  type="error"
-                  {...this.getSectionProps('errorLogs')}
-                />
-                <Logs
-                  type="info"
-                  {...this.getSectionProps('infoLogs')}
-                />
-              </AccordionSet>
+              </div>
+              {
+            isJobNotQueued ? (
+              <AccordionStatus ref={this.accordionStatusRef}>
+                <Row end="xs">
+                  <Col xs>
+                    <ExpandAllButton />
+                  </Col>
+                </Row>
+                <AccordionSet initialStatus={this.getInitialAccordionsState()}>
+                  <Logs
+                    type="error"
+                    {...this.getSectionProps('errorLogs')}
+                  />
+                  <Logs
+                    type="info"
+                    {...this.getSectionProps('infoLogs')}
+                  />
+                </AccordionSet>
+              </AccordionStatus>
             ) : null
           }
-        </TitleManager>
-      </Pane>
+
+            </TitleManager>
+          </Pane>
+        </>
+      </HasCommand>
     );
   }
 }

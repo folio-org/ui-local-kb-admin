@@ -9,13 +9,11 @@ export default class Logs extends React.Component {
   static propTypes = {
     id: PropTypes.string,
     job: PropTypes.object,
-    onToggle: PropTypes.func,
-    open: PropTypes.bool,
     type: PropTypes.string.isRequired,
   };
 
   render() {
-    const { id, job, onToggle, open, type } = this.props;
+    const { id, job, type } = this.props;
 
     return (
       <Accordion
@@ -23,17 +21,11 @@ export default class Logs extends React.Component {
         displayWhenOpen={<Badge>{job[`${type}LogCount`]}</Badge>}
         id={id}
         label={<FormattedMessage id={`ui-local-kb-admin.${type}Log`} />}
-        onToggle={onToggle}
-        open={open}
       >
-        { open ?
-          <JobLogContainer
-            job={job}
-            type={type}
-          />
-          :
-          <div />
-        }
+        <JobLogContainer
+          job={job}
+          type={type}
+        />
       </Accordion>
     );
   }
