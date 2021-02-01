@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
-import { checkScope, FileUploaderField } from '@folio/stripes-erm-components';
+import { checkScope, handleSaveKeyCommand, FileUploaderField } from '@folio/stripes-erm-components';
 import { AppIcon, TitleManager } from '@folio/stripes/core';
 import stripesFinalForm from '@folio/stripes/final-form';
 
@@ -91,24 +91,10 @@ class JobForm extends React.Component {
     return undefined;
   }
 
-  handleSaveKeyCommand = (e) => {
-    const {
-      handleSubmit,
-      pristine,
-      submitting,
-    } = this.props;
-
-    e.preventDefault();
-
-    if (!pristine && !submitting) {
-      handleSubmit();
-    }
-  }
-
   shortcuts = [
     {
       name: 'save',
-      handler: this.handleSaveKeyCommand,
+      handler: (e) => handleSaveKeyCommand(e, this.props),
     }
   ];
 

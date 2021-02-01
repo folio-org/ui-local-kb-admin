@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch } from 'react-router-dom';
 import { Route } from '@folio/stripes/core';
@@ -6,11 +6,11 @@ import { CommandList, HasCommand } from '@folio/stripes/components';
 
 import { checkScope, keyboardCommands } from '@folio/stripes-erm-components';
 
-const JobCreateRoute = lazy(() => import('./routes/JobCreateRoute'));
-const JobsRoute = lazy(() => import('./routes/JobsRoute'));
-const JobViewRoute = lazy(() => import('./routes/JobViewRoute'));
+import JobCreateRoute from './routes/JobCreateRoute';
+import JobsRoute from './routes/JobsRoute';
+import JobViewRoute from './routes/JobViewRoute';
 
-const Settings = lazy(() => import('./settings'));
+import Settings from './settings';
 
 export default class App extends React.Component {
   static propTypes = {
@@ -49,9 +49,7 @@ export default class App extends React.Component {
 
     if (actAs === 'settings') {
       return (
-        <Suspense fallback={null}>
-          <Settings {...this.props} />
-        </Suspense>
+        <Settings {...this.props} />
       );
     }
 
@@ -62,18 +60,18 @@ export default class App extends React.Component {
           isWithinScope={checkScope}
           scope={document.body}
         >
-          <>
-            <Suspense fallback={null}>
-              <Switch>
-                <Route component={JobCreateRoute} path={`${path}/create/:format`} />
-                <Route component={JobsRoute} path={`${path}/:id?`}>
-                  <Suspense fallback={null}>
-                    <Route component={JobViewRoute} path={`${path}/:id`} />
-                  </Suspense>
-                </Route>
-              </Switch>
-            </Suspense>
-          </>
+
+
+          <Switch>
+            <Route component={JobCreateRoute} path={`${path}/create/:format`} />
+            <Route component={JobsRoute} path={`${path}/:id?`}>
+
+              <Route component={JobViewRoute} path={`${path}/:id`} />
+
+            </Route>
+          </Switch>
+
+
         </HasCommand>
       </CommandList>
     );
