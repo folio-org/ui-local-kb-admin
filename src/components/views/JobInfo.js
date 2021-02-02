@@ -16,11 +16,12 @@ import {
   NoValue,
   Pane,
   Row,
-  Spinner
+  Spinner,
+  checkScope,
+  collapseAllSections,
+  expandAllSections
 } from '@folio/stripes/components';
 import { TitleManager, withStripes } from '@folio/stripes/core';
-
-import { checkScope, collapseAllSections, expandAllSections } from '@folio/stripes-erm-components';
 
 
 import Logs from '../Logs';

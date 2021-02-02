@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
-import { checkScope, handleSaveKeyCommand, FileUploaderField } from '@folio/stripes-erm-components';
+import { handleSaveKeyCommand, FileUploaderField } from '@folio/stripes-erm-components';
 import { AppIcon, TitleManager } from '@folio/stripes/core';
 import stripesFinalForm from '@folio/stripes/final-form';
 
@@ -14,6 +14,7 @@ import {
   PaneFooter,
   PaneMenu,
   Paneset,
+  checkScope
 } from '@folio/stripes/components';
 
 import KbartFields from './KbartFields';

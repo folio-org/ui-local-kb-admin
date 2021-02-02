@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch } from 'react-router-dom';
 import { Route } from '@folio/stripes/core';
-import { CommandList, HasCommand } from '@folio/stripes/components';
-
-import { checkScope, keyboardCommands } from '@folio/stripes-erm-components';
+import {
+  CommandList,
+  HasCommand,
+  checkScope,
+  defaultKeyboardShortcuts,
+} from '@folio/stripes/components';
 
 import JobCreateRoute from './routes/JobCreateRoute';
 import JobsRoute from './routes/JobsRoute';
@@ -54,7 +57,7 @@ export default class App extends React.Component {
     }
 
     return (
-      <CommandList commands={keyboardCommands}>
+      <CommandList commands={defaultKeyboardShortcuts}>
         <HasCommand
           commands={this.shortcuts}
           isWithinScope={checkScope}
