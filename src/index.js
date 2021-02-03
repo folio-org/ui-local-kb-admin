@@ -63,8 +63,6 @@ export default class App extends React.Component {
           isWithinScope={checkScope}
           scope={document.body}
         >
-
-
           <Switch>
             <Route component={JobCreateRoute} path={`${path}/create/:format`} />
             <Route component={JobsRoute} path={`${path}/:id?`}>
@@ -73,8 +71,6 @@ export default class App extends React.Component {
 
             </Route>
           </Switch>
-
-
         </HasCommand>
       </CommandList>
     );
