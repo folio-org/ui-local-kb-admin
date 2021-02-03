@@ -2,17 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
-import { FileUploaderField } from '@folio/stripes-erm-components';
+import { handleSaveKeyCommand, FileUploaderField } from '@folio/stripes-erm-components';
 import { AppIcon, TitleManager } from '@folio/stripes/core';
 import stripesFinalForm from '@folio/stripes/final-form';
 
 import {
   Button,
+  HasCommand,
   IconButton,
   Pane,
   PaneFooter,
   PaneMenu,
   Paneset,
+  checkScope
 } from '@folio/stripes/components';
 
 import KbartFields from './KbartFields';
@@ -90,6 +92,13 @@ class JobForm extends React.Component {
     return undefined;
   }
 
+  shortcuts = [
+    {
+      name: 'save',
+      handler: (e) => handleSaveKeyCommand(e, this.props),
+    }
+  ];
+
   render() {
     const {
       handlers: { onDownloadFile, onUploadFile },
@@ -97,39 +106,47 @@ class JobForm extends React.Component {
       localKB
     } = this.props;
     return (
-      <Paneset>
-        <FormattedMessage id="ui-local-kb-admin.create">
-          {create => (
-            <Pane
-              appIcon={<AppIcon app="local-kb-admin" />}
-              defaultWidth="100%"
-              firstMenu={this.renderFirstMenu()}
-              footer={this.renderPaneFooter()}
-              id="pane-job-form"
-              paneTitle={<FormattedMessage id={`ui-local-kb-admin.job.new${format}Job`} />}
-            >
-              <TitleManager record={create}>
-                <form>
-                  <div className={css.jobForm}>
-                    {format === 'KBART' && <KbartFields localKB={localKB} /> }
-                    <Field
-                      component={FileUploaderField}
-                      data-test-document-field-file
-                      id="fileUploadId"
-                      label={<FormattedMessage id="stripes-erm-components.doc.file" />}
-                      name="fileUpload"
-                      onDownloadFile={onDownloadFile}
-                      onUploadFile={onUploadFile}
-                      required
-                      validate={this.validateUploadFile}
-                    />
-                  </div>
-                </form>
-              </TitleManager>
-            </Pane>
-          )}
-        </FormattedMessage>
-      </Paneset>
+      <HasCommand
+        commands={this.shortcuts}
+        isWithinScope={checkScope}
+        scope={document.body}
+      >
+        <>
+          <Paneset>
+            <FormattedMessage id="ui-local-kb-admin.create">
+              {create => (
+                <Pane
+                  appIcon={<AppIcon app="local-kb-admin" />}
+                  defaultWidth="100%"
+                  firstMenu={this.renderFirstMenu()}
+                  footer={this.renderPaneFooter()}
+                  id="pane-job-form"
+                  paneTitle={<FormattedMessage id={`ui-local-kb-admin.job.new${format}Job`} />}
+                >
+                  <TitleManager record={create}>
+                    <form>
+                      <div className={css.jobForm}>
+                        {format === 'KBART' && <KbartFields localKB={localKB} /> }
+                        <Field
+                          component={FileUploaderField}
+                          data-test-document-field-file
+                          id="fileUploadId"
+                          label={<FormattedMessage id="stripes-erm-components.doc.file" />}
+                          name="fileUpload"
+                          onDownloadFile={onDownloadFile}
+                          onUploadFile={onUploadFile}
+                          required
+                          validate={this.validateUploadFile}
+                        />
+                      </div>
+                    </form>
+                  </TitleManager>
+                </Pane>
+              )}
+            </FormattedMessage>
+          </Paneset>
+        </>
+      </HasCommand>
     );
   }
 }
