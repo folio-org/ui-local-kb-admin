@@ -2,6 +2,7 @@
 
 ## 4.0.0 IN PROGRESS
 * Upgrade to Stripes 6.0
+* Added keyboard shortcuts. ERM-1240
 
 ## 3.0.0 2020-10-15
 * Upgrade to Stripes 5.0
