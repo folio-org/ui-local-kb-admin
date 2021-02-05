@@ -81,7 +81,7 @@
   "org.olf.general.jobs.KbartIngestJob": "KBART Harvester",
   "org.olf.general.jobs.KbartImportJob": "KBART File import",
 
-  "jobtype": "Job Type",
+  "jobType": "Job Type",
 
   "columns.errorLogMessage": "Error",
   "columns.infoLogMessage": "Message",

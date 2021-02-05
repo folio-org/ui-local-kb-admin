@@ -209,7 +209,7 @@ class JobInfo extends React.Component {
                         {job.fileName}
                       </div>
                     </KeyValue>) : (
-                      <KeyValue label={<FormattedMessage id="ui-local-kb-admin.jobtype" />}>
+                      <KeyValue label={<FormattedMessage id="ui-local-kb-admin.jobType" />}>
                         <div data-test-job-type>
                           <FormattedMessage id={`ui-local-kb-admin.${job.class}`} />
                         </div>
