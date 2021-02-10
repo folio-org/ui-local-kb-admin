@@ -15,7 +15,6 @@
     "prop.started": "已开始",
     "prop.status": "运行状态",
     "org.olf.general.jobs.PackageIngestJob": "JSON收割器",
-    "source": "来源",
     "infoLogNo": "没有关于此任务的信息通知。",
     "errorLogNo": "没有要报告的错误。",
     "columns.errorLogMessage": "错误",
@@ -123,5 +122,6 @@
     "settings.proxyServerSettings.callout.delete.success": "代理服务器设置已成功删除。",
     "settings.proxyServerSettings.callout.delete.error": "删除代理服务器设置时出错。 {error}",
     "settings.proxyServerSettings.nameExists": "此名称已存在",
-    "settings.proxyServerSettings.urlCustomizationCode.helpers": "助手：insertAfter，insertAfterAll，insertBefore，insertBeforeAll，urlEncode，removeProtocol，replace"
+    "settings.proxyServerSettings.urlCustomizationCode.helpers": "助手：insertAfter，insertAfterAll，insertBefore，insertBeforeAll，urlEncode，removeProtocol，replace",
+    "jobType": "Job Type"
 }

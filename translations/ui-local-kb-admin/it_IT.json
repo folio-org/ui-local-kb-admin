@@ -15,7 +15,6 @@
     "prop.started": "Iniziato",
     "prop.status": "Stato di esecuzione",
     "org.olf.general.jobs.PackageIngestJob": "Harvester",
-    "source": "Fonte",
     "infoLogNo": "Nessuna nota informativa per questa procedura.",
     "errorLogNo": "Nessun errore da segnalare.",
     "columns.errorLogMessage": "Errore",
@@ -58,9 +57,9 @@
     "job.close": "Chiudi procedura",
     "org.olf.general.jobs.PackageImportJob": "Importazione di file JSON",
     "settings.externalDataSources.nameExists": "Questo nome esiste già",
-    "job.delete.heading.org.olf.general.jobs.KbartImportJob": "Delete KBART package import job",
-    "job.delete.heading.org.olf.general.jobs.KbartIngestJob": "Delete KBART package ingest job",
-    "job.delete.heading.org.olf.general.jobs.PackageImportJob": "Delete JSON package import job",
+    "job.delete.heading.org.olf.general.jobs.KbartImportJob": "Elimina il processo di importazione del pacchetto KBART",
+    "job.delete.heading.org.olf.general.jobs.KbartIngestJob": "Elimina il processo di importazione del pacchetto KBART",
+    "job.delete.heading.org.olf.general.jobs.PackageImportJob": "Elimina processo di importazione del pacchetto JSON",
     "job.delete.heading.org.olf.general.jobs.PackageIngestJob": "Delete JSON package ingest job",
     "job.delete.message.org.olf.general.jobs.KbartImportJob": "KBART package import job <strong>{name}</strong> will be <strong>deleted</strong>.",
     "job.delete.message.org.olf.general.jobs.KbartIngestJob": "KBART package ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
@@ -88,7 +87,7 @@
     "job.update": "Update package",
     "job.sourceReferenceWarning": "The <strong>Source</strong> and <strong>Reference</strong> fields are used together as a unique identifier for packages. If a package with the given <strong>Source</strong>+<strong>Reference</strong> already exists it will be updated, otherwise a new package will be created. If the <strong>Provider</strong> entered does not exist, a new one will be created in the local knowledgebase in the Agreements app.",
     "org.olf.general.jobs.KbartIngestJob": "KBART Harvester",
-    "org.olf.general.jobs.KbartImportJob": "KBART File import",
+    "org.olf.general.jobs.KbartImportJob": "Importazione di file KBART",
     "job.JSONImportJob": "JSON import job",
     "job.KBARTImportJob": "KBART import job",
     "settings.externalDataSources.delete.confirmLabel": "Delete",
@@ -123,5 +122,6 @@
     "settings.proxyServerSettings.callout.delete.success": "Proxy server setting successfully deleted.",
     "settings.proxyServerSettings.callout.delete.error": "There was an error deleting the proxy server setting.{error}",
     "settings.proxyServerSettings.nameExists": "This name already exists",
-    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace"
+    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
+    "jobType": "Job Type"
 }
