@@ -14,7 +14,7 @@
     "prop.runningStatus": "حالة التشغيل",
     "prop.started": "بدأ",
     "prop.status": "حالة التشغيل",
-    "org.olf.general.jobs.PackageIngestJob": "حاصد JSON",
+    "org.olf.general.jobs.PackageIngestJob": "حاصد",
     "infoLogNo": "لا توجد إخطارات معلومات لهذه الوظيفة",
     "errorLogNo": "لا توجد أي أخطاء للتبليغ عنها",
     "columns.errorLogMessage": "خطأ",
@@ -55,7 +55,7 @@
     "error.uploadFile": "يرجى تحميل ملف للمتابعة",
     "job.newJob": "وظيفة جديدة",
     "job.close": "غلق الوظيفة",
-    "org.olf.general.jobs.PackageImportJob": "استيراد ملف JSON",
+    "org.olf.general.jobs.PackageImportJob": "استيراد الملفات",
     "settings.externalDataSources.nameExists": "هذا الاسم موجود بالفعل",
     "job.delete.heading.org.olf.general.jobs.KbartImportJob": "حذف مهمة استيراد حزمة KBART",
     "job.delete.heading.org.olf.general.jobs.KbartIngestJob": "حذف مهمة استيعاب حزمة KBART",
@@ -122,6 +122,6 @@
     "settings.proxyServerSettings.callout.delete.success": "تم حذف إعدادات الخادم البديل (البروكسي) بنجاح.",
     "settings.proxyServerSettings.callout.delete.error": "حدث خطأ أثناء حذف إعدادات الخادم البديل (البروكسي).{error}",
     "settings.proxyServerSettings.nameExists": "هذا الاسم موجود بالفعل",
-    "settings.proxyServerSettings.urlCustomizationCode.helpers": "أدوات المساعدة: encodeUrl, insertAfter, insertAfterAll, insertBefore, insertBeforeAll, encodeUrl, removeProtocol, replace",
+    "settings.proxyServerSettings.urlCustomizationCode.helpers": "أدوات المساعدة: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
     "jobType": "أنواع الوظيفة"
 }
