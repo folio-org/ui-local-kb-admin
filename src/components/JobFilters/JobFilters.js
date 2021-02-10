@@ -38,8 +38,8 @@ export default class JobFilters extends React.Component {
 
     FILTERS.forEach(filter => {
       const values = props.data[`${filter}Values`];
-      if (values.length !== state[filter].length) {
-        newState[filter] = values.map(({ label }) => ({ label, value: label }));
+      if (values.length !== state[filter]?.length) {
+        newState[filter] = values;
       }
     });
 

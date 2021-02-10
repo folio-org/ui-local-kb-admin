@@ -26,6 +26,10 @@ class JobsRoute extends React.Component {
             { name: 'File import', value: 'org.olf.general.jobs.PackageImportJob' }
           ],
         }],
+        filterKeys: {
+          status: 'status.value',
+          result: 'result.value'
+        },
       })
     },
     resultValues: {
