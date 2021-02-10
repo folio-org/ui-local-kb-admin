@@ -15,7 +15,6 @@
     "prop.started": "بدأ",
     "prop.status": "حالة التشغيل",
     "org.olf.general.jobs.PackageIngestJob": "حاصد JSON",
-    "source": "المصدر",
     "infoLogNo": "لا توجد إخطارات معلومات لهذه الوظيفة",
     "errorLogNo": "لا توجد أي أخطاء للتبليغ عنها",
     "columns.errorLogMessage": "خطأ",
@@ -123,5 +122,6 @@
     "settings.proxyServerSettings.callout.delete.success": "تم حذف إعدادات الخادم البديل (البروكسي) بنجاح.",
     "settings.proxyServerSettings.callout.delete.error": "حدث خطأ أثناء حذف إعدادات الخادم البديل (البروكسي).{error}",
     "settings.proxyServerSettings.nameExists": "هذا الاسم موجود بالفعل",
-    "settings.proxyServerSettings.urlCustomizationCode.helpers": "أدوات المساعدة: encodeUrl, insertAfter, insertAfterAll, insertBefore, insertBeforeAll, encodeUrl, removeProtocol, replace"
+    "settings.proxyServerSettings.urlCustomizationCode.helpers": "أدوات المساعدة: encodeUrl, insertAfter, insertAfterAll, insertBefore, insertBeforeAll, encodeUrl, removeProtocol, replace",
+    "jobType": "أنواع الوظيفة"
 }

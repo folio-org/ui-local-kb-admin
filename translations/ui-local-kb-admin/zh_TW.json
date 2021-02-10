@@ -15,7 +15,6 @@
     "prop.started": "已开始",
     "prop.status": "處理狀態",
     "org.olf.general.jobs.PackageIngestJob": "收割器",
-    "source": "来源",
     "infoLogNo": "没有关于此任务的信息通知。",
     "errorLogNo": "沒有錯誤要報告。",
     "columns.errorLogMessage": "錯誤",
@@ -123,5 +122,6 @@
     "settings.proxyServerSettings.callout.delete.success": "Proxy server setting successfully deleted.",
     "settings.proxyServerSettings.callout.delete.error": "There was an error deleting the proxy server setting.{error}",
     "settings.proxyServerSettings.nameExists": "This name already exists",
-    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace"
+    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
+    "jobType": "Job Type"
 }

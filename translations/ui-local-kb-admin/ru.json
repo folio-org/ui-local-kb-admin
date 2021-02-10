@@ -15,7 +15,6 @@
     "prop.started": "Started",
     "prop.status": "Статус выполнения",
     "org.olf.general.jobs.PackageIngestJob": "Конвертирование данных в формат JSON",
-    "source": "Источник",
     "infoLogNo": "Нет заметок для этого задания.",
     "errorLogNo": "No errors to report.",
     "columns.errorLogMessage": "Ошибка",
@@ -123,5 +122,6 @@
     "settings.proxyServerSettings.callout.delete.success": "Proxy server setting successfully deleted.",
     "settings.proxyServerSettings.callout.delete.error": "There was an error deleting the proxy server setting.{error}",
     "settings.proxyServerSettings.nameExists": "This name already exists",
-    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace"
+    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
+    "jobType": "Job Type"
 }

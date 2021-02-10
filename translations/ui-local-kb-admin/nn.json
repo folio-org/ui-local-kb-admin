@@ -14,8 +14,7 @@
     "prop.runningStatus": "Running status",
     "prop.started": "Started",
     "prop.status": "Running status",
-    "org.olf.general.jobs.PackageIngestJob": "JSON Harvester",
-    "source": "Source",
+    "org.olf.general.jobs.PackageIngestJob": "Harvester",
     "infoLogNo": "No information notices for this job.",
     "errorLogNo": "No errors to report.",
     "columns.errorLogMessage": "Error",
@@ -56,7 +55,7 @@
     "error.uploadFile": "Please upload a file to continue",
     "job.newJob": "New job",
     "job.close": "Close job",
-    "org.olf.general.jobs.PackageImportJob": "JSON File import",
+    "org.olf.general.jobs.PackageImportJob": "File import",
     "settings.externalDataSources.nameExists": "This name already exists",
     "job.delete.heading.org.olf.general.jobs.KbartImportJob": "Delete KBART package import job",
     "job.delete.heading.org.olf.general.jobs.KbartIngestJob": "Delete KBART package ingest job",
@@ -123,5 +122,6 @@
     "settings.proxyServerSettings.callout.delete.success": "Proxy server setting successfully deleted.",
     "settings.proxyServerSettings.callout.delete.error": "There was an error deleting the proxy server setting.{error}",
     "settings.proxyServerSettings.nameExists": "This name already exists",
-    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace"
+    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
+    "jobType": "Job Type"
 }

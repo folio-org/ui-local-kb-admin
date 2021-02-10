@@ -15,7 +15,6 @@
     "prop.started": "Commencé",
     "prop.status": "Statut",
     "org.olf.general.jobs.PackageIngestJob": "Outil de moissonnage",
-    "source": "Source",
     "infoLogNo": "Aucun avis d'information pour cette tâche",
     "errorLogNo": "Aucune erreur à signaler.",
     "columns.errorLogMessage": "Erreur",
@@ -123,5 +122,6 @@
     "settings.proxyServerSettings.callout.delete.success": "Proxy server setting successfully deleted.",
     "settings.proxyServerSettings.callout.delete.error": "There was an error deleting the proxy server setting.{error}",
     "settings.proxyServerSettings.nameExists": "Ce nom existe déjà",
-    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace"
+    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
+    "jobType": "Job Type"
 }

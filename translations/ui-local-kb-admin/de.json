@@ -15,7 +15,6 @@
     "prop.started": "Gestartet",
     "prop.status": "Status der Ausführung",
     "org.olf.general.jobs.PackageIngestJob": "JSON-Harvester",
-    "source": "Quelle",
     "infoLogNo": "Keine Informationshinweise für diesen Job.",
     "errorLogNo": "Keine Fehler zu berichten.",
     "columns.errorLogMessage": "Fehler",
@@ -123,5 +122,6 @@
     "settings.proxyServerSettings.callout.delete.success": "Proxy-Server-Einstellung wurde erfolgreich gelöscht.",
     "settings.proxyServerSettings.callout.delete.error": "Fehler beim Löschen der Proxy-Server-Einstellung.{error}",
     "settings.proxyServerSettings.nameExists": "Dieser Name ist bereits vorhanden",
-    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Hilfsfunktionen: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace"
+    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Hilfsfunktionen: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
+    "jobType": "Job Type"
 }

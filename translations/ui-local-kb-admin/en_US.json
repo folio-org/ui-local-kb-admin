@@ -15,7 +15,6 @@
     "prop.started": "Started",
     "prop.status": "Running status",
     "org.olf.general.jobs.PackageIngestJob": "Harvester",
-    "source": "Source",
     "infoLogNo": "No information notices for this job.",
     "errorLogNo": "No errors to report.",
     "columns.errorLogMessage": "Error",
@@ -123,5 +122,6 @@
     "settings.proxyServerSettings.callout.delete.success": "Proxy server setting successfully deleted.",
     "settings.proxyServerSettings.callout.delete.error": "There was an error deleting the proxy server setting.{error}",
     "settings.proxyServerSettings.nameExists": "This name already exists",
-    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: encodeUrl, insertAfter, insertAfterAll, insertBefore, insertBeforeAll, encodeUrl, removeProtocol, replace"
+    "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: encodeUrl, insertAfter, insertAfterAll, insertBefore, insertBeforeAll, encodeUrl, removeProtocol, replace",
+    "jobType": "Job Type"
 }
