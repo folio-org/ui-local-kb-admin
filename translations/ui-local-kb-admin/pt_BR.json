@@ -123,5 +123,5 @@
     "settings.proxyServerSettings.callout.delete.error": "Ocorreu um erro ao excluir a configuração do servidor proxy. {error}",
     "settings.proxyServerSettings.nameExists": "Este nome já existe",
     "settings.proxyServerSettings.urlCustomizationCode.helpers": "\"Dicas\": inserirApós, inserirApós Tudo, inserirAntes, inserirAntes, inserirTudo, EncodificarUrl, removerProtocolo, substituir",
-    "jobType": "Job Type"
+    "jobType": "Tipo de ação (job)"
 }

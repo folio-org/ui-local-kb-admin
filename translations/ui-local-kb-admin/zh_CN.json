@@ -14,7 +14,7 @@
     "prop.runningStatus": "运行状态",
     "prop.started": "已开始",
     "prop.status": "运行状态",
-    "org.olf.general.jobs.PackageIngestJob": "JSON收割器",
+    "org.olf.general.jobs.PackageIngestJob": "收割器",
     "infoLogNo": "没有关于此任务的信息通知。",
     "errorLogNo": "没有要报告的错误。",
     "columns.errorLogMessage": "错误",
@@ -55,7 +55,7 @@
     "error.uploadFile": "请上传文件以继续",
     "job.newJob": "新任务",
     "job.close": "关闭任务",
-    "org.olf.general.jobs.PackageImportJob": "JSON文件导入",
+    "org.olf.general.jobs.PackageImportJob": "文件导入",
     "settings.externalDataSources.nameExists": "此名称已存在",
     "job.delete.heading.org.olf.general.jobs.KbartImportJob": "删除KBART资源包导入任务",
     "job.delete.heading.org.olf.general.jobs.KbartIngestJob": "删除KBART资源包摄入任务",
@@ -123,5 +123,5 @@
     "settings.proxyServerSettings.callout.delete.error": "删除代理服务器设置时出错。 {error}",
     "settings.proxyServerSettings.nameExists": "此名称已存在",
     "settings.proxyServerSettings.urlCustomizationCode.helpers": "助手：insertAfter，insertAfterAll，insertBefore，insertBeforeAll，urlEncode，removeProtocol，replace",
-    "jobType": "Job Type"
+    "jobType": "任务类型"
 }
