@@ -7,8 +7,6 @@ import { AppIcon, IfPermission } from '@folio/stripes/core';
 
 import {
   Button,
-  Dropdown,
-  DropdownMenu,
   Icon,
   MultiColumnList,
   NoValue,
@@ -148,47 +146,26 @@ export default class Jobs extends React.Component {
     );
   }
 
-  renderNewJobMenu = ({ onToggle }) => (
-    <DropdownMenu
-      data-role="menu"
-      onToggle={onToggle}
-    >
-      <FormattedMessage id="ui-local-kb-admin.job.newJob">
-        {() => (
-          <>
-            <Button
-              buttonStyle="dropdownItem"
-              id="clickable-new-JSON-job"
-              marginBottom0
-              to={`/local-kb-admin/create/JSON${this.props.searchString}`}
-            >
-              <FormattedMessage id="ui-local-kb-admin.job.JSONImportJob" />
-            </Button>
-            <Button
-              buttonStyle="dropdownItem"
-              id="clickable-new-KBART-job"
-              marginBottom0
-              to={`/local-kb-admin/create/KBART${this.props.searchString}`}
-            >
-              <FormattedMessage id="ui-local-kb-admin.job.KBARTImportJob" />
-            </Button>
-          </>
-        )}
-      </FormattedMessage>
-    </DropdownMenu>
-  );
-
-  renderResultsLastMenu() {
-    return (
+  getActionMenu = () => (
+    <>
       <IfPermission perm="ui-local-kb-admin.jobs.edit">
-        <Dropdown
-          buttonProps={{ buttonStyle: 'primary', marginBottom0: true }}
-          label={<FormattedMessage id="ui-local-kb-admin.job.new" />}
-          renderMenu={this.renderNewJobMenu}
-        />
+        <Button
+          buttonStyle="dropdownItem"
+          id="clickable-new-JSON-job"
+          to={`/local-kb-admin/create/JSON${this.props.searchString}`}
+        >
+          <FormattedMessage id="ui-local-kb-admin.job.JSONImportJob" />
+        </Button>
+        <Button
+          buttonStyle="dropdownItem"
+          id="clickable-new-KBART-job"
+          to={`/local-kb-admin/create/KBART${this.props.searchString}`}
+        >
+          <FormattedMessage id="ui-local-kb-admin.job.KBARTImportJob" />
+        </Button>
       </IfPermission>
-    );
-  }
+    </>
+  );
 
   renderResultsPaneSubtitle = (source) => {
     if (source && source.loaded()) {
@@ -302,10 +279,10 @@ export default class Jobs extends React.Component {
                       </form>
                     </Pane> }
                   <Pane
+                    actionMenu={this.getActionMenu}
                     appIcon={<AppIcon app="local-kb-admin" />}
                     defaultWidth="fill"
                     firstMenu={this.renderResultsFirstMenu(activeFilters)}
-                    lastMenu={this.renderResultsLastMenu()}
                     noOverflow
                     padContent={false}
                     paneSub={this.renderResultsPaneSubtitle(source)}
