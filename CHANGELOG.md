@@ -1,9 +1,17 @@
 # Change history for ui-local-kb-admin
 
-## 4.0.0 IN PROGRESS
+## 4.0.0 2021-03-17
 * Upgrade to Stripes 6.0
+* Default filter values removed when label is changed ERM-1551
+* Added dep for stripe-cli v2 ERM-1550
 * Added keyboard shortcuts. ERM-1240
+* Change labels for Job classes in Local KB Import UI ERM-1539
+* On Platform view Action button should not show if user would see no options in Action dropdown ERM-1225
 * Applied "Actions" button pattern. ERM-1150
+* Support for e-resource proxies and url customisers ERM-1102
+  * UIs for managing proxy url and customiser url configurations from the Platform context ERM-1194
+  * UI for managing proxy server configurations ERM-1109
+
 
 ## 3.0.0 2020-10-15
 * Upgrade to Stripes 5.0
