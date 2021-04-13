@@ -105,7 +105,9 @@
         "visible": true,
         "subPermissions": [
           "ui-local-kb-admin.jobs.view",
-          "erm.jobs.edit"
+          "erm.files.edit",
+          "erm.jobs.edit",
+          "erm.kbs.view"
         ]
       },
       {
