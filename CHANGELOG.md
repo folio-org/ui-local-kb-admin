@@ -1,5 +1,8 @@
 # Change history for ui-local-kb-admin
 
+## 4.0.1 2021-04-21
+* ui-local-kb-admin.jobs.edit now includes erm.files.edit and erm.kbs.view as subpermissions. ERM-1625
+
 ## 4.0.0 2021-03-17
 * Upgrade to Stripes 6.0
 * Default filter values removed when label is changed ERM-1551
