@@ -33,6 +33,7 @@ export default class KbartFields extends React.Component {
           data-test-field-package-name
           label={<FormattedMessage id="ui-local-kb-admin.job.packageName" />}
           name="packageName"
+          autoFocus
           required
           validate={requiredValidator}
         />
