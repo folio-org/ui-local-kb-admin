@@ -29,11 +29,11 @@ export default class KbartFields extends React.Component {
           <SafeHTMLMessage id="ui-local-kb-admin.job.sourceReferenceWarning" />
         </MessageBanner>
         <Field
+          autoFocus
           component={TextField}
           data-test-field-package-name
           label={<FormattedMessage id="ui-local-kb-admin.job.packageName" />}
           name="packageName"
-          autoFocus
           required
           validate={requiredValidator}
         />
