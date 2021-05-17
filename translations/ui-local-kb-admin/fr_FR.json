@@ -97,7 +97,7 @@
     "permission.jobs.edit": "Local KB admin: Create jobs",
     "permission.jobs.delete": "Local KB admin: Delete jobs",
     "permission.kbs.manage": "Local KB admin: Manage remote KB configuration",
-    "job.trustedSourceTI": "Trust this job as a source of title instance metadata",
+    "job.trustedSourceTI": "Considérer cette tâche comme source de métadonnées d'instance de titre",
     "settings.externalDataSources.trustedSourceTI": "Approuvé pour les métadonnées d'instance de titre",
     "permission.proxyServer.manage": "Administration de la base de connaissances locale: gérer la configuration du serveur proxy",
     "section.proxyServerSettings": "Paramètres du serveur proxy",
