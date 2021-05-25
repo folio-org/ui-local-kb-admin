@@ -79,7 +79,7 @@
     "job.availableJobTypes": "Available job types",
     "job.newJSONJob": "新規JSONジョブ",
     "job.newKBARTJob": "新規KBARTジョブ",
-    "job.packageName": "Package name",
+    "job.packageName": "パッケージ名",
     "job.packageSource": "パケージソース",
     "job.packageReference": "Package reference",
     "job.packageProvider": "パッケージプロバイダー",
