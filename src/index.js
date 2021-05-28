@@ -15,7 +15,18 @@ import JobViewRoute from './routes/JobViewRoute';
 
 import Settings from './settings';
 
+import setUpRegistry from './setUpRegistry';
+
 export default class App extends React.Component {
+  static eventHandler(event, _s, data) {
+    if (event === 'ui-dashboard-registry-load') {
+      // Data should contain Registry singleton:
+      setUpRegistry(data);
+    }
+
+    return null;
+  }
+
   static propTypes = {
     actAs: PropTypes.string.isRequired,
     history: PropTypes.object,

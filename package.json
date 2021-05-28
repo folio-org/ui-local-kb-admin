@@ -59,8 +59,10 @@
   "stripes": {
     "actsAs": [
       "app",
+      "handler",
       "settings"
     ],
+    "handlerName": "eventHandler",
     "displayName": "ui-local-kb-admin.meta.title",
     "route": "/local-kb-admin",
     "home": "/local-kb-admin",
