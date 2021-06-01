@@ -50,7 +50,7 @@
     "settings.externalDataSources.externalDataSource": "Fonte dati esterna",
     "settings.externalDataSources.editExternalDataSource": "Modifica fonte dati esterna",
     "settings.externalDataSources.newExternalDataSource": "Nuova fonte dati esterna",
-    "valid.isURLValid": "Please enter a valid URL (including \"http\" or \"https\").",
+    "valid.isURLValid": "Inserisci un URL valido (incluso \"http\" o \"https\").",
     "create": "Crea",
     "error.uploadFile": "Carica un file per continuare",
     "job.newJob": "Nuova procedura",
