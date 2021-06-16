@@ -1,5 +1,7 @@
 # Change history for ui-local-kb-admin
 
+## 4.2.0 (In Progress)
+
 ## 4.1.0 2021-06-16
 * ERM-1684 Set up ui-local-kb-admin Registry entry
 * ERM-1625 ui-local-kb-admin.jobs.edit should include erm.files.edit and erm.kbs.view as subpermissions
