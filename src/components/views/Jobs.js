@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { noop } from 'lodash';
 import { FormattedMessage } from 'react-intl';
-import { AppIcon, IfPermission } from '@folio/stripes/core';
+import { AppIcon, withStripes } from '@folio/stripes/core';
 
 import {
   Button,
@@ -26,7 +26,7 @@ import JobFilters from '../JobFilters';
 import FormattedDateTime from '../FormattedDateTime';
 import css from './Jobs.css';
 
-export default class Jobs extends React.Component {
+class Jobs extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     contentRef: PropTypes.object,
@@ -37,6 +37,9 @@ export default class Jobs extends React.Component {
     searchString: PropTypes.string,
     selectedRecordId: PropTypes.string,
     source: PropTypes.object,
+    stripes: PropTypes.shape({
+      hasPerm: PropTypes.func
+    }),
   }
 
   static defaultProps = {
@@ -146,9 +149,10 @@ export default class Jobs extends React.Component {
     );
   }
 
-  getActionMenu = () => (
-    <>
-      <IfPermission perm="ui-local-kb-admin.jobs.edit">
+  getActionMenu = () => {
+    const buttons = [];
+    if (this.props.stripes.hasPerm('ui-local-kb-admin.jobs.edit')) {
+      buttons.push(
         <Button
           buttonStyle="dropdownItem"
           id="clickable-new-JSON-job"
@@ -156,6 +160,8 @@ export default class Jobs extends React.Component {
         >
           <FormattedMessage id="ui-local-kb-admin.job.JSONImportJob" />
         </Button>
+      );
+      buttons.push(
         <Button
           buttonStyle="dropdownItem"
           id="clickable-new-KBART-job"
@@ -163,9 +169,10 @@ export default class Jobs extends React.Component {
         >
           <FormattedMessage id="ui-local-kb-admin.job.KBARTImportJob" />
         </Button>
-      </IfPermission>
-    </>
-  );
+      );
+    }
+    return buttons.length ? buttons : null;
+  };
 
   renderResultsPaneSubtitle = (source) => {
     if (source && source.loaded()) {
@@ -317,3 +324,5 @@ export default class Jobs extends React.Component {
     );
   }
 }
+
+export default withStripes(Jobs);
