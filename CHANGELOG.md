@@ -1,7 +1,10 @@
 # Change history for ui-local-kb-admin
 
 ## 4.1.0 In progress
-* Set up ui-local-kb-admin Registry entry. ERM-1684
+* ERM-1684 Set up ui-local-kb-admin Registry entry
+* ERM-1625 ui-local-kb-admin.jobs.edit should include erm.files.edit and erm.kbs.view as subpermissions
+* ERM-1595 Add descriptions to visible permission set in ui-local-kb-admin
+* ERM-1558 Local KB admin: Give focus to the Package Name field on opening the "New KBART import job" form
 
 ## 4.0.0 2021-03-17
 * Upgrade to Stripes 6.0
