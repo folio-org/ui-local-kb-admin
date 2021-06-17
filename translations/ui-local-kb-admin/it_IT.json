@@ -21,7 +21,7 @@
     "columns.infoLogMessage": "Messaggio",
     "columns.recordNumber": "Numero record",
     "job.delete.confirmLabel": "Elimina",
-    "job.delete.heading": "Eliminare {name}?",
+    "job.delete.heading": "Elimina procedura",
     "job.delete.message": "Job <strong>{name}</strong> will be <strong>deleted</strong>",
     "loading": "Caricamento...",
     "searchInputLabel": "Cerca procedure",
