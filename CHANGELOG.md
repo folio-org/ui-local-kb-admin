@@ -1,6 +1,7 @@
 # Change history for ui-local-kb-admin
 
-## 4.2.0 (In Progress)
+## 5.0.0 (In Progress)
+* Included interface dependency for erm 5.0
 
 ## 4.1.0 2021-06-16
 * ERM-1684 Set up ui-local-kb-admin Registry entry
