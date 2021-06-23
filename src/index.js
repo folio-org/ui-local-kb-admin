@@ -1,10 +1,15 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { Switch } from 'react-router-dom';
-import { Route } from '@folio/stripes/core';
+import { AppContextMenu, Route } from '@folio/stripes/core';
 import {
   CommandList,
   HasCommand,
+  KeyboardShortcutsModal,
+  NavList,
+  NavListItem,
+  NavListSection,
   checkScope,
   defaultKeyboardShortcuts,
 } from '@folio/stripes/components';
@@ -35,6 +40,19 @@ export default class App extends React.Component {
     stripes: PropTypes.object.isRequired,
   }
 
+  state = {
+    showKeyboardShortcutsModal: false,
+  };
+
+  changeKeyboardShortcutsModal = (modalState) => {
+    this.setState({ showKeyboardShortcutsModal: modalState });
+  };
+
+  shortcutModalToggle(handleToggle) {
+    handleToggle();
+    this.changeKeyboardShortcutsModal(true);
+  }
+
   searchInput = () => {
     return this.props.location.pathname.search('/local-kb-admin') === 0 ?
       'input-local-kb-admin-search' :
@@ -56,6 +74,10 @@ export default class App extends React.Component {
       name: 'search',
       handler: this.focusSearchField
     },
+    {
+      name: 'openShortcutModal',
+      handler: this.changeKeyboardShortcutsModal
+    },
   ];
 
   render() {
@@ -68,20 +90,43 @@ export default class App extends React.Component {
     }
 
     return (
-      <CommandList commands={defaultKeyboardShortcuts}>
-        <HasCommand
-          commands={this.shortcuts}
-          isWithinScope={checkScope}
-          scope={document.body}
-        >
-          <Switch>
-            <Route component={JobCreateRoute} path={`${path}/create/:format`} />
-            <Route component={JobsRoute} path={`${path}/:id?`}>
-              <Route component={JobViewRoute} path={`${path}/:id`} />
-            </Route>
-          </Switch>
-        </HasCommand>
-      </CommandList>
+      <>
+        <CommandList commands={defaultKeyboardShortcuts}>
+          <HasCommand
+            commands={this.shortcuts}
+            isWithinScope={checkScope}
+            scope={document.body}
+          >
+            <AppContextMenu>
+              {(handleToggle) => (
+                <NavList>
+                  <NavListSection>
+                    <NavListItem
+                      id="keyboard-shortcuts-item"
+                      onClick={() => { this.shortcutModalToggle(handleToggle); }}
+                    >
+                      <FormattedMessage id="ui-agreements.appMenu.keyboardShortcuts" />
+                    </NavListItem>
+                  </NavListSection>
+                </NavList>
+              )}
+            </AppContextMenu>
+            <Switch>
+              <Route component={JobCreateRoute} path={`${path}/create/:format`} />
+              <Route component={JobsRoute} path={`${path}/:id?`}>
+                <Route component={JobViewRoute} path={`${path}/:id`} />
+              </Route>
+            </Switch>
+          </HasCommand>
+        </CommandList>
+        { this.state.showKeyboardShortcutsModal && (
+        <KeyboardShortcutsModal
+          allCommands={defaultKeyboardShortcuts}
+          onClose={() => { this.changeKeyboardShortcutsModal(false); }}
+          open
+        />
+        )}
+      </>
     );
   }
 }
