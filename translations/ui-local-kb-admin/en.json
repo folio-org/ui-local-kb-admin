@@ -150,5 +150,11 @@
   "yes": "Yes",
   "no": "No",
 
-  "valid.isURLValid": "Please enter a valid URL (including \"http\" or \"https\")."
+  "valid.isURLValid": "Please enter a valid URL (including \"http\" or \"https\").",
+
+  "shortcut.saveRecord": "Save a record",
+  "shortcut.expandAll": "Expand all accordions",
+  "shortcut.collapseAll": "Collapse all accordions",
+  "shortcut.expandOrCollapse": "Expand or collapse an accordion",
+  "shortcut.goToSearchFilter": "Go to \"Search & filter\" pane" 
 }
