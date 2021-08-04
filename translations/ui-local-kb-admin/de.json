@@ -123,5 +123,5 @@
     "settings.proxyServerSettings.callout.delete.error": "Fehler beim Löschen der Proxy-Server-Einstellung.{error}",
     "settings.proxyServerSettings.nameExists": "Dieser Name ist bereits vorhanden",
     "settings.proxyServerSettings.urlCustomizationCode.helpers": "Hilfsfunktionen: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
-    "jobType": "Job Type"
+    "jobType": "Jobtyp"
 }
