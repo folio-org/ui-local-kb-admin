@@ -111,6 +111,7 @@
   "settings.externalDataSources.listPrefix": "Listprefix",
   "settings.externalDataSources.fullPrefix": "Fullprefix",
   "settings.externalDataSources.package": "Package",
+  "settings.externalDataSources.title": "Title",
   "settings.externalDataSources.principal": "Principal",
   "settings.externalDataSources.credentials": "Credentials",
 
