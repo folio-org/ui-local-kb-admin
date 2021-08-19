@@ -5,6 +5,9 @@ buildNPM {
   runRegression = 'no'
   runLint = 'yes'
   runSonarqube = 'yes'
+  runScripts = [
+    ['formatjs-compile': ''],
+  ]
   runTest = 'yes'
   runTestOptions = '--karma.singleRun --karma.browsers ChromeDocker --karma.reporters mocha junit --coverage'
 }
