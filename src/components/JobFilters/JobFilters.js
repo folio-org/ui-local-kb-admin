@@ -28,7 +28,8 @@ export default class JobFilters extends React.Component {
     status: [],
     result: [],
     class: [
-      { value: 'Harvester', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageIngestJob" /> },
+      { value: 'Title harvester', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.TitleIngestJob" /> },
+      { value: 'Package harvester', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageIngestJob" /> },
       { value: 'File import', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageImportJob" /> }
     ],
   }
