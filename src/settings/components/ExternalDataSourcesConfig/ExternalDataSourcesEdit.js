@@ -204,7 +204,7 @@ const ExternalDataSourcesEdit = ({
       />
     </Card>
   );
-}
+};
 
 ExternalDataSourcesEdit.propTypes = {
   input: PropTypes.shape({
