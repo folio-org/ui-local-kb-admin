@@ -222,7 +222,7 @@ describe('External Data Source Settings', () => {
       await externaldatasources.whenFormLoaded();
     });
 
-    describe('creating a new data source', () => {
+    describe.skip('creating a new data source', () => {
       beforeEach(async function () {
         await externaldatasources.clickNewButton();
         await new Promise(resolve => { setTimeout(resolve, 500); }); // Should be removed as a part of ERM-825
