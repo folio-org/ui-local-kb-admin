@@ -14,7 +14,7 @@
     "prop.runningStatus": "Running status",
     "prop.started": "Started",
     "prop.status": "Running status",
-    "org.olf.general.jobs.PackageIngestJob": "Package harvester",
+    "org.olf.general.jobs.PackageIngestJob": "Harvester",
     "infoLogNo": "No information notices for this job.",
     "errorLogNo": "No errors to report.",
     "columns.errorLogMessage": "Error",
