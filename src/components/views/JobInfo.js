@@ -31,6 +31,10 @@ class JobInfo extends React.Component {
   static propTypes = {
     data: PropTypes.shape({
       job: PropTypes.object,
+      logFetch: PropTypes.shape({
+        fetchFunction: PropTypes.func.isRequired,
+        logExportLoading: PropTypes.object
+      }),
     }),
     isLoading: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
@@ -98,8 +102,7 @@ class JobInfo extends React.Component {
   }
 
   render() {
-    const { data: { job }, isLoading } = this.props;
-
+    const { data: { job, logFetch }, isLoading } = this.props;
     if (isLoading) return this.renderLoadingPane();
     const isJobNotQueued = job?.status?.value !== 'queued';
 
@@ -228,10 +231,12 @@ class JobInfo extends React.Component {
                 </Row>
                 <AccordionSet initialStatus={this.getInitialAccordionsState()}>
                   <Logs
+                    logFetch={logFetch}
                     type="error"
                     {...this.getSectionProps('errorLogs')}
                   />
                   <Logs
+                    logFetch={logFetch}
                     type="info"
                     {...this.getSectionProps('infoLogs')}
                   />

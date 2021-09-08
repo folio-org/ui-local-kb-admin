@@ -18,6 +18,8 @@
 
   "error.uploadFile": "Please upload a file to continue",
 
+  "job.export": "Export",
+
   "job.delete": "Delete",
 
   "job.delete.confirmLabel": "Delete",

@@ -1,32 +1,57 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import { Accordion, Badge } from '@folio/stripes/components';
+import { Accordion, Badge, Button, Spinner } from '@folio/stripes/components';
 
 import JobLogContainer from '../../containers/JobLogContainer';
 
-export default class Logs extends React.Component {
-  static propTypes = {
-    id: PropTypes.string,
-    job: PropTypes.object,
-    type: PropTypes.string.isRequired,
+const propTypes = {
+  id: PropTypes.string,
+  job: PropTypes.object,
+  logFetch: PropTypes.shape({
+    fetchFunction: PropTypes.func.isRequired,
+    logExportLoading: PropTypes.object
+  }),
+  type: PropTypes.string.isRequired,
+};
+
+const Logs = ({ id, job, logFetch, type }) => {
+  const logCount = job[`${type}LogCount`];
+
+  const renderBadgeAndExport = () => {
+    return (
+      <>
+        <Button
+          disabled={logCount < 1}
+          onClick={() => logFetch?.fetchFunction(type)}
+        >
+          <FormattedMessage id="ui-local-kb-admin.job.export" />
+          {
+            logFetch?.logExportLoading?.[type] &&
+            <Spinner />
+          }
+        </Button>
+        <Badge>
+          {logCount}
+        </Badge>
+      </>
+    );
   };
 
-  render() {
-    const { id, job, type } = this.props;
+  return (
+    <Accordion
+      displayWhenClosed={renderBadgeAndExport()}
+      displayWhenOpen={renderBadgeAndExport()}
+      id={id}
+      label={<FormattedMessage id={`ui-local-kb-admin.${type}Log`} />}
+    >
+      <JobLogContainer
+        job={job}
+        type={type}
+      />
+    </Accordion>
+  );
+};
 
-    return (
-      <Accordion
-        displayWhenClosed={<Badge>{job[`${type}LogCount`]}</Badge>}
-        displayWhenOpen={<Badge>{job[`${type}LogCount`]}</Badge>}
-        id={id}
-        label={<FormattedMessage id={`ui-local-kb-admin.${type}Log`} />}
-      >
-        <JobLogContainer
-          job={job}
-          type={type}
-        />
-      </Accordion>
-    );
-  }
-}
+Logs.propTypes = propTypes;
+export default Logs;
