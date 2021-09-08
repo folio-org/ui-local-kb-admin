@@ -103,7 +103,7 @@ const JobViewRoute = ({
       )}
     </>
   );
-}
+};
 
 JobViewRoute.manifest = Object.freeze({
   job: {
