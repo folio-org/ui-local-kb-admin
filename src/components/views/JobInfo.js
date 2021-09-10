@@ -31,19 +31,13 @@ class JobInfo extends React.Component {
   static propTypes = {
     data: PropTypes.shape({
       job: PropTypes.object,
-      logExportLoading: PropTypes.shape({
-        id: PropTypes.string,
-        type: PropTypes.string,
-        isLoading: PropTypes.bool
-      }),
     }),
     isLoading: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
     onDelete: PropTypes.func,
-    onExportLogs: PropTypes.func,
     stripes: PropTypes.shape({
       hasPerm: PropTypes.func
-    })
+    }),
   };
 
   constructor(props) {
@@ -72,7 +66,7 @@ class JobInfo extends React.Component {
         </Layout>
       </Pane>
     );
-  }
+  };
 
   getSectionProps = (id) => {
     const { data: { job } } = this.props;
@@ -80,7 +74,7 @@ class JobInfo extends React.Component {
       id,
       job,
     };
-  }
+  };
 
   getActionMenu = ({ onToggle }) => {
     const { data: { job }, stripes } = this.props;
@@ -104,7 +98,7 @@ class JobInfo extends React.Component {
   }
 
   render() {
-    const { data: { job, logExportLoading }, isLoading, onExportLogs } = this.props;
+    const { data: { job }, isLoading } = this.props;
     if (isLoading) return this.renderLoadingPane();
     const isJobNotQueued = job?.status?.value !== 'queued';
 
@@ -233,14 +227,10 @@ class JobInfo extends React.Component {
                 </Row>
                 <AccordionSet initialStatus={this.getInitialAccordionsState()}>
                   <Logs
-                    logExportLoading={logExportLoading}
-                    onExportLogs={onExportLogs}
                     type="error"
                     {...this.getSectionProps('errorLogs')}
                   />
                   <Logs
-                    logExportLoading={logExportLoading}
-                    onExportLogs={onExportLogs}
                     type="info"
                     {...this.getSectionProps('infoLogs')}
                   />

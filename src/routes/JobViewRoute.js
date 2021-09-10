@@ -11,9 +11,7 @@ import JobInfo from '../components/views/JobInfo';
 const JobViewRoute = ({
   history,
   location,
-  logExportLoading,
   mutator,
-  onExportLogs,
   resources
 }) => {
   // Grab job information at top
@@ -59,12 +57,10 @@ const JobViewRoute = ({
       <JobInfo
         data={{
           job,
-          logExportLoading
         }}
         isLoading={resources?.job?.isPending ?? true}
         onClose={handleClose}
         onDelete={showDeleteConfirmationModal}
-        onExportLogs={onExportLogs}
       />
       {showConfirmDelete && (
         <ConfirmationModal
@@ -107,7 +103,6 @@ JobViewRoute.propTypes = {
   mutator: PropTypes.shape({
     job: PropTypes.object,
   }).isRequired,
-  onExportLogs: PropTypes.func,
   resources: PropTypes.shape({
     job: PropTypes.object,
   }).isRequired,
