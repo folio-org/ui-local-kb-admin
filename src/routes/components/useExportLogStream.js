@@ -7,16 +7,20 @@ import downloadBlob from '../../util/downloadBlob';
 const useExportLogStream = (job, type) => {
   const ky = useOkapiKy();
   const { refetch, isLoading } = useQuery(
-    ['ui-local-kb-admin', 'Logs', 'fetchLogStream', job.id],
+    ['ui-local-kb-admin', 'Logs', 'fetchLogStream', job?.id],
     () => ky(
-      `erm/jobs/${job.id}/${type}LogStream`
+      `erm/jobs/${job?.id}/${type}LogStream`
     ).blob()
-      .then(downloadBlob(job.name)),
+      .then(downloadBlob(job?.name)),
     {
       // Ensure this doesn't run until the user clicks the button
       enabled: false
     }
   );
+
+  if (!job || !type) {
+    return {};
+  }
 
   return { refetch, isLoading };
 };

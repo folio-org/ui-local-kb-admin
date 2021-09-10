@@ -8,26 +8,34 @@ import JobLogContainer from '../../containers/JobLogContainer';
 const propTypes = {
   id: PropTypes.string,
   job: PropTypes.object,
-  logFetch: PropTypes.shape({
-    fetchFunction: PropTypes.func.isRequired,
-    logExportLoading: PropTypes.object
+  logExportLoading: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    isLoading: PropTypes.bool
   }),
+  onExportLogs: PropTypes.func,
   type: PropTypes.string.isRequired,
 };
 
-const Logs = ({ id, job, logFetch, type }) => {
+const Logs = ({ id, job, logExportLoading, onExportLogs, type }) => {
   const logCount = job[`${type}LogCount`];
+
+  const logsAreLoading = () => (
+    logExportLoading?.id === job.id &&
+    logExportLoading?.type === type &&
+    logExportLoading.isLoading
+  );
 
   const renderBadgeAndExport = () => {
     return (
       <>
         <Button
           disabled={logCount < 1}
-          onClick={() => logFetch?.fetchFunction(type)}
+          onClick={() => onExportLogs(job, type)}
         >
           <FormattedMessage id="ui-local-kb-admin.job.export" />
           {
-            logFetch?.logExportLoading?.[type] &&
+            logsAreLoading() &&
             <Spinner />
           }
         </Button>

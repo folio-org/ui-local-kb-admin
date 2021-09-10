@@ -31,14 +31,16 @@ class JobInfo extends React.Component {
   static propTypes = {
     data: PropTypes.shape({
       job: PropTypes.object,
-      logFetch: PropTypes.shape({
-        fetchFunction: PropTypes.func.isRequired,
-        logExportLoading: PropTypes.object
+      logExportLoading: PropTypes.shape({
+        id: PropTypes.string,
+        type: PropTypes.string,
+        isLoading: PropTypes.bool
       }),
     }),
     isLoading: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
     onDelete: PropTypes.func,
+    onExportLogs: PropTypes.func,
     stripes: PropTypes.shape({
       hasPerm: PropTypes.func
     })
@@ -54,7 +56,7 @@ class JobInfo extends React.Component {
       errorLogs: false,
       infoLogs: false,
     };
-  }
+  };
 
   renderLoadingPane = () => {
     return (
@@ -102,7 +104,7 @@ class JobInfo extends React.Component {
   }
 
   render() {
-    const { data: { job, logFetch }, isLoading } = this.props;
+    const { data: { job, logExportLoading }, isLoading, onExportLogs } = this.props;
     if (isLoading) return this.renderLoadingPane();
     const isJobNotQueued = job?.status?.value !== 'queued';
 
@@ -231,12 +233,14 @@ class JobInfo extends React.Component {
                 </Row>
                 <AccordionSet initialStatus={this.getInitialAccordionsState()}>
                   <Logs
-                    logFetch={logFetch}
+                    logExportLoading={logExportLoading}
+                    onExportLogs={onExportLogs}
                     type="error"
                     {...this.getSectionProps('errorLogs')}
                   />
                   <Logs
-                    logFetch={logFetch}
+                    logExportLoading={logExportLoading}
+                    onExportLogs={onExportLogs}
                     type="info"
                     {...this.getSectionProps('infoLogs')}
                   />

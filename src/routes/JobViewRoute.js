@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -8,12 +8,12 @@ import { ConfirmationModal } from '@folio/stripes/components';
 
 import JobInfo from '../components/views/JobInfo';
 
-import useExportLogStream from './components/useExportLogStream';
-
 const JobViewRoute = ({
   history,
   location,
+  logExportLoading,
   mutator,
+  onExportLogs,
   resources
 }) => {
   // Grab job information at top
@@ -23,23 +23,6 @@ const JobViewRoute = ({
 
   const calloutContext = useContext(CalloutContext);
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
-
-  // Downloading of log stream at top level so navigation away doesn't cause download to cease
-  const [type, setType] = useState('');
-  const {
-    refetch: exportLogs,
-    isLoading: logExportLoading
-  } = useExportLogStream(job, type);
-
-  useEffect(() => {
-    if (type) {
-      exportLogs();
-    }
-  }, [exportLogs, type]);
-
-  const onExportLogs = (t) => {
-    setType(t);
-  };
 
   const handleDelete = () => {
     mutator.job
@@ -71,23 +54,17 @@ const JobViewRoute = ({
     deleteHeadingId = `${deleteHeadingId}.${jobClass}`;
   }
 
-  const loadingObj = {};
-  loadingObj[type] = logExportLoading;
-  const logFetch = {
-    fetchFunction: onExportLogs,
-    logExportLoading: loadingObj
-  };
-
   return (
     <>
       <JobInfo
         data={{
           job,
-          logFetch
+          logExportLoading
         }}
         isLoading={resources?.job?.isPending ?? true}
         onClose={handleClose}
         onDelete={showDeleteConfirmationModal}
+        onExportLogs={onExportLogs}
       />
       {showConfirmDelete && (
         <ConfirmationModal
@@ -122,9 +99,15 @@ JobViewRoute.propTypes = {
     pathname: PropTypes.string.isRequired,
     search: PropTypes.string.isRequired,
   }).isRequired,
+  logExportLoading: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    isLoading: PropTypes.bool
+  }),
   mutator: PropTypes.shape({
     job: PropTypes.object,
   }).isRequired,
+  onExportLogs: PropTypes.func,
   resources: PropTypes.shape({
     job: PropTypes.object,
   }).isRequired,

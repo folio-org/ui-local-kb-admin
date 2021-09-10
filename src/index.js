@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import { Switch } from 'react-router-dom';
@@ -18,6 +18,8 @@ import {
 import JobCreateRoute from './routes/JobCreateRoute';
 import JobsRoute from './routes/JobsRoute';
 import JobViewRoute from './routes/JobViewRoute';
+
+import useExportLogStream from './routes/components/useExportLogStream';
 
 import Settings from './settings';
 
@@ -68,6 +70,29 @@ const App = (props) => {
     },
   ];
 
+  // Downloading of log stream at top level so navigation away doesn't cause download to cease
+  // We store job/type in state, then when that state changes we fire exportLogs on that new data
+  const [exportLogState, setExportLogState] = useState({});
+  const {
+    refetch: exportLogs,
+    isLoading
+  } = useExportLogStream(exportLogState.job, exportLogState.type);
+
+  const onExportLogs = (j, t) => {
+    setExportLogState({ job: j, type: t });
+  };
+
+  useEffect(() => {
+    if (exportLogState.job && exportLogState.type) {
+      exportLogs();
+    }
+  }, [exportLogs, exportLogState]);
+
+
+  // In order to determine which logs are downloading, we send back isLoading along with type and id
+  const logExportLoading = { id: exportLogState.job?.id, type: exportLogState.type, isLoading };
+
+
   if (actAs === 'settings') {
     return (
       <Settings {...props} />
@@ -100,8 +125,14 @@ const App = (props) => {
             <Route component={JobCreateRoute} path={`${path}/create/:format`} />
             <Route component={JobsRoute} path={`${path}/:id?`}>
               <Route
-                component={JobViewRoute}
                 path={`${path}/:id`}
+                render={routeProps => (
+                  <JobViewRoute
+                    {...routeProps}
+                    logExportLoading={logExportLoading}
+                    onExportLogs={onExportLogs}
+                  />
+                )}
               />
             </Route>
           </Switch>
