@@ -37,7 +37,7 @@ class JobInfo extends React.Component {
     onDelete: PropTypes.func,
     stripes: PropTypes.shape({
       hasPerm: PropTypes.func
-    })
+    }),
   };
 
   constructor(props) {
@@ -50,7 +50,7 @@ class JobInfo extends React.Component {
       errorLogs: false,
       infoLogs: false,
     };
-  }
+  };
 
   renderLoadingPane = () => {
     return (
@@ -66,7 +66,7 @@ class JobInfo extends React.Component {
         </Layout>
       </Pane>
     );
-  }
+  };
 
   getSectionProps = (id) => {
     const { data: { job } } = this.props;
@@ -74,7 +74,7 @@ class JobInfo extends React.Component {
       id,
       job,
     };
-  }
+  };
 
   getActionMenu = ({ onToggle }) => {
     const { data: { job }, stripes } = this.props;
@@ -99,7 +99,6 @@ class JobInfo extends React.Component {
 
   render() {
     const { data: { job }, isLoading } = this.props;
-
     if (isLoading) return this.renderLoadingPane();
     const isJobNotQueued = job?.status?.value !== 'queued';
 
