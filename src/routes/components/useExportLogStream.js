@@ -14,7 +14,7 @@ const useExportLogStream = (job, type) => {
     () => ky(
       `erm/jobs/${job?.id}/${type}LogStream`
     ).blob()
-      .then(downloadBlob(job?.name)),
+      .then(downloadBlob(`${job?.name}:${type}`)),
     {
       // Ensure this doesn't run until the user clicks the button
       enabled: false
