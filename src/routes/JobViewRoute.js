@@ -105,10 +105,7 @@ JobViewRoute.propTypes = {
   }).isRequired,
   resources: PropTypes.shape({
     job: PropTypes.object,
-  }).isRequired,
-  stripes: PropTypes.shape({
-    okapi: PropTypes.object.isRequired,
-  }).isRequired,
+  }).isRequired
 };
 
 export default stripesConnect(JobViewRoute);
