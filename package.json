@@ -1,6 +1,6 @@
 {
   "name": "@folio/local-kb-admin",
-  "version": "4.2.1",
+  "version": "5.0.0",
   "description": "ERM KB Administration for FOLIO with Stripes",
   "main": "src/index.js",
   "publishConfig": {
@@ -22,7 +22,7 @@
     "@bigtest/mocha": "^0.5.2",
     "@bigtest/react": "^0.1.2",
     "@folio/eslint-config-stripes": "^5.2.0",
-    "@folio/stripes": "^6.2.0",
+    "@folio/stripes": "^7.0.0",
     "@folio/stripes-cli": "^2.3.0",
     "@formatjs/cli": "^4.2.31",
     "babel-eslint": "^10.0.0",
@@ -33,15 +33,15 @@
     "inflected": "^2.0.4",
     "miragejs": "^0.1.40",
     "mocha": "^6.2.0",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-intl": "^5.8.1",
     "react-router-dom": "^5.2.0",
     "sinon": "^7.3.2"
   },
   "dependencies": {
     "@folio/react-intl-safe-html": "^2.0.0",
-    "@folio/stripes-erm-components": "^5.1.0",
+    "@folio/stripes-erm-components": "^6.0.0",
     "compose-function": "^3.0.3",
     "final-form": "^4.18.5",
     "final-form-arrays": "^3.0.1",
@@ -52,9 +52,9 @@
     "react-final-form-arrays": "^3.1.1"
   },
   "peerDependencies": {
-    "@folio/stripes": "^6.2.0",
-    "react": "*",
-    "react-dom": "*",
+    "@folio/stripes": "^7.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-intl": "^5.8.1",
     "react-router-dom": "^5.2.0",
     "react-query": "^3.9.0"
