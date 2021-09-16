@@ -108,12 +108,12 @@ const App = (props) => {
           </Switch>
         </HasCommand>
       </CommandList>
-      { showKeyboardShortcutsModal && (
-      <KeyboardShortcutsModal
-        allCommands={defaultKeyboardShortcuts}
-        onClose={() => { setShowKeyboardShortcutsModal(false); }}
-        open
-      />
+      {showKeyboardShortcutsModal && (
+        <KeyboardShortcutsModal
+          allCommands={defaultKeyboardShortcuts}
+          onClose={() => { setShowKeyboardShortcutsModal(false); }}
+          open
+        />
       )}
     </>
   );
@@ -122,7 +122,7 @@ const App = (props) => {
 App.propTypes = propTypes;
 
 App.eventHandler = (event, _s, data) => {
-  if (event === 'ui-stripes-registry-load') {
+  if (event === 'LOAD_STRIPES_REGISTRY') {
     // Data should contain Registry singleton:
     setUpRegistry(data);
   }
