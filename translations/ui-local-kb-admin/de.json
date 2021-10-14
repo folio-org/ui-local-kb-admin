@@ -123,5 +123,14 @@
     "settings.proxyServerSettings.callout.delete.error": "Fehler beim Löschen der Proxy-Server-Einstellung.{error}",
     "settings.proxyServerSettings.nameExists": "Dieser Name ist bereits vorhanden",
     "settings.proxyServerSettings.urlCustomizationCode.helpers": "Hilfsfunktionen: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
-    "jobType": "Jobtyp"
+    "jobType": "Jobtyp",
+    "appMenu.keyboardShortcuts": "Keyboard shortcuts",
+    "job.export": "Export",
+    "job.delete.heading.org.olf.general.jobs.TitleIngestJob": "Delete JSON title ingest job",
+    "job.delete.message.org.olf.general.jobs.TitleIngestJob": "JSON title ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
+    "job.deleted.success.org.olf.general.jobs.TitleIngestJob": "<strong>JSON title ingest job deleted </strong>: {name}",
+    "job.created.success.org.olf.general.jobs.TitleIngestJob": "<strong>JSON title ingest job created </strong>: {name}",
+    "job.log.export.creation": "Creating log export file... this may take a few minutes for large logs.",
+    "org.olf.general.jobs.TitleIngestJob": "Title harvester",
+    "settings.externalDataSources.title": "Title"
 }
