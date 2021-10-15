@@ -7,7 +7,7 @@ import ExternalDataSourcesView from './ExternalDataSourcesView';
 
 jest.mock('@folio/stripes-erm-components', () => ({
   ...jest.requireActual('@folio/stripes-erm-components'),
-  ExternalDataSourcesView: () => <div>ExternalDataSourcesView</div>,
+  CustomMetaSection: () => <div>CustomMetaSection</div>,
 }));
 
 const onDeleteMock = jest.fn();
@@ -16,132 +16,97 @@ const onEditMock = jest.fn();
 const input = {
   'name': 'externalKbs[0]',
   'value': {
-    'id': '3a8535b5-2002-405d-9bbd-1e43926ae2c2',
-    'cursor': '2021-09-14T08:22:05Z',
-    'active': true,
-    'trustedSourceTI': false,
-    'activationEnabled': false,
-    'readonly': false,
-    'syncStatus': 'idle',
-    'lastCheck': 1634305542481,
-    'name': 'GOKb_TEST',
-    'type': 'org.olf.kb.adapters.GOKbOAIAdapter',
-    'fullPrefix': 'gokb',
-    'uri': 'https://gokbt.gbv.de/gokb/oai/index',
-    'supportsHarvesting': true,
-    'rectype': 1
+    "id": "3a8535b5-2002-405d-9bbd-1e43926ae2c2",
+    "cursor": "2021-09-14T08:22:05Z",
+    "active": true,
+    "trustedSourceTI": false,
+    "activationEnabled": true,
+    "credentials": "test_credentials",
+    "readonly": false,
+    "syncStatus": "idle",
+    "lastCheck": 1634327142473,
+    "name": "GOKb_TEST",
+    "type": "org.olf.kb.adapters.GOKbOAIAdapter",
+    "principal": "test_principal",
+    "listPrefix": "testPrefix",
+    "fullPrefix": "gokb",
+    "uri": "https://gokbt.gbv.de/gokb/oai/index",
+    "supportsHarvesting": true,
+    "rectype": 1
   }
 };
 
 let renderComponent;
 
 describe('ExternalDataSourcesView', () => {
-  describe('with no initial values', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <ExternalDataSourcesView input={input} onDelete={onDeleteMock} onEdit={onEditMock} />,
+        <ExternalDataSourcesView 
+          input={input} 
+          onDelete={onDeleteMock} 
+          onEdit={onEditMock} 
+        />,
         translationsProperties
       );
     });
 
-    test('renders the Name field', async () => {
+    test('renders the Custom meta section', () => {
+      const { getByText } = renderComponent;
+      expect(getByText('CustomMetaSection')).toBeInTheDocument();
+    });
+
+    test('renders the expected Name', async () => {
       await KeyValue('Name').has({ value: 'GOKb_TEST' });
     });
 
-    //   test('renders the Description field', () => {
-    //     const { getByRole } = renderComponent;
-    //     expect(getByRole('textbox', { name: 'Description' }));
-    //   });
+    test('renders the expected Type', async () => {
+      await KeyValue('Type').has({ value: 'org.olf.kb.adapters.GOKbOAIAdapter' });
+    });
 
-    //   test('renders the Status dropdown', () => {
-    //     const { getByRole } = renderComponent;
-    //     expect(getByRole('combobox', { name: 'Status' }));
-    //   });
+    test('renders the expected Record type', async () => {
+      await KeyValue('Record type').has({ value: 'Package' });
+    });
 
-    //   test('renders the Reason for closure dropdown', () => {
-    //     const { getByRole } = renderComponent;
-    //     expect(getByRole('combobox', { name: 'Reason for closure' }));
-    //   });
+    test('renders the expected URI', async () => {
+      await KeyValue('URI').has({ value: 'https://gokbt.gbv.de/gokb/oai/index' });
+    });
 
-    //   test('renders a disabled Reason for closure dropdown', () => {
-    //     const { getByRole } = renderComponent;
-    //     expect(getByRole('combobox', { name: 'Reason for closure' })).toBeDisabled();
-    //   });
+    test('renders the expected Trusted for title instance metadata value', async () => {
+      await KeyValue('Trusted for title instance metadata').has({ value: 'No' });
+    });
 
-    //   test('renders the Renewal priority dropdown', () => {
-    //     const { getByRole } = renderComponent;
-    //     expect(getByRole('combobox', { name: 'Renewal priority' }));
-    //   });
+    test('renders the expected Is active value', async () => {
+      await KeyValue('Is active').has({ value: 'Yes' });
+    });
 
-    //   test('renders the Is perpertual dropdown', () => {
-    //     const { getByRole } = renderComponent;
-    //     expect(getByRole('combobox', { name: 'Is perpetual' }));
-    //   });
+    test('renders the expected Supports harvesting value', async () => {
+      await KeyValue('Supports harvesting').has({ value: 'Yes' });
+    });
 
-    //   test('renders the AlternativeNames FieldArray', () => {
-    //     const { getByText } = renderComponent;
-    //     expect(getByText('AlternativeNamesFieldArray')).toBeInTheDocument();
-    //   });
+    test('renders the expected Activation enabled value', async () => {
+      await KeyValue('Activation enabled').has({ value: 'Yes' });
+    });
 
-    //   test('renders the AgreementPeriods FieldArray', () => {
-    //     const { getByText } = renderComponent;
-    //     expect(getByText('AgreementPeriodsFieldArray')).toBeInTheDocument();
-    //   });
-    // });
+    test('renders the expected Listprefix', async () => {
+      await KeyValue('Listprefix').has({ value: 'testPrefix' });
+    });
 
-    // describe('with initial values', () => {
-    //   beforeEach(() => {
-    //     renderWithIntl(
-    //       <TestForm initialValues={initialValues} onSubmit={onSubmit}>
-    //         <FormInfo data={data} form={form} handlers={handlers} values={values} />
-    //       </TestForm>, translationsProperties
-    //     );
-    //   });
+    test('renders the expected Fullprefix', async () => {
+      await KeyValue('Fullprefix').has({ value: 'gokb' });
+    });
 
-    //   test('renders the expected value in the Name field', () => {
-    //     const { getByRole } = renderComponent;
-    //     expect(getByRole('textbox', { name: 'Name' })).toHaveDisplayValue('AM ag 1');
-    //   });
+    test('renders the expected Principal', async () => {
+      await KeyValue('Principal').has({ value: 'test_principal' });
+    });
 
-    //   test('renders the expected value in the Description field', () => {
-    //     const { getByRole } = renderComponent;
-    //     expect(getByRole('textbox', { name: 'Description' })).toHaveDisplayValue('description for this agreement');
-    //   });
+    test('renders the expected credentials', async () => {
+      await KeyValue('Credentials').has({ value: 'test_credentials' });
+    });
 
-    //   test('renders the expected value in the Status dropdown', () => {
-    //     const { getByRole } = renderComponent;
-    //     expect(getByRole('combobox', { name: 'Status' })).toHaveDisplayValue('Active');
-    //   });
-
-    //   test('renders a disabled Reason for closure dropdown', () => {
-    //     const { getByRole } = renderComponent;
-    //     expect(getByRole('combobox', { name: 'Reason for closure' })).toBeDisabled();
-    //   });
-
-    //   test('renders the expected value in the Renewal priority dropdown', () => {
-    //     const { getByRole } = renderComponent;
-    //     expect(getByRole('combobox', { name: 'Renewal priority' })).toHaveDisplayValue('Definitely renew');
-    //   });
-
-    //   test('renders the expected value in the Is perpertual dropdown', () => {
-    //     const { getByRole } = renderComponent;
-    //     expect(getByRole('combobox', { name: 'Is perpetual' })).toHaveDisplayValue('Yes');
-    //   });
-
-    //   test('renders the AlternativeNames FieldArray', () => {
-    //     const { getByText } = renderComponent;
-    //     expect(getByText('AlternativeNamesFieldArray')).toBeInTheDocument();
-    //   });
-
-    //   test('renders the AgreementPeriods FieldArray', () => {
-    //     const { getByText } = renderComponent;
-    //     expect(getByText('AgreementPeriodsFieldArray')).toBeInTheDocument();
-    //   });
-
-    //   test('typing in the name field should fire the onAsyncValidate callback', () => {
-    //     const { getByRole } = renderComponent;
-    //     userEvent.type(getByRole('textbox', { name: 'Name' }), 'a');
-    //     expect(handlers.onAsyncValidate).toHaveBeenCalled();
-    //   });
+    test('clicking the edit/delete button', async () => {
+      await Button('Delete').click()
+      expect(onDeleteMock).toHaveBeenCalled();
+      await Button('Edit').click()
+      expect(onEditMock).toHaveBeenCalled();
+    })
   });
-});

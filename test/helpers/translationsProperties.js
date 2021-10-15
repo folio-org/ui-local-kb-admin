@@ -10,7 +10,9 @@ const translationsProperties = [
     translations: {
       'label.missingRequiredField': 'Please fill this in to continue',
       'stripes-components.saveAndClose': 'Save and close',
-      'stripes-components.cancel': 'Cancel'
+      'stripes-components.cancel': 'Cancel',
+      'button.delete': 'Delete',
+      'button.edit': 'Edit'
     }
   }
 ];
