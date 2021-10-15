@@ -15,7 +15,7 @@ describe('Jobs', () => {
     let jobList;
     beforeEach(async function () {
       jobList = this.server.createList('job', jobsAmount);
-      this.visit('/local-kb-admin?filters=status.queued%2Cstatus.in_progress&sort=started');
+      await this.visit('/local-kb-admin?filters=status.queued%2Cstatus.in_progress&sort=started');
       await jobs.runningStatusCheckbox.clickEndedJobCheckbox();
     });
 
@@ -25,20 +25,6 @@ describe('Jobs', () => {
 
     it('renders each job instance', () => {
       expect(jobs.instanceList.size).to.equal(jobsAmount);
-    });
-
-    describe('clicking on the first job', function () {
-      beforeEach(async function () {
-        await jobs.instanceList.items(0).click();
-      });
-
-      it('loads the job details', function () {
-        expect(jobs.instance.isVisible).to.equal(true);
-      });
-
-      it('should display the instance title in the pane header', () => {
-        expect(jobs.headerTitle).to.equal(jobList[0].name);
-      });
     });
   });
 });

@@ -13,6 +13,12 @@
   "loading": "Loading...",
   "appMenu.keyboardShortcuts": "Keyboard shortcuts",
   "error.uploadFile": "Please upload a file to continue",
+<<<<<<< HEAD
+=======
+
+  "job.export": "Export",
+
+>>>>>>> master
   "job.delete": "Delete",
   "job.delete.confirmLabel": "Delete",
   "job.delete.heading": "Delete job",
@@ -20,21 +26,41 @@
   "job.delete.heading.org.olf.general.jobs.KbartIngestJob": "Delete KBART package ingest job",
   "job.delete.heading.org.olf.general.jobs.PackageImportJob": "Delete JSON package import job",
   "job.delete.heading.org.olf.general.jobs.PackageIngestJob": "Delete JSON package ingest job",
+<<<<<<< HEAD
+=======
+  "job.delete.heading.org.olf.general.jobs.TitleIngestJob": "Delete JSON title ingest job",
+
+>>>>>>> master
   "job.delete.message": "Job <strong>{name}</strong> will be <strong>deleted</strong>",
   "job.delete.message.org.olf.general.jobs.KbartImportJob": "KBART package import job <strong>{name}</strong> will be <strong>deleted</strong>.",
   "job.delete.message.org.olf.general.jobs.KbartIngestJob": "KBART package ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
   "job.delete.message.org.olf.general.jobs.PackageImportJob": "JSON package import job <strong>{name}</strong> will be <strong>deleted</strong>.",
   "job.delete.message.org.olf.general.jobs.PackageIngestJob": "JSON package ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
+<<<<<<< HEAD
+=======
+  "job.delete.message.org.olf.general.jobs.TitleIngestJob": "JSON title ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
+
+>>>>>>> master
   "job.deleted.success": "Job <strong>{name}</strong> was successfully <strong>deleted</strong>",
   "job.deleted.success.org.olf.general.jobs.KbartImportJob": "<strong>KBART package import job deleted </strong>: {name}",
   "job.deleted.success.org.olf.general.jobs.KbartIngestJob": "<strong>KBART package ingest job deleted </strong>: {name}",
   "job.deleted.success.org.olf.general.jobs.PackageImportJob": "<strong>JSON package import job deleted </strong>: {name}",
   "job.deleted.success.org.olf.general.jobs.PackageIngestJob": "<strong>JSON package ingest job deleted </strong>: {name}",
+<<<<<<< HEAD
+=======
+  "job.deleted.success.org.olf.general.jobs.TitleIngestJob": "<strong>JSON title ingest job deleted </strong>: {name}",
+
+>>>>>>> master
   "job.created.success": "Job <strong>{name}</strong> was successfully <strong>create</strong>",
   "job.created.success.org.olf.general.jobs.KbartImportJob": "<strong>KBART package import job created </strong>: {name}",
   "job.created.success.org.olf.general.jobs.KbartIngestJob": "<strong>KBART package ingest job created </strong>: {name}",
   "job.created.success.org.olf.general.jobs.PackageImportJob": "<strong>JSON package import job created </strong>: {name}",
   "job.created.success.org.olf.general.jobs.PackageIngestJob": "<strong>JSON package ingest job created </strong>: {name}",
+<<<<<<< HEAD
+=======
+  "job.created.success.org.olf.general.jobs.TitleIngestJob": "<strong>JSON title ingest job created </strong>: {name}",
+
+>>>>>>> master
   "job.new": "New",
   "job.newJob": "New job",
   "job.availableJobTypes": "Available job types",
@@ -50,6 +76,12 @@
   "job.trustedSourceTI": "Trust this job as a source of title instance metadata",
   "job.addNew": "Add new package",
   "job.update": "Update package",
+<<<<<<< HEAD
+=======
+
+  "job.log.export.creation": "Creating log export file... this may take a few minutes for large logs.",
+
+>>>>>>> master
   "job.sourceReferenceWarning": "The <strong>Source</strong> and <strong>Reference</strong> fields are used together as a unique identifier for packages. If a package with the given <strong>Source</strong>+<strong>Reference</strong> already exists it will be updated, otherwise a new package will be created. If the <strong>Provider</strong> entered does not exist, a new one will be created in the local knowledgebase in the Agreements app.",
   "prop.class": "Job type",
   "prop.ended": "Ended",
@@ -66,7 +98,13 @@
   "metaSection.cursor": "<strong>Cursor</strong>",
   "metaSection.lastChecked": "<strong>Last checked</strong>",
   "searchInputLabel": "Search jobs",
+<<<<<<< HEAD
   "org.olf.general.jobs.PackageIngestJob": "Harvester",
+=======
+
+  "org.olf.general.jobs.PackageIngestJob": "Package harvester",
+  "org.olf.general.jobs.TitleIngestJob": "Title harvester",
+>>>>>>> master
   "org.olf.general.jobs.PackageImportJob": "File import",
   "org.olf.general.jobs.KbartIngestJob": "KBART Harvester",
   "org.olf.general.jobs.KbartImportJob": "KBART File import",
@@ -94,6 +132,7 @@
   "settings.externalDataSources.listPrefix": "Listprefix",
   "settings.externalDataSources.fullPrefix": "Fullprefix",
   "settings.externalDataSources.package": "Package",
+  "settings.externalDataSources.title": "Title",
   "settings.externalDataSources.principal": "Principal",
   "settings.externalDataSources.credentials": "Credentials",
   "settings.proxyServerSettings.count": "{count, number} {count, plural, one {proxy server setting} other {proxy server settings}}",

@@ -14,7 +14,7 @@
     "start": "stripes serve",
     "build": "stripes build --output ./output",
     "lint": "eslint .",
-    "test": "stripes test karma",
+    "test": "yarn run test:jest && yarn run test:bigtest",
     "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-local-kb-admin ./translations/ui-local-kb-admin/compiled",
     "test:jest": "jest --ci --coverage"
   },
