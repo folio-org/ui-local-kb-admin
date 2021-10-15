@@ -11,10 +11,11 @@ import {
   NavListItem,
   NavListSection,
   checkScope,
+  importShortcuts,
+  renameShortcutLabels
 } from '@folio/stripes/components';
 
-import { ermDefaultKeyboardShortcuts } from '@folio/stripes-erm-components';
-import appKeyboardShortcuts from './appKeyboardShortcuts';
+// import { ermDefaultKeyboardShortcuts } from '@folio/stripes-erm-components';
 
 import JobCreateRoute from './routes/JobCreateRoute';
 import JobsRoute from './routes/JobsRoute';
@@ -24,8 +25,8 @@ import Settings from './settings';
 
 import setUpRegistry from './setUpRegistry';
 
-const commands = [...appKeyboardShortcuts, ...ermDefaultKeyboardShortcuts];
-
+// const commands = [...appKeyboardShortcuts, ...ermDefaultKeyboardShortcuts];
+const appShortcuts = importShortcuts(['save', 'expandAllSections', 'collapseAllSections', 'expandOrCollapseAccordion', 'search']);
 export default class App extends React.Component {
   static eventHandler(event, _s, data) {
     if (event === 'ui-stripes-registry-load') {
@@ -95,7 +96,7 @@ export default class App extends React.Component {
 
     return (
       <>
-        <CommandList commands={commands}>
+        <CommandList commands={appShortcuts}>
           <HasCommand
             commands={this.shortcuts}
             isWithinScope={checkScope}
@@ -123,12 +124,12 @@ export default class App extends React.Component {
             </Switch>
           </HasCommand>
         </CommandList>
-        { this.state.showKeyboardShortcutsModal && (
-        <KeyboardShortcutsModal
-          allCommands={commands}
-          onClose={() => { this.changeKeyboardShortcutsModal(false); }}
-          open
-        />
+        {this.state.showKeyboardShortcutsModal && (
+          <KeyboardShortcutsModal
+            allCommands={appShortcuts}
+            onClose={() => { this.changeKeyboardShortcutsModal(false); }}
+            open
+          />
         )}
       </>
     );

@@ -1,51 +1,40 @@
 {
   "meta.title": "Local KB admin",
-
   "permission.jobs.view": "Local KB admin: View jobs",
   "permission.jobs.edit": "Local KB admin: Create jobs",
   "permission.jobs.delete": "Local KB admin: Delete jobs",
   "permission.kbs.manage": "Local KB admin: Manage remote KB configuration",
   "permission.proxyServer.manage": "Local KB admin: Manage proxy server configuration",
-
   "create": "Create",
   "errorLog": "Error log",
   "infoLog": "Info log",
   "infoLogNo": "No information notices for this job.",
   "errorLogNo": "No errors to report.",
   "loading": "Loading...",
-
   "appMenu.keyboardShortcuts": "Keyboard shortcuts",
-
   "error.uploadFile": "Please upload a file to continue",
-
   "job.delete": "Delete",
-
   "job.delete.confirmLabel": "Delete",
-
   "job.delete.heading": "Delete job",
   "job.delete.heading.org.olf.general.jobs.KbartImportJob": "Delete KBART package import job",
   "job.delete.heading.org.olf.general.jobs.KbartIngestJob": "Delete KBART package ingest job",
   "job.delete.heading.org.olf.general.jobs.PackageImportJob": "Delete JSON package import job",
   "job.delete.heading.org.olf.general.jobs.PackageIngestJob": "Delete JSON package ingest job",
-
   "job.delete.message": "Job <strong>{name}</strong> will be <strong>deleted</strong>",
   "job.delete.message.org.olf.general.jobs.KbartImportJob": "KBART package import job <strong>{name}</strong> will be <strong>deleted</strong>.",
   "job.delete.message.org.olf.general.jobs.KbartIngestJob": "KBART package ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
   "job.delete.message.org.olf.general.jobs.PackageImportJob": "JSON package import job <strong>{name}</strong> will be <strong>deleted</strong>.",
   "job.delete.message.org.olf.general.jobs.PackageIngestJob": "JSON package ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
-
   "job.deleted.success": "Job <strong>{name}</strong> was successfully <strong>deleted</strong>",
   "job.deleted.success.org.olf.general.jobs.KbartImportJob": "<strong>KBART package import job deleted </strong>: {name}",
   "job.deleted.success.org.olf.general.jobs.KbartIngestJob": "<strong>KBART package ingest job deleted </strong>: {name}",
   "job.deleted.success.org.olf.general.jobs.PackageImportJob": "<strong>JSON package import job deleted </strong>: {name}",
   "job.deleted.success.org.olf.general.jobs.PackageIngestJob": "<strong>JSON package ingest job deleted </strong>: {name}",
-
   "job.created.success": "Job <strong>{name}</strong> was successfully <strong>create</strong>",
   "job.created.success.org.olf.general.jobs.KbartImportJob": "<strong>KBART package import job created </strong>: {name}",
   "job.created.success.org.olf.general.jobs.KbartIngestJob": "<strong>KBART package ingest job created </strong>: {name}",
   "job.created.success.org.olf.general.jobs.PackageImportJob": "<strong>JSON package import job created </strong>: {name}",
   "job.created.success.org.olf.general.jobs.PackageIngestJob": "<strong>JSON package ingest job created </strong>: {name}",
-
   "job.new": "New",
   "job.newJob": "New job",
   "job.availableJobTypes": "Available job types",
@@ -61,7 +50,6 @@
   "job.trustedSourceTI": "Trust this job as a source of title instance metadata",
   "job.addNew": "Add new package",
   "job.update": "Update package",
-
   "job.sourceReferenceWarning": "The <strong>Source</strong> and <strong>Reference</strong> fields are used together as a unique identifier for packages. If a package with the given <strong>Source</strong>+<strong>Reference</strong> already exists it will be updated, otherwise a new package will be created. If the <strong>Provider</strong> entered does not exist, a new one will be created in the local knowledgebase in the Agreements app.",
   "prop.class": "Job type",
   "prop.ended": "Ended",
@@ -74,27 +62,22 @@
   "prop.runningStatus": "Running status",
   "prop.started": "Started",
   "prop.status": "Running status",
-
+  "metaSection.syncStatus": "<strong>Synchronization status</strong>",
+  "metaSection.cursor": "<strong>Cursor</strong>",
+  "metaSection.lastChecked": "<strong>Last checked</strong>",
   "searchInputLabel": "Search jobs",
-
   "org.olf.general.jobs.PackageIngestJob": "Harvester",
   "org.olf.general.jobs.PackageImportJob": "File import",
-
   "org.olf.general.jobs.KbartIngestJob": "KBART Harvester",
   "org.olf.general.jobs.KbartImportJob": "KBART File import",
-
   "jobType": "Job Type",
-
   "columns.errorLogMessage": "Error",
   "columns.infoLogMessage": "Message",
   "columns.recordNumber": "Record number",
-
   "section.externalDataSources": "External data sources",
   "section.proxyServerSettings": "Proxy server settings",
-
   "settings.externalDataSources": "External data sources",
   "settings.proxyServerSettings": "Proxy server settings",
-
   "settings.general": "General",
   "settings.externalDataSources.sourceCount": "{count, number} {count, plural, one {external data source} other {external data sources}}",
   "settings.externalDataSources.externalDataSource": "External data source",
@@ -113,7 +96,6 @@
   "settings.externalDataSources.package": "Package",
   "settings.externalDataSources.principal": "Principal",
   "settings.externalDataSources.credentials": "Credentials",
-
   "settings.proxyServerSettings.count": "{count, number} {count, plural, one {proxy server setting} other {proxy server settings}}",
   "settings.proxyServerSettings.name": "Name",
   "settings.proxyServerSettings.name.info": "The proxy server setting name will be used to label proxied URLs in exports or displays",
@@ -130,31 +112,25 @@
   "settings.proxyServerSettings.delete.confirmLabel": "Delete",
   "settings.proxyServerSettings.delete.confirmHeading": "Delete proxy server setting",
   "settings.proxyServerSettings.delete.confirmMessage": "Proxy server setting <strong>{name}</strong> will be <strong>deleted</strong>.",
-
   "settings.proxyServerSettings.callout.save.success": "Proxy server setting successfully saved.",
   "settings.proxyServerSettings.callout.save.error": "There was an error saving the proxy server setting. {error}",
   "settings.proxyServerSettings.callout.delete.success": "Proxy server setting successfully deleted.",
   "settings.proxyServerSettings.callout.delete.error": "There was an error deleting the proxy server setting.{error}",
   "settings.proxyServerSettings.nameExists": "This name already exists",
-
   "settings.externalDataSources.delete.confirmLabel": "Delete",
   "settings.externalDataSources.delete.confirmHeading": "Delete external data source",
   "settings.externalDataSources.delete.confirmMessage": "External data source <strong>{name}</strong> will be <strong>deleted</strong>.",
-
   "settings.externalDataSources.callout.save.success": "External data source successfully saved.",
   "settings.externalDataSources.callout.save.error": "There was an error saving the external data source. {error}",
   "settings.externalDataSources.callout.delete.success": "External data source successfully deleted.",
   "settings.externalDataSources.callout.delete.error": "There was an error deleting the external data source.{error}",
   "settings.externalDataSources.nameExists": "This name already exists",
-
   "yes": "Yes",
   "no": "No",
-
   "valid.isURLValid": "Please enter a valid URL (including \"http\" or \"https\").",
-
   "shortcut.saveRecord": "Save a record",
   "shortcut.expandAll": "Expand all accordions",
   "shortcut.collapseAll": "Collapse all accordions",
   "shortcut.expandOrCollapse": "Expand or collapse an accordion",
-  "shortcut.goToSearchFilter": "Go to \"Search & filter\" pane" 
+  "shortcut.goToSearchFilter": "Go to \"Search & filter\" pane"
 }
