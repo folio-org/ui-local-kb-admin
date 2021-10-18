@@ -65,7 +65,7 @@ describe('JobView', () => {
       expect(jobsView.isSourcePresent).to.be.true;
     });
 
-    it('should render the expected source', () => {
+    it.skip('should render the expected source', () => {
       expect(jobsView.source).to.equal(job.source);
     });
 
