@@ -22,7 +22,7 @@
     "columns.recordNumber": "Número de registro",
     "job.delete.confirmLabel": "Eliminar",
     "job.delete.heading": "¿Eliminar proceso?",
-    "job.delete.message": "Job <strong>{name}</strong> will be <strong>deleted</strong>",
+    "job.delete.message": "Job <strong>{name}</strong> será <strong>borrado</strong>",
     "loading": "Cargando...",
     "searchInputLabel": "Buscar procesos",
     "section.externalDataSources": "Fuentes de datos externas.",
