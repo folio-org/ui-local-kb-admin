@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import moment from 'moment';
 import { FormattedMessage } from 'react-intl';
 import { NoValue } from '@folio/stripes/components';
@@ -33,7 +33,7 @@ const useDisplayMetaInfo = (value = {}) => {
         <FormattedMessage id="ui-local-kb-admin.metaSection.lastChecked" />
         :
         &nbsp;
-        {value.lastCheck ? moment(value.lastCheck).format() : <NoValue />}
+        {value.lastCheck ? moment.utc(value.lastCheck).format() : <NoValue />}
       </div>
     );
   }, [value.lastCheck]);
