@@ -125,12 +125,12 @@
     "settings.proxyServerSettings.urlCustomizationCode.helpers": "Assistants: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
     "jobType": "Type de tâche",
     "appMenu.keyboardShortcuts": "Keyboard shortcuts",
-    "job.export": "Export",
+    "job.export": "Exporter",
     "job.delete.heading.org.olf.general.jobs.TitleIngestJob": "Delete JSON title ingest job",
     "job.delete.message.org.olf.general.jobs.TitleIngestJob": "JSON title ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
     "job.deleted.success.org.olf.general.jobs.TitleIngestJob": "<strong>JSON title ingest job deleted </strong>: {name}",
     "job.created.success.org.olf.general.jobs.TitleIngestJob": "<strong>JSON title ingest job created </strong>: {name}",
-    "job.log.export.creation": "Creating log export file... this may take a few minutes for large logs.",
+    "job.log.export.creation": "Création d'un fichier d'exportation ... ceci peut prendre quelques minutes pour les fichiers importants",
     "org.olf.general.jobs.TitleIngestJob": "Title harvester",
-    "settings.externalDataSources.title": "Title"
+    "settings.externalDataSources.title": "Titre"
 }
