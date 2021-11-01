@@ -132,5 +132,13 @@
     "job.created.success.org.olf.general.jobs.TitleIngestJob": "<strong>JSON标题摄入任务已创建</strong> ： {name}",
     "job.log.export.creation": "创建日志导出文件...对于大型日志，可能需要几分钟时间。",
     "org.olf.general.jobs.TitleIngestJob": "标题收割机",
-    "settings.externalDataSources.title": "题名"
+    "settings.externalDataSources.title": "题名",
+    "metaSection.syncStatus": "<strong>Synchronization status</strong>",
+    "metaSection.cursor": "<strong>Cursor</strong>",
+    "metaSection.lastChecked": "<strong>Last checked</strong>",
+    "shortcut.saveRecord": "Save a record",
+    "shortcut.expandAll": "Expand all accordions",
+    "shortcut.collapseAll": "Collapse all accordions",
+    "shortcut.expandOrCollapse": "Expand or collapse an accordion",
+    "shortcut.goToSearchFilter": "Go to \"Search & filter\" pane"
 }

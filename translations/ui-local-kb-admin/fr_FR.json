@@ -132,5 +132,13 @@
     "job.created.success.org.olf.general.jobs.TitleIngestJob": "<strong>JSON title ingest job created </strong>: {name}",
     "job.log.export.creation": "Création d'un fichier d'exportation ... ceci peut prendre quelques minutes pour les fichiers importants",
     "org.olf.general.jobs.TitleIngestJob": "Title harvester",
-    "settings.externalDataSources.title": "Titre"
+    "settings.externalDataSources.title": "Titre",
+    "metaSection.syncStatus": "<strong>Synchronization status</strong>",
+    "metaSection.cursor": "<strong>Cursor</strong>",
+    "metaSection.lastChecked": "<strong>Last checked</strong>",
+    "shortcut.saveRecord": "Save a record",
+    "shortcut.expandAll": "Expand all accordions",
+    "shortcut.collapseAll": "Collapse all accordions",
+    "shortcut.expandOrCollapse": "Expand or collapse an accordion",
+    "shortcut.goToSearchFilter": "Go to \"Search & filter\" pane"
 }
