@@ -132,5 +132,13 @@
     "job.created.success.org.olf.general.jobs.TitleIngestJob": "<strong>تم إنشاء مهمة استيعاب عنوان JSON </strong>: {name}",
     "job.log.export.creation": "جاري إنشاء ملف تصدير السجل ... قد يستغرق هذا الأمر بضع دقائق للتسجيلات كبيرة الحجم.",
     "org.olf.general.jobs.TitleIngestJob": "حاصد العناوين",
-    "settings.externalDataSources.title": "العنوان"
+    "settings.externalDataSources.title": "العنوان",
+    "metaSection.syncStatus": "<strong>Synchronization status</strong>",
+    "metaSection.cursor": "<strong>Cursor</strong>",
+    "metaSection.lastChecked": "<strong>Last checked</strong>",
+    "shortcut.saveRecord": "Save a record",
+    "shortcut.expandAll": "Expand all accordions",
+    "shortcut.collapseAll": "Collapse all accordions",
+    "shortcut.expandOrCollapse": "Expand or collapse an accordion",
+    "shortcut.goToSearchFilter": "Go to \"Search & filter\" pane"
 }
