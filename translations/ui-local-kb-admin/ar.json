@@ -14,7 +14,7 @@
     "prop.runningStatus": "حالة التشغيل",
     "prop.started": "بدأ",
     "prop.status": "حالة التشغيل",
-    "org.olf.general.jobs.PackageIngestJob": "حاصد الحزم",
+    "org.olf.general.jobs.PackageIngestJob": "حاصد",
     "infoLogNo": "لا توجد إخطارات معلومات لهذه المهمة.",
     "errorLogNo": "لا توجد أي أخطاء للتبليغ عنها",
     "columns.errorLogMessage": "خطأ",
@@ -133,12 +133,12 @@
     "job.log.export.creation": "جاري إنشاء ملف تصدير السجل ... قد يستغرق هذا الأمر بضع دقائق للتسجيلات كبيرة الحجم.",
     "org.olf.general.jobs.TitleIngestJob": "حاصد العناوين",
     "settings.externalDataSources.title": "العنوان",
-    "metaSection.syncStatus": "<strong>Synchronization status</strong>",
-    "metaSection.cursor": "<strong>Cursor</strong>",
+    "metaSection.syncStatus": "<strong>حالة المزامنة</strong>",
+    "metaSection.cursor": "<strong> المؤشر </strong>",
     "metaSection.lastChecked": "<strong>Last checked</strong>",
-    "shortcut.saveRecord": "Save a record",
-    "shortcut.expandAll": "Expand all accordions",
-    "shortcut.collapseAll": "Collapse all accordions",
-    "shortcut.expandOrCollapse": "Expand or collapse an accordion",
-    "shortcut.goToSearchFilter": "Go to \"Search & filter\" pane"
+    "shortcut.saveRecord": "حفظ تسجيلة",
+    "shortcut.expandAll": "توسيع كل الأقسام",
+    "shortcut.collapseAll": "طي كل الأقسام",
+    "shortcut.expandOrCollapse": "توسيع أو طي قسم",
+    "shortcut.goToSearchFilter": "اذهب إلى لوحة \"بحث وتنقيح\""
 }
