@@ -25,7 +25,7 @@ import {
 }
 
 @interactor class JobTypeCheckbox {
-  clickHarvesterCheckbox = clickable('#clickable-filter-class-harvester');
+  clickPackageHarvesterCheckbox = clickable('#clickable-filter-class-package-harvester');
 }
 
 @interactor class InstanceList {

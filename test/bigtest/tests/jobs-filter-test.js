@@ -134,7 +134,7 @@ describe('Local kb admin Filters', () => {
 
       describe('harvester jobs', () => {
         beforeEach(async function () {
-          await jobs.jobTypeCheckbox.clickHarvesterCheckbox();
+          await jobs.jobTypeCheckbox.clickPackageHarvesterCheckbox();
         });
 
         it('should show all the harvester jobs', () => {

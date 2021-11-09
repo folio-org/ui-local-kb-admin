@@ -123,5 +123,22 @@
     "settings.proxyServerSettings.callout.delete.error": "حدث خطأ أثناء حذف إعدادات الخادم البديل (البروكسي).{error}",
     "settings.proxyServerSettings.nameExists": "هذا الاسم موجود بالفعل",
     "settings.proxyServerSettings.urlCustomizationCode.helpers": "أدوات المساعدة: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
-    "jobType": "نوع المهمة"
+    "jobType": "نوع المهمة",
+    "appMenu.keyboardShortcuts": "اختصارات لوحة المفاتيح",
+    "job.export": "تصدير",
+    "job.delete.heading.org.olf.general.jobs.TitleIngestJob": "حذف مهمة استيعاب عنوان JSON",
+    "job.delete.message.org.olf.general.jobs.TitleIngestJob": "سيتم <strong>حذف</strong> مهمة استيعاب عنوان JSON <strong>{name}</strong>",
+    "job.deleted.success.org.olf.general.jobs.TitleIngestJob": "<strong>تم حذف مهمة استيعاب عنوان JSON </strong>: {name}",
+    "job.created.success.org.olf.general.jobs.TitleIngestJob": "<strong>تم إنشاء مهمة استيعاب عنوان JSON </strong>: {name}",
+    "job.log.export.creation": "جاري إنشاء ملف تصدير السجل ... قد يستغرق هذا الأمر بضع دقائق للتسجيلات كبيرة الحجم.",
+    "org.olf.general.jobs.TitleIngestJob": "حاصد العناوين",
+    "settings.externalDataSources.title": "العنوان",
+    "metaSection.syncStatus": "<strong>حالة المزامنة</strong>",
+    "metaSection.cursor": "<strong> المؤشر </strong>",
+    "metaSection.lastChecked": "<strong> آخر تحقق</strong>",
+    "shortcut.saveRecord": "حفظ تسجيلة",
+    "shortcut.expandAll": "توسيع كل الأقسام",
+    "shortcut.collapseAll": "طي كل الأقسام",
+    "shortcut.expandOrCollapse": "توسيع أو طي قسم",
+    "shortcut.goToSearchFilter": "اذهب إلى لوحة \"بحث وتنقيح\""
 }

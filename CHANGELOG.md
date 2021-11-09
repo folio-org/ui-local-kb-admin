@@ -1,6 +1,14 @@
 # Change history for ui-local-kb-admin
 
-## 5.0.0 (In Progress)
+## 5.1.0 IN PROGRESS
+
+* Upgrade `@folio/react-intl-safe-html` for compatibility with `@folio/stripes` `v7`. ERM-1896
+
+## 5.0.0 2021-10-07
+* Upgrade to Stripes v7
+* Add `Export Log` option to the UI
+* Support title ingestion process. ERM-1801
+* Display the keyboard shortcuts modal. ERM-1734
 * Included interface dependency for erm 5.0
 
 ## 4.1.0 2021-06-16

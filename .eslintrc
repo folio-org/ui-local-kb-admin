@@ -11,5 +11,9 @@
         "import/no-extraneous-dependencies": "off",
       }
     }
-  ]
+  ],
+  "env": {
+    "jest/globals": true
+  },
+  "plugins": ["jest"]
 }
