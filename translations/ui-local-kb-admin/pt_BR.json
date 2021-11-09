@@ -133,12 +133,12 @@
     "job.log.export.creation": "Criando arquivo de log de exportação ... isso pode levar alguns minutos para logs grandes.",
     "org.olf.general.jobs.TitleIngestJob": "Coleta de títulos",
     "settings.externalDataSources.title": "Título",
-    "metaSection.syncStatus": "<strong>Synchronization status</strong>",
+    "metaSection.syncStatus": "<strong>Status de sincronização</strong>",
     "metaSection.cursor": "<strong>Cursor</strong>",
     "metaSection.lastChecked": "<strong>Last checked</strong>",
-    "shortcut.saveRecord": "Save a record",
-    "shortcut.expandAll": "Expand all accordions",
-    "shortcut.collapseAll": "Collapse all accordions",
-    "shortcut.expandOrCollapse": "Expand or collapse an accordion",
+    "shortcut.saveRecord": "Salvar um registro",
+    "shortcut.expandAll": "Expandir todos os acordeões",
+    "shortcut.collapseAll": "Recolher todos os acordeões",
+    "shortcut.expandOrCollapse": "Expandir ou recolher um acordeão",
     "shortcut.goToSearchFilter": "Go to \"Search & filter\" pane"
 }
