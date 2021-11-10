@@ -12,6 +12,7 @@ import {
   NavListItem,
   NavListSection,
   checkScope,
+  importShortcuts,
 } from '@folio/stripes/components';
 
 import JobCreateRoute from './routes/JobCreateRoute';
@@ -56,6 +57,8 @@ const App = (props) => {
     }
   };
 
+  const appSpecificShortcuts = importShortcuts(['save', 'expandAllSections', 'collapseAllSections', 'expandOrCollapseAccordion', 'search']);
+
   const shortcuts = [
     {
       name: 'search',
@@ -63,7 +66,7 @@ const App = (props) => {
     },
     {
       name: 'openShortcutModal',
-      handler: setShowKeyboardShortcutsModal
+      handler: () => setShowKeyboardShortcutsModal(true)
     },
   ];
 
@@ -76,7 +79,7 @@ const App = (props) => {
 
   return (
     <>
-      <CommandList commands={defaultKeyboardShortcuts}>
+      <CommandList commands={appSpecificShortcuts}>
         <HasCommand
           commands={shortcuts}
           isWithinScope={checkScope}
@@ -109,7 +112,7 @@ const App = (props) => {
       </CommandList>
       {showKeyboardShortcutsModal && (
         <KeyboardShortcutsModal
-          // allCommands={defaultKeyboardShortcuts}
+          allCommands={appSpecificShortcuts}
           onClose={() => { setShowKeyboardShortcutsModal(false); }}
           open
         />
