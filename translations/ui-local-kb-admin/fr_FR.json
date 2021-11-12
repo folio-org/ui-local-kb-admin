@@ -137,8 +137,8 @@
     "metaSection.cursor": "<strong>Cursor</strong>",
     "metaSection.lastChecked": "<strong>Last checked</strong>",
     "shortcut.saveRecord": "Save a record",
-    "shortcut.expandAll": "Expand all accordions",
-    "shortcut.collapseAll": "Collapse all accordions",
-    "shortcut.expandOrCollapse": "Expand or collapse an accordion",
-    "shortcut.goToSearchFilter": "Go to \"Search & filter\" pane"
+    "shortcut.expandAll": "Développer tous les accordéons",
+    "shortcut.collapseAll": "Réduire tous les accordéons",
+    "shortcut.expandOrCollapse": "Développer ou réduire un accordéon",
+    "shortcut.goToSearchFilter": "Accédez au volet Rechercher et filtrer"
 }
