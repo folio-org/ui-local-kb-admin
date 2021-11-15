@@ -57,7 +57,7 @@ const App = (props) => {
     }
   };
 
-  const appSpecificShortcuts = importShortcuts(['save', 'expandAllSections', 'collapseAllSections', 'expandOrCollapseAccordion', 'search']);
+  const appSpecificShortcuts = importShortcuts(['save', 'expandAllSections', 'collapseAllSections', 'expandOrCollapseAccordion', 'openShortcutModal', 'search']);
 
   const shortcuts = [
     {
