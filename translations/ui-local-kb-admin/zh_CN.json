@@ -133,12 +133,12 @@
     "job.log.export.creation": "创建日志导出文件...对于大型日志，可能需要几分钟时间。",
     "org.olf.general.jobs.TitleIngestJob": "标题收割机",
     "settings.externalDataSources.title": "题名",
-    "metaSection.syncStatus": "<strong>Synchronization status</strong>",
-    "metaSection.cursor": "<strong>Cursor</strong>",
-    "metaSection.lastChecked": "<strong>Last checked</strong>",
-    "shortcut.saveRecord": "Save a record",
-    "shortcut.expandAll": "Expand all accordions",
-    "shortcut.collapseAll": "Collapse all accordions",
-    "shortcut.expandOrCollapse": "Expand or collapse an accordion",
-    "shortcut.goToSearchFilter": "Go to \"Search & filter\" pane"
+    "metaSection.syncStatus": "<strong>同步状态</strong>",
+    "metaSection.cursor": "<strong>光标</strong>",
+    "metaSection.lastChecked": "<strong>上次检查</strong>",
+    "shortcut.saveRecord": "保存记录",
+    "shortcut.expandAll": "全部展开",
+    "shortcut.collapseAll": "全部收起",
+    "shortcut.expandOrCollapse": "展开或收起",
+    "shortcut.goToSearchFilter": "转到“搜索和筛选”窗格"
 }
