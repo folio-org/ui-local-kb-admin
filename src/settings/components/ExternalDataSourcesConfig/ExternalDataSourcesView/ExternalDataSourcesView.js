@@ -16,7 +16,7 @@ const ExternalDataSourcesView = ({
 
   const difference = new Date().getTime() - new Date(value.lastCheck).getTime();
   const hours = difference ? Math.floor(difference / 1000 / 60 / 60) : 0;
-  const messageType = hours > 24 ? 'active' : 'passive';
+  const messageType = hours >= 24 ? 'active' : 'passive';
 
   const handleResetCursor = () => {
     value.cursor = null;
@@ -77,6 +77,7 @@ const ExternalDataSourcesView = ({
       <Button
         buttonStyle="dropdownItem"
         data-test-external-data-source-resetcursor
+        disabled={!value.cursor}
         marginBottom0
         onClick={handleResetCursor}
       >
@@ -87,6 +88,7 @@ const ExternalDataSourcesView = ({
       <Button
         buttonStyle="dropdownItem"
         data-test-external-data-source-resetsyncstatus
+        disabled={value.syncStatus === 'idle'}
         marginBottom0
         onClick={() => setShowConfirmResetSyncStatus(true)}
       >
