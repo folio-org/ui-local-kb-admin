@@ -12,6 +12,7 @@ jest.mock('@folio/stripes-erm-components', () => ({
 
 const onDeleteMock = jest.fn();
 const onEditMock = jest.fn();
+const onSaveMock = jest.fn();
 
 const input = {
   'name': 'externalKbs[0]',
@@ -45,6 +46,7 @@ describe('ExternalDataSourcesView', () => {
         input={input}
         onDelete={onDeleteMock}
         onEdit={onEditMock}
+        onSave={onSaveMock}
       />,
       translationsProperties
     );
@@ -104,6 +106,7 @@ describe('ExternalDataSourcesView', () => {
   });
 
   test('clicking the edit/delete button', async () => {
+    await Button('Actions').click();
     await Button('Delete').click();
     expect(onDeleteMock).toHaveBeenCalled();
     await Button('Edit').click();
