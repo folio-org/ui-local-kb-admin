@@ -15,7 +15,7 @@ const ExternalDataSourcesView = ({
   const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
 
   const difference = new Date().getTime() - new Date(value.lastCheck).getTime();
-  const hours = difference ? Math.floor(difference / 1000 / 60 / 60) : 0;
+  const hours = difference ? Math.floor(difference / (1000 * 60 * 60)) : 0;
   const messageType = hours >= 24 ? 'active' : 'passive';
 
   const handleResetCursor = () => {
