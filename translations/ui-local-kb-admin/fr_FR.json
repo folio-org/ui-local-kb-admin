@@ -136,7 +136,7 @@
     "metaSection.syncStatus": "<strong>Synchronization status</strong>",
     "metaSection.cursor": "<strong>Cursor</strong>",
     "metaSection.lastChecked": "<strong>Last checked</strong>",
-    "shortcut.saveRecord": "Save a record",
+    "shortcut.saveRecord": "Sauvegarder une notice",
     "shortcut.expandAll": "Développer tous les accordéons",
     "shortcut.collapseAll": "Réduire tous les accordéons",
     "shortcut.expandOrCollapse": "Développer ou réduire un accordéon",
