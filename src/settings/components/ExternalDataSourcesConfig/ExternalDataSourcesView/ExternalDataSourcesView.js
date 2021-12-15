@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Button, Card, Col, Icon, KeyValue, Layout, Modal, ModalFooter, NoValue, Row } from '@folio/stripes/components';
@@ -14,8 +15,7 @@ const ExternalDataSourcesView = ({
   const { syncStatus, cursor, lastChecked } = useDisplayMetaInfo(value);
   const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
 
-  const difference = new Date().getTime() - new Date(value.lastCheck).getTime();
-  const hours = difference ? Math.floor(difference / (1000 * 60 * 60)) : 0;
+  const hours = moment.utc().diff(moment.utc(value.lastCheck), 'hours');
   const messageType = hours >= 24 ? 'active' : 'passive';
 
   const handleResetCursor = () => {
