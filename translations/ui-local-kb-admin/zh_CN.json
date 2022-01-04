@@ -14,7 +14,7 @@
     "prop.runningStatus": "运行状态",
     "prop.started": "已开始",
     "prop.status": "运行状态",
-    "org.olf.general.jobs.PackageIngestJob": "资源包收割器",
+    "org.olf.general.jobs.PackageIngestJob": "收割器",
     "infoLogNo": "没有关于此任务的信息通知。",
     "errorLogNo": "没有要报告的错误。",
     "columns.errorLogMessage": "错误",
