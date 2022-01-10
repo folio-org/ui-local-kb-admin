@@ -135,7 +135,7 @@
     "settings.externalDataSources.title": "Título",
     "metaSection.syncStatus": "<strong>Status de sincronização</strong>",
     "metaSection.cursor": "<strong>Cursor</strong>",
-    "metaSection.lastChecked": "<strong>Last checked</strong>",
+    "metaSection.lastChecked": "<strong>Último empréstimo</strong>",
     "shortcut.saveRecord": "Salvar um registro",
     "shortcut.expandAll": "Expandir todos os acordeões",
     "shortcut.collapseAll": "Recolher todos os acordeões",
