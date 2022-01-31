@@ -140,5 +140,11 @@
     "shortcut.expandAll": "全部展开",
     "shortcut.collapseAll": "全部收起",
     "shortcut.expandOrCollapse": "展开或收起",
-    "shortcut.goToSearchFilter": "转到“搜索和筛选”窗格"
+    "shortcut.goToSearchFilter": "转到“搜索和筛选”窗格",
+    "settings.externalDataSources.resetCursor": "重置光标",
+    "settings.externalDataSources.resetSyncStatus": "重置同步状态",
+    "settings.externalDataSources.cancelLabel": "取消",
+    "settings.externalDataSources.confirmLabel": "重置",
+    "settings.externalDataSources.confirmMessage.active": "外部数据源上次用于更新知识库在{hours}小时前。仅当确定远程KB错误地卡在进程中状态时才重置同步状态。",
+    "settings.externalDataSources.confirmMessage.passive": "外部数据源上次用于更新知识库在{hours}小时前。只能在上次收割外部数据源24小时后重置同步状态。"
 }
