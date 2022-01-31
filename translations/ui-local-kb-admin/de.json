@@ -140,5 +140,11 @@
     "shortcut.expandAll": "Alle ausklappen",
     "shortcut.collapseAll": "Alle einklappen",
     "shortcut.expandOrCollapse": "Akkordeon aus- oder einklappen",
-    "shortcut.goToSearchFilter": "Zum Bereich \"Suchen & filtern\" gehen"
+    "shortcut.goToSearchFilter": "Zum Bereich \"Suchen & filtern\" gehen",
+    "settings.externalDataSources.resetCursor": "Cursor zurücksetzen",
+    "settings.externalDataSources.resetSyncStatus": "Synchronisierungsstatus zurücksetzen",
+    "settings.externalDataSources.cancelLabel": "Abbrechen",
+    "settings.externalDataSources.confirmLabel": "Zurücksetzen",
+    "settings.externalDataSources.confirmMessage.active": "Die externe Datenquelle wurde zuletzt vor {hours} Stunden zum Aktualisieren der Knowledgebase verwendet. Den Synchronisierungsstatus nur zurücksetzen, wenn sicher ist, dass die externe Knowledgebase fälschlicherweise in einem In-Bearbeitungs-Zustand hängen geblieben ist.",
+    "settings.externalDataSources.confirmMessage.passive": "Die externe Datenquelle wurde zuletzt vor {hours} Stunden zum Aktualisieren der Knowledgebase verwendet. Es ist nur möglich, den Synchronisierungsstatus 24 Stunden nach der letzten Erfassung der externen Datenquelle zurückzusetzen."
 }

@@ -140,5 +140,11 @@
     "shortcut.expandAll": "توسيع كل الأقسام",
     "shortcut.collapseAll": "طي كل الأقسام",
     "shortcut.expandOrCollapse": "توسيع أو طي قسم",
-    "shortcut.goToSearchFilter": "اذهب إلى لوحة \"بحث وتنقيح\""
+    "shortcut.goToSearchFilter": "اذهب إلى لوحة \"بحث وتنقيح\"",
+    "settings.externalDataSources.resetCursor": "إعادة تعيين المؤشر",
+    "settings.externalDataSources.resetSyncStatus": "إعادة تعيين حالة المزامنة",
+    "settings.externalDataSources.cancelLabel": "إلغاء",
+    "settings.externalDataSources.confirmLabel": "إعادة تعيين",
+    "settings.externalDataSources.confirmMessage.active": "تم استخدام مصدر البيانات الخارجية آخر مرة لتحديث قاعدة المعرفة قبل {hours} ساعة. قم بإعادة تعيين حالة المزامنة فقط إذا كنت متأكدًا من أن قاعدة المعرفة البعيدة أصبحت عالقة بشكل غير صحيح في حالة قيد المعالجة.",
+    "settings.externalDataSources.confirmMessage.passive": "تم استخدام مصدر البيانات الخارجية آخر مرة لتحديث قاعدة المعرفة قبل {hours} ساعة. من الممكن إعادة تعيين حالة المزامنة من 24 ساعة بعد آخر حصاد لمصدر البيانات الخارجية فقط."
 }
