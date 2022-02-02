@@ -24,7 +24,9 @@ class JobsRoute extends React.Component {
           values: [
             { name: 'Package harvester', value: 'org.olf.general.jobs.PackageIngestJob' },
             { name: 'Title harvester', value: 'org.olf.general.jobs.TitleIngestJob' },
-            { name: 'File import', value: 'org.olf.general.jobs.PackageImportJob' }
+            { name: 'File import', value: 'org.olf.general.jobs.PackageImportJob' },
+            { name: 'Identifier reassignment', value: 'org.olf.general.jobs.IdentifierReassignmentJob' },
+            { name: 'Naive match key assignment', value: 'org.olf.general.jobs.NaiveMatchKeyAssignmentJob' }
           ],
         }],
         filterKeys: {

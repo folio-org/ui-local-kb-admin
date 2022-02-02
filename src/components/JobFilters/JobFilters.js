@@ -30,9 +30,11 @@ export default class JobFilters extends React.Component {
     class: [
       { value: 'Title harvester', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.TitleIngestJob" /> },
       { value: 'Package harvester', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageIngestJob" /> },
-      { value: 'File import', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageImportJob" /> }
+      { value: 'File import', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageImportJob" /> },
+      { value: 'Identifier reassignment', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.IdentifierReassignmentJob" /> },
+      { value: 'Naive match key assignment', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.NaiveMatchKeyAssignmentJob" /> }
     ],
-  }
+  };
 
   static getDerivedStateFromProps(props, state) {
     const newState = {};
