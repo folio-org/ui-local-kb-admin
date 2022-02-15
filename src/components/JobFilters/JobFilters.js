@@ -32,6 +32,7 @@ export default class JobFilters extends React.Component {
       { value: 'Package harvester', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageIngestJob" /> },
       { value: 'File import', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageImportJob" /> },
       { value: 'Identifier reassignment', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.IdentifierReassignmentJob" /> },
+      { value: 'Resource rematch', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.ResourceRematchJob" /> },
       { value: 'Naive match key assignment', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.NaiveMatchKeyAssignmentJob" /> }
     ],
   };
