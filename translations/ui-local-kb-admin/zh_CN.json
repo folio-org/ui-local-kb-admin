@@ -146,5 +146,20 @@
     "settings.externalDataSources.cancelLabel": "取消",
     "settings.externalDataSources.confirmLabel": "重置",
     "settings.externalDataSources.confirmMessage.active": "外部数据源上次用于更新知识库在{hours}小时前。仅当确定远程KB错误地卡在进程中状态时才重置同步状态。",
-    "settings.externalDataSources.confirmMessage.passive": "外部数据源上次用于更新知识库在{hours}小时前。只能在上次收割外部数据源24小时后重置同步状态。"
+    "settings.externalDataSources.confirmMessage.passive": "外部数据源上次用于更新知识库在{hours}小时前。只能在上次收割外部数据源24小时后重置同步状态。",
+    "job.delete.heading.org.olf.general.jobs.IdentifierReassignmentJob": "Delete identifier reassignment job",
+    "job.delete.heading.org.olf.general.jobs.ResourceRematchJob": "Delete resource rematch job",
+    "job.delete.heading.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Delete naive match key assignment job",
+    "job.delete.message.org.olf.general.jobs.IdentifierReassignmentJob": "Identifier reassignment job <strong>{name}</strong> will be <strong>deleted</strong>.",
+    "job.delete.message.org.olf.general.jobs.ResourceRematchJob": "Resource rematch job <strong>{name}</strong> will be <strong>deleted</strong>.",
+    "job.delete.message.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naive match key assignment job <strong>{name}</strong> will be <strong>deleted</strong>.",
+    "job.deleted.success.org.olf.general.jobs.IdentifierReassignmentJob": "<strong>Identifier reassignment job deleted </strong>: {name}",
+    "job.deleted.success.org.olf.general.jobs.ResourceRematchJob": "<strong>Resource rematch job deleted </strong>: {name}",
+    "job.deleted.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>Naive match key assignment job deleted </strong>: {name}",
+    "job.created.success.org.olf.general.jobs.IdentifierReassignmentJob": "<strong>Identifier reassignment job created </strong>: {name}",
+    "job.created.success.org.olf.general.jobs.ResourceRematchJob": "<strong>Resource rematch job created </strong>: {name}",
+    "job.created.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>Naive match key assignment job created </strong>: {name}",
+    "org.olf.general.jobs.IdentifierReassignmentJob": "Identifier reassignment",
+    "org.olf.general.jobs.ResourceRematchJob": "Resource rematch",
+    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naive match key assignment"
 }
