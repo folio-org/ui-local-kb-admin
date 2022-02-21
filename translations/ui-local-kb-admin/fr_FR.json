@@ -146,5 +146,20 @@
     "settings.externalDataSources.cancelLabel": "Cancel",
     "settings.externalDataSources.confirmLabel": "Reset",
     "settings.externalDataSources.confirmMessage.active": "The external data source was last used to update the knowledgebase {hours} hours ago. Only reset the sync status if you are sure the remote KB has incorrectly become stuck in an in-process state.",
-    "settings.externalDataSources.confirmMessage.passive": "The external data source was last used to update the knowledgebase {hours} hours ago. It is only possible to reset the sync status from 24 hours after the external data source was last harvested."
+    "settings.externalDataSources.confirmMessage.passive": "The external data source was last used to update the knowledgebase {hours} hours ago. It is only possible to reset the sync status from 24 hours after the external data source was last harvested.",
+    "job.delete.heading.org.olf.general.jobs.IdentifierReassignmentJob": "Delete identifier reassignment job",
+    "job.delete.heading.org.olf.general.jobs.ResourceRematchJob": "Delete resource rematch job",
+    "job.delete.heading.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Delete naive match key assignment job",
+    "job.delete.message.org.olf.general.jobs.IdentifierReassignmentJob": "Identifier reassignment job <strong>{name}</strong> will be <strong>deleted</strong>.",
+    "job.delete.message.org.olf.general.jobs.ResourceRematchJob": "Resource rematch job <strong>{name}</strong> will be <strong>deleted</strong>.",
+    "job.delete.message.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naive match key assignment job <strong>{name}</strong> will be <strong>deleted</strong>.",
+    "job.deleted.success.org.olf.general.jobs.IdentifierReassignmentJob": "<strong>Identifier reassignment job deleted </strong>: {name}",
+    "job.deleted.success.org.olf.general.jobs.ResourceRematchJob": "<strong>Resource rematch job deleted </strong>: {name}",
+    "job.deleted.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>Naive match key assignment job deleted </strong>: {name}",
+    "job.created.success.org.olf.general.jobs.IdentifierReassignmentJob": "<strong>Identifier reassignment job created </strong>: {name}",
+    "job.created.success.org.olf.general.jobs.ResourceRematchJob": "<strong>Resource rematch job created </strong>: {name}",
+    "job.created.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>Naive match key assignment job created </strong>: {name}",
+    "org.olf.general.jobs.IdentifierReassignmentJob": "Identifier reassignment",
+    "org.olf.general.jobs.ResourceRematchJob": "Resource rematch",
+    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naive match key assignment"
 }
