@@ -42,7 +42,7 @@ describe('JobCreate JSON', () => {
         expect(interactor.saveButton.isDisabled).to.be.false;
       });
 
-      describe('Save the uploaded file', () => {
+      describe.skip('Save the uploaded file', () => {
         beforeEach(async function () {
           await interactor.saveButton.whenEnabled();
           await interactor.saveButton.click();
