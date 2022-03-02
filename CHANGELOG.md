@@ -1,6 +1,6 @@
 # Change history for ui-local-kb-admin
 
-## 5.1.2 2022-03-02
+## 5.1.3 2022-03-02
 
 * ERM-1950 Reset syncStatus for remote KB
 * ERM-1949 Reset cursor for remote KB
