@@ -5,8 +5,9 @@ buildNPM {
     runRegression = 'no'
     runLint = 'yes'
     runSonarqube = 'true'
-    runTest = 'yes'
     runScripts = [
+      ['test:bigtest': ''],
+      ['test:jest': ''],
       ['formatjs-compile': ''],
     ]
   }
