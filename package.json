@@ -1,6 +1,6 @@
 {
   "name": "@folio/local-kb-admin",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "ERM KB Administration for FOLIO with Stripes",
   "main": "src/index.js",
   "publishConfig": {
@@ -15,7 +15,7 @@
     "build": "stripes build --output ./output",
     "lint": "eslint .",
     "test": "yarn run test:jest && yarn run test:bigtest",
-    "test:bigtest": "stripes test karma --bundle --karma.singleRun --karma.browsers ChromeDocker --karma.reporters mocha junit --coverage",
+    "test:bigtest": "stripes test karma --karma.singleRun --karma.browsers ChromeDocker --karma.reporters mocha junit --coverage",
     "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-local-kb-admin ./translations/ui-local-kb-admin/compiled",
     "test:jest": "jest --ci --coverage"
   },
