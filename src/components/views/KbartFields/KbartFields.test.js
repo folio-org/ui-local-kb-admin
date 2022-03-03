@@ -13,7 +13,7 @@ describe('KbartFields', () => {
     let renderComponent;
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <TestForm onSubmit={onSubmit} >
+        <TestForm onSubmit={onSubmit}>
           <KbartFields
             localKB={{ trustedSourceTI: false }}
           />
@@ -52,7 +52,7 @@ describe('KbartFields', () => {
 
     test('Trusted source for TI data checkbox is not checked', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('checkbox', { name: 'Trust this job as a source of title instance metadata' })).not.toHaveAttribute("checked");
+      expect(getByRole('checkbox', { name: 'Trust this job as a source of title instance metadata' })).not.toHaveAttribute('checked');
     });
   });
 
@@ -60,7 +60,7 @@ describe('KbartFields', () => {
     let renderComponent;
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <TestForm onSubmit={onSubmit} >
+        <TestForm onSubmit={onSubmit}>
           <KbartFields
             localKB={{ trustedSourceTI: true }}
           />
@@ -99,7 +99,7 @@ describe('KbartFields', () => {
 
     test('Trusted source for TI data checkbox is not checked', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('checkbox', { name: 'Trust this job as a source of title instance metadata' })).toHaveAttribute("checked");
+      expect(getByRole('checkbox', { name: 'Trust this job as a source of title instance metadata' })).toHaveAttribute('checked');
     });
   });
 });

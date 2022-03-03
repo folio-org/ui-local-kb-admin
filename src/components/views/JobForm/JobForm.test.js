@@ -20,7 +20,7 @@ describe('FormLines', () => {
       renderComponent = renderWithIntl(
         <MemoryRouter>
           <JobForm
-            format={'JSON'}
+            format="JSON"
             handlers={{
               onDownloadFile,
               onUploadFile
@@ -43,12 +43,12 @@ describe('FormLines', () => {
 
     test('renders the cancel button', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('button', { name: 'stripes-components.cancel'}));
+      expect(getByRole('button', { name: 'stripes-components.cancel' }));
     });
 
     test('renders the save and close button', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('button', { name: 'stripes-components.saveAndClose'}));
+      expect(getByRole('button', { name: 'stripes-components.saveAndClose' }));
     });
   });
 
@@ -58,7 +58,7 @@ describe('FormLines', () => {
       renderComponent = renderWithIntl(
         <MemoryRouter>
           <JobForm
-            format={'KBART'}
+            format="KBART"
             handlers={{
               onDownloadFile,
               onUploadFile
@@ -86,12 +86,12 @@ describe('FormLines', () => {
 
     test('renders the cancel button', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('button', { name: 'stripes-components.cancel'}));
+      expect(getByRole('button', { name: 'stripes-components.cancel' }));
     });
 
     test('renders the save and close button', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('button', { name: 'stripes-components.saveAndClose'}));
+      expect(getByRole('button', { name: 'stripes-components.saveAndClose' }));
     });
   });
 });
