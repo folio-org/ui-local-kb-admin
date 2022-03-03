@@ -68,6 +68,7 @@ export default class KbartFields extends React.Component {
         <Field
           component={Checkbox}
           data-test-field-trusted-source-ti
+          id="create-kbart-job-trustedSourceTI"
           initialValue={localKB.trustedSourceTI}
           label={<FormattedMessage id="ui-local-kb-admin.job.trustedSourceTI" />}
           name="trustedSourceTI"

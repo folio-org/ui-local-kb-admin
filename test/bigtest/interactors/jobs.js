@@ -10,7 +10,7 @@ import {
 } from '@bigtest/interactor';
 
 @interactor class RunningStatusCheckbox {
-  static defaultScope = '[data-test-checkboxFilters]';
+  static defaultScope = '[data-test-checkboxfilters]';
 
   clickQueuedJobCheckbox = clickable('#clickable-filter-status-queued');
   clickInProgressJobCheckbox = clickable('#clickable-filter-status-in-progress');
