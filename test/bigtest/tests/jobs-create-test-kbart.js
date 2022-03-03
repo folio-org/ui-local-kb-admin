@@ -48,7 +48,7 @@ describe('JobCreate KBART', () => {
       expect(interactor.isTrustedSourceTIFieldPresent).to.be.true;
     });
 
-    describe('Upload file', () => {
+    describe.skip('Upload file', () => {
       beforeEach(async function () {
         await uploaderInteractor.dragEnter();
         await uploaderInteractor.drop();

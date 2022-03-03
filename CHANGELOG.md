@@ -1,8 +1,16 @@
 # Change history for ui-local-kb-admin
 
-## 5.1.0 IN PROGRESS
+## 5.1.5 2022-03-02
 
-* Upgrade `@folio/react-intl-safe-html` for compatibility with `@folio/stripes` `v7`. ERM-1896
+* ERM-1950 Reset syncStatus for remote KB
+* ERM-1949 Reset cursor for remote KB
+* ERM-1896 Upgrade `@folio/react-intl-safe-html` for compatibility with `@folio/stripes` `v7`.
+* ERM-1888 Display syncStatus, cursor and lastChecked for local KB admin External data sources
+* ERM-1799, ERM-1800 Added filters and translations for new Job types
+  * Identifier Reassignment Job
+  * Resource Rematch Job
+  * Naive MatchKey Assignment Job
+* ERM-1760 Local KB admin: Apply keyboard shortcuts modal guidelines
 
 ## 5.0.0 2021-10-07
 * Upgrade to Stripes v7

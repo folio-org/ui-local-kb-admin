@@ -12,9 +12,8 @@ describe('Jobs', () => {
   const jobs = new JobsInteractor();
 
   describe('Jobs render', () => {
-    let jobList;
     beforeEach(async function () {
-      jobList = this.server.createList('job', jobsAmount);
+      this.server.createList('job', jobsAmount);
       await this.visit('/local-kb-admin?filters=status.queued%2Cstatus.in_progress&sort=started');
       await jobs.runningStatusCheckbox.clickEndedJobCheckbox();
     });
