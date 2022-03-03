@@ -48,7 +48,7 @@ describe('JobCreate KBART', () => {
       expect(interactor.isTrustedSourceTIFieldPresent).to.be.true;
     });
 
-    describe.skip('Upload file', () => {
+    describe('Upload file', () => {
       beforeEach(async function () {
         await uploaderInteractor.dragEnter();
         await uploaderInteractor.drop();
@@ -68,7 +68,7 @@ describe('JobCreate KBART', () => {
         expect(interactor.saveButton.isDisabled).to.be.false;
       });
 
-      describe.skip('Save the uploaded file', () => {
+      describe('Save the uploaded file', () => {
         beforeEach(async function () {
           await interactor.saveButton.whenEnabled();
           await interactor.saveButton.click();
