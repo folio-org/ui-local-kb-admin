@@ -10,7 +10,7 @@ import { expect } from 'chai';
 import setupApplication from '../helpers/setup-application';
 import JobsInteractor from '../interactors/jobs';
 
-describe('Local kb admin Filters', () => {
+describe.skip('Local kb admin Filters', () => {
   before(function () {
     setupApplication();
   });

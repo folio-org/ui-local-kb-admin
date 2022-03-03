@@ -10,7 +10,7 @@ import {
 } from '@bigtest/interactor';
 
 @interactor class RunningStatusCheckbox {
-  static defaultScope = '[data-test-checkboxFilters]';
+  static defaultScope = '[data-test-checkboxfilters]';
 
   clickQueuedJobCheckbox = clickable('#clickable-filter-status-queued');
   clickInProgressJobCheckbox = clickable('#clickable-filter-status-in-progress');
@@ -42,7 +42,7 @@ export default @interactor class JobsInteractor {
   isView = isVisible('#list-jobs > [class*=mclScrollable---]');
   instanceList = new InstanceList();
   runningStatusCheckbox = new RunningStatusCheckbox();
-  sectionIsPresent = isPresent('[data-test-checkboxFilters]');
+  sectionIsPresent = isPresent('[data-test-checkboxfilters]');
   resultCheckbox = new ResultCheckbox();
   jobTypeCheckbox = new JobTypeCheckbox();
   instance = scoped('[data-test-job-details]');
