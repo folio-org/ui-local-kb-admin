@@ -3,12 +3,12 @@ import {
   fillable,
   interactor,
   isPresent,
-  is,
+  property,
   text
 } from '@bigtest/interactor';
 
 @interactor class Button {
-  isDisabled = is('[disabled]');
+  isDisabled = property('disabled');
   click = clickable();
 
   whenEnabled() {

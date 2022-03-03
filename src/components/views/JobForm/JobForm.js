@@ -17,7 +17,7 @@ import {
   checkScope
 } from '@folio/stripes/components';
 
-import KbartFields from './KbartFields';
+import KbartFields from '../KbartFields';
 import css from './JobForm.css';
 
 class JobForm extends React.Component {
