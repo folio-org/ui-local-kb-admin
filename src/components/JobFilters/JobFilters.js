@@ -78,7 +78,7 @@ export default class JobFilters extends React.Component {
 
   render() {
     return (
-      <div data-test-checkboxfilters>
+      <div data-test-checkboxFilters>
         <AccordionSet>
           {this.renderCheckboxFilter('status')}
           {this.renderCheckboxFilter('result')}

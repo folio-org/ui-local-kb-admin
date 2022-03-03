@@ -42,7 +42,7 @@ export default @interactor class JobsInteractor {
   isView = isVisible('#list-jobs > [class*=mclScrollable---]');
   instanceList = new InstanceList();
   runningStatusCheckbox = new RunningStatusCheckbox();
-  sectionIsPresent = isPresent('[data-test-checkboxfilters]');
+  sectionIsPresent = isPresent('[data-test-checkboxFilters]');
   resultCheckbox = new ResultCheckbox();
   jobTypeCheckbox = new JobTypeCheckbox();
   instance = scoped('[data-test-job-details]');
