@@ -124,7 +124,7 @@
     "settings.proxyServerSettings.nameExists": "This name already exists",
     "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
     "jobType": "Job Type",
-    "appMenu.keyboardShortcuts": "Keyboard shortcuts",
+    "appMenu.keyboardShortcuts": "Scorciatoie da tastiera",
     "job.export": "Export",
     "job.delete.heading.org.olf.general.jobs.TitleIngestJob": "Delete JSON title ingest job",
     "job.delete.message.org.olf.general.jobs.TitleIngestJob": "JSON title ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",
