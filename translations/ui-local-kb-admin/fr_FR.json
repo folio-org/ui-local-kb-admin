@@ -143,7 +143,7 @@
     "shortcut.goToSearchFilter": "Accédez au volet Rechercher et filtrer",
     "settings.externalDataSources.resetCursor": "Reset cursor",
     "settings.externalDataSources.resetSyncStatus": "Reset sync status",
-    "settings.externalDataSources.cancelLabel": "Cancel",
+    "settings.externalDataSources.cancelLabel": "Annuler",
     "settings.externalDataSources.confirmLabel": "Reset",
     "settings.externalDataSources.confirmMessage.active": "The external data source was last used to update the knowledgebase {hours} hours ago. Only reset the sync status if you are sure the remote KB has incorrectly become stuck in an in-process state.",
     "settings.externalDataSources.confirmMessage.passive": "The external data source was last used to update the knowledgebase {hours} hours ago. It is only possible to reset the sync status from 24 hours after the external data source was last harvested.",
