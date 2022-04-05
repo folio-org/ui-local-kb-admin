@@ -85,7 +85,7 @@
     "job.packageProvider": "パッケージプロバイダー",
     "job.addNew": "Add new package",
     "job.update": "Update package",
-    "job.sourceReferenceWarning": " <strong>「ソース」</strong>および <strong>「リファレンス」</strong>フィールドは、パッケージの一意の識別子として一緒に使用されます。指定された<strong>「ソース」</strong> + <strong>「リファレンス」</strong>パッケージが既に存在する場合は更新され、それ以外の場合は新しいパッケージが作成されます。入力した<strong>「プロバイダー」</strong>が存在しない場合、契約アプリのローカルナレッジベースに新しいプロバイダーが作成されます。",
+    "job.sourceReferenceWarning": " <strong>「ソース」</strong>および <strong>「レファレンス」</strong>フィールドは、パッケージの一意の識別子として一緒に使用されます。指定された<strong>「ソース」</strong> + <strong>「レファレンス」</strong>パッケージが既に存在する場合は更新され、それ以外の場合は新しいパッケージが作成されます。入力した<strong>「プロバイダー」</strong>が存在しない場合、契約アプリのローカルナレッジベースに新しいプロバイダーが作成されます。",
     "org.olf.general.jobs.KbartIngestJob": "KBARTハーベスター",
     "org.olf.general.jobs.KbartImportJob": "KBARTファイルのインポート",
     "job.JSONImportJob": "JSONインポートジョブ",
