@@ -1,6 +1,6 @@
 
 import React from 'react';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
+import { FormattedMessage } from 'react-intl';
 
 export default function makeToast(messageId, jobClass, messageType = 'success', values = {}) {
   let classMessageId = messageId;
@@ -8,7 +8,7 @@ export default function makeToast(messageId, jobClass, messageType = 'success', 
     classMessageId = `${messageId}.${jobClass}`;
   }
   return ({
-    message: <SafeHTMLMessage id={classMessageId} values={values} />,
+    message: <FormattedMessage id={classMessageId} values={values} />,
     type: messageType,
   });
 }

@@ -1,5 +1,6 @@
 # Change history for ui-local-kb-admin
 ## 5.2.0 In progress
+* ERM-2110 / ERM-2085 Refactor away from react-intl-safe-html
 ## 5.1.5 2022-03-02
 
 * ERM-1950 Reset syncStatus for remote KB
