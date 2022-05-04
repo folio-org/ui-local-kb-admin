@@ -21,7 +21,7 @@
     "columns.infoLogMessage": "消息",
     "columns.recordNumber": "记录号",
     "job.delete.confirmLabel": "删除",
-    "job.delete.heading": "Delete job",
+    "job.delete.heading": "删除任務",
     "job.delete.message": "任务<strong> {name} </strong>将被<strong>删除</strong>",
     "loading": "载入中...",
     "searchInputLabel": "查詢任務",
