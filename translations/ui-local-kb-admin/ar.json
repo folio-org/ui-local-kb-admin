@@ -149,17 +149,17 @@
     "settings.externalDataSources.confirmMessage.passive": "تم استخدام مصدر البيانات الخارجية آخر مرة لتحديث قاعدة المعرفة قبل {hours} ساعة. من الممكن إعادة تعيين حالة المزامنة من 24 ساعة بعد آخر حصاد لمصدر البيانات الخارجية فقط.",
     "job.delete.heading.org.olf.general.jobs.IdentifierReassignmentJob": "حذف مهمة إعادة تعيين المعرف",
     "job.delete.heading.org.olf.general.jobs.ResourceRematchJob": "حذف مهمة إعادة مطابقة المورد",
-    "job.delete.heading.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Delete naive match key assignment job",
+    "job.delete.heading.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "حذف مهمة تعيين مفتاح المطابقة البسيطة",
     "job.delete.message.org.olf.general.jobs.IdentifierReassignmentJob": "سيتم <strong>حذف</strong> مهمة إعادة تعيين المعرف <strong>{name}</strong>.",
     "job.delete.message.org.olf.general.jobs.ResourceRematchJob": "سيتم <strong>حذف</strong> مهمة إعادة مطابة المورد <strong>{name}</strong>.",
-    "job.delete.message.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naive match key assignment job <strong>{name}</strong> will be <strong>deleted</strong>.",
+    "job.delete.message.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "سيتم <strong>حذف</strong> مهمة تعيين مفتاح المطابقة البسيطة <strong>{name}</strong>.",
     "job.deleted.success.org.olf.general.jobs.IdentifierReassignmentJob": "<strong>تم حذف مهمة إعادة تعيين المعرف</strong>: {name}",
     "job.deleted.success.org.olf.general.jobs.ResourceRematchJob": "<strong>تم حذف مهمة إعادة مطابقة المورد</strong>: {name}",
-    "job.deleted.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>Naive match key assignment job deleted </strong>: {name}",
+    "job.deleted.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>تم حذف مهمة تعيين مفتاح المطابقة البسيطة</strong>: {name}",
     "job.created.success.org.olf.general.jobs.IdentifierReassignmentJob": "<strong>تم إنشاء مهمة إعادة تعيين المعرف</strong>: {name}",
     "job.created.success.org.olf.general.jobs.ResourceRematchJob": "<strong>تم إنشاء مهمة إعادة مطابقة المورد</strong>: {name}",
-    "job.created.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>Naive match key assignment job created </strong>: {name}",
+    "job.created.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>تم إنشاء مهمة تعيين مفتاح المطابقة البسيطة</strong>: {name}",
     "org.olf.general.jobs.IdentifierReassignmentJob": "إعادة تعيين المعرف",
     "org.olf.general.jobs.ResourceRematchJob": "إعادة مطابقة الموارد",
-    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naive match key assignment"
+    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "تعيين مفتاح المطابقة البسيطة"
 }
