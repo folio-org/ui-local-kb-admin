@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
 import { ConfirmationModal } from '@folio/stripes/components';
 import ExternalDataSourcesEdit from './ExternalDataSourcesEdit';
@@ -87,7 +86,7 @@ export default class ExternalDataSourcesFields extends React.Component {
             data-test-confirmationModal
             heading={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmHeading" />}
             id="delete-external-data-source-confirmation"
-            message={<SafeHTMLMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmMessage" values={{ name: custPropName }} />}
+            message={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmMessage" values={{ name: custPropName }} />}
             onCancel={this.hideDeleteConfirmationModal}
             onConfirm={() => {
               this.props.onDelete();

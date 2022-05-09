@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { Field } from 'react-final-form';
 
 import { requiredValidator } from '@folio/stripes-erm-components';
@@ -26,7 +25,7 @@ export default class KbartFields extends React.Component {
     return (
       <>
         <MessageBanner>
-          <SafeHTMLMessage id="ui-local-kb-admin.job.sourceReferenceWarning" />
+          <FormattedMessage id="ui-local-kb-admin.job.sourceReferenceWarning" />
         </MessageBanner>
         <Field
           autoFocus

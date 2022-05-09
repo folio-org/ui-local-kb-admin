@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 
 import { ConfirmationModal } from '@folio/stripes/components';
 import ProxyServerSettingsEdit from './ProxyServerSettingsEdit';
@@ -87,7 +86,7 @@ export default class ProxyServerSettingsFields extends React.Component {
             data-test-confirmationModal
             heading={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmHeading" />}
             id="delete-proxy-server-setting-confirmation"
-            message={<SafeHTMLMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmMessage" values={{ name: proxyServerSettingName }} />}
+            message={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmMessage" values={{ name: proxyServerSettingName }} />}
             onCancel={this.hideDeleteConfirmationModal}
             onConfirm={() => {
               this.props.onDelete();

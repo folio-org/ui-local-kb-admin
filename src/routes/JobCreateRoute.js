@@ -2,7 +2,7 @@ import React from 'react';
 import compose from 'compose-function';
 import PropTypes from 'prop-types';
 
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
+import { FormattedMessage } from 'react-intl';
 import { CalloutContext, stripesConnect } from '@folio/stripes/core';
 import withFileHandlers from './components/withFileHandlers';
 import View from '../components/views/JobForm';
@@ -82,7 +82,7 @@ class JobCreateRoute extends React.Component {
         const name = response?.name ?? '';
 
         history.push(`/local-kb-admin/${jobId}${location.search}`);
-        this.context.sendCallout({ message: <SafeHTMLMessage id={`ui-local-kb-admin.job.created.success.${jobClass}`} values={{ name }} /> });
+        this.context.sendCallout({ message: <FormattedMessage id={`ui-local-kb-admin.job.created.success.${jobClass}`} values={{ name }} /> });
       });
   }
 

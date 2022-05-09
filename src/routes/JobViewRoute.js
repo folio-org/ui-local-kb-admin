@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import SafeHTMLMessage from '@folio/react-intl-safe-html';
 import { CalloutContext, stripesConnect } from '@folio/stripes/core';
 import { ConfirmationModal } from '@folio/stripes/components';
 
@@ -32,7 +31,7 @@ const JobViewRoute = ({
             search: location.search,
           }
         );
-        calloutContext.sendCallout({ message: <SafeHTMLMessage id={`ui-local-kb-admin.job.deleted.success.${jobClass}`} values={{ name }} /> });
+        calloutContext.sendCallout({ message: <FormattedMessage id={`ui-local-kb-admin.job.deleted.success.${jobClass}`} values={{ name }} /> });
       });
   };
 
@@ -68,7 +67,7 @@ const JobViewRoute = ({
           confirmLabel={<FormattedMessage id="ui-local-kb-admin.job.delete.confirmLabel" />}
           heading={<FormattedMessage id={deleteHeadingId} />}
           id="delete-job-confirmation"
-          message={<SafeHTMLMessage id={deleteMessageId} values={{ name }} />}
+          message={<FormattedMessage id={deleteMessageId} values={{ name }} />}
           onCancel={hideDeleteConfirmationModal}
           onConfirm={handleDelete}
           open
