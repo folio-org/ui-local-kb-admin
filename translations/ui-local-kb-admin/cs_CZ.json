@@ -101,7 +101,7 @@
     "settings.externalDataSources.trustedSourceTI": "Trusted for title instance metadata",
     "permission.proxyServer.manage": "Místní správce KB: Správa konfigurace proxy serveru",
     "section.proxyServerSettings": "Proxy server settings",
-    "settings.proxyServerSettings": "Proxy server settings",
+    "settings.proxyServerSettings": "Nastavení proxy serveru",
     "settings.proxyServerSettings.count": "{count, number} {count, plural, one {proxy server setting} other {proxy server settings}}",
     "settings.proxyServerSettings.name": "Name",
     "settings.proxyServerSettings.name.info": "The proxy server setting name will be used to label proxied URLs in exports or displays",
