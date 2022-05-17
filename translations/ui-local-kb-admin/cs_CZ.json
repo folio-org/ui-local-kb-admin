@@ -48,7 +48,7 @@
     "yes": "Ano",
     "no": "No",
     "settings.externalDataSources.externalDataSource": "External data source",
-    "settings.externalDataSources.editExternalDataSource": "Edit external data source",
+    "settings.externalDataSources.editExternalDataSource": "Upravit externí zdroj dat",
     "settings.externalDataSources.newExternalDataSource": "New external data source",
     "valid.isURLValid": "Please enter a valid URL (including \"http\" or \"https\").",
     "create": "Create",
