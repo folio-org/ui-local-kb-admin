@@ -1,5 +1,8 @@
 # Change history for ui-local-kb-admin
 
+## 5.1.6 2022-06-07
+* ERM-2188. Backport recent zh_TW translations
+
 ## 5.1.5 2022-03-02
 
 * ERM-1950 Reset syncStatus for remote KB
