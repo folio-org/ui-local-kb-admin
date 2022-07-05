@@ -1,4 +1,6 @@
 # Change history for ui-local-kb-admin
+## 5.3.0 In progress
+
 ## 5.2.0 2022-07-05
 * ERM-2110 / ERM-2085 Refactor away from react-intl-safe-html
 * ERM-2100 Replace babel-eslint with @babel/eslint-parser
