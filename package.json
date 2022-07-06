@@ -16,6 +16,7 @@
     "lint": "eslint .",
     "test": "yarn run test:jest && yarn run test:bigtest",
     "test:bigtest": "stripes test karma --bundle --karma.singleRun --karma.browsers ChromeDocker --karma.reporters mocha junit --coverage",
+    "build-mod-descriptor": "stripes mod descriptor --full --strict | jq '.[]' > module-descriptor.json ",
     "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-local-kb-admin ./translations/ui-local-kb-admin/compiled",
     "test:jest": "jest --ci --coverage"
   },
