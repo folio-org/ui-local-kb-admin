@@ -7,7 +7,7 @@ import {
   isPresent,
   isVisible,
   text,
-} from '@interactors/html';
+} from '@bigtest/interactor';
 
 @interactor class RunningStatusCheckbox {
   static defaultScope = '[data-test-checkboxfilters]';
