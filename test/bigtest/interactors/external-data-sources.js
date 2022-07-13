@@ -7,7 +7,7 @@ import {
   isPresent,
   property,
   selectable,
-} from '@bigtest/interactor';
+} from '@interactors/html';
 import KeyValueInteractor from '@folio/stripes-components/lib/KeyValue/tests/interactor'; // eslint-disable-line
 
 @interactor class ConfirmationModalInteractor {

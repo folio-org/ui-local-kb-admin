@@ -5,7 +5,7 @@ import {
   isPresent,
   property,
   text
-} from '@bigtest/interactor';
+} from '@interactors/html';
 
 @interactor class Button {
   isDisabled = property('disabled');

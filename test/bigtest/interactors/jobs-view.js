@@ -3,7 +3,7 @@ import {
   isPresent,
   clickable,
   text,
-} from '@bigtest/interactor';
+} from '@interactors/html';
 
 @interactor class HeaderDropdown {
   click = clickable('button');
