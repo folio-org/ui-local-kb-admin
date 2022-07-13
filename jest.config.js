@@ -1,6 +1,1 @@
-const jestConfig = require('@folio/stripes-erm-components/jest.config');
-
-module.exports = {
-  ...jestConfig,
-  testEnvironment: 'jsdom'
-};
+module.exports = require('@folio/stripes-erm-components/jest.config');
