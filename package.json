@@ -42,7 +42,7 @@
     "jest-environment-jsdom": "^28.1.2",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.11.5",
-    "@testing-library/react": "^13.2.0",
+    "@testing-library/react": "^11.1.2",
     "@folio/stripes-testing": "^4.2.0",
     "@testing-library/user-event": "^14.2.0",
     "eslint-plugin-testing-library": "^3.10.0",
