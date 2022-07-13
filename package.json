@@ -15,7 +15,8 @@
     "build": "stripes build --output ./output",
     "lint": "eslint .",
     "test": "yarn run test:jest",
-    "test:bigtest": "stripes test karma --bundle --karma.singleRun --karma.browsers ChromeDocker --karma.reporters mocha junit --coverage",
+    "test:bigtest": "stripes test karma --bundle",
+    "test-bigtest-once": "stripes test karma --karma.singleRun",
     "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-local-kb-admin ./translations/ui-local-kb-admin/compiled",
     "test:jest": "jest --ci --coverage"
   },
