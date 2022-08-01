@@ -7,6 +7,7 @@ import translationsProperties from '../../../test/helpers';
 import { activeFilters, data } from './testResources';
 
 import JobFilters from './JobFilters';
+import { waitFor } from '@testing-library/dom';
 
 const stateMock = jest.fn(() => Promise.resolve());
 
@@ -45,71 +46,98 @@ describe('AgreementFilters', () => {
 
   describe('clicking the status checkboxes', () => {
     test('clicking the queued checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-status-queued' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-status-queued' }).click();
+      });
+
       expect(stateMock).toHaveBeenCalled();
     });
 
     test('clicking the in_progress checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-status-in-progress' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-status-in-progress' }).click();
+      });
       expect(stateMock).toHaveBeenCalled();
     });
 
     test('clicking the ended checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-status-ended' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-status-ended' }).click();
+      });
       expect(stateMock).toHaveBeenCalled();
     });
   });
 
   describe('clicking the result checkboxes', () => {
     test('clicking the success checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-result-success' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-result-success' }).click();
+      });
       expect(stateMock).toHaveBeenCalled();
     });
 
     test('clicking the partial_success checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-result-partial-success' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-result-partial-success' }).click();
+      });
       expect(stateMock).toHaveBeenCalled();
     });
 
     test('clicking the failure checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-result-failure' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-result-failure' }).click();
+      });
       expect(stateMock).toHaveBeenCalled();
     });
 
     test('clicking the interrupted checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-result-interrupted' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-result-interrupted' }).click();
+      });
       expect(stateMock).toHaveBeenCalled();
     });
   });
 
   describe('clicking the class checkboxes', () => {
     test('clicking the Title harvester checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-class-title-harvester' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-class-title-harvester' }).click();
+      });
       expect(stateMock).toHaveBeenCalled();
     });
 
     test('clicking the Package harvester checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-class-package-harvester' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-class-package-harvester' }).click();
+      });
       expect(stateMock).toHaveBeenCalled();
     });
 
     test('clicking the File import checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-class-file-import' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-class-file-import' }).click();
+      });
       expect(stateMock).toHaveBeenCalled();
     });
 
     test('clicking the Identifier reassignment checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-class-identifier-reassignment' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-class-identifier-reassignment' }).click();
+      });
       expect(stateMock).toHaveBeenCalled();
     });
 
     test('clicking the Resource rematch checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-class-resource-rematch' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-class-resource-rematch' }).click();
+      });
       expect(stateMock).toHaveBeenCalled();
     });
 
     test('clicking the Naive match key assignment checkbox', async () => {
-      await Checkbox({ id: 'clickable-filter-class-naive-match-key-assignment' }).click();
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-class-naive-match-key-assignment' }).click();
+      });
       expect(stateMock).toHaveBeenCalled();
     });
   });
