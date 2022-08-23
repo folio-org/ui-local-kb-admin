@@ -34,6 +34,7 @@
     "@folio/eslint-config-stripes": "^6.1.0",
     "@folio/stripes": "^7.2.0",
     "@folio/stripes-cli": "^2.6.0",
+    "@folio/stripes-erm-components": "^6.2.0",
     "@folio/stripes-testing": "^4.2.0",
     "@formatjs/cli": "^4.2.31",
     "@testing-library/dom": "^8.13.0",
@@ -75,7 +76,6 @@
     "typescript": "^2.8.0"
   },
   "dependencies": {
-    "@folio/stripes-erm-components": "^6.2.0",
     "compose-function": "^3.0.3",
     "final-form": "^4.18.5",
     "final-form-arrays": "^3.0.1",
@@ -87,6 +87,7 @@
   },
   "peerDependencies": {
     "@folio/stripes": "^7.2.0",
+    "@folio/stripes-erm-components": "^6.2.0",
     "moment": "^2.29.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
