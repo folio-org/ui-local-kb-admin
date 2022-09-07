@@ -85,7 +85,7 @@
     "job.packageProvider": "资源包提供者",
     "job.addNew": "新增資源包",
     "job.update": "更新资源包",
-    "job.sourceReferenceWarning": "<strong>来源</strong>和<strong>参考</strong>字段一起用作资源包的唯一标识符。如果给定的<strong>来源</strong> + <strong>参考</strong>资源包已存在则会被更新，否则将创建一个新的资源包。如果输入的<strong>提供者</strong>不存在，则会在“协议”应用程序的本地知识库中创建一个新的。",
+    "job.sourceReferenceWarning": "<strong> Source </strong> 和 <strong> Reference </strong> 兩個欄位一起用作資源包的唯一識別號。如果具有同樣識別號的 <strong> Source </strong> + <strong> Reference </strong> 的資源包已經存在，它將被更新，否則將建立一個新的資源包。如果輸入的<strong> Provider </strong> 不存在，則會在「協議」應用程式的本地知識庫中建立一個新的。",
     "org.olf.general.jobs.KbartIngestJob": "KBART收割器",
     "org.olf.general.jobs.KbartImportJob": "KBART 檔案匯入",
     "job.JSONImportJob": "JSON 匯入任務",
