@@ -76,7 +76,7 @@ class JobForm extends React.Component {
         <FormattedMessage id="ui-local-kb-admin.job.close">
           {ariaLabel => (
             <IconButton
-              aria-label={ariaLabel}
+              aria-label={ariaLabel?.[0]}
               icon="times"
               id="close-job-form-button"
               onClick={this.props.handlers.onClose}
@@ -123,7 +123,7 @@ class JobForm extends React.Component {
                   id="pane-job-form"
                   paneTitle={<FormattedMessage id={`ui-local-kb-admin.job.new${format}Job`} />}
                 >
-                  <TitleManager record={create}>
+                  <TitleManager record={create?.[0]}>
                     <form>
                       <div className={css.jobForm}>
                         {format === 'KBART' && <KbartFields localKB={localKB} /> }

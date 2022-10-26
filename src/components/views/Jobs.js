@@ -154,6 +154,7 @@ class Jobs extends React.Component {
     if (this.props.stripes.hasPerm('ui-local-kb-admin.jobs.edit')) {
       buttons.push(
         <Button
+          key="new-JSON-job-button"
           buttonStyle="dropdownItem"
           id="clickable-new-JSON-job"
           to={`/local-kb-admin/create/JSON${this.props.searchString}`}
@@ -163,6 +164,7 @@ class Jobs extends React.Component {
       );
       buttons.push(
         <Button
+          key="new-KBART-job-button"
           buttonStyle="dropdownItem"
           id="clickable-new-KBART-job"
           to={`/local-kb-admin/create/KBART${this.props.searchString}`}
@@ -237,7 +239,7 @@ class Jobs extends React.Component {
                           <FormattedMessage id="ui-local-kb-admin.searchInputLabel">
                             {ariaLabel => (
                               <SearchField
-                                aria-label={ariaLabel}
+                                aria-label={ariaLabel?.[0]}
                                 autoFocus
                                 className={css.searchField}
                                 data-test-local-kb-admin-search-input

@@ -155,90 +155,90 @@ class JobInfo extends React.Component {
                     </KeyValue>
                   </Col>
                   {
-                isJobNotQueued && (
-                  <Col xs={3}>
-                    <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.outcome" />}>
-                      <div data-test-job-result>
-                        {job?.result?.label ?? <NoValue />}
-                      </div>
-                    </KeyValue>
-                  </Col>
-                )
-              }
-                  {
-                isJobNotQueued && (
-                  <Col xs={3}>
-                    <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.started" />}>
-                      <div data-test-job-started>
-                        {job.started ? <FormattedDateTime date={job.started} /> : <NoValue />}
-                      </div>
-                    </KeyValue>
-                  </Col>
-                )
-              }
-                  {
-                isJobNotQueued && (
-                  <Col xs={3}>
-                    <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.ended" />}>
-                      <div data-test-job-ended>
-                        {job.ended ? <FormattedDateTime date={job.ended} /> : <NoValue />}
-                      </div>
-                    </KeyValue>
-                  </Col>
-                )
-              }
+                    isJobNotQueued && (
+                      <>
+                        <Col xs={3}>
+                          <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.outcome" />}>
+                            <div data-test-job-result>
+                              {job?.result?.label ?? <NoValue />}
+                            </div>
+                          </KeyValue>
+                        </Col>
+                        <Col xs={3}>
+                          <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.started" />}>
+                            <div data-test-job-started>
+                              {job.started ? <FormattedDateTime date={job.started} /> : <NoValue />}
+                            </div>
+                          </KeyValue>
+                        </Col>
+                        <Col xs={3}>
+                          <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.ended" />}>
+                            <div data-test-job-ended>
+                              {job.ended ? <FormattedDateTime date={job.ended} /> : <NoValue />}
+                            </div>
+                          </KeyValue>
+                        </Col>
+                      </>
+                    )
+                  }
                 </Row>
                 <Row>
                   {
-                isJobNotQueued && (
-                  <Col xs={3}>
-                    <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.errors" />}>
-                      <div data-test-job-errors>
-                        {job.errorLog ? job.errorLog.length : '0'}
-                      </div>
-                    </KeyValue>
-                  </Col>
-                )
-              }
+                    isJobNotQueued && (
+                      <Col xs={3}>
+                        <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.errors" />}>
+                          <div data-test-job-errors>
+                            {job.errorLog ? job.errorLog.length : '0'}
+                          </div>
+                        </KeyValue>
+                      </Col>
+                    )
+                  }
                   <Col xs={3}>
                     {
-                  job.fileName ? (
-                    <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.filename" />}>
-                      <div data-test-job-filename>
-                        {job.fileName}
-                      </div>
-                    </KeyValue>) : (
-                      <KeyValue label={<FormattedMessage id="ui-local-kb-admin.jobType" />}>
-                        <div data-test-job-type>
-                          <FormattedMessage id={`ui-local-kb-admin.${job.class}`} />
-                        </div>
-                      </KeyValue>)
-                }
+                      job.fileName ? (
+                        <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.filename" />}>
+                          <div data-test-job-filename>
+                            {job.fileName}
+                          </div>
+                        </KeyValue>
+                      ) :
+                        (
+                          <KeyValue label={<FormattedMessage id="ui-local-kb-admin.jobType" />}>
+                            <div data-test-job-type>
+                              {
+                                job.class ?
+                                  <FormattedMessage id={`ui-local-kb-admin.${job.class}`} /> :
+                                  null
+                              }
+                            </div>
+                          </KeyValue>
+                        )
+                    }
                   </Col>
                 </Row>
               </div>
               {
-            isJobNotQueued ? (
-              <AccordionStatus ref={this.accordionStatusRef}>
-                <Row end="xs">
-                  <Col xs>
-                    <ExpandAllButton />
-                  </Col>
-                </Row>
-                <AccordionSet initialStatus={this.getInitialAccordionsState()}>
-                  <Logs
-                    type="error"
-                    {...this.getSectionProps('errorLogs')}
-                  />
-                  <Logs
-                    type="info"
-                    {...this.getSectionProps('infoLogs')}
-                  />
-                </AccordionSet>
-              </AccordionStatus>
-            ) : null
-          }
-
+                isJobNotQueued ? (
+                  <AccordionStatus ref={this.accordionStatusRef}>
+                    <Row end="xs">
+                      <Col xs>
+                        <ExpandAllButton />
+                      </Col>
+                    </Row>
+                    <AccordionSet initialStatus={this.getInitialAccordionsState()}>
+                      <Logs
+                        type="error"
+                        {...this.getSectionProps('errorLogs')}
+                      />
+                      <Logs
+                        type="info"
+                        {...this.getSectionProps('infoLogs')}
+                      />
+                    </AccordionSet>
+                  </AccordionStatus>
+                ) : null
+              }
             </TitleManager>
           </Pane>
         </>
