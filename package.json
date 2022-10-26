@@ -148,7 +148,8 @@
           "ui-local-kb-admin.jobs.view",
           "erm.files.edit",
           "erm.jobs.edit",
-          "erm.kbs.view"
+          "erm.kbs.view",
+          "erm.packages.collection.import"
         ]
       },
       {
