@@ -3,11 +3,11 @@ import '@folio/stripes-erm-components/test/jest/__mock__';
 import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
 import { MemoryRouter } from 'react-router-dom';
 import { Accordion, Checkbox } from '@folio/stripes-testing';
+import { waitFor } from '@testing-library/dom';
 import translationsProperties from '../../../test/helpers';
 import { activeFilters, data } from './testResources';
 
 import JobFilters from './JobFilters';
-import { waitFor } from '@testing-library/dom';
 
 const stateMock = jest.fn(() => Promise.resolve());
 
