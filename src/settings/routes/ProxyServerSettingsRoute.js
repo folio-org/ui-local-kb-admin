@@ -7,7 +7,9 @@ import ProxyServerSettingsForm from '../components/ProxyServerSettingsConfig/Pro
 class ProxyServerSettingsRoute extends React.Component {
   static propTypes = {
     resources: PropTypes.shape({
-      platforms: PropTypes.arrayOf(PropTypes.object),
+      platforms: PropTypes.shape({
+        records: PropTypes.arrayOf(PropTypes.object),
+      }),
       stringTemplates: PropTypes.object,
     }),
     mutator: PropTypes.shape({
