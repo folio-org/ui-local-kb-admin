@@ -15,7 +15,7 @@
     "prop.started": "Iniciado",
     "prop.status": "Estado de ejecución",
     "org.olf.general.jobs.PackageIngestJob": "Recolector",
-    "infoLogNo": "No hay avisos de información para este proceso",
+    "infoLogNo": "No hay notificaciones para este proceso",
     "errorLogNo": "No hay errores que reportar.",
     "columns.errorLogMessage": "Error",
     "columns.infoLogMessage": "Mensaje",
