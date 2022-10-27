@@ -1,6 +1,6 @@
 {
   "name": "@folio/local-kb-admin",
-  "version": "54.0",
+  "version": "5.4.0",
   "description": "ERM KB Administration for FOLIO with Stripes",
   "main": "src/index.js",
   "publishConfig": {
