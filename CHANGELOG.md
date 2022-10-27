@@ -1,4 +1,6 @@
 # Change history for ui-local-kb-admin
+## 5.4.0 In progress
+
 ## 5.3.0 2022-10-27
 * ERM-2323 stripes-erm-components should be a peer
 * ERM-2277 Karma tests fail on Github Actions CI with Node v14 and v16 LTS
