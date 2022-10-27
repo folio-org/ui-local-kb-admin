@@ -10,6 +10,7 @@ const onSubmit = jest.fn();
 
 const onDownloadFile = jest.fn();
 const onUploadFile = jest.fn();
+const onClose = jest.fn();
 
 jest.mock('../KbartFields', () => () => <div>KBartFields</div>);
 
@@ -22,6 +23,7 @@ describe('FormLines', () => {
           <JobForm
             format="JSON"
             handlers={{
+              onClose,
               onDownloadFile,
               onUploadFile
             }}
@@ -60,6 +62,7 @@ describe('FormLines', () => {
           <JobForm
             format="KBART"
             handlers={{
+              onClose,
               onDownloadFile,
               onUploadFile
             }}
