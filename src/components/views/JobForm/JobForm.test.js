@@ -1,8 +1,8 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
-import '@folio/stripes-erm-components/test/jest/__mock__';
-import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
+
+import { renderWithIntl } from '@folio/stripes-erm-testing';
 import JobForm from './JobForm';
 import translationsProperties from '../../../../test/helpers';
 
@@ -45,12 +45,12 @@ describe('FormLines', () => {
 
     test('renders the cancel button', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('button', { name: 'stripes-components.cancel' }));
+      expect(getByRole('button', { name: 'Cancel' }));
     });
 
     test('renders the save and close button', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('button', { name: 'stripes-components.saveAndClose' }));
+      expect(getByRole('button', { name: 'Save and close' }));
     });
   });
 
@@ -89,12 +89,12 @@ describe('FormLines', () => {
 
     test('renders the cancel button', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('button', { name: 'stripes-components.cancel' }));
+      expect(getByRole('button', { name: 'Cancel' }));
     });
 
     test('renders the save and close button', () => {
       const { getByRole } = renderComponent;
-      expect(getByRole('button', { name: 'stripes-components.saveAndClose' }));
+      expect(getByRole('button', { name: 'Save and close' }));
     });
   });
 });

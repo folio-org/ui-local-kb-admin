@@ -1,14 +1,9 @@
 import React from 'react';
-import '@folio/stripes-erm-components/test/jest/__mock__';
-import { renderWithIntl } from '@folio/stripes-erm-components/test/jest/helpers';
+
+import { renderWithIntl } from '@folio/stripes-erm-testing';
 import { Button, KeyValue, Modal } from '@folio/stripes-testing';
 import translationsProperties from '../../../../../test/helpers';
 import ExternalDataSourcesView from './ExternalDataSourcesView';
-
-jest.mock('@folio/stripes-erm-components', () => ({
-  ...jest.requireActual('@folio/stripes-erm-components'),
-  CustomMetaSection: () => <div>CustomMetaSection</div>,
-}));
 
 const onDeleteMock = jest.fn();
 const onEditMock = jest.fn();
