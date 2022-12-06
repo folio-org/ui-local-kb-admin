@@ -1,21 +1,50 @@
-import React, { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
-import { Accordion, Badge, Button, Spinner } from '@folio/stripes/components';
 
-import JobLogContainer from '../../containers/JobLogContainer';
+import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
+
+import { useOkapiKy } from '@folio/stripes/core';
+import { Accordion, Badge, Button, Spinner } from '@folio/stripes/components';
+import { LogsList, useInfiniteFetch } from '@folio/stripes-erm-components';
+
+import { resultCount } from '../../constants';
 import { useExportLogStream } from '../../hooks';
 
-const propTypes = {
-  id: PropTypes.string,
-  job: PropTypes.object,
-  type: PropTypes.string.isRequired,
-};
-
-const Logs = ({ id, job, type }) => {
+const Logs = ({
+  id,
+  job,
+  type
+}) => {
+  const ky = useOkapiKy();
   const logCount = job[`${type}LogCount`];
 
+  const LOGS_ENDPOINT = `erm/jobs/${job.id}/${type}Log`;
+
   const { refetch: fetchLogs, isLoading } = useExportLogStream(job, type);
+
+  // LOGS INFINITE FETCH
+  const logQueryParams = useMemo(() => (
+    generateKiwtQueryParams(
+      {
+        perPage: resultCount.RESULT_COUNT_INCREMENT
+      },
+      {}
+    )
+  ), []);
+
+  const {
+    infiniteQueryObject: {
+      fetchNextPage: fetchNextLogsPage,
+    },
+    results: logs = [],
+  } = useInfiniteFetch(
+    ['ERM', 'Job', job.id, 'Logs', type, LOGS_ENDPOINT, logQueryParams],
+    ({ pageParam = 0 }) => {
+      const params = [...logQueryParams, `offset=${pageParam}`];
+      return ky.get(`${LOGS_ENDPOINT}?${params?.join('&')}`).json();
+    }
+  );
 
   const renderBadgeAndExport = useCallback(() => {
     return (
@@ -42,15 +71,22 @@ const Logs = ({ id, job, type }) => {
       displayWhenClosed={renderBadgeAndExport()}
       displayWhenOpen={renderBadgeAndExport()}
       id={id}
-      label={<FormattedMessage id={`ui-local-kb-admin.${type}Log`} />}
+      label={<FormattedMessage id={`ui-erm-comparisons.${type}Log`} />}
     >
-      <JobLogContainer
+      <LogsList
         job={job}
+        logs={logs}
+        onNeedMoreLogs={(_askAmount, index) => fetchNextLogsPage({ pageParam: index })}
         type={type}
       />
     </Accordion>
   );
 };
 
-Logs.propTypes = propTypes;
+Logs.propTypes = {
+  id: PropTypes.string,
+  job: PropTypes.object,
+  type: PropTypes.string.isRequired,
+};
+
 export default Logs;
