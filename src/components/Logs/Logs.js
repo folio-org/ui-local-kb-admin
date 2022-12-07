@@ -49,19 +49,21 @@ const Logs = ({
   const renderBadgeAndExport = useCallback(() => {
     return (
       <>
-        <Button
-          disabled={logCount < 1 || isLoading}
-          onClick={() => fetchLogs()}
-        >
-          <FormattedMessage id="ui-local-kb-admin.job.export" />
-          {
+        <div data-testid="logs">
+          <Button
+            disabled={logCount < 1 || isLoading}
+            onClick={() => fetchLogs()}
+          >
+            <FormattedMessage id="ui-local-kb-admin.job.export" />
+            {
             isLoading &&
             <Spinner />
           }
-        </Button>
-        <Badge>
-          {logCount}
-        </Badge>
+          </Button>
+          <Badge>
+            {logCount}
+          </Badge>
+        </div>
       </>
     );
   }, [fetchLogs, isLoading, logCount]);
