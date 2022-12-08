@@ -1,37 +1,72 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import { FormattedMessage } from 'react-intl';
-import { stripesConnect, useCallout } from '@folio/stripes/core';
+
+import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
+
+import { useCallout, useOkapiKy } from '@folio/stripes/core';
 import View from '../components/views/JobForm';
+import { JSON_IMPORT_ENDPOINT, KBART_IMPORT_ENDPOINT, KBS_ENDPOINT } from '../constants/endpoints';
 
 const JobCreateRoute = ({
   history,
   location,
   match: { params: { format } },
-  mutator,
-  resources
 }) => {
   const callout = useCallout();
+  const ky = useOkapiKy();
+  const queryClient = useQueryClient();
 
   const handleClose = () => {
     history.push(`/local-kb-admin${location.search}`);
   };
 
-  const handleSubmit = (job) => {
-    return mutator.jobs
-      .POST(job)
-      .then(response => {
-        const jobId = response?.id ?? '';
-        const jobClass = response?.class ?? '';
-        const name = response?.name ?? '';
+  const importPath = useMemo(() => (
+    format === 'KBART' ? KBART_IMPORT_ENDPOINT : JSON_IMPORT_ENDPOINT
+  ), [format]);
+
+  const { mutateAsync: postJob } = useMutation(
+    ['ERM', 'Jobs', 'POST', importPath],
+    (payload) => ky.post(importPath, { json: { ...payload } }).json()
+      .then(({
+        id: jobId,
+        class: jobClass,
+        name
+      }) => {
+        /* Invalidate cached queries */
+        queryClient.invalidateQueries(['ERM', 'Jobs']);
 
         history.push(`/local-kb-admin/${jobId}${location.search}`);
         callout.sendCallout({ message: <FormattedMessage id={`ui-local-kb-admin.job.created.success.${jobClass}`} values={{ name }} /> });
-      });
+      })
+  );
+
+  // LOAL-KB QUERY PARAMS
+  const localKBParams = useMemo(() => (
+    generateKiwtQueryParams(
+      {
+        filters: [
+          {
+            path: 'name',
+            value: 'LOCAL'
+          }
+        ]
+      },
+      {}
+    )
+  ), []);
+
+  const { data: { results: { 0: localKB = {} } = [] } = {} } = useQuery(
+    ['ERM', 'KBs', localKBParams],
+    () => ky.get(`${KBS_ENDPOINT}?${localKBParams?.join('&')}`).json()
+  );
+
+  const handleSubmit = (job) => {
+    return postJob(job);
   };
 
-  const localKB = resources.localKB?.records?.[0] || {};
   return (
     <View
       format={format}
@@ -57,42 +92,6 @@ JobCreateRoute.propTypes = {
       format: PropTypes.string,
     }),
   }),
-  mutator: PropTypes.shape({
-    jobs: PropTypes.shape({
-      POST: PropTypes.func.isRequired,
-    }).isRequired,
-  }).isRequired,
-  resources: PropTypes.shape({
-    localKB: PropTypes.shape({
-      records: PropTypes.arrayOf(PropTypes.shape({
-        trustedSourceTI: PropTypes.bool,
-      })),
-    })
-  })
 };
 
-JobCreateRoute.manifest = Object.freeze({
-  jobs: {
-    type: 'okapi',
-    path: (_q, params) => {
-      const format = params?.format;
-      let endpointPath;
-      if (format === 'KBART') {
-        endpointPath = 'erm/jobs/kbartImport';
-      } else {
-        endpointPath = 'erm/jobs/packageImport';
-      }
-      return endpointPath;
-    },
-    fetch: false,
-    shouldRefresh: () => false,
-  },
-  localKB: {
-    type: 'okapi',
-    path: 'erm/kbs?filters=name%3DLOCAL',
-    clientGeneratePk: false,
-    throwErrors: false
-  },
-});
-
-export default stripesConnect(JobCreateRoute);
+export default JobCreateRoute;
