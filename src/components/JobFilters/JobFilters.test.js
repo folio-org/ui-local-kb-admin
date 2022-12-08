@@ -18,7 +18,7 @@ const filterHandlers = {
   clearGroup: () => {},
   reset: () => {},
 };
-describe('AgreementFilters', () => {
+describe('JobFilters', () => {
   beforeEach(() => {
     renderWithIntl(
       <MemoryRouter>
