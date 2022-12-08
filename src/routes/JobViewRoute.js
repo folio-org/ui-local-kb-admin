@@ -78,7 +78,11 @@ const JobViewRoute = ({
           id="delete-job-confirmation"
           message={<FormattedMessage id={deleteMessageId} values={{ name }} />}
           onCancel={hideDeleteConfirmationModal}
-          onConfirm={deleteJob}
+          onConfirm={() => {
+            deleteJob();
+            hideDeleteConfirmationModal();
+            handleClose();
+          }}
           open
         />
       )}
