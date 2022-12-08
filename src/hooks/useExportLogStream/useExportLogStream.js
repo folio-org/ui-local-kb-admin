@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 
 import { CalloutContext, useOkapiKy } from '@folio/stripes/core';
 
-import downloadBlob from '../../util/downloadBlob';
+import { downloadBlob } from '@folio/stripes-erm-components';
 
 const useExportLogStream = (job, type) => {
   const callout = useContext(CalloutContext);
@@ -14,7 +14,7 @@ const useExportLogStream = (job, type) => {
     () => ky(
       `erm/jobs/${job?.id}/${type}LogStream`
     ).blob()
-      .then(downloadBlob(`${job?.name}:${type}`)),
+      .then(downloadBlob(`${job?.name}:${type}.json`)),
     {
       // Ensure this doesn't run until the user clicks the button
       enabled: false
