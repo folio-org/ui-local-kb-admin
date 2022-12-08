@@ -47,7 +47,7 @@ describe('Logs', () => {
     });
 
     test('renders the Error log Accordion', async () => {
-      await Accordion('ui-erm-comparisons.errorLog').exists();
+      await Accordion('Error log').exists();
     });
 
     it('renders error message for the job', () => {
@@ -71,7 +71,7 @@ describe('Logs', () => {
     });
 
     test('renders the Info log Accordion', async () => {
-      await Accordion('ui-erm-comparisons.infoLog').exists();
+      await Accordion('Info log').exists();
     });
 
     test('renders the Export button', async () => {

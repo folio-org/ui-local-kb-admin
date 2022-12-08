@@ -73,7 +73,7 @@ const Logs = ({
       displayWhenClosed={renderBadgeAndExport()}
       displayWhenOpen={renderBadgeAndExport()}
       id={id}
-      label={<FormattedMessage id={`ui-erm-comparisons.${type}Log`} />}
+      label={<FormattedMessage id={`ui-local-kb-admin.${type}Log`} />}
     >
       <LogsList
         job={job}
