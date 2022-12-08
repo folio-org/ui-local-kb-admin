@@ -31,6 +31,13 @@ const JobViewRoute = ({
   const name = job?.name ?? '';
   const jobClass = job?.class ?? '';
 
+  const handleClose = () => {
+    history.push(`/local-kb-admin${location.search}`);
+  };
+
+  const showDeleteConfirmationModal = () => setShowConfirmDelete(true);
+  const hideDeleteConfirmationModal = () => setShowConfirmDelete(false);
+
   const { mutateAsync: deleteJob } = useMutation(
     ['ERM', 'Job', jobId, jobPath, 'delete'],
     () => ky.delete(jobPath).then(() => {
@@ -41,16 +48,11 @@ const JobViewRoute = ({
           values={{ name }}
         />
       });
+
+      hideDeleteConfirmationModal();
+      handleClose();
     })
   );
-
-  const handleClose = () => {
-    history.push(`/local-kb-admin${location.search}`);
-  };
-
-  const showDeleteConfirmationModal = () => setShowConfirmDelete(true);
-
-  const hideDeleteConfirmationModal = () => setShowConfirmDelete(false);
 
   let deleteMessageId = 'ui-local-kb-admin.job.delete.message';
   let deleteHeadingId = 'ui-local-kb-admin.job.delete.heading';
@@ -78,11 +80,7 @@ const JobViewRoute = ({
           id="delete-job-confirmation"
           message={<FormattedMessage id={deleteMessageId} values={{ name }} />}
           onCancel={hideDeleteConfirmationModal}
-          onConfirm={() => {
-            deleteJob();
-            hideDeleteConfirmationModal();
-            handleClose();
-          }}
+          onConfirm={deleteJob}
           open
         />
       )}
