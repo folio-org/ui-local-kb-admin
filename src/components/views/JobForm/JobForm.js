@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Field } from 'react-final-form';
-import { handleSaveKeyCommand, FileUploaderField } from '@folio/stripes-erm-components';
+import { handleSaveKeyCommand, FileUploaderField, useFileHandlers } from '@folio/stripes-erm-components';
 import { AppIcon, TitleManager } from '@folio/stripes/core';
 import stripesFinalForm from '@folio/stripes/final-form';
 
@@ -20,30 +20,27 @@ import {
 import KbartFields from '../KbartFields';
 import css from './JobForm.css';
 
-class JobForm extends React.Component {
-  static propTypes = {
-    format: PropTypes.string.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    handlers: PropTypes.shape({
-      onClose: PropTypes.func.isRequired,
-      onDownloadFile: PropTypes.func.isRequired,
-      onUploadFile: PropTypes.func.isRequired,
-    }),
-    localKB: PropTypes.shape({
-      trustedSourceTI: PropTypes.bool,
-    }),
-    pristine: PropTypes.bool,
-    submitting: PropTypes.bool
-  }
+const JobForm = (props) => {
+  const {
+    format,
+    handlers: {
+      onClose,
+    },
+    handleSubmit,
+    localKB,
+    pristine,
+    submitting
+  } = props;
 
-  renderPaneFooter() {
-    const { handlers, handleSubmit, pristine, submitting } = this.props;
+  const { handleDownloadFile, handleUploadFile } = useFileHandlers('erm/files');
+
+  const renderPaneFooter = () => {
     const startButton = (
       <Button
         buttonStyle="default mega"
         id="clickable-cancel"
         marginBottom0
-        onClick={handlers.onClose}
+        onClick={onClose}
       >
         <FormattedMessage id="stripes-components.cancel" />
       </Button>
@@ -68,9 +65,9 @@ class JobForm extends React.Component {
         renderStart={startButton}
       />
     );
-  }
+  };
 
-  renderFirstMenu() {
+  const renderFirstMenu = () => {
     return (
       <PaneMenu>
         <FormattedMessage id="ui-local-kb-admin.job.close">
@@ -79,77 +76,83 @@ class JobForm extends React.Component {
               aria-label={ariaLabel?.[0]}
               icon="times"
               id="close-job-form-button"
-              onClick={this.props.handlers.onClose}
+              onClick={onClose}
             />
           )}
         </FormattedMessage>
       </PaneMenu>
     );
-  }
+  };
 
-  validateUploadFile(value) {
+  const validateUploadFile = (value) => {
     if (value === null) return <FormattedMessage id="ui-local-kb-admin.error.uploadFile" />;
     return undefined;
-  }
+  };
 
-  shortcuts = [
+  const shortcuts = [
     {
       name: 'save',
-      handler: (e) => handleSaveKeyCommand(e, this.props),
+      handler: (e) => handleSaveKeyCommand(e, props),
     }
   ];
 
-  render() {
-    const {
-      handlers: { onDownloadFile, onUploadFile },
-      format,
-      localKB
-    } = this.props;
-    return (
-      <HasCommand
-        commands={this.shortcuts}
-        isWithinScope={checkScope}
-        scope={document.body}
-      >
-        <>
-          <Paneset>
-            <FormattedMessage id="ui-local-kb-admin.create">
-              {create => (
-                <Pane
-                  appIcon={<AppIcon app="local-kb-admin" />}
-                  defaultWidth="100%"
-                  firstMenu={this.renderFirstMenu()}
-                  footer={this.renderPaneFooter()}
-                  id="pane-job-form"
-                  paneTitle={<FormattedMessage id={`ui-local-kb-admin.job.new${format}Job`} />}
-                >
-                  <TitleManager record={create?.[0]}>
-                    <form>
-                      <div className={css.jobForm}>
-                        {format === 'KBART' && <KbartFields localKB={localKB} /> }
-                        <Field
-                          component={FileUploaderField}
-                          data-test-document-field-file
-                          id="fileUploadId"
-                          label={<FormattedMessage id="stripes-erm-components.doc.file" />}
-                          name="fileUpload"
-                          onDownloadFile={onDownloadFile}
-                          onUploadFile={onUploadFile}
-                          required
-                          validate={this.validateUploadFile}
-                        />
-                      </div>
-                    </form>
-                  </TitleManager>
-                </Pane>
-              )}
-            </FormattedMessage>
-          </Paneset>
-        </>
-      </HasCommand>
-    );
-  }
-}
+  return (
+    <HasCommand
+      commands={shortcuts}
+      isWithinScope={checkScope}
+      scope={document.body}
+    >
+      <>
+        <Paneset>
+          <FormattedMessage id="ui-local-kb-admin.create">
+            {create => (
+              <Pane
+                appIcon={<AppIcon app="local-kb-admin" />}
+                defaultWidth="100%"
+                firstMenu={renderFirstMenu()}
+                footer={renderPaneFooter()}
+                id="pane-job-form"
+                paneTitle={<FormattedMessage id={`ui-local-kb-admin.job.new${format}Job`} />}
+              >
+                <TitleManager record={create?.[0]}>
+                  <form>
+                    <div className={css.jobForm}>
+                      {format === 'KBART' && <KbartFields localKB={localKB} /> }
+                      <Field
+                        component={FileUploaderField}
+                        data-test-document-field-file
+                        id="fileUploadId"
+                        label={<FormattedMessage id="stripes-erm-components.doc.file" />}
+                        name="fileUpload"
+                        onDownloadFile={handleDownloadFile}
+                        onUploadFile={handleUploadFile}
+                        required
+                        validate={validateUploadFile}
+                      />
+                    </div>
+                  </form>
+                </TitleManager>
+              </Pane>
+            )}
+          </FormattedMessage>
+        </Paneset>
+      </>
+    </HasCommand>
+  );
+};
+
+JobForm.propTypes = {
+  format: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handlers: PropTypes.shape({
+    onClose: PropTypes.func.isRequired,
+  }),
+  localKB: PropTypes.shape({
+    trustedSourceTI: PropTypes.bool,
+  }),
+  pristine: PropTypes.bool,
+  submitting: PropTypes.bool
+};
 
 export default stripesFinalForm({
   navigationCheck: true,

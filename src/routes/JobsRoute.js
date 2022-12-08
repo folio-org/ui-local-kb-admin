@@ -1,150 +1,135 @@
-import React from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { getSASParams } from '@folio/stripes-erm-components';
-import { StripesConnectedSource } from '@folio/stripes/smart-components';
-import { stripesConnect } from '@folio/stripes/core';
+
+import { generateKiwtQueryParams, useKiwtSASQuery } from '@k-int/stripes-kint-components';
+
+import { useOkapiKy } from '@folio/stripes/core';
+import { getRefdataValuesByDesc, useInfiniteFetch } from '@folio/stripes-erm-components';
+
 import View from '../components/views/Jobs';
+import { JOBS_BASE_ENDPOINT, resultCount } from '../constants';
+import { useLocalKBAdminRefdata } from '../hooks';
 
-const INITIAL_RESULT_COUNT = 100;
-const RESULT_COUNT_INCREMENT = 100;
+const [
+  RESULT,
+  STATUS,
+] = [
+  'PersistentJob.Result',
+  'PersistentJob.Status',
+];
 
-class JobsRoute extends React.Component {
-  static manifest = Object.freeze({
-    jobs: {
-      type: 'okapi',
-      recordsRequired: '%{resultCount}',
-      records: 'results',
-      perRequest: RESULT_COUNT_INCREMENT,
-      limitParam: 'perPage',
-      path: 'erm/jobs',
-      params: getSASParams({
-        searchKey: 'name',
-        filterConfig: [{
-          name: 'class',
-          values: [
-            { name: 'Package harvester', value: 'org.olf.general.jobs.PackageIngestJob' },
-            { name: 'Title harvester', value: 'org.olf.general.jobs.TitleIngestJob' },
-            { name: 'File import', value: 'org.olf.general.jobs.PackageImportJob' },
-            { name: 'Identifier reassignment', value: 'org.olf.general.jobs.IdentifierReassignmentJob' },
-            { name: 'Resource rematch', value: 'org.olf.general.jobs.ResourceRematchJob' },
-            { name: 'Naive match key assignment', value: 'org.olf.general.jobs.NaiveMatchKeyAssignmentJob' }
-          ],
-        }],
-        filterKeys: {
-          status: 'status.value',
-          result: 'result.value'
-        },
-      })
-    },
-    resultValues: {
-      type: 'okapi',
-      path: 'erm/refdata/persistentJob/result',
-      shouldRefresh: () => false,
-    },
-    statusValues: {
-      type: 'okapi',
-      path: 'erm/refdata/persistentJob/status',
-      shouldRefresh: () => false,
-    },
-    query: { initialValue: {} },
-    resultCount: { initialValue: INITIAL_RESULT_COUNT },
+const JobsRoute = ({
+  children,
+  location,
+  match
+}) => {
+  const searchField = useRef();
+  const ky = useOkapiKy();
+
+  const { query, querySetter, queryGetter } = useKiwtSASQuery();
+
+  const refdata = useLocalKBAdminRefdata({
+    desc: [
+      RESULT,
+      STATUS,
+    ]
   });
 
-  static propTypes = {
-    children: PropTypes.node,
-    history: PropTypes.shape({
-      push: PropTypes.func.isRequired,
-    }).isRequired,
-    location: PropTypes.shape({
-      pathname: PropTypes.string,
-      search: PropTypes.string,
-    }).isRequired,
-    match: PropTypes.shape({
-      params: PropTypes.shape({
-        id: PropTypes.string,
-      }),
+
+  useEffect(() => {
+    if (searchField.current) {
+      searchField.current.focus();
+    }
+  }, []); // This isn't particularly great, but in the interests of saving time migrating, it will have to do
+
+  const jobsQueryParams = useMemo(() => (
+    generateKiwtQueryParams({
+      searchKey: 'name',
+      filterConfig: [{
+        name: 'class',
+        values: [
+          { name: 'Package harvester', value: 'org.olf.general.jobs.PackageIngestJob' },
+          { name: 'Title harvester', value: 'org.olf.general.jobs.TitleIngestJob' },
+          { name: 'File import', value: 'org.olf.general.jobs.PackageImportJob' },
+          { name: 'Identifier reassignment', value: 'org.olf.general.jobs.IdentifierReassignmentJob' },
+          { name: 'Resource rematch', value: 'org.olf.general.jobs.ResourceRematchJob' },
+          { name: 'Naive match key assignment', value: 'org.olf.general.jobs.NaiveMatchKeyAssignmentJob' }
+        ],
+      }],
+      filterKeys: {
+        status: 'status.value',
+        result: 'result.value'
+      },
+      /* ComparisonJobs are handled in ui-erm-comparisons */
+      filters: [
+        {
+          path: 'class',
+          comparator: '!=',
+          value: 'org.olf.general.jobs.ComparisonJob'
+        }
+      ],
+      perPage: resultCount.RESULT_COUNT_INCREMENT
+    }, (query ?? {}))
+  ), [query]);
+
+
+  const {
+    infiniteQueryObject: {
+      error: jobsError,
+      fetchNextPage: fetchNextJobsPage,
+      isLoading: areJobsLoading,
+      isIdle: isJobsIdle,
+      isError: isJobsError
+    },
+    results: jobs = [],
+    total: jobsCount = 0
+  } = useInfiniteFetch(
+    ['ERM', 'Jobs', jobsQueryParams, JOBS_BASE_ENDPOINT],
+    ({ pageParam = 0 }) => {
+      const params = [...jobsQueryParams, `offset=${pageParam}`];
+      return ky.get(`${JOBS_BASE_ENDPOINT}?${params?.join('&')}`).json();
+    }
+  );
+
+  return (
+    <View
+      data={{
+        jobs,
+        resultValues: getRefdataValuesByDesc(refdata, RESULT),
+        statusValues: getRefdataValuesByDesc(refdata, STATUS),
+      }}
+      onNeedMoreData={(_askAmount, index) => fetchNextJobsPage({ pageParam: index })}
+      queryGetter={queryGetter}
+      querySetter={querySetter}
+      searchString={location.search}
+      selectedRecordId={match.params.id}
+      source={{ // Fake source from useQuery return values;
+        totalCount: () => jobsCount,
+        loaded: () => !isJobsIdle,
+        pending: () => areJobsLoading,
+        failure: () => isJobsError,
+        failureMessage: () => jobsError.message
+      }}
+    >
+      {children}
+    </View>
+  );
+};
+
+JobsRoute.propTypes = {
+  children: PropTypes.node,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+    search: PropTypes.string,
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
     }),
-    mutator: PropTypes.object,
-    resources: PropTypes.object,
-    stripes: PropTypes.shape({
-      logger: PropTypes.object,
-    }),
-  }
+  }),
+};
 
-  constructor(props) {
-    super(props);
-
-    this.logger = props.stripes.logger;
-    this.searchField = React.createRef();
-  }
-
-  componentDidMount() {
-    this.source = new StripesConnectedSource(this.props, this.logger, 'jobs');
-
-    if (this.searchField.current) {
-      this.searchField.current.focus();
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    const newCount = this.source.totalCount();
-    const newRecords = this.source.records();
-
-    if (newCount === 1) {
-      const { history, location } = this.props;
-
-      const prevSource = new StripesConnectedSource(prevProps, this.logger, 'jobs');
-      const oldCount = prevSource.totalCount();
-      const oldRecords = prevSource.records();
-
-      if (oldCount !== 1 || (oldCount === 1 && oldRecords[0].id !== newRecords[0].id)) {
-        const record = newRecords[0];
-        history.push(`/local-kb-admin/${record.id}${location.search}`);
-      }
-    }
-  }
-
-  querySetter = ({ nsValues, state }) => {
-    const defaults = {
-      filters: null,
-      query: null,
-      sort: null,
-    };
-
-    if (/reset/.test(state.changeType)) {
-      this.props.mutator.query.update({ ...defaults, ...nsValues });
-    } else {
-      this.props.mutator.query.update(nsValues);
-    }
-  }
-
-  queryGetter = () => {
-    return this.props?.resources?.query ?? {};
-  }
-
-  render() {
-    const { children, location, match, resources } = this.props;
-    if (this.source) {
-      this.source.update(this.props, 'jobs');
-    }
-
-    return (
-      <View
-        data={{
-          jobs: resources?.jobs?.records ?? [],
-          resultValues: resources?.resultValues?.records ?? [],
-          statusValues: resources?.statusValues?.records ?? [],
-        }}
-        queryGetter={this.queryGetter}
-        querySetter={this.querySetter}
-        searchString={location.search}
-        selectedRecordId={match.params.id}
-        source={this.source}
-      >
-        {children}
-      </View>
-    );
-  }
-}
-
-export default stripesConnect(JobsRoute);
+export default JobsRoute;

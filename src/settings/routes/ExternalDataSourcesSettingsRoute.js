@@ -1,58 +1,114 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { stripesConnect } from '@folio/stripes/core';
+import { useMemo } from 'react';
+import { FormattedMessage } from 'react-intl';
+
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+
+import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
+
+import { useCallout, useOkapiKy } from '@folio/stripes/core';
 
 import ExternalDataSourcesForm from '../components/ExternalDataSourcesConfig/ExternalDataSourcesForm';
+import { KBS_ENDPOINT } from '../../constants/endpoints';
 
-class ExternalDataSourcesSettingsRoute extends React.Component {
-  static propTypes = {
-    resources: PropTypes.shape({
-      externalKbs: PropTypes.object,
-    }),
-    mutator: PropTypes.shape({
-      externalKbs: PropTypes.shape({
-        DELETE: PropTypes.func.isRequired,
-        POST: PropTypes.func.isRequired,
-        PUT: PropTypes.func.isRequired,
-      }),
-    }),
+const ExternalDataSourcesSettingsRoute = () => {
+  const ky = useOkapiKy();
+  const callout = useCallout();
+
+  const queryClient = useQueryClient();
+
+  const sendCallout = (operation, outcome, error = '') => {
+    callout.sendCallout({
+      type: outcome,
+      message: <FormattedMessage id={`ui-local-kb-admin.settings.externalDataSources.callout.${operation}.${outcome}`} values={{ error }} />,
+      timeout: error ? 0 : undefined, // Don't autohide callouts with a specified error message.
+    });
   };
 
-  static manifest = Object.freeze({
-    externalKbs: {
-      type: 'okapi',
-      path: 'erm/kbs',
-      clientGeneratePk: false,
-      throwErrors: false
-    },
-  });
+  // LOCAL-KB QUERY PARAMS
+  const KBsParams = useMemo(() => (
+    generateKiwtQueryParams(
+      {
+        sort: [
+          {
+            path: 'name',
+          }
+        ]
+      },
+      {}
+    )
+  ), []);
 
-  handleDelete = (externalKb) => {
-    return this.props.mutator.externalKbs.DELETE(externalKb);
-  }
+  const { data: { results: externalKbs = [] } = {} } = useQuery(
+    ['ERM', 'KBs', KBsParams, KBS_ENDPOINT],
+    () => ky.get(`${KBS_ENDPOINT}?${KBsParams?.join('&')}`).json()
+  );
 
-  handleSave = (externalKb) => {
-    const mutator = this.props.mutator.externalKbs;
+  const { mutateAsync: postExternalKB } = useMutation(
+    ['ERM', 'KBs', 'POST'],
+    (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json()
+  );
 
-    const promise = externalKb.id ?
-      mutator.PUT(externalKb, { pk: externalKb.id }) :
-      mutator.POST(externalKb);
-    return promise;
-  }
+  const { mutateAsync: putExternalKB } = useMutation(
+    ['ERM', 'KBs', 'PUT'],
+    (payload) => ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json()
+  );
 
-  render() {
-    if (!this.props.resources.externalKbs) return <div />;
-    const externalKbs = this.props?.resources?.externalKbs?.records ?? [];
+  const { mutateAsync: deleteExternalKB } = useMutation(
+    ['ERM', 'KBs', 'PUT'],
+    ({ id }) => ky.delete(`${KBS_ENDPOINT}/${id}`).json()
+  );
 
-    return (
-      <ExternalDataSourcesForm
-        initialValues={{ externalKbs }}
-        onDelete={this.handleDelete}
-        onSave={this.handleSave}
-        onSubmit={this.handleSave}
-      />
-    );
-  }
-}
+  const handleSave = (externalKb) => {
+    let promise;
+    if (externalKb?.id) {
+      promise = putExternalKB(externalKb);
+    } else {
+      promise = postExternalKB(externalKb);
+    }
 
-export default stripesConnect(ExternalDataSourcesSettingsRoute);
+    return promise
+      .then(() => {
+        sendCallout('save', 'success');
+        queryClient.invalidateQueries(['ERM', 'KBs']);
+      })
+      .catch(error => {
+        // Attempt to show an error message if we got JSON back with a message.
+        // If json()ification fails, show the generic error callout.
+        if (error?.message) {
+          sendCallout('save', 'error', error.message);
+        } else {
+          sendCallout('save', 'error');
+        }
+      });
+  };
+
+  const handleDelete = (externalKb) => {
+    return deleteExternalKB(externalKb)
+      .then(() => {
+        sendCallout('delete', 'success');
+        queryClient.invalidateQueries(['ERM', 'KBs']);
+      })
+      .catch(error => {
+        // Attempt to show an error message if we got JSON back with a message.
+        // If json()ification fails, show the generic error callout.
+        if (error?.message) {
+          sendCallout('delete', 'error', error.message);
+        } else {
+          sendCallout('delete', 'error');
+        }
+      });
+  };
+
+  if (!externalKbs?.length) return <div />;
+
+  return (
+    <ExternalDataSourcesForm
+      initialValues={{ externalKbs }}
+      onDelete={handleDelete}
+      onSave={handleSave}
+      onSubmit={handleSave}
+    />
+  );
+};
+
+export default ExternalDataSourcesSettingsRoute;

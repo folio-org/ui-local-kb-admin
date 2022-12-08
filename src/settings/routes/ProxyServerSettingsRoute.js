@@ -1,50 +1,71 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { stripesConnect } from '@folio/stripes/core';
-import { cloneDeep, isEmpty } from 'lodash';
-import ProxyServerSettingsForm from '../components/ProxyServerSettingsConfig/ProxyServerSettingsForm';
 
-class ProxyServerSettingsRoute extends React.Component {
-  static propTypes = {
-    resources: PropTypes.shape({
-      platforms: PropTypes.shape({
-        records: PropTypes.arrayOf(PropTypes.object),
-      }),
-      stringTemplates: PropTypes.object,
-    }),
-    mutator: PropTypes.shape({
-      stringTemplates: PropTypes.shape({
-        DELETE: PropTypes.func.isRequired,
-        POST: PropTypes.func.isRequired,
-        PUT: PropTypes.func.isRequired,
-      }),
-    }),
+import { useMemo } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { cloneDeep, isEmpty } from 'lodash';
+
+import { useBatchedFetch } from '@folio/stripes-erm-components';
+import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
+
+import { useCallout, useOkapiKy } from '@folio/stripes/core';
+
+import ProxyServerSettingsForm from '../components/ProxyServerSettingsConfig/ProxyServerSettingsForm';
+import { PLATFORMS_ENDPOINT, STS_ENDPOINT } from '../../constants';
+
+const ProxyServerSettingsRoute = () => {
+  const ky = useOkapiKy();
+  const callout = useCallout();
+
+  const queryClient = useQueryClient();
+
+  const sendCallout = (operation, outcome, error = '') => {
+    callout.sendCallout({
+      type: outcome,
+      message: <FormattedMessage id={`ui-local-kb-admin.settings.externalDataSources.callout.${operation}.${outcome}`} values={{ error }} />,
+      timeout: error ? 0 : undefined, // Don't autohide callouts with a specified error message.
+    });
   };
 
-  static manifest = Object.freeze({
-    stringTemplates: {
-      type: 'okapi',
-      path: 'erm/sts',
-      clientGeneratePk: false,
-      params: {
-        filters: 'context.value=urlproxier',
+  // STS QUERY PARAMS
+  const STSParams = useMemo(() => (
+    generateKiwtQueryParams(
+      {
+        filters: [{ path: 'context.value', value: 'urlproxier' }],
+        sort: [{ path: 'name' }]
       },
-      throwErrors: false
-    },
-    platforms: {
-      type: 'okapi',
-      path: 'erm/platforms',
-      clientGeneratePk: false,
-      limitParam: 'perPage',
-      perRequest: 100,
-      throwErrors: false
-    },
+      {}
+    )
+  ), []);
+
+  const { data: { results: stringTemplates = [] } = {} } = useQuery(
+    ['ERM', 'STs', STSParams, STS_ENDPOINT],
+    () => ky.get(`${STS_ENDPOINT}?${STSParams?.join('&')}`).json()
+  );
+
+  // Batch fetch platforms (Up to 1000)
+  const {
+    results: platforms,
+  } = useBatchedFetch({
+    nsArray: ['ERM', 'Platforms', PLATFORMS_ENDPOINT],
+    path: PLATFORMS_ENDPOINT
   });
 
-  getInitialValues = () => {
-    const stringTemplates = this.props?.resources?.stringTemplates?.records ?? [];
-    const platforms = this.props?.resources?.platforms?.records ?? [];
+  const { mutateAsync: postTemplate } = useMutation(
+    ['ERM', 'STs', 'POST'],
+    (payload) => ky.post(STS_ENDPOINT, { json: payload }).json()
+  );
 
+  const { mutateAsync: putTemplate } = useMutation(
+    ['ERM', 'STs', 'PUT'],
+    (payload) => ky.put(`${STS_ENDPOINT}/${payload.id}`, { json: payload }).json()
+  );
+
+  const { mutateAsync: deleteTemplate } = useMutation(
+    ['ERM', 'STs', 'PUT'],
+    ({ id }) => ky.delete(`${STS_ENDPOINT}/${id}`).json()
+  );
+
+  const getInitialValues = () => {
     return {
       stringTemplates : cloneDeep(stringTemplates).map(stringTemplate => {
         const { idScopes = [] } = stringTemplate;
@@ -61,38 +82,65 @@ class ProxyServerSettingsRoute extends React.Component {
             ) } };
       })
     };
-  }
+  };
 
-  handleDelete = (proxyServer) => {
-    return this.props.mutator.stringTemplates.DELETE(proxyServer);
-  }
+  const handleSave = (template) => {
+    let promise;
 
-  handleSave = (proxyServer) => {
-    const mutator = this.props.mutator.stringTemplates;
-    const { idScopes = [] } = proxyServer;
+    const { idScopes = [] } = template;
     const idScopeValues = isEmpty(idScopes) ? [''] : idScopes.map(ids => ids.value); // fix logic once backend issue with [''] is fixed in the toolkit
-    const proxyServerPayload = { ...proxyServer, ...{ idScopes: idScopeValues }, 'context': 'urlProxier' };
+    const templatePayload = { ...template, idScopes: idScopeValues, 'context': 'urlProxier' };
 
-    const promise = proxyServerPayload.id ?
-      mutator.PUT(proxyServerPayload) :
-      mutator.POST(proxyServerPayload);
-    return promise;
-  }
+    if (template?.id) {
+      promise = putTemplate(templatePayload);
+    } else {
+      promise = postTemplate(templatePayload);
+    }
 
-  render() {
-    if (!this.props.resources.stringTemplates) return <div />;
-    const platforms = this.props?.resources?.platforms?.records ?? [];
+    return promise
+      .then(() => {
+        sendCallout('save', 'success');
+        queryClient.invalidateQueries(['ERM', 'STs']);
+      })
+      .catch(error => {
+        // Attempt to show an error message if we got JSON back with a message.
+        // If json()ification fails, show the generic error callout.
+        if (error?.message) {
+          sendCallout('save', 'error', error.message);
+        } else {
+          sendCallout('save', 'error');
+        }
+      });
+  };
 
-    return (
-      <ProxyServerSettingsForm
-        initialValues={this.getInitialValues()}
-        onDelete={this.handleDelete}
-        onSave={this.handleSave}
-        onSubmit={this.handleSave}
-        platforms={platforms}
-      />
-    );
-  }
-}
+  const handleDelete = (template) => {
+    return deleteTemplate(template)
+      .then(() => {
+        sendCallout('delete', 'success');
+        queryClient.invalidateQueries(['ERM', 'STs']);
+      })
+      .catch(error => {
+        // Attempt to show an error message if we got JSON back with a message.
+        // If json()ification fails, show the generic error callout.
+        if (error?.message) {
+          sendCallout('delete', 'error', error.message);
+        } else {
+          sendCallout('delete', 'error');
+        }
+      });
+  };
 
-export default stripesConnect(ProxyServerSettingsRoute);
+  if (!stringTemplates?.length) return <div />;
+
+  return (
+    <ProxyServerSettingsForm
+      initialValues={getInitialValues()}
+      onDelete={handleDelete}
+      onSave={handleSave}
+      onSubmit={handleSave}
+      platforms={platforms}
+    />
+  );
+};
+
+export default ProxyServerSettingsRoute;
