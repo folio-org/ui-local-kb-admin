@@ -59,7 +59,7 @@ const JobCreateRoute = ({
   ), []);
 
   const { data: { results: { 0: localKB = {} } = [] } = {} } = useQuery(
-    ['ERM', 'KBs', localKBParams],
+    ['ERM', 'KBs', localKBParams, KBS_ENDPOINT],
     () => ky.get(`${KBS_ENDPOINT}?${localKBParams?.join('&')}`).json()
   );
 
