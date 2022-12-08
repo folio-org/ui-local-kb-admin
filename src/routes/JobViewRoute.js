@@ -1,39 +1,48 @@
-import React, { useContext, useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import { CalloutContext, stripesConnect } from '@folio/stripes/core';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+
+import { useCallout, useOkapiKy } from '@folio/stripes/core';
 import { ConfirmationModal } from '@folio/stripes/components';
 
 import JobInfo from '../components/views/JobInfo';
+import { JOB_ENDPOINT } from '../constants';
 
 const JobViewRoute = ({
   history,
   location,
-  mutator,
-  resources
+  match: { params: { id: jobId } = {} } = {},
 }) => {
-  // Grab job information at top
-  const job = resources?.job?.records?.[0] ?? {};
+  const ky = useOkapiKy();
+  const queryClient = useQueryClient();
+  const callout = useCallout();
+
+  const jobPath = JOB_ENDPOINT(jobId);
+
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+
+  const { data: job, isLoading: isJobLoading } = useQuery(
+    ['ERM', 'Job', jobId, jobPath],
+    () => ky.get(jobPath).json()
+  );
+
   const name = job?.name ?? '';
   const jobClass = job?.class ?? '';
 
-  const calloutContext = useContext(CalloutContext);
-  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
-
-  const handleDelete = () => {
-    mutator.job
-      .DELETE(job)
-      .then(() => {
-        history.replace(
-          {
-            pathname: '/local-kb-admin',
-            search: location.search,
-          }
-        );
-        calloutContext.sendCallout({ message: <FormattedMessage id={`ui-local-kb-admin.job.deleted.success.${jobClass}`} values={{ name }} /> });
+  const { mutateAsync: deleteJob } = useMutation(
+    ['ERM', 'Job', jobId, jobPath, 'delete'],
+    () => ky.delete(jobPath).then(() => {
+      queryClient.invalidateQueries(['ERM', 'Jobs']);
+      callout.sendCallout({
+        message: <FormattedMessage
+          id={`ui-local-kb-admin.job.deleted.success.${jobClass}`}
+          values={{ name }}
+        />
       });
-  };
+    })
+  );
 
   const handleClose = () => {
     history.push(`/local-kb-admin${location.search}`);
@@ -57,7 +66,7 @@ const JobViewRoute = ({
         data={{
           job,
         }}
-        isLoading={resources?.job?.isPending ?? true}
+        isLoading={isJobLoading ?? true}
         onClose={handleClose}
         onDelete={showDeleteConfirmationModal}
       />
@@ -69,21 +78,13 @@ const JobViewRoute = ({
           id="delete-job-confirmation"
           message={<FormattedMessage id={deleteMessageId} values={{ name }} />}
           onCancel={hideDeleteConfirmationModal}
-          onConfirm={handleDelete}
+          onConfirm={deleteJob}
           open
         />
       )}
     </>
   );
 };
-
-JobViewRoute.manifest = Object.freeze({
-  job: {
-    type: 'okapi',
-    path: 'erm/jobs/:{id}',
-    shouldRefresh: () => false,
-  },
-});
 
 JobViewRoute.propTypes = {
   history: PropTypes.shape({
@@ -99,12 +100,11 @@ JobViewRoute.propTypes = {
     type: PropTypes.string,
     isLoading: PropTypes.bool
   }),
-  mutator: PropTypes.shape({
-    job: PropTypes.object,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired
   }).isRequired,
-  resources: PropTypes.shape({
-    job: PropTypes.object,
-  }).isRequired
 };
 
-export default stripesConnect(JobViewRoute);
+export default JobViewRoute;
