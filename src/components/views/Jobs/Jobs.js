@@ -22,8 +22,8 @@ import {
   SearchAndSortSearchButton as FilterPaneToggle,
 } from '@folio/stripes/smart-components';
 
-import JobFilters from '../JobFilters';
-import FormattedDateTime from '../FormattedDateTime';
+import JobFilters from '../../JobFilters';
+import FormattedDateTime from '../../FormattedDateTime';
 import css from './Jobs.css';
 
 class Jobs extends React.Component {
