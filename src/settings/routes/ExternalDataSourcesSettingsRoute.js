@@ -99,7 +99,7 @@ const ExternalDataSourcesSettingsRoute = () => {
       });
   };
 
-  // if (!externalKbs?.length) return <div />;
+  if (!externalKbs?.length) return <div />;
 
   return (
     <ExternalDataSourcesForm
