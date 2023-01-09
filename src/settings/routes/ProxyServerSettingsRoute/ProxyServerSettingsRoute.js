@@ -9,8 +9,8 @@ import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
 
-import ProxyServerSettingsForm from '../components/ProxyServerSettingsConfig/ProxyServerSettingsForm';
-import { PLATFORMS_ENDPOINT, STS_ENDPOINT } from '../../constants';
+import ProxyServerSettingsForm from '../../components/ProxyServerSettingsConfig/ProxyServerSettingsForm';
+import { PLATFORMS_ENDPOINT, STS_ENDPOINT } from '../../../constants';
 
 const ProxyServerSettingsRoute = () => {
   const ky = useOkapiKy();
