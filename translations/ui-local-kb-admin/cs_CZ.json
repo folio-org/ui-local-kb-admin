@@ -85,7 +85,7 @@
     "job.packageProvider": "Poskytovatel balíčku",
     "job.addNew": "Přidat nový balíček",
     "job.update": "Aktualizovat balíček",
-    "job.sourceReferenceWarning": "Pole <strong>Zdroj</strong> a <strong>Odkaz</strong> jsou používány spolu jako unikátní identifikátorpro balíčky. Pokud již balíček s daným  <strong>Zdrojem</strong>+<strong>Odkazem</strong> existuje, bude aktualizován,  jinak bude vytvořen nový. Pokud zadaný <strong>Poskytovatel</strong> neexistuje, bude vytvořen nový v místní znalostní databázi v aplikaci Smlouvy.",
+    "job.sourceReferenceWarning": "Pole <strong>Zdroj</strong> a <strong>Odkaz</strong> jsou používány spolu jako unikátní identifikátor pro balíčky. Pokud již balíček s daným  <strong>Zdrojem</strong>+<strong>Odkazem</strong> existuje, bude aktualizován,  jinak bude vytvořen nový. Pokud zadaný <strong>Poskytovatel</strong> neexistuje, bude vytvořen nový v místní znalostní databázi v aplikaci Smlouvy.",
     "org.olf.general.jobs.KbartIngestJob": "KBART Harvestor",
     "org.olf.general.jobs.KbartImportJob": "Import souboru KBART",
     "job.JSONImportJob": "Nová úloha importu JSON",
