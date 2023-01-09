@@ -7,17 +7,31 @@ import { Button } from '@folio/stripes/components';
 import { Button as ButtonInteractor } from '@folio/stripes-testing';
 
 import translationsProperties from '../../../../test/helpers/translationsProperties';
-import ProxyServerSettingsRoute from '../ProxyServerSettingsRoute';
+import ProxyServerSettingsRoute from './ProxyServerSettingsRoute';
+
+jest.mock('@folio/stripes/core', () => ({
+  ...jest.requireActual('@folio/stripes/core'),
+  useCallout: jest.fn().mockReturnValue({
+    sendCallout: jest.fn()
+  }),
+  useOkapiKy:jest.fn()
+}));
+
+const SaveButton = (props) => {
+  return <Button onClick={props.onSave}>SaveButton</Button>;
+};
+
+const DeleteButton = (props) => {
+  return <Button onClick={props.onDelete}>DeleteButton</Button>;
+};
 
 SaveButton.propTypes = {
-    onSave: PropTypes.func,
+  onSave: PropTypes.func,
 };
 
 DeleteButton.propTypes = {
-    onSave: PropTypes.func,
+  onDelete: PropTypes.func,
 };
-
-const historyPushMock = jest.fn();
 
 jest.mock('../../components/ProxyServerSettingsConfig/ProxyServerSettingsForm', () => {
   return (props) => (
@@ -29,41 +43,9 @@ jest.mock('../../components/ProxyServerSettingsConfig/ProxyServerSettingsForm', 
   );
 });
 
-jest.mock('@folio/stripes/core', () => ({
-  ...jest.requireActual('@folio/stripes/core'),
-  useCallout: jest.fn().mockReturnValue({
-    sendCallout: jest.fn()
-  }),
-  useOkapiKy:jest.fn()
-}));
-
-
-const SaveButton = (props) => {
-  return <Button onClick={props.onSave}>SaveButton</Button>;
-};
-
-const DeleteButton = (props) => {
-  return <Button onClick={props.onDelete}>DeleteButton</Button>;
-};
-
-const props = {
-  history: {
-    push: historyPushMock
-  },
-  location: {
-    pathname: '/local-kb-admin/7215d75f-e8c9-438b-85d0-c09425ae4043',
-    search: '?sort=-started',
-  },
-  match: {
-    params: {
-      id: '7215d75f-e8c9-438b-85d0-c09425ae4043'
-    },
-  },
-};
-
 const initialValues = {
-    'stringTemplates': []
-  };
+  'stringTemplates': []
+};
 
 describe('ProxyServerSettingsRoute', () => {
   describe('rendering the route', () => {
@@ -72,7 +54,9 @@ describe('ProxyServerSettingsRoute', () => {
       jest.clearAllMocks();
       renderComponent = renderWithIntl(
         <MemoryRouter>
-          <ProxyServerSettingsRoute {...props} initialValues={initialValues} />
+          <ProxyServerSettingsRoute
+            initialValues={initialValues}
+          />
         </MemoryRouter>,
         translationsProperties
       );
