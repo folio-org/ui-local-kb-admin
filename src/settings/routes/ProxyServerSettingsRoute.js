@@ -130,8 +130,6 @@ const ProxyServerSettingsRoute = () => {
       });
   };
 
-  if (!stringTemplates?.length) return <div />;
-
   return (
     <ProxyServerSettingsForm
       initialValues={getInitialValues()}
