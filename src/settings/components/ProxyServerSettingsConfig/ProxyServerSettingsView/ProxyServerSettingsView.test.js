@@ -4,7 +4,7 @@ import { renderWithIntl, TestForm } from '@folio/stripes-erm-testing';
 import { Button, KeyValue } from '@folio/stripes-testing';
 
 import translationsProperties from '../../../../../test/helpers';
-import { input, meta, mutators, platforms } from './testResources';
+import { input, meta } from './testResources';
 import ProxyServerSettingsView from './ProxyServerSettingsView';
 
 const onDelete = jest.fn();
@@ -19,10 +19,8 @@ describe('ProxyServerSettingsView', () => {
         <ProxyServerSettingsView
           input={input}
           meta={meta}
-          mutators={mutators}
           onDelete={onDelete}
           onEdit={onEdit}
-          platforms={platforms}
         />
       </TestForm>,
       translationsProperties
