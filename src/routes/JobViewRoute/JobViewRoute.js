@@ -7,8 +7,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
 import { ConfirmationModal } from '@folio/stripes/components';
 
-import JobInfo from '../components/views/JobInfo';
-import { JOB_ENDPOINT } from '../constants';
+import JobInfo from '../../components/views/JobInfo';
+import { JOB_ENDPOINT } from '../../constants';
 
 const JobViewRoute = ({
   history,
