@@ -7,8 +7,8 @@ import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
 
-import ExternalDataSourcesForm from '../components/ExternalDataSourcesConfig/ExternalDataSourcesForm';
-import { KBS_ENDPOINT } from '../../constants/endpoints';
+import ExternalDataSourcesForm from '../../components/ExternalDataSourcesConfig/ExternalDataSourcesForm';
+import { KBS_ENDPOINT } from '../../../constants/endpoints';
 
 const ExternalDataSourcesSettingsRoute = () => {
   const ky = useOkapiKy();
@@ -98,8 +98,6 @@ const ExternalDataSourcesSettingsRoute = () => {
         }
       });
   };
-
-  if (!externalKbs?.length) return <div />;
 
   return (
     <ExternalDataSourcesForm
