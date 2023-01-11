@@ -1,21 +1,13 @@
 import PropTypes from 'prop-types';
 import { renderWithIntl } from '@folio/stripes-erm-testing';
+
 import { MemoryRouter } from 'react-router-dom';
 
-import { useCallout } from '@folio/stripes/core';
 import { Button } from '@folio/stripes/components';
-import { Button as ButtonInteractor } from '@folio/stripes-testing';
+import { Button as ButtonInteractor, Callout } from '@folio/stripes-testing';
 
 import translationsProperties from '../../../../test/helpers/translationsProperties';
 import ExternalDataSourcesSettingsRoute from './ExternalDataSourcesSettingsRoute';
-
-jest.mock('@folio/stripes/core', () => ({
-  ...jest.requireActual('@folio/stripes/core'),
-  useCallout: jest.fn().mockReturnValue({
-    sendCallout: jest.fn()
-  }),
-  useOkapiKy:jest.fn()
-}));
 
 const SaveButton = (props) => {
   return <Button onClick={props.onSave}>SaveButton</Button>;
@@ -33,14 +25,27 @@ DeleteButton.propTypes = {
   onDelete: PropTypes.func,
 };
 
+/* EXAMPLE Mocking useMutation to allow us to test the .then clause */
+jest.mock('react-query', () => {
+  const { mockReactQuery } = jest.requireActual('@folio/stripes-erm-testing');
+
+  return ({
+    ...jest.requireActual('react-query'),
+    ...mockReactQuery,
+    useMutation: () => ({ mutateAsync: () => Promise.resolve(true) })
+  });
+});
+
 jest.mock('../../components/ExternalDataSourcesConfig/ExternalDataSourcesForm', () => {
-  return (props) => (
-    <div>
-      <div>ExternalDataSourcesForm</div>
-      <SaveButton {...props} />
-      <DeleteButton {...props} />
-    </div>
-  );
+  return (props) => {
+    return (
+      <div>
+        <div>ExternalDataSourcesForm</div>
+        <SaveButton {...props} />
+        <DeleteButton {...props} />
+      </div>
+    );
+  };
 });
 
 const initialValues = {
@@ -61,11 +66,12 @@ const initialValues = {
   }]
 };
 
+/* EXAMPLE Testing callouts should be pretty easy now. */
+
 describe('ExternalDataSourcesSettingsRoute', () => {
   describe('rendering the route', () => {
     let renderComponent;
     beforeEach(() => {
-      jest.clearAllMocks();
       renderComponent = renderWithIntl(
         <MemoryRouter>
           <ExternalDataSourcesSettingsRoute
@@ -83,12 +89,12 @@ describe('ExternalDataSourcesSettingsRoute', () => {
 
     test('clicking on the SaveButton fires the callout', async () => {
       await ButtonInteractor('SaveButton').click();
-      expect(useCallout).toHaveBeenCalled();
+      await Callout('External data source successfully saved.').exists();
     });
 
     test('clicking on the DeleteButton fires the callout', async () => {
       await ButtonInteractor('DeleteButton').click();
-      expect(useCallout).toHaveBeenCalled();
+      await Callout('External data source successfully deleted.').exists();
     });
   });
 });
