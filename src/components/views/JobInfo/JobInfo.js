@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { FormattedDateTime } from '@folio/stripes-erm-components';
 
 import {
   AccordionSet,
@@ -23,9 +24,7 @@ import {
 } from '@folio/stripes/components';
 import { TitleManager, withStripes } from '@folio/stripes/core';
 
-
-import Logs from '../Logs';
-import FormattedDateTime from '../FormattedDateTime';
+import Logs from '../../Logs';
 
 class JobInfo extends React.Component {
   static propTypes = {
@@ -167,14 +166,14 @@ class JobInfo extends React.Component {
                         <Col xs={3}>
                           <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.started" />}>
                             <div data-test-job-started>
-                              {job.started ? <FormattedDateTime date={job.started} /> : <NoValue />}
+                              {job.started ? <FormattedDateTime date={job.started} id="started-datetime" /> : <NoValue />}
                             </div>
                           </KeyValue>
                         </Col>
                         <Col xs={3}>
                           <KeyValue label={<FormattedMessage id="ui-local-kb-admin.prop.ended" />}>
                             <div data-test-job-ended>
-                              {job.ended ? <FormattedDateTime date={job.ended} /> : <NoValue />}
+                              {job.ended ? <FormattedDateTime date={job.ended} id="ended-datetime" /> : <NoValue />}
                             </div>
                           </KeyValue>
                         </Col>

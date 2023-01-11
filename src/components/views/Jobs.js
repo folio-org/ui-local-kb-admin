@@ -15,6 +15,7 @@ import {
   Paneset,
   SearchField,
 } from '@folio/stripes/components';
+import { FormattedDateTime } from '@folio/stripes-erm-components';
 
 import {
   SearchAndSortQuery,
@@ -23,7 +24,6 @@ import {
 } from '@folio/stripes/smart-components';
 
 import JobFilters from '../JobFilters';
-import FormattedDateTime from '../FormattedDateTime';
 import css from './Jobs.css';
 
 class Jobs extends React.Component {
