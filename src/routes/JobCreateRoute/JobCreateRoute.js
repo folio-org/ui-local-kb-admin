@@ -7,8 +7,8 @@ import { FormattedMessage } from 'react-intl';
 import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
-import View from '../components/views/JobForm';
-import { JSON_IMPORT_ENDPOINT, KBART_IMPORT_ENDPOINT, KBS_ENDPOINT } from '../constants/endpoints';
+import View from '../../components/views/JobForm';
+import { JSON_IMPORT_ENDPOINT, KBART_IMPORT_ENDPOINT, KBS_ENDPOINT } from '../../constants/endpoints';
 
 const JobCreateRoute = ({
   history,
