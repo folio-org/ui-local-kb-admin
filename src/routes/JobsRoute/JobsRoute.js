@@ -6,9 +6,9 @@ import { generateKiwtQueryParams, useKiwtSASQuery } from '@k-int/stripes-kint-co
 import { useOkapiKy } from '@folio/stripes/core';
 import { getRefdataValuesByDesc, useInfiniteFetch } from '@folio/stripes-erm-components';
 
-import View from '../components/views/Jobs';
-import { JOBS_BASE_ENDPOINT, resultCount } from '../constants';
-import { useLocalKBAdminRefdata } from '../hooks';
+import View from '../../components/views/Jobs';
+import { JOBS_BASE_ENDPOINT, resultCount } from '../../constants';
+import { useLocalKBAdminRefdata } from '../../hooks';
 
 const [
   RESULT,
