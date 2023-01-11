@@ -15,6 +15,7 @@ import {
   Paneset,
   SearchField,
 } from '@folio/stripes/components';
+import { FormattedDateTime } from '@folio/stripes-erm-components';
 
 import {
   SearchAndSortQuery,
@@ -23,7 +24,6 @@ import {
 } from '@folio/stripes/smart-components';
 
 import JobFilters from '../JobFilters';
-import FormattedDateTime from '../FormattedDateTime';
 import css from './Jobs.css';
 
 class Jobs extends React.Component {
@@ -203,7 +203,7 @@ class Jobs extends React.Component {
     const visibleColumns = ['jobname', 'runningStatus', 'result', 'errors', 'started', 'ended'];
 
     return (
-      <div ref={contentRef} data-test-localkbadmin>
+      <div ref={contentRef} data-test-localkbadmin data-testid="jobs">
         <SearchAndSortQuery
           initialFilterState={{ status: ['queued', 'in_progress'] }}
           initialSearchState={{ query: '' }}
