@@ -2,20 +2,21 @@ import PropTypes from 'prop-types';
 import { renderWithIntl } from '@folio/stripes-erm-testing';
 import { MemoryRouter } from 'react-router-dom';
 
-import { useCallout } from '@folio/stripes/core';
 import { Button } from '@folio/stripes/components';
-import { Button as ButtonInteractor } from '@folio/stripes-testing';
+import { Button as ButtonInteractor, Callout } from '@folio/stripes-testing';
 
 import translationsProperties from '../../../../test/helpers/translationsProperties';
 import ProxyServerSettingsRoute from './ProxyServerSettingsRoute';
 
-jest.mock('@folio/stripes/core', () => ({
-  ...jest.requireActual('@folio/stripes/core'),
-  useCallout: jest.fn().mockReturnValue({
-    sendCallout: jest.fn()
-  }),
-  useOkapiKy:jest.fn()
-}));
+jest.mock('react-query', () => {
+  const { mockReactQuery } = jest.requireActual('@folio/stripes-erm-testing');
+
+  return ({
+    ...jest.requireActual('react-query'),
+    ...mockReactQuery,
+    useMutation: () => ({ mutateAsync: () => Promise.resolve(true) })
+  });
+});
 
 const SaveButton = (props) => {
   return <Button onClick={props.onSave}>SaveButton</Button>;
@@ -34,13 +35,15 @@ DeleteButton.propTypes = {
 };
 
 jest.mock('../../components/ProxyServerSettingsConfig/ProxyServerSettingsForm', () => {
-  return (props) => (
-    <div>
-      <div>ProxyServerSettingsForm</div>
-      <SaveButton {...props} />
-      <DeleteButton {...props} />
-    </div>
-  );
+  return (props) => {
+    return (
+      <div>
+        <div>ProxyServerSettingsForm</div>
+        <SaveButton {...props} />
+        <DeleteButton {...props} />
+      </div>
+    );
+  };
 });
 
 const initialValues = {
@@ -51,7 +54,6 @@ describe('ProxyServerSettingsRoute', () => {
   describe('rendering the route', () => {
     let renderComponent;
     beforeEach(() => {
-      jest.clearAllMocks();
       renderComponent = renderWithIntl(
         <MemoryRouter>
           <ProxyServerSettingsRoute
@@ -69,12 +71,12 @@ describe('ProxyServerSettingsRoute', () => {
 
     test('clicking on the SaveButton fires the callout', async () => {
       await ButtonInteractor('SaveButton').click();
-      expect(useCallout).toHaveBeenCalled();
+      await Callout('External data source successfully saved.').exists();
     });
 
     test('clicking on the DeleteButton fires the callout', async () => {
       await ButtonInteractor('DeleteButton').click();
-      expect(useCallout).toHaveBeenCalled();
+      await Callout('External data source successfully deleted.').exists();
     });
   });
 });
