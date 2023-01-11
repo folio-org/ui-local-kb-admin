@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import { ConfirmationModal } from '@folio/stripes/components';
-import ProxyServerSettingsEdit from './ProxyServerSettingsEdit';
-import ProxyServerSettingsView from './ProxyServerSettingsView';
+import ProxyServerSettingsEdit from '../ProxyServerSettingsEdit';
+import ProxyServerSettingsView from '../ProxyServerSettingsView';
 
 export default class ProxyServerSettingsFields extends React.Component {
   static propTypes = {
