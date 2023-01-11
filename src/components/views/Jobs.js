@@ -203,7 +203,7 @@ class Jobs extends React.Component {
     const visibleColumns = ['jobname', 'runningStatus', 'result', 'errors', 'started', 'ended'];
 
     return (
-      <div ref={contentRef} data-test-localkbadmin>
+      <div ref={contentRef} data-test-localkbadmin data-testid="jobs">
         <SearchAndSortQuery
           initialFilterState={{ status: ['queued', 'in_progress'] }}
           initialSearchState={{ query: '' }}
