@@ -1,15 +1,37 @@
 import React from 'react';
+import { Field } from 'react-final-form';
 
 import { renderWithIntl, TestForm } from '@folio/stripes-erm-testing';
 import { Button, Select, TextArea, TextField, Checkbox } from '@folio/stripes-testing';
 import translationsProperties from '../../../../../test/helpers';
 
-import { input, meta, initialValues } from './testResources';
 import ExternalDataSourcesEdit from './ExternalDataSourcesEdit';
 
 const onCancelMock = jest.fn();
 const onSaveMock = jest.fn();
 const onSubmit = jest.fn();
+
+const initialValues = {
+  'externalKbs': [{
+    'id': '794bc27c-1291-4307-8da9-f23aa992bc1a',
+    'cursor': '2022-08-09T17:37:14Z',
+    'active': true,
+    'trustedSourceTI': false,
+    'activationEnabled': false,
+    'credentials': 'testCredentials',
+    'readonly': false,
+    'syncStatus': 'in-process',
+    'lastCheck': 1670595614843,
+    'name': 'GOKb_TEST',
+    'type': 'org.olf.kb.adapters.GOKbOAIAdapter',
+    'principal': 'testPrincipal',
+    'listPrefix': 'testPrefix',
+    'fullPrefix': 'gokb',
+    'uri': 'https://gokbt.gbv.de/gokb/oai/index',
+    'supportsHarvesting': true,
+    'rectype': 1
+  }]
+};
 
 let renderComponent;
 
@@ -20,9 +42,9 @@ describe('ExternalDataSourcesEdit', () => {
         initialValues={initialValues}
         onSubmit={onSubmit}
       >
-        <ExternalDataSourcesEdit
-          input={input}
-          meta={meta}
+        <Field
+          component={ExternalDataSourcesEdit}
+          name="externalKbs[0]"
           onCancel={onCancelMock}
           onSave={onSaveMock}
         />
