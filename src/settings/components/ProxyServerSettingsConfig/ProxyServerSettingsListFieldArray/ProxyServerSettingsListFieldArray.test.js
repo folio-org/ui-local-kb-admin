@@ -1,7 +1,7 @@
 import React from 'react';
 import { FieldArray } from 'react-final-form-arrays';
 import { renderWithIntl, TestForm } from '@folio/stripes-erm-testing';
-
+import { Button } from '@folio/stripes-testing';
 import translationsProperties from '../../../../../test/helpers';
 import ProxyServerSettingsListFieldArray from './ProxyServerSettingsListFieldArray';
 
@@ -44,6 +44,10 @@ describe('ProxyServerSettingsListFieldArray', () => {
       </TestForm>,
       translationsProperties
     );
+  });
+
+  test('renders the new button', async () => {
+    await Button('New').exists();
   });
 
   test('renders the ProxyServerSettingsFields component', () => {

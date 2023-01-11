@@ -64,7 +64,7 @@ export default class ProxyServerSettingsListFieldArray extends React.Component {
               disabled={this.state.disableNewButton}
               onClick={this.handleNew}
             >
-              <FormattedMessage id="stripes-components.button.new" />
+              <FormattedMessage id="ui-local-kb-admin.job.new" />
             </Button>
           </Col>
         </Row>
