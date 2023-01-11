@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { noop } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 import { AppIcon, withStripes } from '@folio/stripes/core';
+import { FormattedDateTime } from '@folio/stripes-erm-components';
 
 import {
   Button,
@@ -23,7 +24,6 @@ import {
 } from '@folio/stripes/smart-components';
 
 import JobFilters from '../../JobFilters';
-import FormattedDateTime from '../../FormattedDateTime';
 import css from './Jobs.css';
 
 class Jobs extends React.Component {
