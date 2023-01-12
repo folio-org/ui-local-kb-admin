@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { isEqual } from 'lodash';
 import { Button, Col, Row } from '@folio/stripes/components';
 import { Field } from 'react-final-form';
-import ExternalDataSourcesFields from './ExternalDataSourcesFields';
+import ExternalDataSourcesFields from '../ExternalDataSourcesFields';
 
 export default class ExternalDataSourcesListFieldArray extends React.Component {
   static propTypes = {
@@ -69,26 +69,32 @@ export default class ExternalDataSourcesListFieldArray extends React.Component {
               disabled={this.state.disableNewButton}
               onClick={this.handleNew}
             >
-              <FormattedMessage id="stripes-components.button.new" />
+              <FormattedMessage id="ui-local-kb-admin.job.new" />
             </Button>
           </Col>
         </Row>
         {
           fields.value.map((externalkb, i) => (
-            <Field
-              key={externalkb.id || 'new'}
-              component={ExternalDataSourcesFields}
-              isEqual={isEqual}
-              mutators={mutators}
-              name={`${fields.name}[${i}]`}
-              onDelete={() => this.handleDelete(i)}
-              onSave={() => this.handleSave(i)}
+
+            <div
+              key={i}
+              data-testid={`externalDataSourcesListFieldArray[${i}]`}
+            >
+              <Field
+                key={externalkb.id || 'new'}
+                component={ExternalDataSourcesFields}
+                isEqual={isEqual}
+                mutators={mutators}
+                name={`${fields.name}[${i}]`}
+                onDelete={() => this.handleDelete(i)}
+                onSave={() => this.handleSave(i)}
               // This `validate` appears stupid and like a no-op, but it's necessary because of the way
               // that RFF decides whether to run validation: https://github.com/final-form/final-form/pull/267
               // We want this Field to have validation info (meta.invalid) upon mount because some of the
               // child Fields are required and they will run validation.
-              validate={() => { }}
-            />
+                validate={() => { }}
+              />
+            </div>
           ))
         }
       </div>
