@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import { ConfirmationModal } from '@folio/stripes/components';
-import ExternalDataSourcesEdit from './ExternalDataSourcesEdit';
-import ExternalDataSourcesView from './ExternalDataSourcesView';
+import ExternalDataSourcesEdit from '../ExternalDataSourcesEdit';
+import ExternalDataSourcesView from '../ExternalDataSourcesView';
 
 export default class ExternalDataSourcesFields extends React.Component {
   static propTypes = {

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { noop } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 import { AppIcon, withStripes } from '@folio/stripes/core';
+import { FormattedDateTime } from '@folio/stripes-erm-components';
 
 import {
   Button,
@@ -15,7 +16,6 @@ import {
   Paneset,
   SearchField,
 } from '@folio/stripes/components';
-import { FormattedDateTime } from '@folio/stripes-erm-components';
 
 import {
   SearchAndSortQuery,
@@ -23,7 +23,7 @@ import {
   SearchAndSortSearchButton as FilterPaneToggle,
 } from '@folio/stripes/smart-components';
 
-import JobFilters from '../JobFilters';
+import JobFilters from '../../JobFilters';
 import css from './Jobs.css';
 
 class Jobs extends React.Component {
