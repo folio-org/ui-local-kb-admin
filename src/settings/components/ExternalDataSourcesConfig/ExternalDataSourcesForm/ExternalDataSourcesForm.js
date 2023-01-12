@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { FieldArray } from 'react-final-form-arrays';
 import { Pane } from '@folio/stripes/components';
 import stripesFinalForm from '@folio/stripes/final-form';
-import ExternalDataSourcesListFieldArray from './ExternalDataSourcesListFieldArray';
+import ExternalDataSourcesListFieldArray from '../ExternalDataSourcesListFieldArray';
 
 class ExternalDataSourcesForm extends React.Component {
   static propTypes = {
