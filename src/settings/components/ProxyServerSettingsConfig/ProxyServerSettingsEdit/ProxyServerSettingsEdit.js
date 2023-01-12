@@ -56,6 +56,7 @@ export default class ProxyServerSettingsEdit extends React.Component {
     return (
       <Card
         data-test-proxy-server-setting-edit
+        data-testid="proxyServerSettingEdit"
         headerEnd={(
           <span>
             <Button

@@ -4,7 +4,7 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { Button, Card, Checkbox, Col, Layout, Row, Select, TextArea, TextField } from '@folio/stripes/components';
 import { composeValidators, requiredValidator } from '@folio/stripes-erm-components';
-import { validateURLIsValid } from '../../../util/validators';
+import { validateURLIsValid } from '../../../../util/validators';
 
 const ExternalDataSourcesEdit = ({
   input: { value, name },
