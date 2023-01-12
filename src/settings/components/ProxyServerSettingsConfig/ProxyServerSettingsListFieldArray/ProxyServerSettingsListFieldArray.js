@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { isEqual } from 'lodash';
 import { Button, Col, Row } from '@folio/stripes/components';
 import { Field } from 'react-final-form';
-import ProxyServerSettingsFields from './ProxyServerSettingsFields';
+import ProxyServerSettingsFields from '../ProxyServerSettingsFields';
 
 export default class ProxyServerSettingsListFieldArray extends React.Component {
   static propTypes = {
@@ -64,7 +64,7 @@ export default class ProxyServerSettingsListFieldArray extends React.Component {
               disabled={this.state.disableNewButton}
               onClick={this.handleNew}
             >
-              <FormattedMessage id="stripes-components.button.new" />
+              <FormattedMessage id="ui-local-kb-admin.job.new" />
             </Button>
           </Col>
         </Row>
