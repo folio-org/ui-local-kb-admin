@@ -1,6 +1,6 @@
 {
   "name": "@folio/local-kb-admin",
-  "version": "5.4.0",
+  "version": "6.0.0",
   "description": "ERM KB Administration for FOLIO with Stripes",
   "main": "src/index.js",
   "publishConfig": {
@@ -32,7 +32,7 @@
     "@bigtest/mocha": "^0.5.2",
     "@bigtest/react": "^0.1.2",
     "@folio/eslint-config-stripes": "^6.3.0",
-    "@folio/stripes": "^7.3.1",
+    "@folio/stripes": "^8.0.0",
     "@folio/stripes-cli": "^2.6.1",
     "@folio/stripes-erm-components": "^8.0.0",
     "@folio/stripes-erm-testing": "^1.0.0",
@@ -88,7 +88,7 @@
     "react-final-form-arrays": "^3.1.1"
   },
   "peerDependencies": {
-    "@folio/stripes": "^7.3.1",
+    "@folio/stripes": "^8.0.0",
     "@folio/stripes-erm-components": "^8.0.0",
     "moment": "^2.29.3",
     "react": "^17.0.2",
