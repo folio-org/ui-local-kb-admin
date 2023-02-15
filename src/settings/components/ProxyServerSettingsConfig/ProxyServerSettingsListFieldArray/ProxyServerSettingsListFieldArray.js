@@ -34,8 +34,8 @@ export default class ProxyServerSettingsListFieldArray extends React.Component {
       onDelete(proxyServer);
     } else {
       fields.remove(index);
-      this.setState({ disableNewButton: false });
     }
+    this.setState({ disableNewButton: false });
   }
 
   handleNew = () => {
@@ -69,7 +69,7 @@ export default class ProxyServerSettingsListFieldArray extends React.Component {
           </Col>
         </Row>
         {
-          fields.value.map((proxyServer, i) => (
+          fields?.value?.map((proxyServer, i) => (
             <Field
               key={proxyServer.id || 'new'}
               component={ProxyServerSettingsFields}
