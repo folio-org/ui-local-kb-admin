@@ -1,6 +1,35 @@
 # Change history for ui-local-kb-admin
-## 5.4.0 In progress
+## 6.0.0 2023-02-22
+* ERM-2637 ProxyServer Settings page breaks when cancel the first and only entry
 * ERM-2618 Remove unneeded `react-redux`
+* ERM-2590 Increment ui-local-kb-admin to Stripes v8
+* ERM-2571 Remove BigTest/Nightmare dependencies and tests (ui-local-kb-admin)
+* ERM-2570 New button/settings don't display for Proxy server settings
+* ERM-2556 Increment ui-local-kb-admin to Stripes v8
+* ERM-2467 Change export file name and file extension in Agreements and Local KB admin
+* ERM-2461 Bump ui-local-kb-admin erm-components dep
+* ERM-2392 Add erm.packages.collection.import to UI perm set
+* FAT-83 ui-local-kb-admin: UI tests replacement with RTL/Jest
+  * ERM-2528 Add test coverage for ui-local-kb-admin <ProxyServerSettingsView>
+  * ERM-2527 Add test coverage for ui-local-kb-admin <ProxyServerSettingsListFieldArray>
+  * ERM-2526 Add test coverage for ui-local-kb-admin <ExternalDataSourcesForm>
+  * ERM-2525 Add test coverage for ui-local-kb-admin <ProxyServerSettingsFields>
+  * ERM-2524 Add test coverage for ui-local-kb-admin <ProxyServerSettingsEdit>
+  * ERM-2523 Add test coverage for ui-local-kb-admin <ExternalDataSourcesListFieldArray>
+  * ERM-2522 Add test coverage for ui-local-kb-admin <ExternalDataSourcesListFieldArray>
+  * ERM-2521 Add test coverage for ui-local-kb-admin <ExternalDataSourcesFields>
+  * ERM-2520 Add test coverage for ui-local-kb-admin <ExternalDataSourcesFields>
+  * ERM-2519 Add test coverage for ui-local-kb-admin <Jobs>
+  * ERM-2518 Add test coverage for ui-local-kb-admin <JobInfo>
+  * ERM-2517 Add test coverage for ui-local-kb-admin <JobInfo>
+  * ERM-2516 Refactor local-kb-admin routes
+  * ERM-1519 Add test coverage for ui-local-kb-admin <ProxyServerSettingsRoute>
+  * ERM-1518 Add test coverage for ui-local-kb-admin <ExternalDataSourcesSettingsRoute>
+  * ERM-1515 Add test coverage for ui-local-kb-admin <JobsRoute>
+  * ERM-1514 Add test coverage for ui-local-kb-admin <JobViewRoute>
+  * ERM-1513 Add test coverage for ui-local-kb-admin <JobViewRoute>
+  * ERM-1303 Add test coverage for ui-local-kb-admin <JobCreateRoute>
+  * ERM-1242 Add test coverage for ui-local-kb-admin <Logs>
 
 ## 5.3.0 2022-10-27
 * ERM-2323 stripes-erm-components should be a peer
