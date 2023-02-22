@@ -1,4 +1,7 @@
 # Change history for ui-local-kb-admin
+
+## 6.1.0 In progress
+
 ## 6.0.0 2023-02-22
 * ERM-2637 ProxyServer Settings page breaks when cancel the first and only entry
 * ERM-2618 Remove unneeded `react-redux`
