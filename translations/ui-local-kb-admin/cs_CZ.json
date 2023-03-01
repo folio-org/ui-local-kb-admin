@@ -15,7 +15,7 @@
     "prop.started": "Zahájeno",
     "prop.status": "Stav běhu",
     "org.olf.general.jobs.PackageIngestJob": "Harvestor",
-    "infoLogNo": "Žádná informační oznámení pro tuto úlohu.",
+    "infoLogNo": "Žádná informační notifikace pro tuto úlohu.",
     "errorLogNo": "Žádné chyby k nahlášení.",
     "columns.errorLogMessage": "Chyba",
     "columns.infoLogMessage": "Zpráva",
