@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { useStripes } from '@folio/stripes/core';
 import { Button, Card, Col, Icon, KeyValue, Layout, Modal, ModalFooter, NoValue, Row } from '@folio/stripes/components';
 import { ActionMenu, CustomMetaSection } from '@folio/stripes-erm-components';
 import useDisplayMetaInfo from '../useDisplayMetaInfo';
@@ -14,6 +15,9 @@ const ExternalDataSourcesView = ({
 }) => {
   const { syncStatus, cursor, lastChecked } = useDisplayMetaInfo(value);
   const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
+
+  const stripes = useStripes();
+  const perm = stripes.hasPerm('ui-local-kb-admin.kbs.manage');
 
   const hours = moment.utc().diff(moment.utc(value.lastCheck), 'hours');
   const messageType = hours >= 24 ? 'active' : 'passive';
@@ -115,7 +119,7 @@ const ExternalDataSourcesView = ({
     <>
       <Card
         data-test-external-data-source-view
-        headerEnd={<ActionMenu actionMenu={getActionMenu} />}
+        headerEnd={perm && <ActionMenu actionMenu={getActionMenu} />}
         headerStart={<strong><FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.externalDataSource" /></strong>}
       >
         {showConfirmResetSyncStatus && renderModal()}
