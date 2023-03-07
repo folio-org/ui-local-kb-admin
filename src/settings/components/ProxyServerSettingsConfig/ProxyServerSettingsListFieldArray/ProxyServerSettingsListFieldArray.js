@@ -11,7 +11,7 @@ const ProxyServerSettingsListFieldArray = ({ fields, mutators, onDelete, onSave,
   const [disableNewButton, setDisableNewButton] = useState(false);
 
   const stripes = useStripes();
-  const perm = stripes.hasPerm('ui-local-kb-admin.kbs.manage');
+  const perm = stripes.hasPerm('ui-local-kb-admin.proxyServer.manage');
 
   const defaultValues = {};
 
