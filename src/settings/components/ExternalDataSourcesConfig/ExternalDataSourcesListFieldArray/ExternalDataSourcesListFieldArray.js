@@ -60,7 +60,7 @@ const ExternalDataSourcesListFieldArray = ({ fields, mutators, onDelete, onSave 
         </Col>
       </Row>
       {fields.value.map((externalkb, i) => (
-        <div key={i} data-testid={`externalDataSourcesListFieldArray[${i}]`}>
+        <div key={`externalkb.${externalkb.id}`} data-testid={`externalDataSourcesListFieldArray[${i}]`}>
           <Field
             key={externalkb.id || 'new'}
             component={ExternalDataSourcesFields}
