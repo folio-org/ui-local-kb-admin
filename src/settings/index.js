@@ -15,12 +15,13 @@ export default class LocalKbAdminSettings extends React.Component {
         {
           component: ExternalDataSourcesSettingsRoute,
           label: <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources" />,
-          perm: 'ui-local-kb-admin.kbs.manage',
+          perm: 'ui-local-kb-admin.kbs.view',
           route: 'external-data-sources',
         },
         {
           component: ProxyServerSettingsRoute,
           label: <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings" />,
+          perm: 'ui-local-kb-admin.proxyServer.view',
           route: 'proxy-server-settings',
         }
       ]
