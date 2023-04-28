@@ -120,7 +120,7 @@
     "settings.proxyServerSettings.callout.save.success": "La configuración del servidor proxy se ha guardado correctamente.",
     "settings.proxyServerSettings.callout.save.error": "Se ha producido un error al guardar la configuración del servidor proxy. {error}",
     "settings.proxyServerSettings.callout.delete.success": "La configuración del servidor proxy se ha eliminado correctamente.",
-    "settings.proxyServerSettings.callout.delete.error": "There was an error deleting the proxy server setting.{error}",
+    "settings.proxyServerSettings.callout.delete.error": "Se produjo un error al eliminar la configuración del servidor proxy. {error}",
     "settings.proxyServerSettings.nameExists": "Este nombre ya existe",
     "settings.proxyServerSettings.urlCustomizationCode.helpers": "Ayudantes: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
     "jobType": "Tipo de trabajo",
