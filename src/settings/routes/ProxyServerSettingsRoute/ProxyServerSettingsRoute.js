@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { cloneDeep, isEmpty } from 'lodash';
 
-import { useBatchedFetch } from '@folio/stripes-erm-components';
+import { useParallelBatchFetch } from '@folio/stripes-erm-components';
 import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
@@ -44,10 +44,10 @@ const ProxyServerSettingsRoute = () => {
 
   // Batch fetch platforms (Up to 1000)
   const {
-    results: platforms,
-  } = useBatchedFetch({
-    nsArray: ['ERM', 'Platforms', PLATFORMS_ENDPOINT],
-    path: PLATFORMS_ENDPOINT
+    items: platforms
+  } = useParallelBatchFetch({
+    endpoint: PLATFORMS_ENDPOINT,
+    generateQueryKey: ({ offset }) => ['ERM', 'Platforms', PLATFORMS_ENDPOINT, offset],
   });
 
   const { mutateAsync: postTemplate } = useMutation(
