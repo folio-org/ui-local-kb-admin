@@ -111,7 +111,7 @@
     "settings.proxyServerSettings.urlCustomizationCode.variables": "Variáveis: inputUrl, platformLocalCode",
     "settings.proxyServerSettings.proxyServerSetting": "Configuração do servidor proxy",
     "settings.proxyServerSettings.urlCustomizationCode": "Código de customização de URL",
-    "settings.proxyServerSettings.urlCustomizationCode.info": "O modelo que será usado para gerar um URL proxiado.",
+    "settings.proxyServerSettings.urlCustomizationCode.info": "O modelo que será usado para gerar uma URL proxiada.",
     "settings.urlCustomizationCode.learnMore": "Saiba mais",
     "settings.proxyServerSettings.editProxyServerSetting": "Editar configuração do servidor proxy",
     "settings.proxyServerSettings.delete.confirmLabel": "Excluir",
