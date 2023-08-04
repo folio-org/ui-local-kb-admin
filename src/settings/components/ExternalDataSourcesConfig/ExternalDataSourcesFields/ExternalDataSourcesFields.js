@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { FormattedMessage } from 'react-intl';
@@ -7,95 +7,89 @@ import { ConfirmationModal } from '@folio/stripes/components';
 import ExternalDataSourcesEdit from '../ExternalDataSourcesEdit';
 import ExternalDataSourcesView from '../ExternalDataSourcesView';
 
-export default class ExternalDataSourcesFields extends React.Component {
-  static propTypes = {
-    input: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      value: PropTypes.shape({
-        id: PropTypes.string,
-        name: PropTypes.string,
-      }).isRequired,
-    }).isRequired,
-    mutators: PropTypes.shape({
-      setExternalDataSourceValue: PropTypes.func,
-    }),
-    onDelete: PropTypes.func.isRequired,
-    onSave: PropTypes.func.isRequired,
-  }
+const ExternalDataSourcesFields = (props) => {
+  const {
+    input: { name, value },
+    onDelete,
+    onSave,
+    mutators,
+  } = props;
+  const [editing, setEditing] = useState(!value?.id);
+  const [initialValue, setInitialValue] = useState(value);
 
-  constructor(props) {
-    super(props);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
-    const { value } = props.input;
+  const handleEdit = () => {
+    setInitialValue(value);
+    setEditing(true);
+  };
 
-    this.state = {
-      editing: !(value && value.id),
-      initialValue: value,
-    };
-  }
-
-  handleEdit = () => {
-    this.setState({
-      initialValue: this.props.input.value,
-      editing: true,
-    });
-  }
-
-  handleCancel = () => {
-    const {
-      input: { name, value },
-      onDelete,
-    } = this.props;
-
+  const handleCancel = () => {
     if (value.id) {
-      this.props.mutators.setExternalDataSourceValue(name, this.state.initialValue);
+      mutators.setExternalDataSourceValue(name, initialValue);
     } else {
       onDelete();
     }
 
-    this.setState({
-      editing: false,
-    });
-  }
+    setEditing(false);
+  };
 
-  handleSave = () => {
-    this.props.onSave()
-      .then(() => this.setState({ editing: false }));
-  }
+  const handleSave = () => {
+    onSave()
+      .then(() => setEditing(false));
+  };
 
-  showDeleteConfirmationModal = () => this.setState({ showConfirmDelete: true });
+  const showDeleteConfirmationModal = () => setShowConfirmDelete(true);
 
-  hideDeleteConfirmationModal = () => this.setState({ showConfirmDelete: false });
+  const hideDeleteConfirmationModal = () => setShowConfirmDelete(false);
 
-  render() {
-    const ExternalDataSourceComponent = this.state.editing ? ExternalDataSourcesEdit : ExternalDataSourcesView;
-    const custPropName = this.props?.input?.value?.name;
-    return (
-      <>
-        <ExternalDataSourceComponent
-          {...this.props}
-          onCancel={this.handleCancel}
-          onDelete={this.showDeleteConfirmationModal}
-          onEdit={this.handleEdit}
-          onSave={this.handleSave}
+  const ExternalDataSourceComponent = editing ? ExternalDataSourcesEdit : ExternalDataSourcesView;
+  const custPropName = value?.name;
+  return (
+    <>
+      <ExternalDataSourceComponent
+        {...props}
+        onCancel={handleCancel}
+        onDelete={showDeleteConfirmationModal}
+        onEdit={handleEdit}
+        onSave={handleSave}
+      />
+      {showConfirmDelete && (
+        <ConfirmationModal
+          buttonStyle="danger"
+          confirmLabel={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmLabel" />}
+          data-test-confirmationModal
+          heading={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmHeading" />}
+          id="delete-external-data-source-confirmation"
+          message={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmMessage" values={{ name: custPropName }} />}
+          onCancel={hideDeleteConfirmationModal}
+          onConfirm={() => {
+            onDelete();
+            hideDeleteConfirmationModal();
+          }}
+          open
         />
-        {this.state.showConfirmDelete && (
-          <ConfirmationModal
-            buttonStyle="danger"
-            confirmLabel={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmLabel" />}
-            data-test-confirmationModal
-            heading={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmHeading" />}
-            id="delete-external-data-source-confirmation"
-            message={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmMessage" values={{ name: custPropName }} />}
-            onCancel={this.hideDeleteConfirmationModal}
-            onConfirm={() => {
-              this.props.onDelete();
-              this.hideDeleteConfirmationModal();
-            }}
-            open
-          />
-        )}
-      </>
-    );
-  }
+      )}
+    </>
+  );
 }
+
+ExternalDataSourcesFields.propTypes = {
+  input: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    value: PropTypes.oneOfType([
+      PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string,
+      }),
+      PropTypes.string
+    ]).isRequired,
+  }).isRequired,
+  mutators: PropTypes.shape({
+    setExternalDataSourceValue: PropTypes.func,
+  }),
+  onDelete: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
+}
+
+export default ExternalDataSourcesFields;

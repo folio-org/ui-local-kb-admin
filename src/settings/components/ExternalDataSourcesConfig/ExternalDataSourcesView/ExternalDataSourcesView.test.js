@@ -1,7 +1,14 @@
-import React from 'react';
+import { Field } from 'react-final-form';
 
-import { renderWithIntl } from '@folio/stripes-erm-testing';
-import { Button, KeyValue, Modal } from '@folio/stripes-testing';
+import {
+  Button,
+  KeyValue,
+  Modal,
+  TestForm,
+  renderWithIntl
+} from '@folio/stripes-erm-testing';
+
+import { waitFor } from '@folio/jest-config-stripes/testing-library/react';
 import translationsProperties from '../../../../../test/helpers';
 import ExternalDataSourcesView from './ExternalDataSourcesView';
 
@@ -9,46 +16,46 @@ const onDeleteMock = jest.fn();
 const onEditMock = jest.fn();
 const onSaveMock = jest.fn();
 
-const inputIdle = {
-  'name': 'externalKbs[0]',
-  'value': {
-    'id': '3a8535b5-2002-405d-9bbd-1e43926ae2c2',
-    'cursor': '2021-09-14T08:22:05Z',
-    'active': true,
-    'trustedSourceTI': false,
-    'activationEnabled': true,
-    'credentials': 'test_credentials',
-    'readonly': false,
-    'syncStatus': 'idle',
-    'lastCheck': 1634327142473,
-    'name': 'GOKb_TEST',
-    'type': 'org.olf.kb.adapters.GOKbOAIAdapter',
-    'principal': 'test_principal',
-    'listPrefix': 'testPrefix',
-    'fullPrefix': 'gokb',
-    'uri': 'https://gokbt.gbv.de/gokb/oai/index',
-    'supportsHarvesting': true,
-    'rectype': 1
+const onSubmit = jest.fn();
+
+const idle = {
+  externalDataSource:{
+    id: '3a8535b5-2002-405d-9bbd-1e43926ae2c2',
+    cursor: '2021-09-14T08:22:05Z',
+    active: true,
+    trustedSourceTI: false,
+    activationEnabled: true,
+    credentials: 'test_credentials',
+    readonly: false,
+    syncStatus: 'idle',
+    lastCheck: 1634327142473,
+    name: 'GOKb_TEST',
+    type: 'org.olf.kb.adapters.GOKbOAIAdapter',
+    principal: 'test_principal',
+    listPrefix: 'testPrefix',
+    fullPrefix: 'gokb',
+    uri: 'https://gokbt.gbv.de/gokb/oai/index',
+    supportsHarvesting: true,
+    rectype: 1
   }
 };
 
-const inputInProgress = {
-  'name': 'externalKbs[1]',
-  'value': {
-    'id': 'f45445d2-2f33-44c1-ae62-f96494501c57',
-    'cursor': '2021-12-07T10:44:56Z',
-    'active': true,
-    'trustedSourceTI': false,
-    'activationEnabled': false,
-    'readonly': false,
-    'syncStatus': 'in-progress',
-    'lastCheck': 1634327142473,
-    'name': 'GOKb_TEST',
-    'type': 'org.olf.kb.adapters.GOKbOAIAdapter',
-    'fullPrefix': 'gokb',
-    'uri': 'https://gokbt.gbv.de/gokb/oai/index',
-    'supportsHarvesting': true,
-    'rectype': 1
+const inProgress = {
+  externalDataSource: {
+    id: 'f45445d2-2f33-44c1-ae62-f96494501c57',
+    cursor: '2021-12-07T10:44:56Z',
+    active: true,
+    trustedSourceTI: false,
+    activationEnabled: false,
+    readonly: false,
+    syncStatus: 'in-progress',
+    lastCheck: 1634327142473,
+    name: 'GOKb_TEST',
+    type: 'org.olf.kb.adapters.GOKbOAIAdapter',
+    fullPrefix: 'gokb',
+    uri: 'https://gokbt.gbv.de/gokb/oai/index',
+    supportsHarvesting: true,
+    rectype: 1
   }
 };
 
@@ -58,12 +65,18 @@ describe('ExternalDataSourcesView', () => {
   describe('with syncStatus \'idle\'', () => {
     beforeEach(() => {
       renderComponent = renderWithIntl(
-        <ExternalDataSourcesView
-          input={inputIdle}
-          onDelete={onDeleteMock}
-          onEdit={onEditMock}
-          onSave={onSaveMock}
-        />,
+        <TestForm
+          initialValues={idle}
+          onSubmit={onSubmit}
+        >
+          <Field
+            component={ExternalDataSourcesView}
+            name="externalDataSource"
+            onDelete={onDeleteMock}
+            onEdit={onEditMock}
+            onSave={onSaveMock}
+          />
+        </TestForm>,
         translationsProperties
       );
     });
@@ -122,41 +135,73 @@ describe('ExternalDataSourcesView', () => {
     });
 
     test('clicking the edit/delete/reset buttons under the Actions dropdown', async () => {
-      await Button('Actions').click();
-      await Button('Reset cursor').click();
+      await waitFor(async () => {
+        await Button('Actions').click();
+        await Button('Reset cursor').click();
+      });
+
       expect(onSaveMock).toHaveBeenCalled();
       await Button('Reset sync status').has({ disabled: true });
-      await Button('Delete').click();
+      await waitFor(async () => {
+        await Button('Delete').click();
+      });
       expect(onDeleteMock).toHaveBeenCalled();
-      await Button('Edit').click();
+      await waitFor(async () => {
+        await Button('Edit').click();
+      });
       expect(onEditMock).toHaveBeenCalled();
     });
   });
 
   describe('with syncStatus \'in-progress\'', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       renderComponent = renderWithIntl(
-        <ExternalDataSourcesView
-          input={inputInProgress}
-          onDelete={onDeleteMock}
-          onEdit={onEditMock}
-          onSave={onSaveMock}
-        />,
+        <TestForm
+          initialValues={inProgress}
+          onSubmit={onSubmit}
+        >
+          <Field
+            component={ExternalDataSourcesView}
+            name="externalDataSource"
+            onDelete={onDeleteMock}
+            onEdit={onEditMock}
+            onSave={onSaveMock}
+          />
+        </TestForm>,
         translationsProperties
       );
+
+      await waitFor(async () => {
+        await Button('Actions').click();
+      });
     });
 
-    test('clicking the edit/delete/reset buttons under the Actions dropdown', async () => {
-      await Button('Actions').click();
-      await Button('Reset cursor').click();
+    test('clicking the edit button', async () => {
+      await waitFor(async () => {
+        await Button('Edit').click();
+      });
+      expect(onEditMock).toHaveBeenCalled();
+    });
+
+    test('clicking the delete button', async () => {
+      await waitFor(async () => {
+        await Button('Delete').click();
+      });
+      expect(onDeleteMock).toHaveBeenCalled();
+    });
+
+    test('clicking the reset buttons under the Actions dropdown', async () => {
+      await waitFor(async () => {
+        await Button('Reset cursor').click();
+      });
       expect(onSaveMock).toHaveBeenCalled();
-      await Button('Reset sync status').click();
+      await Button('Reset cursor').has({ disabled: true });
+
+      await waitFor(async () => {
+        await Button('Reset sync status').click();
+      });
       expect(onSaveMock).toHaveBeenCalled();
       await Modal('Reset sync status').exists();
-      await Button('Delete').click();
-      expect(onDeleteMock).toHaveBeenCalled();
-      await Button('Edit').click();
-      expect(onEditMock).toHaveBeenCalled();
     });
   });
 });

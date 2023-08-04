@@ -1,7 +1,4 @@
-import React from 'react';
-
-import { TestForm, renderWithIntl } from '@folio/stripes-erm-testing';
-import { Checkbox } from '@folio/stripes-testing';
+import { Checkbox, TestForm, renderWithIntl } from '@folio/stripes-erm-testing';
 
 import KbartFields from './KbartFields';
 import translationsProperties from '../../../../test/helpers';

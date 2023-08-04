@@ -1,29 +1,21 @@
-import PropTypes from 'prop-types';
-import { renderWithIntl } from '@folio/stripes-erm-testing';
-
 import { MemoryRouter } from 'react-router-dom';
+/*
+ * IMPORTANT -- in order to mock react query successfully
+ * below you must import it into the test
+ */
+import _ReactQuery from 'react-query';
 
-import { Button } from '@folio/stripes/components';
-import { Button as ButtonInteractor, Callout } from '@folio/stripes-testing';
+import { waitFor } from '@folio/jest-config-stripes/testing-library/react';
+
+import { Button as MockButton } from '@folio/stripes/components';
+import {
+  Button,
+  Callout,
+  renderWithIntl
+} from '@folio/stripes-erm-testing';
 
 import translationsProperties from '../../../../test/helpers/translationsProperties';
 import ExternalDataSourcesSettingsRoute from './ExternalDataSourcesSettingsRoute';
-
-const SaveButton = (props) => {
-  return <Button onClick={props.onSave}>SaveButton</Button>;
-};
-
-const DeleteButton = (props) => {
-  return <Button onClick={props.onDelete}>DeleteButton</Button>;
-};
-
-SaveButton.propTypes = {
-  onSave: PropTypes.func,
-};
-
-DeleteButton.propTypes = {
-  onDelete: PropTypes.func,
-};
 
 /* EXAMPLE Mocking useMutation to allow us to test the .then clause */
 jest.mock('react-query', () => {
@@ -41,8 +33,8 @@ jest.mock('../../components/ExternalDataSourcesConfig/ExternalDataSourcesForm', 
     return (
       <div>
         <div>ExternalDataSourcesForm</div>
-        <SaveButton {...props} />
-        <DeleteButton {...props} />
+        <MockButton onClick={props.onSave}>SaveButton</MockButton>
+        <MockButton onClick={props.onDelete}>DeleteButton</MockButton>
       </div>
     );
   };
@@ -88,12 +80,16 @@ describe('ExternalDataSourcesSettingsRoute', () => {
     });
 
     test('clicking on the SaveButton fires the callout', async () => {
-      await ButtonInteractor('SaveButton').click();
+      await waitFor(async () => {
+        await Button('SaveButton').click();
+      });
       await Callout('External data source successfully saved.').exists();
     });
 
     test('clicking on the DeleteButton fires the callout', async () => {
-      await ButtonInteractor('DeleteButton').click();
+      await waitFor(async () => {
+        await Button('DeleteButton').click();
+      });
       await Callout('External data source successfully deleted.').exists();
     });
   });
