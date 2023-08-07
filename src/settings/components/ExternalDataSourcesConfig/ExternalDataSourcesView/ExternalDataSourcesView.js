@@ -46,8 +46,8 @@ const ExternalDataSourcesView = ({
           <Button
             buttonStyle="danger"
             data-test-confirm-modal
-            onClick={async () => {
-              await change(`${name}.syncStatus`, 'idle');
+            onClick={() => {
+              change(`${name}.syncStatus`, 'idle');
               onSave();
               setShowConfirmResetSyncStatus(false);
             }}
@@ -95,8 +95,8 @@ const ExternalDataSourcesView = ({
         data-test-external-data-source-resetcursor
         disabled={!value.cursor}
         marginBottom0
-        onClick={async () => {
-          await change(`${name}.cursor`, null);
+        onClick={() => {
+          change(`${name}.cursor`, null);
           onSave();
         }}
       >
