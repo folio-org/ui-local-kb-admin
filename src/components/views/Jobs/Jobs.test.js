@@ -1,9 +1,14 @@
-import React from 'react';
-
-import { renderWithIntl } from '@folio/stripes-erm-testing';
 import { MemoryRouter } from 'react-router-dom';
-import { Pane, Button, TextField, MultiColumnList } from '@folio/stripes-testing';
 
+import {
+  Button,
+  MultiColumnList,
+  Pane,
+  renderWithIntl,
+  TextField,
+} from '@folio/stripes-erm-testing';
+
+import { waitFor } from '@folio/jest-config-stripes/testing-library/react';
 import translationsProperties from '../../../../test/helpers';
 import { data, searchString } from './testResources';
 import Jobs from './Jobs';
@@ -39,7 +44,9 @@ describe('Jobs', () => {
   });
 
   test('renders the expected Search and Reset all Button', async () => {
-    await TextField({ id: 'input-local-kb-admin-search' }).fillIn('test'); // enables the disabled buttons
+    await waitFor(async () => {
+      await TextField({ id: 'input-local-kb-admin-search' }).fillIn('test'); // enables the disabled buttons
+    });
     await Button('Search').exists();
     await Button('Reset all').exists();
   });

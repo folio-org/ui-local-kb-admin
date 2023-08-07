@@ -67,7 +67,7 @@ const ProxyServerSettingsRoute = () => {
 
   const getInitialValues = () => {
     return {
-      stringTemplates : cloneDeep(stringTemplates).map(stringTemplate => {
+      stringTemplates: cloneDeep(stringTemplates).map(stringTemplate => {
         const { idScopes = [] } = stringTemplate;
         return { ...stringTemplate,
           ...{ idScopes: (idScopes.length === 1 && idScopes[0] === '') ? [] : // condition needs to be taken off once the bug in webtoolkit is fixed

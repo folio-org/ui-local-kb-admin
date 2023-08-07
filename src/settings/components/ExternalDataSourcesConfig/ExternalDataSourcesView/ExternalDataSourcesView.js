@@ -1,18 +1,35 @@
 import { useState } from 'react';
-import moment from 'moment';
-import PropTypes from 'prop-types';
+
+import { useForm } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
+
+import PropTypes from 'prop-types';
+import moment from 'moment';
+
 import { useStripes } from '@folio/stripes/core';
-import { Button, Card, Col, Icon, KeyValue, Layout, Modal, ModalFooter, NoValue, Row } from '@folio/stripes/components';
+import {
+  Button,
+  Card,
+  Col,
+  Icon,
+  KeyValue,
+  Layout,
+  Modal,
+  ModalFooter,
+  NoValue,
+  Row
+} from '@folio/stripes/components';
 import { ActionMenu, CustomMetaSection } from '@folio/stripes-erm-components';
+
 import useDisplayMetaInfo from '../useDisplayMetaInfo';
 
 const ExternalDataSourcesView = ({
-  input: { value = {} },
+  input: { name, value = {} },
   onDelete,
   onEdit,
   onSave
 }) => {
+  const { change } = useForm();
   const { syncStatus, cursor, lastChecked } = useDisplayMetaInfo(value);
   const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
 
@@ -22,11 +39,6 @@ const ExternalDataSourcesView = ({
   const hours = moment.utc().diff(moment.utc(value.lastCheck), 'hours');
   const messageType = hours >= 24 ? 'active' : 'passive';
 
-  const handleResetCursor = () => {
-    value.cursor = null;
-    onSave();
-  };
-
   const renderModal = () => {
     const footer = (
       <ModalFooter>
@@ -35,7 +47,7 @@ const ExternalDataSourcesView = ({
             buttonStyle="danger"
             data-test-confirm-modal
             onClick={() => {
-              value.syncStatus = 'idle';
+              change(`${name}.syncStatus`, 'idle');
               onSave();
               setShowConfirmResetSyncStatus(false);
             }}
@@ -83,7 +95,10 @@ const ExternalDataSourcesView = ({
         data-test-external-data-source-resetcursor
         disabled={!value.cursor}
         marginBottom0
-        onClick={handleResetCursor}
+        onClick={() => {
+          change(`${name}.cursor`, null);
+          onSave();
+        }}
       >
         <Icon icon="refresh">
           <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetCursor" />
@@ -227,25 +242,28 @@ const ExternalDataSourcesView = ({
 ExternalDataSourcesView.propTypes = {
   input: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    value: PropTypes.shape({
-      activationEnabled: PropTypes.bool,
-      active: PropTypes.bool,
-      credentials: PropTypes.string,
-      fullPrefix: PropTypes.string,
-      id: PropTypes.string,
-      listPrefix: PropTypes.string,
-      name: PropTypes.string,
-      principal: PropTypes.string,
-      readonly: PropTypes.bool,
-      rectype: PropTypes.number,
-      supportsHarvesting: PropTypes.bool,
-      trustedSourceTI: PropTypes.bool,
-      type: PropTypes.string,
-      uri: PropTypes.string,
-      syncStatus: PropTypes.string,
-      cursor: PropTypes.string,
-      lastCheck: PropTypes.number
-    }).isRequired,
+    value: PropTypes.oneOfType([
+      PropTypes.shape({
+        activationEnabled: PropTypes.bool,
+        active: PropTypes.bool,
+        credentials: PropTypes.string,
+        fullPrefix: PropTypes.string,
+        id: PropTypes.string,
+        listPrefix: PropTypes.string,
+        name: PropTypes.string,
+        principal: PropTypes.string,
+        readonly: PropTypes.bool,
+        rectype: PropTypes.number,
+        supportsHarvesting: PropTypes.bool,
+        trustedSourceTI: PropTypes.bool,
+        type: PropTypes.string,
+        uri: PropTypes.string,
+        syncStatus: PropTypes.string,
+        cursor: PropTypes.string,
+        lastCheck: PropTypes.number
+      }),
+      PropTypes.string
+    ]).isRequired,
   }).isRequired,
   meta: PropTypes.shape({
     invalid: PropTypes.bool,

@@ -1,8 +1,17 @@
-import React from 'react';
 import { Field } from 'react-final-form';
 
-import { renderWithIntl, TestForm } from '@folio/stripes-erm-testing';
-import { Button, Select, TextArea, TextField, Checkbox } from '@folio/stripes-testing';
+import { waitFor } from '@folio/jest-config-stripes/testing-library/react';
+
+import {
+  Button,
+  Checkbox,
+  renderWithIntl,
+  Select,
+  TestForm,
+  TextArea,
+  TextField,
+} from '@folio/stripes-erm-testing';
+
 import translationsProperties from '../../../../../test/helpers';
 
 import ExternalDataSourcesEdit from './ExternalDataSourcesEdit';
@@ -58,7 +67,9 @@ describe('ExternalDataSourcesEdit', () => {
   });
 
   test('clicking the Cancel button works as expected', async () => {
-    await Button('Cancel').click();
+    await waitFor(async () => {
+      await Button('Cancel').click();
+    });
     expect(onCancelMock).toHaveBeenCalled();
   });
 
@@ -68,13 +79,17 @@ describe('ExternalDataSourcesEdit', () => {
 
   test('renders the Type dropdown with correct options', async () => {
     await Select('Type*').exists();
-    await Select('Type*').choose('org.olf.kb.adapters.GOKbOAIAdapter');
+    await waitFor(async () => {
+      await Select('Type*').choose('org.olf.kb.adapters.GOKbOAIAdapter');
+    });
   });
 
   test('renders the Record type dropdown with correct options', async () => {
     await Select('Record type*').exists();
-    await Select('Record type*').choose('Package');
-    await Select('Record type*').choose('Title');
+    await waitFor(async () => {
+      await Select('Record type*').choose('Package');
+      await Select('Record type*').choose('Title');
+    });
   });
 
   test('renders the URI field', async () => {

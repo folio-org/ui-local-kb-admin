@@ -1,7 +1,11 @@
-import React from 'react';
+import {
+  Button,
+  FormattedDateTime,
+  KeyValue,
+  renderWithIntl
+} from '@folio/stripes-erm-testing';
 
-import { renderWithIntl, FormattedDateTimeInteractor } from '@folio/stripes-erm-testing';
-import { Button, KeyValue } from '@folio/stripes-testing';
+import { waitFor } from '@folio/jest-config-stripes/testing-library/react';
 import translationsProperties from '../../../../test/helpers';
 import JobInfo from './JobInfo';
 
@@ -88,13 +92,13 @@ describe('JobInfo', () => {
     });
 
     test('renders the expcected Started date and time', async () => {
-      await FormattedDateTimeInteractor({ id: 'started-datetime' }).has({ date: '12/8/2022' });
-      await FormattedDateTimeInteractor({ id: 'started-datetime' }).has({ time: '1:55 PM' });
+      await FormattedDateTime({ id: 'started-datetime' }).has({ date: '12/8/2022' });
+      await FormattedDateTime({ id: 'started-datetime' }).has({ time: '1:55 PM' });
     });
 
     test('renders the expcected Ended date and time', async () => {
-      await FormattedDateTimeInteractor({ id: 'ended-datetime' }).has({ date: '12/8/2022' });
-      await FormattedDateTimeInteractor({ id: 'ended-datetime' }).has({ time: '1:55 PM' });
+      await FormattedDateTime({ id: 'ended-datetime' }).has({ date: '12/8/2022' });
+      await FormattedDateTime({ id: 'ended-datetime' }).has({ time: '1:55 PM' });
     });
 
     test('renders the expected Errors value', async () => {
@@ -110,8 +114,11 @@ describe('JobInfo', () => {
     });
 
     test('renders dropdwon action/delete buttons', async () => {
-      await Button('Actions').click();
-      await Button('Delete').click();
+      await waitFor(async () => {
+        await Button('Actions').click();
+        await Button('Delete').click();
+      });
+
       expect(onDeleteMock).toHaveBeenCalled();
     });
 

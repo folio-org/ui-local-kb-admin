@@ -1,8 +1,6 @@
-import React from 'react';
 import { Field } from 'react-final-form';
 
-import { renderWithIntl, TestForm } from '@folio/stripes-erm-testing';
-import { Button, KeyValue } from '@folio/stripes-testing';
+import { Button, KeyValue, renderWithIntl, TestForm } from '@folio/stripes-erm-testing';
 
 import translationsProperties from '../../../../../test/helpers';
 import ProxyServerSettingsView from './ProxyServerSettingsView';

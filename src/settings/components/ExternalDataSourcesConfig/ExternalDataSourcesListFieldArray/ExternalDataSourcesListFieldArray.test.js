@@ -1,8 +1,12 @@
-import React from 'react';
-import { renderWithIntl, TestForm } from '@folio/stripes-erm-testing';
 import { FieldArray } from 'react-final-form-arrays';
-import { Button } from '@folio/stripes-testing';
 
+import {
+  Button,
+  renderWithIntl,
+  TestForm
+} from '@folio/stripes-erm-testing';
+
+import { waitFor } from '@folio/jest-config-stripes/testing-library/react';
 import translationsProperties from '../../../../../test/helpers';
 import ExternalDataSourcesListFieldArray from './ExternalDataSourcesListFieldArray';
 
@@ -66,7 +70,9 @@ describe('ExternalDataSourcesListFieldArray', () => {
 
     it('clicking the new button opens a new empty field', async () => {
       const { getAllByText } = renderComponent;
-      await Button('New').click();
+      await waitFor(async () => {
+        await Button('New').click();
+      });
       expect(getAllByText('ExternalDataSourcesFields')).toHaveLength(2);
     });
   });

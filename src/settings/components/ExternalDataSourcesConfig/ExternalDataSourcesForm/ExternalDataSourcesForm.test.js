@@ -1,7 +1,6 @@
-import React from 'react';
-import { renderWithIntl } from '@folio/stripes-erm-testing';
 import { MemoryRouter } from 'react-router-dom';
-import { Pane } from '@folio/stripes-testing';
+
+import { Pane, renderWithIntl } from '@folio/stripes-erm-testing';
 
 import translationsProperties from '../../../../../test/helpers';
 import ExternalDataSourcesForm from './ExternalDataSourcesForm';

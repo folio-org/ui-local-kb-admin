@@ -1,9 +1,7 @@
-import React from 'react';
-
-import { renderWithIntl } from '@folio/stripes-erm-testing';
 import { MemoryRouter } from 'react-router-dom';
-import { Accordion, Button } from '@folio/stripes-testing';
-import userEvent from '@testing-library/user-event';
+
+import { Accordion, Button, renderWithIntl } from '@folio/stripes-erm-testing';
+import userEvent from '@folio/jest-config-stripes/testing-library/user-event';
 
 import translationsProperties from '../../../test/helpers';
 import Logs from './Logs';
