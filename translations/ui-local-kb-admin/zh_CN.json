@@ -33,7 +33,7 @@
     "settings.externalDataSources.type": "类型",
     "settings.externalDataSources.recordType": "记录类型",
     "settings.externalDataSources.uri": "URI",
-    "settings.externalDataSources.isActive": "活跃",
+    "settings.externalDataSources.isActive": "激活的",
     "settings.externalDataSources.supportsHarvesting": "支持收割",
     "settings.externalDataSources.activationEnabled": "启用激活",
     "settings.externalDataSources.listPrefix": "清单前缀",
