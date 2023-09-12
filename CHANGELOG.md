@@ -3,6 +3,7 @@
 ## 7.0.0 In progress
   * STRIPES-870 BREAKING upgrade react to v18
     * ERM-2985 upgrade ui-local-kb-admin React to v18
+  * ERM-3030 *BREAKING* bump `react-intl` to `v6.4.4`
 
 ## 6.0.0 2023-02-22
 * ERM-2637 ProxyServer Settings page breaks when cancel the first and only entry
