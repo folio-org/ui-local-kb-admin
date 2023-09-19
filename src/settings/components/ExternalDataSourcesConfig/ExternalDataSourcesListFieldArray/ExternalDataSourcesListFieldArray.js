@@ -41,9 +41,9 @@ const ExternalDataSourcesListFieldArray = ({
     setDisableNewButton(true);
   };
 
-  const handleSave = (index) => {
-    const externalkb = fields.value[index];
-
+  const handleSave = (index, value = null) => {
+    // workaround to get cursor and syncStatus values reset in ExternalDataSourcesView
+    const externalkb = value ?? fields.value[index];
     if (!externalkb.id) {
       setDisableNewButton(false);
     }
@@ -79,7 +79,7 @@ const ExternalDataSourcesListFieldArray = ({
               mutators={mutators}
               name={fieldName}
               onDelete={() => handleDelete(i)}
-              onSave={() => handleSave(i)}
+              onSave={(v) => handleSave(i, v)}
               // This `validate` appears stupid and like a no-op, but it's necessary because of the way
               // that RFF decides whether to run validation: https://github.com/final-form/final-form/pull/267
               // We want this Field to have validation info (meta.invalid) upon mount because some of the

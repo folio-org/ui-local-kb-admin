@@ -43,7 +43,7 @@ const ExternalDataSourcesEdit = ({
             data-test-external-data-source-save
             disabled={meta.invalid || meta.pristine || meta.submitting}
             marginBottom0
-            onClick={onSave}
+            onClick={() => onSave()}
           >
             <FormattedMessage id="stripes-core.button.save" />
           </Button>
