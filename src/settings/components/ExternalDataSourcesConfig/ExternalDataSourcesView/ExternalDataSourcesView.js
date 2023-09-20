@@ -49,7 +49,8 @@ const ExternalDataSourcesView = ({
             data-test-confirm-modal
             onClick={() => {
               change(`${name}.syncStatus`, 'idle');
-              onSave();
+              const newValue = { ...value, syncStatus: 'idle' };
+              onSave(newValue);
               setShowConfirmResetSyncStatus(false);
             }}
           >
