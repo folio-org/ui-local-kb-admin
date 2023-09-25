@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { useForm } from 'react-final-form';
+
 import { FormattedMessage } from 'react-intl';
 
 import PropTypes from 'prop-types';
@@ -48,7 +49,8 @@ const ExternalDataSourcesView = ({
             data-test-confirm-modal
             onClick={() => {
               change(`${name}.syncStatus`, 'idle');
-              onSave();
+              const newValue = { ...value, syncStatus: 'idle' };
+              onSave(newValue);
               setShowConfirmResetSyncStatus(false);
             }}
           >
@@ -97,7 +99,8 @@ const ExternalDataSourcesView = ({
         marginBottom0
         onClick={() => {
           change(`${name}.cursor`, null);
-          onSave();
+          const newValue = { ...value, cursor: null };
+          onSave(newValue);
         }}
       >
         <Icon icon="refresh">

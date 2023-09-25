@@ -34,8 +34,8 @@ const ExternalDataSourcesFields = (props) => {
     setEditing(false);
   };
 
-  const handleSave = () => {
-    onSave()
+  const handleSave = (v) => {
+    onSave(v)
       .then(() => setEditing(false));
   };
 
@@ -72,7 +72,7 @@ const ExternalDataSourcesFields = (props) => {
       )}
     </>
   );
-}
+};
 
 ExternalDataSourcesFields.propTypes = {
   input: PropTypes.shape({
@@ -90,6 +90,6 @@ ExternalDataSourcesFields.propTypes = {
   }),
   onDelete: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
-}
+};
 
 export default ExternalDataSourcesFields;

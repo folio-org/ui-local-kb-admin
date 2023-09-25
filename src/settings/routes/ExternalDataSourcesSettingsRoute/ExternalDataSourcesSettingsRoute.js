@@ -45,12 +45,18 @@ const ExternalDataSourcesSettingsRoute = () => {
 
   const { mutateAsync: postExternalKB } = useMutation(
     ['ERM', 'KBs', 'POST'],
-    (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json()
+    (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json().then(() => {
+      queryClient.invalidateQueries(['ERM', 'KBs']);
+    })
   );
 
   const { mutateAsync: putExternalKB } = useMutation(
     ['ERM', 'KBs', 'PUT'],
-    (payload) => ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json()
+    (payload) => {
+      ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json().then(() => {
+        queryClient.invalidateQueries(['ERM', 'KBs']);
+      });
+    }
   );
 
   const { mutateAsync: deleteExternalKB } = useMutation(
