@@ -4,9 +4,14 @@ import PropTypes from 'prop-types';
 import { generateKiwtQueryParams, useKiwtSASQuery } from '@k-int/stripes-kint-components';
 
 import { useOkapiKy } from '@folio/stripes/core';
-import { getRefdataValuesByDesc, useInfiniteFetch } from '@folio/stripes-erm-components';
+import {
+  getRefdataValuesByDesc,
+  useInfiniteFetch,
+  usePrevNextPagination,
+} from '@folio/stripes-erm-components';
 
 import View from '../../components/views/Jobs';
+
 import { JOBS_BASE_ENDPOINT, resultCount } from '../../constants';
 import { useLocalKBAdminRefdata } from '../../hooks';
 
@@ -35,12 +40,13 @@ const JobsRoute = ({
     ]
   });
 
-
   useEffect(() => {
     if (searchField.current) {
       searchField.current.focus();
     }
   }, []); // This isn't particularly great, but in the interests of saving time migrating, it will have to do
+
+  const { currentPage } = usePrevNextPagination();
 
   const jobsQueryParams = useMemo(() => (
     generateKiwtQueryParams({
@@ -56,6 +62,7 @@ const JobsRoute = ({
           { name: 'Naive match key assignment', value: 'org.olf.general.jobs.NaiveMatchKeyAssignmentJob' }
         ],
       }],
+      page: currentPage,
       filterKeys: {
         status: 'status.value',
         result: 'result.value'
@@ -68,25 +75,25 @@ const JobsRoute = ({
           value: 'org.olf.general.jobs.ComparisonJob'
         }
       ],
-      perPage: resultCount.RESULT_COUNT_INCREMENT
+      perPage: resultCount.RESULT_COUNT_INCREMENT_MEDIUM
     }, (query ?? {}))
-  ), [query]);
-
+  ), [currentPage, query]);
 
   const {
+    // data: { results: jobs = [], totalRecords: jobsCount = 0 } = {},
     infiniteQueryObject: {
       error: jobsError,
       fetchNextPage: fetchNextJobsPage,
       isLoading: areJobsLoading,
-      isIdle: isJobsIdle,
+      isLoading: areEresourcesLoading,
       isError: isJobsError
     },
     results: jobs = [],
     total: jobsCount = 0
   } = useInfiniteFetch(
     ['ERM', 'Jobs', jobsQueryParams, JOBS_BASE_ENDPOINT],
-    ({ pageParam = 0 }) => {
-      const params = [...jobsQueryParams, `offset=${pageParam}`];
+    () => {
+      const params = [...jobsQueryParams];
       return ky.get(`${JOBS_BASE_ENDPOINT}?${params?.join('&')}`).json();
     }
   );
@@ -105,7 +112,7 @@ const JobsRoute = ({
       selectedRecordId={match.params.id}
       source={{ // Fake source from useQuery return values;
         totalCount: () => jobsCount,
-        loaded: () => !isJobsIdle,
+        loaded: () => !areEresourcesLoading,
         pending: () => areJobsLoading,
         failure: () => isJobsError,
         failureMessage: () => jobsError.message
