@@ -106,7 +106,10 @@ const Jobs = ({
             const disableReset = () => (!filterChanged && !searchChanged);
             const filterCount = activeFilters.string ? activeFilters.string.split(',').length : 0;
             return (
-              <PersistedPaneset id="local-kb-admin-paneset">
+              <PersistedPaneset
+                appId="@folio/local-kb-admin"
+                id="local-kb-admin-paneset"
+              >
                 {filterPaneIsVisible &&
                   <Pane
                     defaultWidth="20%"
