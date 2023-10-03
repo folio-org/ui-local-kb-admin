@@ -12,8 +12,6 @@ import JobInfo from './JobInfo';
 const onDeleteMock = jest.fn();
 const onCloseMock = jest.fn();
 
-jest.mock('../../Logs', () => () => <div>Logs</div>);
-
 const data = {
   'job': {
     'id': '6eb739dc-04b5-4528-addd-f87730ed7bd6',
