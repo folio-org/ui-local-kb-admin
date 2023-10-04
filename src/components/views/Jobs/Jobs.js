@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 
-import { AppIcon } from '@folio/stripes/core';
+import { AppIcon, useStripes } from '@folio/stripes/core';
 import {
   usePrevNextPagination,
   FormattedDateTime
