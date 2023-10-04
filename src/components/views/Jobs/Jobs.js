@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import { FormattedMessage } from 'react-intl';
