@@ -19,9 +19,9 @@ const [
   RESULT,
   STATUS,
 ] = [
-  'PersistentJob.Result',
-  'PersistentJob.Status',
-];
+    'PersistentJob.Result',
+    'PersistentJob.Status',
+  ];
 
 const JobsRoute = ({
   children,
@@ -75,10 +75,10 @@ const JobsRoute = ({
           value: 'org.olf.general.jobs.ComparisonJob'
         }
       ],
-      perPage: resultCount.RESULT_COUNT_INCREMENT_MEDIUM_MEDIUM
+      perPage: resultCount.RESULT_COUNT_INCREMENT_MEDIUM
     }, (query ?? {}))
   ), [currentPage, query]);
-
+  
 
   const {
     // data: { results: jobs = [], totalRecords: jobsCount = 0 } = {},
