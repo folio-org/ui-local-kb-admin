@@ -78,7 +78,6 @@ const JobsRoute = ({
       perPage: resultCount.RESULT_COUNT_INCREMENT_MEDIUM
     }, (query ?? {}))
   ), [currentPage, query]);
-
   const {
     // data: { results: jobs = [], totalRecords: jobsCount = 0 } = {},
     infiniteQueryObject: {
