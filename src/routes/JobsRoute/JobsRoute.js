@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 import { generateKiwtQueryParams, useKiwtSASQuery } from '@k-int/stripes-kint-components';
 
 import { useOkapiKy } from '@folio/stripes/core';
-import { getRefdataValuesByDesc, useInfiniteFetch, usePrevNextPagination, useSASQQIndex } from '@folio/stripes-erm-components';
+import {
+  getRefdataValuesByDesc,
+  useInfiniteFetch,
+  usePrevNextPagination,
+} from '@folio/stripes-erm-components';
 
 import View from '../../components/views/Jobs';
+
 import { JOBS_BASE_ENDPOINT, resultCount } from '../../constants';
-import defaultQIndex from '../../constants/defaultQIndex';
 import { useLocalKBAdminRefdata } from '../../hooks';
 
 const [
@@ -43,11 +47,10 @@ const JobsRoute = ({
   }, []); // This isn't particularly great, but in the interests of saving time migrating, it will have to do
 
   const { currentPage } = usePrevNextPagination();
-  const { searchKey } = useSASQQIndex({ defaultQIndex });
 
   const jobsQueryParams = useMemo(() => (
     generateKiwtQueryParams({
-      searchKey,
+      searchKey: 'name',
       filterConfig: [{
         name: 'class',
         values: [
@@ -72,9 +75,10 @@ const JobsRoute = ({
           value: 'org.olf.general.jobs.ComparisonJob'
         }
       ],
-      perPage: resultCount.RESULT_COUNT_INCREMENT_MEDIUM
+      perPage: resultCount.RESULT_COUNT_INCREMENT_MEDIUM_MEDIUM
     }, (query ?? {}))
-  ), [currentPage, query, searchKey]);
+  ), [currentPage, query]);
+
 
   const {
     // data: { results: jobs = [], totalRecords: jobsCount = 0 } = {},
