@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
+
+import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
+
 import { AppIcon, useStripes } from '@folio/stripes/core';
 import {
   usePrevNextPagination,
-  useSASQQIndex,
   FormattedDateTime
 } from '@folio/stripes-erm-components';
 
@@ -73,11 +74,6 @@ const Jobs = ({
     pageSize: RESULT_COUNT_INCREMENT_MEDIUM
   });
 
-  const {
-    qIndexChanged,
-    qIndexSASQProps
-  } = useSASQQIndex();
-
   const [storedFilterPaneVisibility] = useLocalStorage(filterPaneVisibilityKey, true);
   const [filterPaneIsVisible, setFilterPaneIsVisible] = useState(storedFilterPaneVisibility);
   const toggleFilterPane = () => {
@@ -117,7 +113,6 @@ const Jobs = ({
   return (
     <div ref={contentRef} data-test-localkbadmin data-testid="jobs">
       <SearchAndSortQuery
-        {...qIndexSASQProps}
         {...paginationSASQProps}
         initialFilterState={{ status: ['queued', 'in_progress'] }}
         initialSortState={{ sort: '-started' }}
