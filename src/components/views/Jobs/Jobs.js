@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 
-import { AppIcon, useStripes } from '@folio/stripes/core';
+import { AppIcon } from '@folio/stripes/core';
 import {
   usePrevNextPagination,
   FormattedDateTime
@@ -131,10 +131,13 @@ const Jobs = ({
             searchChanged,
             resetAll,
           }) => {
-            const disableReset = () => (!filterChanged && !searchChanged && !qIndexChanged);
+            const disableReset = () => (!filterChanged && !searchChanged);
             const filterCount = activeFilters.string ? activeFilters.string.split(',').length : 0;
             return (
-              <PersistedPaneset id="local-kb-admin-paneset">
+              <PersistedPaneset
+                appId="@folio/local-kb-admin"
+                id="local-kb-admin-paneset"
+              >
                 {filterPaneIsVisible &&
                   <Pane
                     defaultWidth="20%"
