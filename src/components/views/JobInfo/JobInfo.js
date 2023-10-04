@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { FormattedDateTime } from '@folio/stripes-erm-components';
+import { FormattedDateTime, Logs } from '@folio/stripes-erm-components';
 
 import {
   AccordionSet,
@@ -22,9 +22,8 @@ import {
   collapseAllSections,
   expandAllSections
 } from '@folio/stripes/components';
-import { TitleManager, withStripes } from '@folio/stripes/core';
 
-import Logs from '../../Logs';
+import { TitleManager, withStripes } from '@folio/stripes/core';
 
 class JobInfo extends React.Component {
   static propTypes = {
@@ -227,10 +226,12 @@ class JobInfo extends React.Component {
                     </Row>
                     <AccordionSet initialStatus={this.getInitialAccordionsState()}>
                       <Logs
+                        allowExport
                         type="error"
                         {...this.getSectionProps('errorLogs')}
                       />
                       <Logs
+                        allowExport
                         type="info"
                         {...this.getSectionProps('infoLogs')}
                       />

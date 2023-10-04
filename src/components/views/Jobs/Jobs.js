@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import { FormattedMessage } from 'react-intl';
-import { AppIcon, useStripes } from '@folio/stripes/core';
+import PropTypes from 'prop-types';
+
+import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
+
+import { AppIcon } from '@folio/stripes/core';
 import {
   usePrevNextPagination,
-  useSASQQIndex,
   FormattedDateTime
 } from '@folio/stripes-erm-components';
 
@@ -73,11 +74,6 @@ const Jobs = ({
     pageSize: RESULT_COUNT_INCREMENT_MEDIUM
   });
 
-  const {
-    qIndexChanged,
-    qIndexSASQProps
-  } = useSASQQIndex();
-
   const [storedFilterPaneVisibility] = useLocalStorage(filterPaneVisibilityKey, true);
   const [filterPaneIsVisible, setFilterPaneIsVisible] = useState(storedFilterPaneVisibility);
   const toggleFilterPane = () => {
@@ -117,7 +113,6 @@ const Jobs = ({
   return (
     <div ref={contentRef} data-test-localkbadmin data-testid="jobs">
       <SearchAndSortQuery
-        {...qIndexSASQProps}
         {...paginationSASQProps}
         initialFilterState={{ status: ['queued', 'in_progress'] }}
         initialSortState={{ sort: '-started' }}
@@ -136,10 +131,13 @@ const Jobs = ({
             searchChanged,
             resetAll,
           }) => {
-            const disableReset = () => (!filterChanged && !searchChanged && !qIndexChanged);
+            const disableReset = () => (!filterChanged && !searchChanged);
             const filterCount = activeFilters.string ? activeFilters.string.split(',').length : 0;
             return (
-              <PersistedPaneset id="local-kb-admin-paneset">
+              <PersistedPaneset
+                appId="@folio/local-kb-admin"
+                id="local-kb-admin-paneset"
+              >
                 {filterPaneIsVisible &&
                   <Pane
                     defaultWidth="20%"
