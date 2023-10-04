@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import { FormattedMessage } from 'react-intl';
-import { AppIcon } from '@folio/stripes/core';
+import { AppIcon, useStripes } from '@folio/stripes/core';
 import {
   usePrevNextPagination,
   useSASQQIndex,
@@ -85,6 +85,34 @@ const Jobs = ({
     writeStorage(filterPaneVisibilityKey, !filterPaneIsVisible);
   };
 
+  const stripes = useStripes();
+
+  const getActionMenu = () => {
+    const buttons = [];
+    if (stripes.hasPerm('ui-local-kb-admin.jobs.edit')) {
+      buttons.push(
+        <Button
+          key="new-JSON-job-button"
+          buttonStyle="dropdownItem"
+          id="clickable-new-JSON-job"
+          to={`/local-kb-admin/create/JSON${searchString}`}
+        >
+          <FormattedMessage id="ui-local-kb-admin.job.JSONImportJob" />
+        </Button>
+      );
+      buttons.push(
+        <Button
+          key="new-KBART-job-button"
+          buttonStyle="dropdownItem"
+          id="clickable-new-KBART-job"
+          to={`/local-kb-admin/create/KBART${searchString}`}
+        >
+          <FormattedMessage id="ui-local-kb-admin.job.KBARTImportJob" />
+        </Button>
+      );
+    }
+    return buttons.length ? buttons : null;
+  };
 
   return (
     <div ref={contentRef} data-test-localkbadmin data-testid="jobs">
@@ -177,6 +205,7 @@ const Jobs = ({
                     </form>
                   </Pane>}
                 <Pane
+                  actionMenu={getActionMenu}
                   appIcon={<AppIcon app="local-kb-admin" />}
                   defaultWidth="fill"
                   firstMenu={
