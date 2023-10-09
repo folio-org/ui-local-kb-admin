@@ -107,8 +107,8 @@ describe('JobInfo', () => {
       await KeyValue('Job Type').has({ value: 'Title harvester' });
     });
 
-    test('renders expected Expand all button', async () => {
-      await Button('Expand all').exists();
+    test('renders expected Collapse all button', async () => {
+      await Button('Collapse all').exists();
     });
 
     test('renders dropdwon action/delete buttons', async () => {
