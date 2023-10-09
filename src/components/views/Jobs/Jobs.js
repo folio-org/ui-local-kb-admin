@@ -35,7 +35,6 @@ import css from './Jobs.css';
 const propTypes = {
   children: PropTypes.node,
   data: PropTypes.object,
-  onNeedMoreData: PropTypes.func,
   queryGetter: PropTypes.func,
   querySetter: PropTypes.func,
   searchField: PropTypes.object,
@@ -115,6 +114,7 @@ const Jobs = ({
       <SearchAndSortQuery
         {...paginationSASQProps}
         initialFilterState={{ status: ['queued', 'in_progress'] }}
+        initialSearchState={{ query: '' }}
         initialSortState={{ sort: '-started' }}
         queryGetter={queryGetter}
         querySetter={querySetter}
