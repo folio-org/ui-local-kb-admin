@@ -279,7 +279,6 @@ const Jobs = ({
                     sortDirection={sortOrder.startsWith('-') ? 'descending' : 'ascending'}
                     sortOrder={sortOrder.replace(/^-/, '').replace(/,.*/, '')}
                     totalCount={count}
-                    virtualize
                     visibleColumns={[
                       'jobname',
                       'runningStatus',
