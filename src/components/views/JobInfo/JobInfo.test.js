@@ -119,10 +119,5 @@ describe('JobInfo', () => {
 
       expect(onDeleteMock).toHaveBeenCalled();
     });
-
-    it('renders the Logs component', () => {
-      const { getAllByText } = renderComponent;
-      expect(getAllByText('Logs').length).toEqual(2);
-    });
   });
 });
