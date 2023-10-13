@@ -1,9 +1,20 @@
 # Change history for ui-local-kb-admin
 
-## 7.0.0 In progress
-  * STRIPES-870 BREAKING upgrade react to v18
-    * ERM-2985 upgrade ui-local-kb-admin React to v18
+## 7.0.0 2023-10-13
+  * ERM-3051 Default filters and sort not applied in Local KB Admin
+  * ERM-3045 Swap Logs component to prev-next pagination
   * ERM-3030 *BREAKING* bump `react-intl` to `v6.4.4`
+  * ERM-3024 Local KB admin external data source Reset cursor / Reset sync status do not work
+  * ERM-3001 Update Node.js to v18 in GitHub Actions
+  * ERM-2973 Replace naive fetch hooks with parallelised ones (and deprecate)
+    * ERM-2976 Switch to useParallelBatchFetch
+  * ERM-2641 Upgrade to Grails 5 (including Hibernate 5.6.x) for Poppy
+    * Added okapi interface dependency on new erm interface 6.0
+  * ERM-2633 Add view only settings for Local KB Admin
+  * ERM-2056 Local KB Admin - Implement MCL Next/Previous pagination
+    * ERM-3049 On Next/Previous pagination the page of results doesn't go to top of page
+  * STRIPES-870 *BREAKING* upgrade react to v18
+    * ERM-2985 upgrade ui-local-kb-admin React to v18
 
 ## 6.0.0 2023-02-22
 * ERM-2637 ProxyServer Settings page breaks when cancel the first and only entry
