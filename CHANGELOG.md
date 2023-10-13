@@ -1,6 +1,6 @@
 # Change history for ui-local-kb-admin
 
-## 7.0.0 2023-10-12
+## 7.0.0 2023-10-13
   * ERM-3051 Default filters and sort not applied in Local KB Admin
   * ERM-3045 Swap Logs component to prev-next pagination
   * ERM-3030 *BREAKING* bump `react-intl` to `v6.4.4`
