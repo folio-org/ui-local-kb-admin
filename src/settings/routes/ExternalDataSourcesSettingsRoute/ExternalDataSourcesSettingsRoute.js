@@ -7,7 +7,9 @@ import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
 
-import ExternalDataSourcesForm from '../../components/ExternalDataSourcesConfig/ExternalDataSourcesForm';
+// import ExternalDataSourcesForm from '../../components/ExternalDataSourcesConfig/ExternalDataSourcesForm';
+import ExternalDataSourcesSettings from '../../components/ExternalDataSourcesSettings/ExternalDataSourcesSettings';
+
 import { KBS_ENDPOINT } from '../../../constants/endpoints';
 
 const ExternalDataSourcesSettingsRoute = () => {
@@ -43,6 +45,7 @@ const ExternalDataSourcesSettingsRoute = () => {
     () => ky.get(`${KBS_ENDPOINT}?${KBsParams?.join('&')}`).json()
   );
 
+  console.log('externalKbs %o', externalKbs);
   const { mutateAsync: postExternalKB } = useMutation(
     ['ERM', 'KBs', 'POST'],
     (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json().then(() => {
@@ -106,8 +109,14 @@ const ExternalDataSourcesSettingsRoute = () => {
   };
 
   return (
-    <ExternalDataSourcesForm
-      initialValues={{ externalKbs }}
+    // <ExternalDataSourcesForm
+    //   initialValues={{ externalKbs }}
+    //   onDelete={handleDelete}
+    //   onSave={handleSave}
+    //   onSubmit={handleSave}
+    // />
+    <ExternalDataSourcesSettings
+      externalKbs={externalKbs}
       onDelete={handleDelete}
       onSave={handleSave}
       onSubmit={handleSave}
