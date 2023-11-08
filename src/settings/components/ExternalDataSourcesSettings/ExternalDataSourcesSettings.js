@@ -5,6 +5,7 @@ import { useStripes } from '@folio/stripes/core';
 import { Button, Col, Icon, KeyValue, MultiColumnList, NoValue, Pane, Row } from '@folio/stripes/components';
 import { CustomMetaSection } from '@folio/stripes-erm-components';
 import useDisplayMetaInfo from './useDisplayMetaInfo';
+import ExternalDataSourcesFormModal from './ExternalDataSourcesFormModal';
 
 const EDITING = 'edit';
 const CREATING = 'create';
@@ -29,36 +30,64 @@ const ExternalDataSourcesSettings = ({
   const getActionMenu = ({ onToggle }) => {
     const actionsArray = [];
     actionsArray.push(
-      <Button
-        key={`${externalDataSource.name}-action-edit`}
-        buttonStyle="dropdownItem"
-        data-test-external-data-source-edit
-        disabled={!perm}
-        marginBottom0
-        onClick={() => setMode(EDITING)}
-      >
-        <Icon icon="edit">
-          <FormattedMessage id="stripes-core.button.edit" />
-        </Icon>
-      </Button>
-    );
-    actionsArray.push(
-      <Button
-        key={`${externalDataSource.name}-action-delete`}
-        buttonStyle="dropdownItem"
-        data-test-external-data-source-delete
-        disabled={!perm}
-        marginBottom0
-        // onClick={onDelete}
-        onClick={() => {
-          setDeleteModal(true);
-          onToggle();
-        }}
-      >
-        <Icon icon="trash">
-          <FormattedMessage id="stripes-core.button.delete" />
-        </Icon>
-      </Button>
+      <>
+        <Button
+          key={`${externalDataSource.name}-action-edit`}
+          buttonStyle="dropdownItem"
+          data-test-external-data-source-edit
+          disabled={!perm}
+          marginBottom0
+          onClick={() => setMode(EDITING)}
+        >
+          <Icon icon="edit">
+            <FormattedMessage id="stripes-core.button.edit" />
+          </Icon>
+        </Button>
+        <Button
+          buttonStyle="dropdownItem"
+          data-test-external-data-source-resetcursor
+          disabled={!externalDataSource.cursor}
+          marginBottom0
+          onClick={() => {
+            console.log('cursor reset button clicked');
+            // change(`${name}.cursor`, null);
+            // const newValue = { ...value, cursor: null };
+            // onSave(newValue);
+          }}
+        >
+          <Icon icon="refresh">
+            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetCursor" />
+          </Icon>
+        </Button>
+        <Button
+          buttonStyle="dropdownItem"
+          data-test-external-data-source-resetsyncstatus
+          disabled={externalDataSource.syncStatus === 'idle'}
+          marginBottom0
+          onClick={() => console.log('reset sync Status button clicked')} // setShowConfirmResetSyncStatus(true)}
+        >
+          <Icon icon="refresh">
+            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetSyncStatus" />
+          </Icon>
+        </Button>
+
+        <Button
+          key={`${externalDataSource.name}-action-delete`}
+          buttonStyle="dropdownItem"
+          data-test-external-data-source-delete
+          disabled={!perm}
+          marginBottom0
+          // onClick={onDelete}
+          onClick={() => {
+            // setDeleteModal(true);
+            onToggle();
+          }}
+        >
+          <Icon icon="trash">
+            <FormattedMessage id="stripes-core.button.delete" />
+          </Icon>
+        </Button>
+      </>
     );
 
     return (actionsArray?.length ? actionsArray : null);
@@ -77,7 +106,8 @@ const ExternalDataSourcesSettings = ({
             disabled={!perm}
             id="clickable-new-external-datasource"
             marginBottom0
-            onClick={onSubmit}
+            // onClick={onSubmit}
+            onClick={() => setMode(CREATING)}
           >
             <FormattedMessage id="ui-local-kb-admin.job.new" />
           </Button>
@@ -109,55 +139,6 @@ const ExternalDataSourcesSettings = ({
         externalDataSource &&
         <Pane
           actionMenu={getActionMenu}
-          // actionMenu={({ onToggle }) => {
-          // const actionsArray = [];
-          // if (editCondition) {
-          //   actionsArray.push(
-          //     <Button
-          //       key={`${customProperty.name}-action-edit`}
-          //       buttonStyle="dropdownItem"
-          //       marginBottom0
-          //       onClick={() => setMode(EDITING)}
-          //     >
-          //       <Icon icon="edit">
-          //         {
-          //           kintIntl.formatKintMessage(
-          //             {
-          //               id: 'edit',
-          //               overrideValue: labelOverrides?.edit,
-          //             }
-          //           )
-          //         }
-          //       </Icon>
-          //     </Button>
-          //   );
-          // }
-          // if (deleteCondition) {
-          //   actionsArray.push(
-          //     <Button
-          //       key={`${customProperty.name}-action-delete`}
-          //       buttonStyle="dropdownItem"
-          //       marginBottom0
-          //       onClick={() => {
-          //         setDeleteModal(true);
-          //         onToggle();
-          //       }}
-          //     >
-          //       <Icon icon="trash">
-          //         {
-          //           kintIntl.formatKintMessage(
-          //             {
-          //               id: 'delete',
-          //               overrideValue: labelOverrides?.delete,
-          //             }
-          //           )
-          //         }
-          //       </Icon>
-          //     </Button>
-          //   );
-          // }
-          // return (actionsArray?.length ? actionsArray : null);
-          // }}
           defaultWidth="fill"
           dismissible
           id="settings-externalDataSources-viewPane"
@@ -260,6 +241,17 @@ const ExternalDataSourcesSettings = ({
           />
         </Pane>
       }
+      <ExternalDataSourcesFormModal
+        modalProps={{
+          dismissible: true,
+          label: mode === CREATING ?
+            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.newExternalDataSource" /> :
+            'name of existing data source',
+          onClose: () => setMode(VIEWING),
+          open: (mode === CREATING || mode === EDITING)
+        }}
+        onSubmit={onSubmit}
+      />
     </>
 
   );
