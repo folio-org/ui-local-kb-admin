@@ -6,6 +6,7 @@ import { Button, Col, Icon, KeyValue, MultiColumnList, NoValue, Pane, Row } from
 import { CustomMetaSection } from '@folio/stripes-erm-components';
 import useDisplayMetaInfo from './useDisplayMetaInfo';
 import ExternalDataSourcesFormModal from './ExternalDataSourcesFormModal';
+import ExternalDataSourceForm from './ExternalDataSourceForm';
 
 const EDITING = 'edit';
 const CREATING = 'create';
@@ -241,6 +242,7 @@ const ExternalDataSourcesSettings = ({
         </Pane>
       }
       <ExternalDataSourcesFormModal
+        initialValues={mode === EDITING && { ...externalDataSource }}
         modalProps={{
           dismissible: true,
           label: mode === CREATING ?
@@ -250,7 +252,10 @@ const ExternalDataSourcesSettings = ({
           open: (mode === CREATING || mode === EDITING)
         }}
         onSubmit={onSubmit}
-      />
+      >
+        <ExternalDataSourceForm />
+      </ExternalDataSourcesFormModal>
+
     </>
 
   );

@@ -5,11 +5,14 @@ import { Button, Modal, ModalFooter } from '@folio/stripes/components';
 
 const ExternalDataSourcesFormModal = ({
   modalProps: { footer, onClose, ...modalProps },
-  onSubmit
+  children,
+  onSubmit,
+  ...formProps
 }) => {
   return (
     <Form
       onSubmit={onSubmit}
+      {...formProps}
     >
       {({ handleSubmit, form: { getState, restart } }) => {
         const formState = getState();
@@ -54,8 +57,9 @@ const ExternalDataSourcesFormModal = ({
               footer={renderFooter()}
               onClose={handleClose}
               {...modalProps}
-            />
-            {/* </Modal> */}
+            >
+              {children}
+            </Modal>
           </form>
         );
       }}
@@ -64,6 +68,11 @@ const ExternalDataSourcesFormModal = ({
 };
 
 ExternalDataSourcesFormModal.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+    PropTypes.func,
+  ]),
   modalProps: PropTypes.shape({
     footer: PropTypes.func,
     onClose: PropTypes.func,
