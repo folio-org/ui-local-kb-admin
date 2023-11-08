@@ -94,7 +94,7 @@ const ExternalDataSourcesSettings = ({
     return (actionsArray?.length ? actionsArray : null);
   };
 
-  const renderHeader = renderProps => (
+  const renderSettingsHeader = renderProps => (
     <PaneHeader
       {...renderProps}
       lastMenu={perm ?
@@ -114,13 +114,23 @@ const ExternalDataSourcesSettings = ({
     />
   );
 
+  const renderViewHeader = renderProps => (
+    <PaneHeader
+      {...renderProps}
+      actionMenu={getActionMenu}
+      dismissible
+      onClose={() => setExternalDataSource()}
+      paneTitle={externalDataSource.name}
+    />
+  );
+
   return (
     <>
       <Pane
         data-test-external-data-sources
         defaultWidth="fill"
         id="settings-external-data-sources"
-        renderHeader={renderHeader}
+        renderHeader={renderSettingsHeader}
       >
         <MultiColumnList
           columnMapping={{
@@ -145,12 +155,9 @@ const ExternalDataSourcesSettings = ({
       {
         externalDataSource &&
         <Pane
-          actionMenu={getActionMenu}
           defaultWidth="fill"
-          dismissible
           id="settings-externalDataSources-viewPane"
-          onClose={() => setExternalDataSource()}
-          paneTitle={externalDataSource.name}
+          renderHeader={renderViewHeader}
         >
           <CustomMetaSection accordionLabel={syncStatus}>
             {cursor}
