@@ -29,66 +29,66 @@ const ExternalDataSourcesSettings = ({
 
   const getActionMenu = ({ onToggle }) => {
     const actionsArray = [];
-    actionsArray.push(
-      <>
-        <Button
-          key={`${externalDataSource.name}-action-edit`}
-          buttonStyle="dropdownItem"
-          data-test-external-data-source-edit
-          disabled={!perm}
-          marginBottom0
-          onClick={() => setMode(EDITING)}
-        >
-          <Icon icon="edit">
-            <FormattedMessage id="stripes-core.button.edit" />
-          </Icon>
-        </Button>
-        <Button
-          buttonStyle="dropdownItem"
-          data-test-external-data-source-resetcursor
-          disabled={!externalDataSource.cursor}
-          marginBottom0
-          onClick={() => {
-            console.log('cursor reset button clicked');
-            // change(`${name}.cursor`, null);
-            // const newValue = { ...value, cursor: null };
-            // onSave(newValue);
-          }}
-        >
-          <Icon icon="refresh">
-            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetCursor" />
-          </Icon>
-        </Button>
-        <Button
-          buttonStyle="dropdownItem"
-          data-test-external-data-source-resetsyncstatus
-          disabled={externalDataSource.syncStatus === 'idle'}
-          marginBottom0
-          onClick={() => console.log('reset sync Status button clicked')} // setShowConfirmResetSyncStatus(true)}
-        >
-          <Icon icon="refresh">
-            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetSyncStatus" />
-          </Icon>
-        </Button>
+    if (perm) {
+      actionsArray.push(
+        <>
+          <Button
+            key={`${externalDataSource.name}-action-edit`}
+            buttonStyle="dropdownItem"
+            data-test-external-data-source-edit
+            marginBottom0
+            onClick={() => setMode(EDITING)}
+          >
+            <Icon icon="edit">
+              <FormattedMessage id="stripes-core.button.edit" />
+            </Icon>
+          </Button>
+          <Button
+            buttonStyle="dropdownItem"
+            data-test-external-data-source-resetcursor
+            disabled={!externalDataSource.cursor}
+            marginBottom0
+            onClick={() => {
+              console.log('cursor reset button clicked');
+              // change(`${name}.cursor`, null);
+              // const newValue = { ...value, cursor: null };
+              // onSave(newValue);
+            }}
+          >
+            <Icon icon="refresh">
+              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetCursor" />
+            </Icon>
+          </Button>
+          <Button
+            buttonStyle="dropdownItem"
+            data-test-external-data-source-resetsyncstatus
+            disabled={externalDataSource.syncStatus === 'idle'}
+            marginBottom0
+            onClick={() => console.log('reset sync Status button clicked')}
+          >
+            <Icon icon="refresh">
+              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetSyncStatus" />
+            </Icon>
+          </Button>
 
-        <Button
-          key={`${externalDataSource.name}-action-delete`}
-          buttonStyle="dropdownItem"
-          data-test-external-data-source-delete
-          disabled={!perm}
-          marginBottom0
-          // onClick={onDelete}
-          onClick={() => {
-            // setDeleteModal(true);
-            onToggle();
-          }}
-        >
-          <Icon icon="trash">
-            <FormattedMessage id="stripes-core.button.delete" />
-          </Icon>
-        </Button>
-      </>
-    );
+          <Button
+            key={`${externalDataSource.name}-action-delete`}
+            buttonStyle="dropdownItem"
+            data-test-external-data-source-delete
+            marginBottom0
+            // onClick={onDelete}
+            onClick={() => {
+              // setDeleteModal(true);
+              onToggle();
+            }}
+          >
+            <Icon icon="trash">
+              <FormattedMessage id="stripes-core.button.delete" />
+            </Icon>
+          </Button>
+        </>
+      );
+    }
 
     return (actionsArray?.length ? actionsArray : null);
   };
@@ -99,18 +99,17 @@ const ExternalDataSourcesSettings = ({
         data-test-external-data-sources
         defaultWidth="fill"
         id="settings-external-data-sources"
-        lastMenu={
+        lastMenu={perm ?
           <Button
             buttonStyle="primary"
             data-test-external-data-source-new
-            disabled={!perm}
             id="clickable-new-external-datasource"
             marginBottom0
             // onClick={onSubmit}
             onClick={() => setMode(CREATING)}
           >
             <FormattedMessage id="ui-local-kb-admin.job.new" />
-          </Button>
+          </Button> : null
         }
         paneSub={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.sourceCount" values={{ count }} />}
         paneTitle={<FormattedMessage id="ui-local-kb-admin.section.externalDataSources" />}
