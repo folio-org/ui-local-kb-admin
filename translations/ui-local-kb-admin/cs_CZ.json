@@ -108,7 +108,7 @@
     "settings.proxyServerSettings.proxyServerSetting": "Nastavení proxy serveru",
     "settings.proxyServerSettings.urlCustomizationCode": "Kód přizpůsobení URL",
     "settings.proxyServerSettings.urlCustomizationCode.info": "Šablona, která bude použita k vygenerování proxy URL.",
-    "settings.urlCustomizationCode.learnMore": "Zjistěte více",
+    "settings.urlCustomizationCode.learnMore": "Zjistit více",
     "settings.proxyServerSettings.editProxyServerSetting": "Upravit nastavení proxy serveru",
     "settings.proxyServerSettings.delete.confirmLabel": "Smazat",
     "settings.proxyServerSettings.delete.confirmHeading": "Smazat nastavení proxy serveru",
