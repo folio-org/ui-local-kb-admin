@@ -19,6 +19,12 @@ const ExternalDataSourcesFormModal = ({
         const handleClose = (e) => {
           onClose(e);
           restart();
+          console.log('handle close clicked');
+        };
+
+        const saveAndCloseForm = e => {
+          handleSubmit();
+          handleClose(e);
         };
 
         const renderFooter = () => {
@@ -33,7 +39,7 @@ const ExternalDataSourcesFormModal = ({
                 buttonStyle="primary"
                 disabled={submitting || invalid || pristine}
                 marginBottom0
-                onClick={handleSubmit}
+                onClick={saveAndCloseForm}
                 type="submit"
               >
                 <FormattedMessage id="stripes-components.saveAndClose" />

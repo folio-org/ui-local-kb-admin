@@ -6,10 +6,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
-
-import ExternalDataSourcesForm from '../../components/ExternalDataSourcesConfig/ExternalDataSourcesForm';
 import ExternalDataSourcesSettings from '../../components/ExternalDataSourcesSettings/ExternalDataSourcesSettings';
-
 import { KBS_ENDPOINT } from '../../../constants/endpoints';
 
 const ExternalDataSourcesSettingsRoute = () => {
@@ -17,7 +14,6 @@ const ExternalDataSourcesSettingsRoute = () => {
   const callout = useCallout();
 
   const queryClient = useQueryClient();
-
   const sendCallout = (operation, outcome, error = '') => {
     callout.sendCallout({
       type: outcome,
@@ -73,7 +69,7 @@ const ExternalDataSourcesSettingsRoute = () => {
     } else {
       promise = postExternalKB(externalKb);
     }
-
+    console.log('handle save externalKb%o', externalKb);
     return promise
       .then(() => {
         sendCallout('save', 'success');
@@ -93,6 +89,8 @@ const ExternalDataSourcesSettingsRoute = () => {
   const handleDelete = (externalKb) => {
     return deleteExternalKB(externalKb)
       .then(() => {
+        console.log('externalKb%o', externalKb);
+
         sendCallout('delete', 'success');
         queryClient.invalidateQueries(['ERM', 'KBs']);
       })
@@ -107,15 +105,12 @@ const ExternalDataSourcesSettingsRoute = () => {
       });
   };
 
+  if (!externalKbs?.length) return <div />;
+
   return (
-    // <ExternalDataSourcesForm
-    //   initialValues={{ externalKbs }}
-    //   onDelete={handleDelete}
-    //   onSave={handleSave}
-    //   onSubmit={handleSave}
-    // />
     <ExternalDataSourcesSettings
       externalKbs={externalKbs}
+      initialValues={{ externalKbs }}
       onDelete={handleDelete}
       onSave={handleSave}
       onSubmit={handleSave}

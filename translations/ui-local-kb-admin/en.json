@@ -104,6 +104,7 @@
   "settings.externalDataSources.externalDataSource": "External data source",
   "settings.externalDataSources.editExternalDataSource": "Edit external data source",
   "settings.externalDataSources.newExternalDataSource": "New external data source",
+  "settings.externalDataSources.edit": "Edit {name}",
   "settings.externalDataSources.name": "Name",
   "settings.externalDataSources.type": "Type",
   "settings.externalDataSources.recordType": "Record type",

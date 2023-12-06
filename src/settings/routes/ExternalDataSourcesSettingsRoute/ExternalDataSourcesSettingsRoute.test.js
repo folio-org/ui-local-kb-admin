@@ -28,17 +28,7 @@ jest.mock('react-query', () => {
   });
 });
 
-jest.mock('../../components/ExternalDataSourcesConfig/ExternalDataSourcesForm', () => {
-  return (props) => {
-    return (
-      <div>
-        <div>ExternalDataSourcesForm</div>
-        <MockButton onClick={props.onSave}>SaveButton</MockButton>
-        <MockButton onClick={props.onDelete}>DeleteButton</MockButton>
-      </div>
-    );
-  };
-});
+jest.mock('../../components/ExternalDataSourcesSettings/ExternalDataSourcesSettings', () => () => <div>ExternalDataSourcesSettings</div>);
 
 const initialValues = {
   'externalKbs': [{
@@ -74,9 +64,9 @@ describe('ExternalDataSourcesSettingsRoute', () => {
       );
     });
 
-    test('renders the ExternalDataSourcesForm component', () => {
+    test('renders the ExternalDataSourcesSettings component', () => {
       const { getByText } = renderComponent;
-      expect(getByText('ExternalDataSourcesForm')).toBeInTheDocument();
+      expect(getByText('ExternalDataSourcesSettings')).toBeInTheDocument();
     });
 
     test('clicking on the SaveButton fires the callout', async () => {

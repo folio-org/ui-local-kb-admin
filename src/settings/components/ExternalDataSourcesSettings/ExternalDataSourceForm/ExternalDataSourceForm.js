@@ -1,30 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
-import { Field, useFormState, useForm } from 'react-final-form';
-import { Button, Card, Checkbox, Col, Layout, Row, Select, TextArea, TextField } from '@folio/stripes/components';
+import { Field, useFormState } from 'react-final-form';
+import { Checkbox, Col, Row, Select, TextArea, TextField } from '@folio/stripes/components';
 import { composeValidators, requiredValidator } from '@folio/stripes-erm-components';
-import { validateURLIsValid } from '../../../util/validators';
+import { validateURLIsValid } from '../../../../util/validators';
 
 const ExternalDataSourceForm = () => {
   const intl = useIntl();
   const { values } = useFormState();
-  // const { change } = useForm();
-
-  console.log('values %o', values);
-  // const validateUniqueName = (v, allValues) => {
-  //   // console.log('v %o', v);
-  //   // console.log('allValues %o', allValues);
-  //   const { externalKbs } = allValues;
-  //   const uniqueNameSources = externalKbs
-  //     .filter(ekb => ekb.name)
-  //     .filter(ekb => ekb.name.toLowerCase() === v.toLowerCase());
-  //   if (uniqueNameSources.length > 1) {
-  //     return <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.nameExists" />;
-  //   }
-
-  //   return undefined;
-  // };
 
   return (
     <>
@@ -39,7 +22,6 @@ const ExternalDataSourceForm = () => {
             required={!values.readonly}
             validate={composeValidators(
               requiredValidator,
-              // validateUniqueName
             )}
           />
         </Col>
@@ -171,8 +153,5 @@ const ExternalDataSourceForm = () => {
     </>
   );
 };
-
-// ExternalDataSourceForm.propTypes = {
-// };
 
 export default ExternalDataSourceForm;

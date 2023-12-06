@@ -1,32 +1,91 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import arrayMutators from 'final-form-arrays';
+import moment from 'moment';
+
 import { useStripes } from '@folio/stripes/core';
-import { Button, Col, Icon, KeyValue, MultiColumnList, NoValue, Pane, PaneHeader, Row } from '@folio/stripes/components';
+import {
+  Button,
+  Col,
+  Icon,
+  KeyValue,
+  MultiColumnList,
+  NoValue,
+  Pane,
+  PaneHeader,
+  Row,
+  ConfirmationModal,
+  Modal,
+  ModalFooter
+} from '@folio/stripes/components';
 import { CustomMetaSection } from '@folio/stripes-erm-components';
-import useDisplayMetaInfo from './useDisplayMetaInfo';
-import ExternalDataSourcesFormModal from './ExternalDataSourcesFormModal';
-import ExternalDataSourceForm from './ExternalDataSourceForm';
+
+import useDisplayMetaInfo from '../useDisplayMetaInfo';
+import ExternalDataSourcesFormModal from '../ExternaldataSourcesFormModal/ExternalDataSourcesFormModal';
+import ExternalDataSourceForm from '../ExternalDataSourceForm/ExternalDataSourceForm';
 
 const EDITING = 'edit';
 const CREATING = 'create';
 const VIEWING = 'view';
 
 const ExternalDataSourcesSettings = ({
-  externalKbs,
   onDelete,
+  onCancel,
   onSave,
-  onSubmit
+  externalKbs,
+  onSubmit,
 }) => {
   const stripes = useStripes();
   const perm = stripes.hasPerm('ui-local-kb-admin.kbs.manage');
   const count = externalKbs?.length ?? 0;
+  const hours = moment.utc().diff(moment.utc(externalKbs?.lastCheck), 'hours');
+  const messageType = hours >= 24 ? 'active' : 'passive';
+
   const [mode, setMode] = useState(VIEWING);
   const [externalDataSource, setExternalDataSource] = useState();
+  const [deleteModal, setDeleteModal] = useState(false);
   const { syncStatus, cursor, lastChecked } = useDisplayMetaInfo(externalDataSource);
+  const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
 
-  console.log('perm %o', perm);
-  console.log('externalDataSource %o', externalDataSource);
+  const renderModal = () => {
+    const footer = (
+      <ModalFooter>
+        {messageType === 'active' && (
+          <Button
+            buttonStyle="danger"
+            data-test-confirm-modal
+            onClick={() => {
+              const newValue = { ...externalDataSource, syncStatus: 'idle' };
+              onSave(newValue);
+              setShowConfirmResetSyncStatus(false);
+            }}
+          >
+            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.confirmLabel" />
+          </Button>
+        )}
+        <Button
+          data-test-cancel-modal
+          onClick={() => setShowConfirmResetSyncStatus(false)}
+        >
+          <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.cancelLabel" />
+        </Button>
+      </ModalFooter>
+    );
+    
+    return (
+      <Modal
+        enforceFocus={false}
+        footer={footer}
+        id="reset-syncstatus-confirmation"
+        label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetSyncStatus" />}
+        open
+        size="medium"
+      >
+        <FormattedMessage id={`ui-local-kb-admin.settings.externalDataSources.confirmMessage.${messageType}`} values={{ hours }} />
+      </Modal>
+    );
+  };
 
   const getActionMenu = ({ onToggle }) => {
     const actionsArray = [];
@@ -50,10 +109,8 @@ const ExternalDataSourcesSettings = ({
             disabled={!externalDataSource.cursor}
             marginBottom0
             onClick={() => {
-              console.log('cursor reset button clicked');
-              // change(`${name}.cursor`, null);
-              // const newValue = { ...value, cursor: null };
-              // onSave(newValue);
+              const newValue = { ...externalDataSource, cursor: null };
+              onSave(newValue);
             }}
           >
             <Icon icon="refresh">
@@ -65,21 +122,19 @@ const ExternalDataSourcesSettings = ({
             data-test-external-data-source-resetsyncstatus
             disabled={externalDataSource.syncStatus === 'idle'}
             marginBottom0
-            onClick={() => console.log('reset sync Status button clicked')}
+            onClick={() => setShowConfirmResetSyncStatus(true)}
           >
             <Icon icon="refresh">
               <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetSyncStatus" />
             </Icon>
           </Button>
-
           <Button
             key={`${externalDataSource.name}-action-delete`}
             buttonStyle="dropdownItem"
             data-test-external-data-source-delete
             marginBottom0
-            // onClick={onDelete}
             onClick={() => {
-              // setDeleteModal(true);
+              setDeleteModal(true);
               onToggle();
             }}
           >
@@ -103,7 +158,6 @@ const ExternalDataSourcesSettings = ({
           data-test-external-data-source-new
           id="clickable-new-external-datasource"
           marginBottom0
-          // onClick={onSubmit}
           onClick={() => setMode(CREATING)}
         >
           <FormattedMessage id="ui-local-kb-admin.job.new" />
@@ -159,6 +213,7 @@ const ExternalDataSourcesSettings = ({
           id="settings-externalDataSources-viewPane"
           renderHeader={renderViewHeader}
         >
+            {showConfirmResetSyncStatus && renderModal()}
           <CustomMetaSection accordionLabel={syncStatus}>
             {cursor}
             {lastChecked}
@@ -256,30 +311,63 @@ const ExternalDataSourcesSettings = ({
         </Pane>
       }
       <ExternalDataSourcesFormModal
-        initialValues={mode === EDITING && { ...externalDataSource }}
+        initialValues={mode === CREATING ?
+          {
+            active: false,
+            activationEnabled: false,
+            rectype: 1,
+            supportsHarvesting: true,
+            type: 'org.olf.kb.adapters.GOKbOAIAdapter',
+          }
+          :
+          { ...externalDataSource }}
         modalProps={{
           dismissible: true,
           label: mode === CREATING ?
-            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.newExternalDataSource" /> :
-            'name of existing data source',
+            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.newExternalDataSource" />
+            :
+            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.edit" values={{ name: externalDataSource?.name }} />,
           onClose: () => setMode(VIEWING),
           open: (mode === CREATING || mode === EDITING)
         }}
+        mutators={{ ...arrayMutators }}
+        onCancel={onCancel}
+        onDelete={onDelete}
+        onSave={onSave}
         onSubmit={onSubmit}
       >
         <ExternalDataSourceForm />
       </ExternalDataSourcesFormModal>
-
+      {deleteModal && (
+        <ConfirmationModal
+          buttonStyle="danger"
+          confirmLabel={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmLabel" />}
+          data-test-confirmationModal
+          heading={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmHeading" />}
+          id="delete-external-data-source-confirmation"
+          message={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmMessage" values={{ name: externalDataSource?.name }} />}
+          onCancel={() => setDeleteModal(false)}
+          onConfirm={() => {
+            onDelete();
+            setExternalDataSource();
+            setDeleteModal(false);
+          }}
+          open={deleteModal}
+        />
+      )}
     </>
-
   );
 };
 
 ExternalDataSourcesSettings.propTypes = {
   externalKbs: PropTypes.arrayOf(PropTypes.object),
+  initialValues: PropTypes.shape({
+    externalKbs: PropTypes.arrayOf(PropTypes.object),
+  }),
   onDelete: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired
 };
 
 export default ExternalDataSourcesSettings;
