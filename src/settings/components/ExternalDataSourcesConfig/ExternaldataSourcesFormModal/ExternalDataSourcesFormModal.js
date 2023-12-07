@@ -19,7 +19,6 @@ const ExternalDataSourcesFormModal = ({
         const handleClose = (e) => {
           onClose(e);
           restart();
-          console.log('handle close clicked');
         };
 
         const saveAndCloseForm = e => {

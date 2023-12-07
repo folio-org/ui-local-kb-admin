@@ -6,8 +6,8 @@ import { MemoryRouter } from 'react-router-dom';
 import _ReactQuery from 'react-query';
 
 import { waitFor } from '@folio/jest-config-stripes/testing-library/react';
-
 import { Button as MockButton } from '@folio/stripes/components';
+
 import {
   Button,
   Callout,
@@ -28,8 +28,18 @@ jest.mock('react-query', () => {
   });
 });
 
-jest.mock('../../components/ExternalDataSourcesSettings/ExternalDataSourcesSettings', () => () => <div>ExternalDataSourcesSettings</div>);
 
+jest.mock('../../components/ExternalDataSourcesConfig/ExternalDataSourcesSettings', () => {
+  return (props) => {
+    return (
+      <div>
+        <div>ExternalDataSourcesSettings</div>
+        <MockButton onClick={props.onSave}>SaveButton</MockButton>
+        <MockButton onClick={props.onDelete}>DeleteButton</MockButton>
+      </div>
+    );
+  };
+});
 const initialValues = {
   'externalKbs': [{
     'id': 'b65ef225-0458-4784-9cfa-45d7599acc37',

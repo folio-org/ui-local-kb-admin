@@ -6,7 +6,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
-import ExternalDataSourcesSettings from '../../components/ExternalDataSourcesSettings/ExternalDataSourcesSettings';
+import ExternalDataSourcesSettings from '../../components/ExternalDataSourcesConfig/ExternalDataSourcesSettings';
 import { KBS_ENDPOINT } from '../../../constants/endpoints';
 
 const ExternalDataSourcesSettingsRoute = () => {
@@ -59,7 +59,7 @@ const ExternalDataSourcesSettingsRoute = () => {
 
   const { mutateAsync: deleteExternalKB } = useMutation(
     ['ERM', 'KBs', 'PUT'],
-    ({ id }) => ky.delete(`${KBS_ENDPOINT}/${id}`).json()
+    (id) => ky.delete(`${KBS_ENDPOINT}/${id}`).json()
   );
 
   const handleSave = (externalKb) => {
@@ -69,7 +69,6 @@ const ExternalDataSourcesSettingsRoute = () => {
     } else {
       promise = postExternalKB(externalKb);
     }
-    console.log('handle save externalKb%o', externalKb);
     return promise
       .then(() => {
         sendCallout('save', 'success');
@@ -86,17 +85,15 @@ const ExternalDataSourcesSettingsRoute = () => {
       });
   };
 
-  const handleDelete = (externalKb) => {
-    return deleteExternalKB(externalKb)
+  const handleDelete = (id) => {
+    return deleteExternalKB(id)
       .then(() => {
-        console.log('externalKb%o', externalKb);
-
         sendCallout('delete', 'success');
         queryClient.invalidateQueries(['ERM', 'KBs']);
       })
       .catch(error => {
-        // Attempt to show an error message if we got JSON back with a message.
-        // If json()ification fails, show the generic error callout.
+      // Attempt to show an error message if we got JSON back with a message.
+      // If json()ification fails, show the generic error callout.
         if (error?.message) {
           sendCallout('delete', 'error', error.message);
         } else {
@@ -104,8 +101,6 @@ const ExternalDataSourcesSettingsRoute = () => {
         }
       });
   };
-
-  if (!externalKbs?.length) return <div />;
 
   return (
     <ExternalDataSourcesSettings

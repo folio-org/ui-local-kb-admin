@@ -72,7 +72,6 @@ const ExternalDataSourcesSettings = ({
         </Button>
       </ModalFooter>
     );
-    
     return (
       <Modal
         enforceFocus={false}
