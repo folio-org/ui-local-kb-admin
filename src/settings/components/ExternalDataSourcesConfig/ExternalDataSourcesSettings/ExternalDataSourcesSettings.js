@@ -347,7 +347,7 @@ const ExternalDataSourcesSettings = ({
           message={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmMessage" values={{ name: externalDataSource?.name }} />}
           onCancel={() => setDeleteModal(false)}
           onConfirm={() => {
-            onDelete();
+            onDelete(externalDataSource?.id);
             setExternalDataSource();
             setDeleteModal(false);
           }}
