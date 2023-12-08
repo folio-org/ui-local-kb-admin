@@ -92,7 +92,7 @@ const ExternalDataSourcesSettings = ({
       actionsArray.push(
         <>
           <Button
-            key={`${externalDataSource.name}-action-edit`}
+            key={`${externalDataSource?.name}-action-edit`}
             buttonStyle="dropdownItem"
             data-test-external-data-source-edit
             marginBottom0
@@ -105,7 +105,7 @@ const ExternalDataSourcesSettings = ({
           <Button
             buttonStyle="dropdownItem"
             data-test-external-data-source-resetcursor
-            disabled={!externalDataSource.cursor}
+            disabled={!externalDataSource?.cursor}
             marginBottom0
             onClick={() => {
               const newValue = { ...externalDataSource, cursor: null };
@@ -119,7 +119,7 @@ const ExternalDataSourcesSettings = ({
           <Button
             buttonStyle="dropdownItem"
             data-test-external-data-source-resetsyncstatus
-            disabled={externalDataSource.syncStatus === 'idle'}
+            disabled={externalDataSource?.syncStatus === 'idle'}
             marginBottom0
             onClick={() => setShowConfirmResetSyncStatus(true)}
           >
@@ -128,7 +128,7 @@ const ExternalDataSourcesSettings = ({
             </Icon>
           </Button>
           <Button
-            key={`${externalDataSource.name}-action-delete`}
+            key={`${externalDataSource?.name}-action-delete`}
             buttonStyle="dropdownItem"
             data-test-external-data-source-delete
             marginBottom0
@@ -173,7 +173,7 @@ const ExternalDataSourcesSettings = ({
       actionMenu={getActionMenu}
       dismissible
       onClose={() => setExternalDataSource()}
-      paneTitle={externalDataSource.name}
+      paneTitle={externalDataSource?.name}
     />
   );
 

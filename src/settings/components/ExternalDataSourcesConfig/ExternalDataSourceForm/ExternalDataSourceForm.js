@@ -77,7 +77,7 @@ const ExternalDataSourceForm = ({ externalKbs }) => {
             required={!values.readonly}
             validate={v => {
               if (!values.readonly) {
-                return (v && v.length) ? validateURLIsValid(v) : requiredValidator(v);
+                return (v?.length) ? validateURLIsValid(v) : requiredValidator(v);
               }
               return undefined;
             }}
