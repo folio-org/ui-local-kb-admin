@@ -335,7 +335,7 @@ const ExternalDataSourcesSettings = ({
         onSave={onSave}
         onSubmit={onSubmit}
       >
-        <ExternalDataSourceForm />
+        <ExternalDataSourceForm externalKbs={externalKbs} />
       </ExternalDataSourcesFormModal>
       {deleteModal && (
         <ConfirmationModal
