@@ -4,7 +4,6 @@ import { MemoryRouter } from 'react-router-dom';
  * below you must import it into the test
  */
 import _ReactQuery from 'react-query';
-
 import { waitFor } from '@folio/jest-config-stripes/testing-library/react';
 import { Button as MockButton } from '@folio/stripes/components';
 
@@ -40,21 +39,22 @@ jest.mock('../../components/ExternalDataSourcesConfig/ExternalDataSourcesSetting
     );
   };
 });
+
 const initialValues = {
-  'externalKbs': [{
-    'id': 'b65ef225-0458-4784-9cfa-45d7599acc37',
-    'cursor': '2022-12-15T07:29:46Z',
-    'active': true,
-    'trustedSourceTI': false,
-    'activationEnabled': false,
-    'readonly': false,
-    'syncStatus': 'in-process',
-    'name': 'GOKb_TEST',
-    'type': 'org.olf.kb.adapters.GOKbOAIAdapter',
-    'fullPrefix': 'gokb',
-    'uri': 'https://gokbt.gbv.de/gokb/oai/index',
-    'supportsHarvesting': true,
-    'rectype': 1
+  externalKbs: [{
+    id: 'b65ef225-0458-4784-9cfa-45d7599acc37',
+    cursor: '2022-12-15T07:29:46Z',
+    active: true,
+    trustedSourceTI: false,
+    activationEnabled: false,
+    readonly: false,
+    syncStatus: 'in-process',
+    name: 'GOKb_TEST',
+    type: 'org.olf.kb.adapters.GOKbOAIAdapter',
+    fullPrefix: 'gokb',
+    uri: 'https://gokbt.gbv.de/gokb/oai/index',
+    supportsHarvesting: true,
+    rectype: 1
   }]
 };
 

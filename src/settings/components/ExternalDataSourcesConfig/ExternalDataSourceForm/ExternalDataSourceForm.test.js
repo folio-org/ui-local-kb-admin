@@ -9,21 +9,21 @@ const onSaveMock = jest.fn();
 const onSubmit = jest.fn();
 
 const initialValues = {
-  'externalKbs': [{
-    'id': 'c4c903d0-f7ef-4d84-8fc7-2ed738e21b91',
-    'cursor': '2023-01-11T14:47:18Z',
-    'active': true,
-    'trustedSourceTI': false,
-    'activationEnabled': false,
-    'readonly': false,
-    'syncStatus': 'idle',
-    'lastCheck': 1673463680170,
-    'name': 'GOKb_TEST',
-    'type': 'org.olf.kb.adapters.GOKbOAIAdapter',
-    'fullPrefix': 'gokb',
-    'uri': 'https://gokbt.gbv.de/gokb/oai/index',
-    'supportsHarvesting': true,
-    'rectype': 1
+  externalKbs: [{
+    id: 'c4c903d0-f7ef-4d84-8fc7-2ed738e21b91',
+    cursor: '2023-01-11T14:47:18Z',
+    active: true,
+    trustedSourceTI: false,
+    activationEnabled: false,
+    readonly: false,
+    syncStatus: 'idle',
+    lastCheck: 1673463680170,
+    name: 'GOKb_TEST',
+    type: 'org.olf.kb.adapters.GOKbOAIAdapter',
+    fullPrefix: 'gokb',
+    uri: 'https://gokbt.gbv.de/gokb/oai/index',
+    supportsHarvesting: true,
+    rectype: 1
   }]
 };
 
