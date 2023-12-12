@@ -72,7 +72,8 @@ const externalKbs = [
     rectype: 1
   }
 ];
-let renderComponent
+
+let renderComponent;
 
 describe('ExternalDataSourcesSettings', () => {
   beforeEach(() => {

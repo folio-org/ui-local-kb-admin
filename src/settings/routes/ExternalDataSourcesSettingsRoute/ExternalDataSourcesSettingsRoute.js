@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'prop-types';
 
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
@@ -9,7 +10,15 @@ import { useCallout, useOkapiKy } from '@folio/stripes/core';
 import ExternalDataSourcesSettings from '../../components/ExternalDataSourcesConfig/ExternalDataSourcesSettings';
 import { KBS_ENDPOINT } from '../../../constants/endpoints';
 
-const ExternalDataSourcesSettingsRoute = () => {
+const propTypes = {
+  afterQueryCalls: PropTypes.object,
+  catchQueryCalls: PropTypes.object
+};
+
+const ExternalDataSourcesSettingsRoute = ({
+  afterQueryCalls,
+  catchQueryCalls
+}) => {
   const ky = useOkapiKy();
   const callout = useCallout();
 
@@ -43,18 +52,18 @@ const ExternalDataSourcesSettingsRoute = () => {
 
   const { mutateAsync: postExternalKB } = useMutation(
     ['ERM', 'KBs', 'POST'],
-    (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json().then(() => {
-      queryClient.invalidateQueries(['ERM', 'KBs']);
-    })
+    async (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json()
+      .then(afterQueryCalls?.put)
+      .catch(catchQueryCalls?.put),
+    queryClient.invalidateQueries(['ERM', 'KBs'])
   );
 
   const { mutateAsync: putExternalKB } = useMutation(
     ['ERM', 'KBs', 'PUT'],
-    (payload) => {
-      ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json().then(() => {
-        queryClient.invalidateQueries(['ERM', 'KBs']);
-      });
-    }
+    async (payload) => ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json()
+      .then(afterQueryCalls?.post)
+      .catch(catchQueryCalls?.post),
+    queryClient.invalidateQueries(['ERM', 'KBs'])
   );
 
   const { mutateAsync: deleteExternalKB } = useMutation(
@@ -112,5 +121,6 @@ const ExternalDataSourcesSettingsRoute = () => {
     />
   );
 };
+ExternalDataSourcesSettingsRoute.propTypes = propTypes;
 
 export default ExternalDataSourcesSettingsRoute;
