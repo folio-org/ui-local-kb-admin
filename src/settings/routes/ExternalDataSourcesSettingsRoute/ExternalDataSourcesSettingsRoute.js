@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
-import PropTypes from 'prop-types';
 
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
@@ -10,15 +9,7 @@ import { useCallout, useOkapiKy } from '@folio/stripes/core';
 import ExternalDataSourcesSettings from '../../components/ExternalDataSourcesConfig/ExternalDataSourcesSettings';
 import { KBS_ENDPOINT } from '../../../constants/endpoints';
 
-const propTypes = {
-  afterQueryCalls: PropTypes.object,
-  catchQueryCalls: PropTypes.object
-};
-
-const ExternalDataSourcesSettingsRoute = ({
-  afterQueryCalls,
-  catchQueryCalls
-}) => {
+const ExternalDataSourcesSettingsRoute = () => {
   const ky = useOkapiKy();
   const callout = useCallout();
 
@@ -52,18 +43,18 @@ const ExternalDataSourcesSettingsRoute = ({
 
   const { mutateAsync: postExternalKB } = useMutation(
     ['ERM', 'KBs', 'POST'],
-    async (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json()
-      .then(afterQueryCalls?.put)
-      .catch(catchQueryCalls?.put),
-    queryClient.invalidateQueries(['ERM', 'KBs'])
+    (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json().then(() => {
+      queryClient.invalidateQueries(['ERM', 'KBs']);
+    })
   );
 
   const { mutateAsync: putExternalKB } = useMutation(
     ['ERM', 'KBs', 'PUT'],
-    async (payload) => ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json()
-      .then(afterQueryCalls?.post)
-      .catch(catchQueryCalls?.post),
-    queryClient.invalidateQueries(['ERM', 'KBs'])
+    (payload) => {
+      ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json().then(() => {
+        queryClient.invalidateQueries(['ERM', 'KBs']);
+      });
+    }
   );
 
   const { mutateAsync: deleteExternalKB } = useMutation(
@@ -101,8 +92,8 @@ const ExternalDataSourcesSettingsRoute = ({
         queryClient.invalidateQueries(['ERM', 'KBs']);
       })
       .catch(error => {
-      // Attempt to show an error message if we got JSON back with a message.
-      // If json()ification fails, show the generic error callout.
+        // Attempt to show an error message if we got JSON back with a message.
+        // If json()ification fails, show the generic error callout.
         if (error?.message) {
           sendCallout('delete', 'error', error.message);
         } else {
@@ -121,6 +112,5 @@ const ExternalDataSourcesSettingsRoute = ({
     />
   );
 };
-ExternalDataSourcesSettingsRoute.propTypes = propTypes;
 
 export default ExternalDataSourcesSettingsRoute;
