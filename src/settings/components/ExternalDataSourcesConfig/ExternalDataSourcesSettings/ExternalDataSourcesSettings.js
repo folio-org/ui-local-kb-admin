@@ -44,7 +44,7 @@ const ExternalDataSourcesSettings = ({
   const [deleteModal, setDeleteModal] = useState(false);
   const { syncStatus, cursor, lastChecked } = useDisplayMetaInfo(externalDataSource);
   const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
-  const [externalDataSourceId, setExternalDataSourceId] = useState()
+  // const [externalDataSourceId, setExternalDataSourceId] = useState()
 
   const renderModal = () => {
     const footer = (
@@ -175,7 +175,7 @@ const ExternalDataSourcesSettings = ({
     />
   );
 
-  console.log('externalDataSourceId %o', externalDataSourceId);
+  console.log('externalDataSource label %o', externalDataSource);
 
   return (
     <>
@@ -187,7 +187,11 @@ const ExternalDataSourcesSettings = ({
       >
         <ExternalDataSourcesLookup
           externalKbs={externalKbs}
-          onSelectedExternalDataSource={(_e, eds) => setExternalDataSource(eds)}
+          onSelectedExternalDataSource={(_e, eds) => {
+            
+            console.log('eds %o', eds);
+            setExternalDataSource(eds)
+          }}
         />
       </Pane>
       {
@@ -203,8 +207,8 @@ const ExternalDataSourcesSettings = ({
             {lastChecked}
           </CustomMetaSection>
           <ExternalDataSourcesView
-              externalDataSourceId={externalDataSourceId}
-              onClose={() => setExternalDataSourceId()}
+              externalDataSourceId={externalDataSource.id}
+              onClose={() => setExternalDataSource()}
             // externalKbs={externalKbs}
           />
         </Pane>
