@@ -278,7 +278,7 @@ const ExternalDataSourcesView = ({
 };
 
 ExternalDataSourcesView.propTypes = {
-  externalDataSourceId: PropTypes.arrayOf(PropTypes.object),
+  externalDataSourceId: PropTypes.string.isRequired,
   externalKbs: PropTypes.arrayOf(PropTypes.object),
   onDelete: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
