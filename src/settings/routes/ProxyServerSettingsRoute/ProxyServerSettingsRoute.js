@@ -9,7 +9,7 @@ import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
 
-import ProxyServerSettingsForm from '../../components/ProxyServerSettingsConfig/ProxyServerSettingsForm';
+import ProxyServerSettings from '../../components/ServerSettings/ProxyServerSettings/ProxyServerSettings';
 import { PLATFORMS_ENDPOINT, STS_ENDPOINT } from '../../../constants';
 
 const ProxyServerSettingsRoute = () => {
@@ -62,7 +62,7 @@ const ProxyServerSettingsRoute = () => {
 
   const { mutateAsync: deleteTemplate } = useMutation(
     ['ERM', 'STs', 'PUT'],
-    ({ id }) => ky.delete(`${STS_ENDPOINT}/${id}`).json()
+    (id) => ky.delete(`${STS_ENDPOINT}/${id}`).json()
   );
 
   const getInitialValues = () => {
@@ -113,8 +113,8 @@ const ProxyServerSettingsRoute = () => {
       });
   };
 
-  const handleDelete = (template) => {
-    return deleteTemplate(template)
+  const handleDelete = (id) => {
+    return deleteTemplate(id)
       .then(() => {
         sendCallout('delete', 'success');
         queryClient.invalidateQueries(['ERM', 'STs']);
@@ -131,8 +131,9 @@ const ProxyServerSettingsRoute = () => {
   };
 
   return (
-    <ProxyServerSettingsForm
+    <ProxyServerSettings
       initialValues={getInitialValues()}
+      stringTemplates={stringTemplates}
       onDelete={handleDelete}
       onSave={handleSave}
       onSubmit={handleSave}
