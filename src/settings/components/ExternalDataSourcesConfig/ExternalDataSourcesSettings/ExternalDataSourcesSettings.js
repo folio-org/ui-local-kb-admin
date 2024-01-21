@@ -8,7 +8,6 @@ import ExternalDataSourcesLookup from '../ExternalDataSourcesLookup/ExternalData
 import ExternalDataSourcesFormModal from '../ExternaldataSourcesFormModal/ExternalDataSourcesFormModal';
 import ExternalDataSourceForm from '../ExternalDataSourceForm/ExternalDataSourceForm';
 
-const EDITING = 'edit';
 const CREATING = 'create';
 const VIEWING = 'view';
 
@@ -27,7 +26,7 @@ const ExternalDataSourcesSettings = ({
     <>
       <ExternalDataSourcesLookup
         externalKbs={externalKbs}
-        onClick={() => setMode(CREATING)}
+        onCreateClick={() => setMode(CREATING)}
         onSelectedExternalDataSource={(_e, eds) => {
           setExternalDataSource(eds);
         }}
@@ -38,10 +37,9 @@ const ExternalDataSourcesSettings = ({
             externalDataSourceId={externalDataSource.id}
             externalKbs={externalKbs}
             initialValues={initialValues}
-            onCancel={onCancel}
-            onClick={() => setMode(EDITING)}
             onClose={() => setExternalDataSource()}
             onDelete={onDelete}
+            onEditCancel={onCancel}
             onSave={onSave}
             onSubmit={onSubmit}
           />
@@ -59,12 +57,9 @@ const ExternalDataSourcesSettings = ({
           { ...externalDataSource }}
         modalProps={{
           dismissible: true,
-          label: mode === CREATING ?
-            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.newExternalDataSource" />
-            :
-            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.edit" values={{ name: externalDataSource?.name }} />,
+          label:<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.newExternalDataSource" />,
           onClose: () => setMode(VIEWING),
-          open: (mode === CREATING || mode === EDITING)
+          open: (mode === CREATING)
         }}
         mutators={{ ...arrayMutators }}
         onCancel={onCancel}

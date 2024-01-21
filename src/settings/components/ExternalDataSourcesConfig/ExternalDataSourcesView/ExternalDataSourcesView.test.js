@@ -82,11 +82,10 @@ const initialValues = {
   ]
 };
 
-let renderComponent;
 
 describe('ExternalDataSourcesView', () => {
   beforeEach(() => {
-    renderComponent = renderWithIntl(
+    renderWithIntl(
       <TestForm
         initialValues={initialValues}
         onSubmit={onSubmit}

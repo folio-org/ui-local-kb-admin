@@ -7,7 +7,7 @@ const ExternalDataSourcesLookup = ({
   onSelectedExternalDataSource,
   externalKbs,
   mclProps,
-  onClick
+  onCreateClick
 }) => {
   const stripes = useStripes();
   const perm = stripes.hasPerm('ui-local-kb-admin.kbs.manage');
@@ -22,7 +22,7 @@ const ExternalDataSourcesLookup = ({
           data-test-external-data-source-new
           id="clickable-new-external-datasource"
           marginBottom0
-          onClick={onClick}
+          onClick={onCreateClick}
         >
           <FormattedMessage id="ui-local-kb-admin.job.new" />
         </Button> : null
@@ -67,7 +67,7 @@ ExternalDataSourcesLookup.propTypes = {
   onSelectedExternalDataSource: PropTypes.func,
   externalKbs: PropTypes.arrayOf(PropTypes.object),
   mclProps: PropTypes.object,
-  onClick: PropTypes.func.isRequired
+  onCreateClick: PropTypes.func.isRequired
 };
 
 export default ExternalDataSourcesLookup;

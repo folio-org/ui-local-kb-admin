@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useQuery } from 'react-query';
 import moment from 'moment';
+import arrayMutators from 'final-form-arrays';
 
 import { useOkapiKy, useStripes } from '@folio/stripes/core';
 import { CustomMetaSection } from '@folio/stripes-erm-components';
@@ -23,13 +24,20 @@ import {
 import useDisplayMetaInfo from '../useDisplayMetaInfo';
 import { KB_ENDPOINT } from '../../../../constants/endpoints';
 
+import ExternalDataSourcesFormModal from '../ExternaldataSourcesFormModal/ExternalDataSourcesFormModal';
+import ExternalDataSourceForm from '../ExternalDataSourceForm/ExternalDataSourceForm';
+
+const EDITING = 'edit';
+const VIEWING = 'view';
+
 const ExternalDataSourcesView = ({
   externalKbs,
   externalDataSourceId,
   onDelete,
   onSave,
   onClose,
-  onClick
+  onEditCancel,
+  onSubmit
 }) => {
   const stripes = useStripes();
   const perm = stripes.hasPerm('ui-local-kb-admin.kbs.manage');
@@ -38,6 +46,7 @@ const ExternalDataSourcesView = ({
   const { syncStatus, cursor, lastChecked } = useDisplayMetaInfo(externalDataSourceId);
   const hours = moment.utc().diff(moment.utc(externalKbs?.lastCheck), 'hours');
   const messageType = hours >= 24 ? 'active' : 'passive';
+  const [mode, setMode] = useState(VIEWING);
   const ky = useOkapiKy();
   const { data: externalDataSource = {} } = useQuery(
     ['ERM', 'KBs', KB_ENDPOINT(externalDataSourceId)],
@@ -92,7 +101,7 @@ const ExternalDataSourcesView = ({
             buttonStyle="dropdownItem"
             data-test-external-data-source-edit
             marginBottom0
-            onClick={onClick}
+            onClick={() => setMode(EDITING)}
           >
             <Icon icon="edit">
               <FormattedMessage id="stripes-core.button.edit" />
@@ -273,6 +282,30 @@ const ExternalDataSourcesView = ({
           open={deleteModal}
         />
       )}
+      <ExternalDataSourcesFormModal
+        initialValues={mode === EDITING ?
+          { ...externalDataSource } :
+          {
+            active: false,
+            activationEnabled: false,
+            rectype: 1,
+            supportsHarvesting: true,
+            type: 'org.olf.kb.adapters.GOKbOAIAdapter',
+          }}
+        modalProps={{
+          dismissible: true,
+          label: <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.edit" values={{ name: externalDataSource?.name }} />,
+          onClose: () => setMode(VIEWING),
+          open: (mode === EDITING)
+        }}
+        mutators={{ ...arrayMutators }}
+        onCancel={onEditCancel}
+        onDelete={onDelete}
+        onSave={onSave}
+        onSubmit={onSubmit}
+      >
+        <ExternalDataSourceForm externalKbs={externalKbs} />
+      </ExternalDataSourcesFormModal>
     </>
   );
 };
@@ -283,9 +316,8 @@ ExternalDataSourcesView.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired
+  onEditCancel: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 export default ExternalDataSourcesView;
