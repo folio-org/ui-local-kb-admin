@@ -8,6 +8,8 @@ import { Button, Col, Icon, KeyValue, MultiColumnList, NoValue, Pane, PaneHeader
 
 import ProxyServerSettingsForm from '../ProxyServerSettingsForm/ProxyServerSettingsForm';
 import ProxyServerSettingsFormModal from '../ProxyServerSettingsFormModal/ProxyServerSettingsFormModal';
+import ProxyServerLookup from '../ProxyServerLookup/ProxyServerLookup';
+import ProxyServerSettingsView from '../ProxyServerSettingsView/ProxyServerSettingsView';
 
 const EDITING = 'edit';
 const CREATING = 'create';
@@ -29,42 +31,9 @@ const ProxyServerSettings = ({
   const [mode, setMode] = useState(VIEWING);
   const [proxyServerSettings, setProxyServerSettings] = useState();
   const [deleteModal, setDeleteModal] = useState(false);
-  const { idScopes = [] } = platforms;
+  // const { idScopes = [] } = platforms;
 
-  const getActionMenu = ({ onToggle }) => {
-    const actionsArray = [];
-    if (perm)
-      actionsArray.push(
-        <>
-          <Button
-            key={`${proxyServerSettings?.name}-action-edit`}
-            buttonStyle="dropdownItem"
-            data-test-proxy-server-settings-edit
-            marginBottom0
-            onClick={() => setMode(EDITING)}
-          >
-            <Icon icon="edit">
-              <FormattedMessage id="stripes-core.button.edit" />
-            </Icon>
-          </Button>
-          <Button
-            key={`${proxyServerSettings?.name}-action-delete`}
-            buttonStyle="dropdownItem"
-            data-test-proxy-server-settings-delete
-            marginBottom0
-            onClick={() => {
-              setDeleteModal(true);
-              onToggle();
-            }}
-          >
-            <Icon icon="trash">
-              <FormattedMessage id="stripes-core.button.delete" />
-            </Icon>
-          </Button>
-        </>
-      );
-    return (actionsArray?.length ? actionsArray : null);
-  };
+  console.log('platforms set %o', platforms);
 
   const renderSettingsHeader = renderProps => (
     <PaneHeader
@@ -84,17 +53,6 @@ const ProxyServerSettings = ({
       paneTitle={<FormattedMessage id="ui-local-kb-admin.section.proxyServerSettings" />}
     />
   );
-
-  const renderViewHeader = renderProps => (
-    <PaneHeader
-      {...renderProps}
-      actionMenu={getActionMenu}
-      dismissible
-      onClose={() => setProxyServerSettings()}
-      paneTitle={proxyServerSettings?.name}
-    />
-  );
-
 
   return (
     <>
@@ -120,41 +78,17 @@ const ProxyServerSettings = ({
         />
       </Pane>
       {
-      proxyServerSettings &&
-        <Pane
-          defaultWidth="fill"
-          id="settings-proxyServerSettings-viewPane"
-          renderHeader={renderViewHeader}
-        >
-          <Row>
-            <Col xs={12}>
-              <KeyValue
-                data-test-proxy-server-setting-name
-                label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.name" />}
-                value={proxyServerSettings.name}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <KeyValue
-                data-test-proxy-server-setting-url
-                label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode" />}
-                value={proxyServerSettings?.rule ?? <NoValue />}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <KeyValue label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />}>
-                <List
-                  items={idScopes?.map(ids => ids.label)}
-                  listStyle="bullets"
-                />
-              </KeyValue>
-            </Col>
-          </Row>
-        </Pane>
+        proxyServerSettings &&
+        <ProxyServerSettingsView
+          proxyServerSettingsId={proxyServerSettings.id}
+          platformsId={platforms.id}
+          onClose={() => setProxyServerSettings()}
+          onClick={() => setMode(EDITING)}
+          onCancel={onCancel}
+          onDelete={onDelete}
+          onSave={onSave}
+          onSubmit={onSubmit}
+        />
       }
       <ProxyServerSettingsFormModal
         initialValues={mode === CREATING ? {} : { ...proxyServerSettings }}
@@ -178,23 +112,6 @@ const ProxyServerSettings = ({
           platforms={platforms}
         />
       </ProxyServerSettingsFormModal>
-      {deleteModal && (
-        <ConfirmationModal
-          buttonStyle="danger"
-          confirmLabel={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmLabel" />}
-          data-test-confirmationModal
-          heading={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmHeading" />}
-          id="delete-proxy-server-settings-confirmation"
-          message={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmMessage" values={{ name: proxyServerSettings?.name }} />}
-          onCancel={() => setDeleteModal(false)}
-          onConfirm={() => {
-            onDelete(proxyServerSettings?.id);
-            setProxyServerSettings();
-            setDeleteModal(false);
-          }}
-          open={deleteModal}
-        />
-      )}
     </>
   );
 };

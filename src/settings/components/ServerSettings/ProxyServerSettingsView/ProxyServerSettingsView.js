@@ -4,12 +4,12 @@ import { FormattedMessage } from 'react-intl';
 import { useStripes, useOkapiKy } from '@folio/stripes/core';
 import { useQuery } from 'react-query';
 import { Button, Col, Icon, KeyValue, NoValue, Pane, PaneHeader, Row, List, ConfirmationModal } from '@folio/stripes/components';
-import { KB_ENDPOINT } from '../../../../constants/endpoints';
+import { ST_ENDPOINT, PLATFORM_ENDPOINT } from '../../../../constants/endpoints';
 
 const ProxyServerSettingsView = ({
   proxyServerSettingsId,
+  platformsId,
   onDelete,
-  onSave,
   onClose,
   onClick
  }) => {
@@ -19,11 +19,21 @@ const ProxyServerSettingsView = ({
   const ky = useOkapiKy();
 
   const { data: proxyServerSettings = {} } = useQuery(
-    ['ERM', 'KBs', KB_ENDPOINT(proxyServerSettingsId)],
-    () => ky.get(KB_ENDPOINT(proxyServerSettingsId)).json()
+    ['ERM', 'sts', ST_ENDPOINT(proxyServerSettingsId)],
+    () => ky.get(ST_ENDPOINT(proxyServerSettingsId)).json()
   );
 
-  const { idScopes = [] } = value;
+  const { data: platforms = {} } = useQuery(
+    ['ERM', 'platforms', PLATFORM_ENDPOINT(platformsId)],
+    () => ky.get(PLATFORM_ENDPOINT(platformsId)).json()
+  );
+
+  
+  const { idScopes = [] } = platforms;
+  
+    console.log('proxyServerSettingsId %o', proxyServerSettingsId);
+    console.log('proxyServerSettings %o', proxyServerSettings);
+  console.log('data platform  %o', platforms);
 
   const getActionMenu = ({ onToggle }) => {
     const actionsArray = [];
@@ -99,7 +109,7 @@ const ProxyServerSettingsView = ({
         <Col xs={12}>
           <KeyValue label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />}>
             <List
-              items={idScopes?.map(ids => ids.label)}
+                items={idScopes?.map(ids => ids.label)}
               listStyle="bullets"
             />
           </KeyValue>
@@ -129,9 +139,8 @@ const ProxyServerSettingsView = ({
 
 ProxyServerSettingsView.propTypes = {
   proxyServerSettingsId: PropTypes.arrayOf(PropTypes.object),
+  platformsId: PropTypes.arrayOf(PropTypes.object),
   onDelete: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired
