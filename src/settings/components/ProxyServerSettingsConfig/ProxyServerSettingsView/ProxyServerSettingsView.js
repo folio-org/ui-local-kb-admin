@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { isEmpty } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 import { useStripes, useOkapiKy } from '@folio/stripes/core';
 import { useQuery } from 'react-query';
 import { Button, Col, Icon, KeyValue, NoValue, Pane, PaneHeader, Row, List, ConfirmationModal } from '@folio/stripes/components';
-import { ST_ENDPOINT, PLATFORM_ENDPOINT } from '../../../../constants/endpoints';
+import { ST_ENDPOINT } from '../../../../constants/endpoints';
 
 const ProxyServerSettingsView = ({
   proxyServerSettingsId,
-  platformsId,
+  platforms,
   onDelete,
   onClose,
   onClick
@@ -19,22 +20,14 @@ const ProxyServerSettingsView = ({
   const ky = useOkapiKy();
 
   const { data: proxyServerSettings = {} } = useQuery(
-    ['ERM', 'sts', ST_ENDPOINT(proxyServerSettingsId)],
+    ['ERM', 'STs', ST_ENDPOINT(proxyServerSettingsId)],
     () => ky.get(ST_ENDPOINT(proxyServerSettingsId)).json()
   );
 
-  const { data: platforms = {} } = useQuery(
-    ['ERM', 'platforms', PLATFORM_ENDPOINT(platformsId)],
-    () => ky.get(PLATFORM_ENDPOINT(platformsId)).json()
-  );
-
-  
   const { idScopes = [] } = platforms;
-  
-    console.log('proxyServerSettingsId %o', proxyServerSettingsId);
-    console.log('proxyServerSettings %o', proxyServerSettings);
-  console.log('data platform  %o', platforms);
+  const idScopeValues = isEmpty(idScopes) ? [''] : idScopes.map(ids => ids.value);
 
+  console.log(idScopeValues);
   const getActionMenu = ({ onToggle }) => {
     const actionsArray = [];
     if (perm)
@@ -109,7 +102,7 @@ const ProxyServerSettingsView = ({
         <Col xs={12}>
           <KeyValue label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />}>
             <List
-                items={idScopes?.map(ids => ids.label)}
+              items={idScopeValues?.map(ids => ids.label)}
               listStyle="bullets"
             />
           </KeyValue>
@@ -139,7 +132,7 @@ const ProxyServerSettingsView = ({
 
 ProxyServerSettingsView.propTypes = {
   proxyServerSettingsId: PropTypes.arrayOf(PropTypes.object),
-  platformsId: PropTypes.arrayOf(PropTypes.object),
+  platforms: PropTypes.arrayOf(PropTypes.object),
   onDelete: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,

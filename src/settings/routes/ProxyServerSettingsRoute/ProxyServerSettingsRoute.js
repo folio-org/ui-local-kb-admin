@@ -9,7 +9,7 @@ import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
 
-import ProxyServerSettings from '../../components/ServerSettings/ProxyServerSettings/ProxyServerSettings';
+import ProxyServerSettings from '../../components/ProxyServerSettingsConfig/ProxyServerSettings/ProxyServerSettings';
 import { PLATFORMS_ENDPOINT, STS_ENDPOINT } from '../../../constants';
 
 const ProxyServerSettingsRoute = () => {
@@ -86,10 +86,10 @@ const ProxyServerSettingsRoute = () => {
 
   const handleSave = (template) => {
     let promise;
-
     const { idScopes = [] } = template;
     const idScopeValues = isEmpty(idScopes) ? [''] : idScopes.map(ids => ids.value); // fix logic once backend issue with [''] is fixed in the toolkit
     const templatePayload = { ...template, idScopes: idScopeValues, 'context': 'urlProxier' };
+  
 
     if (template?.id) {
       promise = putTemplate(templatePayload);

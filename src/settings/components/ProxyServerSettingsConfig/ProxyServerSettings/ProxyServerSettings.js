@@ -22,7 +22,6 @@ const ProxyServerSettings = ({
   onSave,
   onCancel,
   onSubmit,
-  initialValues,
   mclProps,
 }) => {
   const stripes = useStripes();
@@ -30,11 +29,7 @@ const ProxyServerSettings = ({
   const count = stringTemplates?.length ?? 0;
   const [mode, setMode] = useState(VIEWING);
   const [proxyServerSettings, setProxyServerSettings] = useState();
-  const [deleteModal, setDeleteModal] = useState(false);
-  // const { idScopes = [] } = platforms;
-
-  console.log('platforms set %o', platforms);
-
+  
   const renderSettingsHeader = renderProps => (
     <PaneHeader
       {...renderProps}
@@ -70,7 +65,6 @@ const ProxyServerSettings = ({
           }}
           contentData={stringTemplates}
           onRowClick={(_p, pss) => {
-            console.log('pss %o', pss)
             setProxyServerSettings(pss)
           }}
           visibleColumns={['name', 'rule', 'ids']}
@@ -81,7 +75,7 @@ const ProxyServerSettings = ({
         proxyServerSettings &&
         <ProxyServerSettingsView
           proxyServerSettingsId={proxyServerSettings.id}
-          platformsId={platforms.id}
+          platforms={platforms}
           onClose={() => setProxyServerSettings()}
           onClick={() => setMode(EDITING)}
           onCancel={onCancel}
