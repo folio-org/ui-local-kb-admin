@@ -95,7 +95,7 @@ const stringTemplates = [
     name: 'MR TEST 2',
     idScopes: []
   }
-]
+];
 
 let renderComponent;
 
@@ -104,12 +104,12 @@ describe('ProxyServerSettings', () => {
     renderComponent = renderWithIntl(
       <MemoryRouter>
         <ProxyServerSettings
-          stringTemplates={stringTemplates}
           initialValues={initialValues}
           onCancel={onCancelMock}
           onDelete={onDeleteMock}
           onSave={onSaveMock}
           onSubmit={onSubmit}
+          stringTemplates={stringTemplates}
         />
       </MemoryRouter>,
       translationsProperties

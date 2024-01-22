@@ -89,8 +89,6 @@ const ProxyServerSettingsRoute = () => {
     const { idScopes = [] } = template;
     const idScopeValues = isEmpty(idScopes) ? [''] : idScopes.map(ids => ids.value); // fix logic once backend issue with [''] is fixed in the toolkit
     const templatePayload = { ...template, idScopes: idScopeValues, 'context': 'urlProxier' };
-  
-
     if (template?.id) {
       promise = putTemplate(templatePayload);
     } else {
@@ -133,11 +131,11 @@ const ProxyServerSettingsRoute = () => {
   return (
     <ProxyServerSettings
       initialValues={getInitialValues()}
-      stringTemplates={stringTemplates}
       onDelete={handleDelete}
       onSave={handleSave}
       onSubmit={handleSave}
       platforms={platforms}
+      stringTemplates={stringTemplates}
     />
   );
 };

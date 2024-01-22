@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { Field, useFormState } from 'react-final-form';
 import {
-  Button,
-  Card,
   InfoPopover,
   Layout,
   Row,
@@ -16,20 +14,17 @@ import { composeValidators, requiredValidator } from '@folio/stripes-erm-compone
 import css from './ProxyServerSettingsForm.css';
 
 const ProxyServerSettingsForm = ({ platforms, stringTemplates }) => {
-  const intl = useIntl();
   const { values } = useFormState();
-  // console.log('platforms %o', platforms);
-  // console.log('stringTemplates %o', stringTemplates);
-  // const validateUniqueName = (value) => {
-  //   const uniqueNameServers = stringTemplates
-  //     .filter(ps => ps.name)
-  //     .filter(ps => ps.name.toLowerCase() === value.toLowerCase());
-  //   if (uniqueNameServers.length > 1) {
-  //     return <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.nameExists" />;
-  //   }
+  const validateUniqueName = (v) => {
+    const uniqueNameServers = stringTemplates
+      .filter(ps => ps.name)
+      .filter(ps => ps.name.toLowerCase() === v.toLowerCase());
+    if (uniqueNameServers.length > 1) {
+      return <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.nameExists" />;
+    }
+    return undefined;
+  };
 
-  //   return undefined;
-  // };
   return (
     <>
       <Row>
@@ -46,10 +41,11 @@ const ProxyServerSettingsForm = ({ platforms, stringTemplates }) => {
             </>
           }
           name="name"
-          required
+          required={!values.readonly}
+          disabled={values.readonly}
           validate={composeValidators(
             requiredValidator,
-            // validateUniqueName,
+            validateUniqueName,
           )}
         />
       </Row>
@@ -73,7 +69,6 @@ const ProxyServerSettingsForm = ({ platforms, stringTemplates }) => {
           }
           name="rule"
           required
-          validate={requiredValidator}
         />
       </Row>
       <Row>
