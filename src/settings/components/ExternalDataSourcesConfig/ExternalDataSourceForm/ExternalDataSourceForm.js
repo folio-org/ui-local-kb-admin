@@ -13,7 +13,7 @@ const ExternalDataSourceForm = ({ externalKbs }) => {
     const uniqueNameSources = externalKbs
       .filter(ekb => ekb.name)
       .filter(ekb => ekb.name.toLowerCase() === v.toLowerCase());
-    if (uniqueNameSources.length > 1) {
+    if (uniqueNameSources?.length > 0) {
       return <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.nameExists" />;
     }
 
