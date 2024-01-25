@@ -27,9 +27,6 @@ import { KB_ENDPOINT } from '../../../../constants/endpoints';
 import ExternalDataSourcesFormModal from '../ExternaldataSourcesFormModal/ExternalDataSourcesFormModal';
 import ExternalDataSourceForm from '../ExternalDataSourceForm/ExternalDataSourceForm';
 
-const EDITING = 'edit';
-const VIEWING = 'view';
-
 const ExternalDataSourcesView = ({
   externalKbs,
   externalDataSourceId,
@@ -46,7 +43,7 @@ const ExternalDataSourcesView = ({
   const { syncStatus, cursor, lastChecked } = useDisplayMetaInfo(externalDataSourceId);
   const hours = moment.utc().diff(moment.utc(externalKbs?.lastCheck), 'hours');
   const messageType = hours >= 24 ? 'active' : 'passive';
-  const [mode, setMode] = useState(VIEWING);
+  const [editEDS, setEditEDS] = useState(false);
   const ky = useOkapiKy();
   const { data: externalDataSource = {} } = useQuery(
     ['ERM', 'KBs', KB_ENDPOINT(externalDataSourceId)],
@@ -101,7 +98,7 @@ const ExternalDataSourcesView = ({
             buttonStyle="dropdownItem"
             data-test-external-data-source-edit
             marginBottom0
-            onClick={() => setMode(EDITING)}
+            onClick={() => setEditEDS(true)}
           >
             <Icon icon="edit">
               <FormattedMessage id="stripes-core.button.edit" />
@@ -283,20 +280,12 @@ const ExternalDataSourcesView = ({
         />
       )}
       <ExternalDataSourcesFormModal
-        initialValues={mode === EDITING ?
-          { ...externalDataSource } :
-          {
-            active: false,
-            activationEnabled: false,
-            rectype: 1,
-            supportsHarvesting: true,
-            type: 'org.olf.kb.adapters.GOKbOAIAdapter',
-          }}
+        initialValues={{ ...externalDataSource }}
         modalProps={{
           dismissible: true,
           label: <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.edit" values={{ name: externalDataSource?.name }} />,
-          onClose: () => setMode(VIEWING),
-          open: (mode === EDITING)
+          onClose: () => setEditEDS(false),
+          open: (editEDS)
         }}
         mutators={{ ...arrayMutators }}
         onCancel={onEditCancel}

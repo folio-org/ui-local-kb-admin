@@ -1,15 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
-import arrayMutators from 'final-form-arrays';
 
 import ExternalDataSourcesView from '../ExternalDataSourcesView/ExternalDataSourcesView';
 import ExternalDataSourcesLookup from '../ExternalDataSourcesLookup/ExternalDataSourcesLookup';
-import ExternalDataSourcesFormModal from '../ExternaldataSourcesFormModal/ExternalDataSourcesFormModal';
-import ExternalDataSourceForm from '../ExternalDataSourceForm/ExternalDataSourceForm';
-
-const CREATING = 'create';
-const VIEWING = 'view';
 
 const ExternalDataSourcesSettings = ({
   onDelete,
@@ -19,17 +12,19 @@ const ExternalDataSourcesSettings = ({
   onSubmit,
   initialValues
 }) => {
-  const [mode, setMode] = useState(VIEWING);
   const [externalDataSource, setExternalDataSource] = useState();
 
   return (
     <>
       <ExternalDataSourcesLookup
         externalKbs={externalKbs}
-        onCreateClick={() => setMode(CREATING)}
+        onCancel={onCancel}
+        onEditCancel={onCancel}
+        onSave={onSave}
         onSelectedExternalDataSource={(_e, eds) => {
           setExternalDataSource(eds);
         }}
+        onSubmit={onSubmit}
       />
       {
         externalDataSource &&
@@ -44,31 +39,6 @@ const ExternalDataSourcesSettings = ({
             onSubmit={onSubmit}
           />
       }
-      <ExternalDataSourcesFormModal
-        initialValues={mode === CREATING ?
-          {
-            active: false,
-            activationEnabled: false,
-            rectype: 1,
-            supportsHarvesting: true,
-            type: 'org.olf.kb.adapters.GOKbOAIAdapter',
-          }
-          :
-          { ...externalDataSource }}
-        modalProps={{
-          dismissible: true,
-          label:<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.newExternalDataSource" />,
-          onClose: () => setMode(VIEWING),
-          open: (mode === CREATING)
-        }}
-        mutators={{ ...arrayMutators }}
-        onCancel={onCancel}
-        onDelete={onDelete}
-        onSave={onSave}
-        onSubmit={onSubmit}
-      >
-        <ExternalDataSourceForm externalKbs={externalKbs} />
-      </ExternalDataSourcesFormModal>
     </>
   );
 };
