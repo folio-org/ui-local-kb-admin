@@ -17,9 +17,9 @@ const ProxyServerSettings = ({
   platforms,
   onDelete,
   onSave,
-  onCancel,
   onSubmit,
   mclProps,
+  initialValues
 }) => {
   const [mode, setMode] = useState(VIEWING);
   const [proxyServerSettings, setProxyServerSettings] = useState();
@@ -37,7 +37,6 @@ const ProxyServerSettings = ({
       {
         proxyServerSettings &&
         <ProxyServerSettingsView
-          onCancel={onCancel}
           onClick={() => setMode(EDITING)}
           onClose={() => setProxyServerSettings()}
           onDelete={onDelete}
@@ -45,6 +44,7 @@ const ProxyServerSettings = ({
           onSubmit={onSubmit}
           platforms={platforms}
           proxyServerSettingsId={proxyServerSettings.id}
+          stringTemplates={stringTemplates}
         />
       }
       <ProxyServerSettingsFormModal
@@ -56,7 +56,6 @@ const ProxyServerSettings = ({
           open: (mode === CREATING)
         }}
         mutators={{ ...arrayMutators }}
-        onCancel={onCancel}
         onDelete={onDelete}
         onSave={onSave}
         onSubmit={onSubmit}
@@ -81,7 +80,6 @@ ProxyServerSettings.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired
 };
 
 export default ProxyServerSettings;

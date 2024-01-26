@@ -41,6 +41,7 @@ const ProxyServerSettingsRoute = () => {
     ['ERM', 'STs', STSParams, STS_ENDPOINT],
     () => ky.get(`${STS_ENDPOINT}?${STSParams?.join('&')}`).json()
   );
+  console.log('stringTemplates %o', stringTemplates)
 
   // Batch fetch platforms (Up to 1000)
   const {
@@ -88,6 +89,7 @@ const ProxyServerSettingsRoute = () => {
     let promise;
     const { idScopes = [] } = template;
     const idScopeValues = isEmpty(idScopes) ? [''] : idScopes.map(ids => ids.value); // fix logic once backend issue with [''] is fixed in the toolkit
+
     const templatePayload = { ...template, idScopes: idScopeValues, 'context': 'urlProxier' };
     if (template?.id) {
       promise = putTemplate(templatePayload);

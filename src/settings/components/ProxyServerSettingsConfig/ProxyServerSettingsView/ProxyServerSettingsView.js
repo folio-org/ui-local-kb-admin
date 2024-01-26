@@ -22,7 +22,6 @@ const ProxyServerSettingsView = ({
   onDelete,
   onClose,
   onSave,
-  onEditCancel,
   onSubmit
 }) => {
   const stripes = useStripes();
@@ -147,7 +146,6 @@ const ProxyServerSettingsView = ({
           open: (mode === EDITING)
         }}
         mutators={{ ...arrayMutators }}
-        onCancel={onEditCancel}
         onDelete={onDelete}
         onSave={onSave}
         onSubmit={onSubmit}
@@ -166,7 +164,6 @@ ProxyServerSettingsView.propTypes = {
   stringTemplates: PropTypes.arrayOf(PropTypes.object),
   platforms: PropTypes.arrayOf(PropTypes.object),
   onDelete: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   onEditCancel: PropTypes.func.isRequired,

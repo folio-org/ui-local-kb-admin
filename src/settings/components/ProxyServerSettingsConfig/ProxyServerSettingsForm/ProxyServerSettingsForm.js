@@ -19,7 +19,7 @@ const ProxyServerSettingsForm = ({ platforms, stringTemplates }) => {
     const uniqueNameServers = stringTemplates
       .filter(ps => ps.name)
       .filter(ps => ps.name.toLowerCase() === v.toLowerCase());
-    if (uniqueNameServers.length > 1) {
+    if (uniqueNameServers?.length > 0) {
       return <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.nameExists" />;
     }
     return undefined;
