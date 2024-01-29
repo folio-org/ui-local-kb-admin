@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 import { useQuery } from 'react-query';
 import arrayMutators from 'final-form-arrays';
@@ -12,8 +11,6 @@ import { ST_ENDPOINT } from '../../../../constants/endpoints';
 import ProxyServerSettingsForm from '../ProxyServerSettingsForm/ProxyServerSettingsForm';
 import ProxyServerSettingsFormModal from '../ProxyServerSettingsFormModal/ProxyServerSettingsFormModal';
 
-const EDITING = 'edit';
-const VIEWING = 'view';
 
 const ProxyServerSettingsView = ({
   proxyServerSettingsId,
@@ -26,7 +23,7 @@ const ProxyServerSettingsView = ({
 }) => {
   const stripes = useStripes();
   const perm = stripes.hasPerm('ui-local-kb-admin.proxyServer.manage');
-  const [mode, setMode] = useState(VIEWING);
+  const [editPS, setEditPS] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const ky = useOkapiKy();
 
@@ -35,8 +32,7 @@ const ProxyServerSettingsView = ({
     () => ky.get(ST_ENDPOINT(proxyServerSettingsId)).json()
   );
 
-  const { idScopes = [] } = platforms;
-  const idScopeValues = isEmpty(idScopes) ? [''] : idScopes.map(ids => ids.value);
+  const { idScopes = [] } = proxyServerSettings;
 
   const getActionMenu = ({ onToggle }) => {
     const actionsArray = [];
@@ -48,7 +44,7 @@ const ProxyServerSettingsView = ({
             buttonStyle="dropdownItem"
             data-test-proxy-server-settings-edit
             marginBottom0
-            onClick={() => setMode(EDITING)}
+            onClick={() => setEditPS(true)}
           >
             <Icon icon="edit">
               <FormattedMessage id="stripes-core.button.edit" />
@@ -113,7 +109,7 @@ const ProxyServerSettingsView = ({
           <Col xs={12}>
             <KeyValue label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />}>
               <List
-                items={idScopeValues?.map(ids => ids.label)}
+                items={idScopes?.map(ids => ids.label)}
                 listStyle="bullets"
               />
             </KeyValue>
@@ -138,12 +134,12 @@ const ProxyServerSettingsView = ({
         />
       )}
       <ProxyServerSettingsFormModal
-        initialValues={mode === EDITING ? { ...proxyServerSettings } : {}}
+        initialValues={{ ...proxyServerSettings }}
         modalProps={{
           dismissible: true,
           label: <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.editProxyServerSetting" />,
-          onClose: () => setMode(VIEWING),
-          open: (mode === EDITING)
+          onClose: () => setEditPS(false),
+          open: (editPS)
         }}
         mutators={{ ...arrayMutators }}
         onDelete={onDelete}
@@ -166,7 +162,6 @@ ProxyServerSettingsView.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
-  onEditCancel: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired
 };

@@ -41,7 +41,6 @@ const ProxyServerSettingsRoute = () => {
     ['ERM', 'STs', STSParams, STS_ENDPOINT],
     () => ky.get(`${STS_ENDPOINT}?${STSParams?.join('&')}`).json()
   );
-  console.log('stringTemplates %o', stringTemplates)
 
   // Batch fetch platforms (Up to 1000)
   const {
@@ -96,7 +95,7 @@ const ProxyServerSettingsRoute = () => {
     } else {
       promise = postTemplate(templatePayload);
     }
-
+    
     return promise
       .then(() => {
         sendCallout('save', 'success');

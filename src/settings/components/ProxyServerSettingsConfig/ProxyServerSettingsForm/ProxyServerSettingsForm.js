@@ -31,6 +31,7 @@ const ProxyServerSettingsForm = ({ platforms, stringTemplates }) => {
         <Field
           component={TextField}
           data-test-proxy-server-setting-name-edit
+          disabled={values.readonly}
           label={
             <>
               <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />
@@ -42,7 +43,6 @@ const ProxyServerSettingsForm = ({ platforms, stringTemplates }) => {
           }
           name="name"
           required={!values.readonly}
-          disabled={values.readonly}
           validate={composeValidators(
             requiredValidator,
             validateUniqueName,
@@ -108,4 +108,5 @@ ProxyServerSettingsForm.propTypes = {
   platforms: PropTypes.arrayOf(PropTypes.object),
   stringTemplates: PropTypes.arrayOf(PropTypes.object),
 };
+
 export default ProxyServerSettingsForm;

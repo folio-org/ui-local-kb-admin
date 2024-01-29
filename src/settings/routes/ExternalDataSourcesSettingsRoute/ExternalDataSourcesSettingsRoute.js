@@ -104,7 +104,7 @@ const ExternalDataSourcesSettingsRoute = () => {
         }
       });
   };
-  console.log('stringtemplates route %o', stringTemplates);
+
   return (
     <ExternalDataSourcesForm
       initialValues={{ externalKbs }}

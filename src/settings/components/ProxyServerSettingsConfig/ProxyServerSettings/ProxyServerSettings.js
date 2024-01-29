@@ -1,16 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
-import arrayMutators from 'final-form-arrays';
-
-import ProxyServerSettingsForm from '../ProxyServerSettingsForm/ProxyServerSettingsForm';
-import ProxyServerSettingsFormModal from '../ProxyServerSettingsFormModal/ProxyServerSettingsFormModal';
 import ProxyServerLookup from '../ProxyServerLookup/ProxyServerLookup';
 import ProxyServerSettingsView from '../ProxyServerSettingsView/ProxyServerSettingsView';
-
-const EDITING = 'edit';
-const CREATING = 'create';
-const VIEWING = 'view';
 
 const ProxyServerSettings = ({
   stringTemplates,
@@ -18,26 +9,25 @@ const ProxyServerSettings = ({
   onDelete,
   onSave,
   onSubmit,
-  mclProps,
-  initialValues
+  mclProps
 }) => {
-  const [mode, setMode] = useState(VIEWING);
   const [proxyServerSettings, setProxyServerSettings] = useState();
 
   return (
     <>
       <ProxyServerLookup
         mclProps={mclProps}
-        onCreateClick={() => setMode(CREATING)}
+        onSave={onSave}
         onSelectedProxyServer={(_p, pss) => {
           setProxyServerSettings(pss);
         }}
+        onSubmit={onSubmit}
+        platforms={platforms}
         stringTemplates={stringTemplates}
       />
       {
         proxyServerSettings &&
         <ProxyServerSettingsView
-          onClick={() => setMode(EDITING)}
           onClose={() => setProxyServerSettings()}
           onDelete={onDelete}
           onSave={onSave}
@@ -47,24 +37,7 @@ const ProxyServerSettings = ({
           stringTemplates={stringTemplates}
         />
       }
-      <ProxyServerSettingsFormModal
-        initialValues={mode === CREATING ? {} : { ...proxyServerSettings }}
-        modalProps={{
-          dismissible: true,
-          label: <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.newProxyServerSetting" />,
-          onClose: () => setMode(VIEWING),
-          open: (mode === CREATING)
-        }}
-        mutators={{ ...arrayMutators }}
-        onDelete={onDelete}
-        onSave={onSave}
-        onSubmit={onSubmit}
-      >
-        <ProxyServerSettingsForm
-          platforms={platforms}
-          stringTemplates={stringTemplates}
-        />
-      </ProxyServerSettingsFormModal>
+
     </>
   );
 };
