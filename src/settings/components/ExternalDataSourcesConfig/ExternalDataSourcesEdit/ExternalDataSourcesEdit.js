@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Field } from 'react-final-form';
 import { Button, Card, Checkbox, Col, Layout, Row, Select, TextArea, TextField } from '@folio/stripes/components';
-import { composeValidators, requiredValidator } from '@folio/stripes-erm-components';
-import { validateURLIsValid } from '../../../../util/validators';
+import { composeValidators, requiredValidator, validateURL } from '@folio/stripes-erm-components';
 
 const ExternalDataSourcesEdit = ({
   input: { value, name },
@@ -116,7 +115,7 @@ const ExternalDataSourcesEdit = ({
             required={!value.readonly}
             validate={v => {
               if (!value.readonly) {
-                return (v && v.length) ? validateURLIsValid(v) : requiredValidator(v);
+                return (v && v.length) ? validateURL(v) : requiredValidator(v);
               }
               return undefined;
             }}
