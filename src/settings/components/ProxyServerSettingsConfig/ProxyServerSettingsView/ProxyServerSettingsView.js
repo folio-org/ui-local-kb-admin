@@ -157,7 +157,7 @@ const ProxyServerSettingsView = ({
 };
 
 ProxyServerSettingsView.propTypes = {
-  proxyServerSettingsId: PropTypes.arrayOf(PropTypes.object),
+  proxyServerSettingsId: PropTypes.string.isRequired,
   stringTemplates: PropTypes.arrayOf(PropTypes.object),
   platforms: PropTypes.arrayOf(PropTypes.object),
   onDelete: PropTypes.func.isRequired,
