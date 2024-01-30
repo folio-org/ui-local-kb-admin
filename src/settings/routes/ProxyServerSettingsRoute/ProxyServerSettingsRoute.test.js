@@ -1,5 +1,4 @@
 import { MemoryRouter } from 'react-router-dom';
-
 /*
  * IMPORTANT -- in order to mock react query successfully
  * below you must import it into the test
@@ -26,11 +25,11 @@ jest.mock('react-query', () => {
   });
 });
 
-jest.mock('../../components/ProxyServerSettingsConfig/ProxyServerSettingsForm', () => {
+jest.mock('../../components/ProxyServerSettingsConfig/ProxyServerSettings/ProxyServerSettings', () => {
   return (props) => {
     return (
       <div>
-        <div>ProxyServerSettingsForm</div>
+        <div>ProxyServerSettings</div>
         <MockButton onClick={props.onSave}>SaveButton</MockButton>
         <MockButton onClick={props.onDelete}>DeleteButton</MockButton>
       </div>
@@ -56,9 +55,9 @@ describe('ProxyServerSettingsRoute', () => {
       );
     });
 
-    test('renders the ProxyServerSettingsForm component', () => {
+    test('renders the ProxyServerSettings component', () => {
       const { getByText } = renderComponent;
-      expect(getByText('ProxyServerSettingsForm')).toBeInTheDocument();
+      expect(getByText('ProxyServerSettings')).toBeInTheDocument();
     });
 
     test('clicking on the SaveButton fires the callout', async () => {

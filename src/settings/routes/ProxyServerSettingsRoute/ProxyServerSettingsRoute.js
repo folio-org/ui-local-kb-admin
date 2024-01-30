@@ -95,7 +95,7 @@ const ProxyServerSettingsRoute = () => {
     } else {
       promise = postTemplate(templatePayload);
     }
-    
+
     return promise
       .then(() => {
         sendCallout('save', 'success');

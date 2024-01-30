@@ -1,18 +1,11 @@
 import { MemoryRouter } from 'react-router-dom';
 
-import {
-  Button,
-  MultiColumnList,
-  MultiColumnListCell,
-  Pane,
-  PaneHeader,
-  renderWithIntl,
-} from '@folio/stripes-erm-testing';
+import { renderWithIntl } from '@folio/stripes-erm-testing';
 
 import ProxyServerSettings from './ProxyServerSettings';
 import translationsProperties from '../../../../../test/helpers';
 
-jest.mock('../ProxyServerSettingsFormModal', () => () => <div>ProxyServerSettingsFormModal</div>);
+jest.mock('../ProxyServerLookup/ProxyServerLookup', () => () => <div>ProxyServerLookup</div>);
 
 const onCancelMock = jest.fn();
 const onSaveMock = jest.fn();
@@ -116,63 +109,8 @@ describe('ProxyServerSettings', () => {
     );
   });
 
-  it('renders ProxyServerSettingsFormModal component ', () => {
+  it('renders ProxyServerLookup component ', () => {
     const { getByText } = renderComponent;
-    expect(getByText('ProxyServerSettingsFormModal')).toBeInTheDocument();
-  });
-
-  it('renders the expected New button', async () => {
-    await Button('New').exists();
-  });
-
-  it('renders the expected Pane ', async () => {
-    await Pane('Proxy server settings').is({ visible: true });
-  });
-
-  it('renders the expected Pane header', async () => {
-    await PaneHeader('Proxy server settings').is({ visible: true });
-  });
-
-  test('renders the expected number of records in the pane sub text', async () => {
-    await Pane('Proxy server settings').has({ subtitle: '2 proxy server settings' });
-  });
-
-  test('renders the expcted number of MCL columns', async () => {
-    await MultiColumnList({ columnCount: 3 }).exists();
-  });
-
-  test('renders the expcted number of MCL rows', async () => {
-    await MultiColumnList({ rowCount: 2 }).exists();
-  });
-
-  test('renders expected columns', async () => {
-    await MultiColumnList({
-      columns: [
-        'Name',
-        'URL customization code',
-        'Platforms to exclude from proxy server setting',
-      ],
-    }).exists();
-  });
-
-  test('renders expected name in the row', async () => {
-    Promise.all([
-      await MultiColumnListCell({ row: 0, columnIndex: 0 }).has({ content: 'MR TEST' }),
-      await MultiColumnListCell({ row: 1, columnIndex: 0 }).has({ content: 'MR TEST 2' })
-    ]);
-  });
-
-  test('renders expected url in the row', async () => {
-    Promise.all([
-      await MultiColumnListCell({ row: 0, columnIndex: 1 }).has({ content: 'https://mrTest.com' }),
-      await MultiColumnListCell({ row: 1, columnIndex: 1 }).has({ content: 'https://mrtest2.co.uk' })
-    ]);
-  });
-
-  test('renders expected platforms in the row', async () => {
-    Promise.all([
-      await MultiColumnListCell({ row: 0, columnIndex: 2 }).has({ content: '' }),
-      await MultiColumnListCell({ row: 1, columnIndex: 2 }).has({ content: '' })
-    ]);
+    expect(getByText('ProxyServerLookup')).toBeInTheDocument();
   });
 });

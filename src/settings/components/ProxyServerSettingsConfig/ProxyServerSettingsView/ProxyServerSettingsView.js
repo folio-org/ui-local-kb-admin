@@ -110,6 +110,7 @@ const ProxyServerSettingsView = ({
             <KeyValue label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />}>
               <List
                 items={idScopes?.map(ids => ids.label)}
+                // items={platforms?.map(ps => ps.name)}
                 listStyle="bullets"
               />
             </KeyValue>
