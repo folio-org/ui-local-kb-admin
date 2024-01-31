@@ -30,7 +30,7 @@
   "job.delete.message.org.olf.general.jobs.IdentifierReassignmentJob": "Identifier reassignment job <strong>{name}</strong> will be <strong>deleted</strong>.",
   "job.delete.message.org.olf.general.jobs.ResourceRematchJob": "Resource rematch job <strong>{name}</strong> will be <strong>deleted</strong>.",
   "job.delete.message.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naive match key assignment job <strong>{name}</strong> will be <strong>deleted</strong>.",
-  
+
   "job.deleted.success": "Job <strong>{name}</strong> was successfully <strong>deleted</strong>",
   "job.deleted.success.org.olf.general.jobs.KbartImportJob": "<strong>KBART package import job deleted </strong>: {name}",
   "job.deleted.success.org.olf.general.jobs.KbartIngestJob": "<strong>KBART package ingest job deleted </strong>: {name}",
@@ -40,7 +40,7 @@
   "job.deleted.success.org.olf.general.jobs.IdentifierReassignmentJob": "<strong>Identifier reassignment job deleted </strong>: {name}",
   "job.deleted.success.org.olf.general.jobs.ResourceRematchJob": "<strong>Resource rematch job deleted </strong>: {name}",
   "job.deleted.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>Naive match key assignment job deleted </strong>: {name}",
-  
+
   "job.created.success": "Job <strong>{name}</strong> was successfully <strong>create</strong>",
   "job.created.success.org.olf.general.jobs.KbartImportJob": "<strong>KBART package import job created </strong>: {name}",
   "job.created.success.org.olf.general.jobs.KbartIngestJob": "<strong>KBART package ingest job created </strong>: {name}",
@@ -50,7 +50,7 @@
   "job.created.success.org.olf.general.jobs.IdentifierReassignmentJob": "<strong>Identifier reassignment job created </strong>: {name}",
   "job.created.success.org.olf.general.jobs.ResourceRematchJob": "<strong>Resource rematch job created </strong>: {name}",
   "job.created.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>Naive match key assignment job created </strong>: {name}",
-  
+
   "job.new": "New",
   "job.newJob": "New job",
   "job.availableJobTypes": "Available job types",
@@ -104,6 +104,7 @@
   "settings.externalDataSources.externalDataSource": "External data source",
   "settings.externalDataSources.editExternalDataSource": "Edit external data source",
   "settings.externalDataSources.newExternalDataSource": "New external data source",
+  "settings.externalDataSources.edit": "Edit {name}",
   "settings.externalDataSources.name": "Name",
   "settings.externalDataSources.type": "Type",
   "settings.externalDataSources.recordType": "Record type",
@@ -118,6 +119,9 @@
   "settings.externalDataSources.title": "Title",
   "settings.externalDataSources.principal": "Principal",
   "settings.externalDataSources.credentials": "Credentials",
+  "settings.externalDataSources.lastChecked": "Last checked",
+  "settings.externalDataSources.cursor": "Cursor",
+  "settings.externalDataSources.syncStatus": "Sync status",
   "settings.externalDataSources.resetCursor": "Reset cursor",
   "settings.externalDataSources.resetSyncStatus": "Reset sync status",
   "settings.externalDataSources.cancelLabel": "Cancel",

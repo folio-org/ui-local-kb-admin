@@ -1,44 +1,54 @@
 import { useState } from 'react';
-
-import { useForm } from 'react-final-form';
-
-import { FormattedMessage } from 'react-intl';
-
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
+import { useQuery } from 'react-query';
 import moment from 'moment';
+import arrayMutators from 'final-form-arrays';
 
-import { useStripes } from '@folio/stripes/core';
+import { useOkapiKy, useStripes } from '@folio/stripes/core';
+import { CustomMetaSection } from '@folio/stripes-erm-components';
 import {
-  Button,
-  Card,
   Col,
-  Icon,
   KeyValue,
-  Layout,
+  NoValue,
+  Row,
+  Pane,
   Modal,
   ModalFooter,
-  NoValue,
-  Row
+  PaneHeader,
+  Button,
+  Icon,
+  ConfirmationModal
 } from '@folio/stripes/components';
-import { ActionMenu, CustomMetaSection } from '@folio/stripes-erm-components';
 
 import useDisplayMetaInfo from '../useDisplayMetaInfo';
+import { KB_ENDPOINT } from '../../../../constants/endpoints';
+
+import ExternalDataSourcesFormModal from '../ExternaldataSourcesFormModal/ExternalDataSourcesFormModal';
+import ExternalDataSourceForm from '../ExternalDataSourceForm/ExternalDataSourceForm';
 
 const ExternalDataSourcesView = ({
-  input: { name, value = {} },
+  externalKbs,
+  externalDataSourceId,
   onDelete,
-  onEdit,
-  onSave
+  onSave,
+  onClose,
+  onEditCancel,
+  onSubmit
 }) => {
-  const { change } = useForm();
-  const { syncStatus, cursor, lastChecked } = useDisplayMetaInfo(value);
-  const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
-
   const stripes = useStripes();
   const perm = stripes.hasPerm('ui-local-kb-admin.kbs.manage');
-
-  const hours = moment.utc().diff(moment.utc(value.lastCheck), 'hours');
+  const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const { syncStatus, cursor, lastChecked } = useDisplayMetaInfo(externalDataSourceId);
+  const hours = moment.utc().diff(moment.utc(externalKbs?.lastCheck), 'hours');
   const messageType = hours >= 24 ? 'active' : 'passive';
+  const [editEDS, setEditEDS] = useState(false);
+  const ky = useOkapiKy();
+  const { data: externalDataSource = {} } = useQuery(
+    ['ERM', 'KBs', KB_ENDPOINT(externalDataSourceId)],
+    () => ky.get(KB_ENDPOINT(externalDataSourceId)).json()
+  );
 
   const renderModal = () => {
     const footer = (
@@ -48,8 +58,7 @@ const ExternalDataSourcesView = ({
             buttonStyle="danger"
             data-test-confirm-modal
             onClick={() => {
-              change(`${name}.syncStatus`, 'idle');
-              const newValue = { ...value, syncStatus: 'idle' };
+              const newValue = { ...externalDataSource, syncStatus: 'idle' };
               onSave(newValue);
               setShowConfirmResetSyncStatus(false);
             }}
@@ -65,7 +74,6 @@ const ExternalDataSourcesView = ({
         </Button>
       </ModalFooter>
     );
-
     return (
       <Modal
         enforceFocus={false}
@@ -80,65 +88,83 @@ const ExternalDataSourcesView = ({
     );
   };
 
-  const getActionMenu = () => (
-    <>
-      <Button
-        buttonStyle="dropdownItem"
-        data-test-external-data-source-edit
-        marginBottom0
-        onClick={onEdit}
-      >
-        <Icon icon="edit">
-          <FormattedMessage id="stripes-core.button.edit" />
-        </Icon>
-      </Button>
-      <Button
-        buttonStyle="dropdownItem"
-        data-test-external-data-source-resetcursor
-        disabled={!value.cursor}
-        marginBottom0
-        onClick={() => {
-          change(`${name}.cursor`, null);
-          const newValue = { ...value, cursor: null };
-          onSave(newValue);
-        }}
-      >
-        <Icon icon="refresh">
-          <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetCursor" />
-        </Icon>
-      </Button>
-      <Button
-        buttonStyle="dropdownItem"
-        data-test-external-data-source-resetsyncstatus
-        disabled={value.syncStatus === 'idle'}
-        marginBottom0
-        onClick={() => setShowConfirmResetSyncStatus(true)}
-      >
-        <Icon icon="refresh">
-          <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetSyncStatus" />
-        </Icon>
-      </Button>
-      {!value.readonly &&
-        <Button
-          buttonStyle="dropdownItem"
-          data-test-external-data-source-delete
-          marginBottom0
-          onClick={onDelete}
-        >
-          <Icon icon="trash">
-            <FormattedMessage id="stripes-core.button.delete" />
-          </Icon>
-        </Button>
-      }
-    </>
+  const getActionMenu = ({ onToggle }) => {
+    const actionsArray = [];
+    if (perm) {
+      actionsArray.push(
+        <>
+          <Button
+            key={`${externalDataSource?.name}-action-edit`}
+            buttonStyle="dropdownItem"
+            data-test-external-data-source-edit
+            marginBottom0
+            onClick={() => setEditEDS(true)}
+          >
+            <Icon icon="edit">
+              <FormattedMessage id="stripes-core.button.edit" />
+            </Icon>
+          </Button>
+          <Button
+            buttonStyle="dropdownItem"
+            data-test-external-data-source-resetcursor
+            disabled={!externalDataSource?.cursor}
+            marginBottom0
+            onClick={() => {
+              const newValue = { ...externalDataSource, cursor: null };
+              onSave(newValue);
+            }}
+          >
+            <Icon icon="refresh">
+              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetCursor" />
+            </Icon>
+          </Button>
+          <Button
+            buttonStyle="dropdownItem"
+            data-test-external-data-source-resetsyncstatus
+            disabled={externalDataSource?.syncStatus === 'idle'}
+            marginBottom0
+            onClick={() => setShowConfirmResetSyncStatus(true)}
+          >
+            <Icon icon="refresh">
+              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetSyncStatus" />
+            </Icon>
+          </Button>
+          <Button
+            key={`${externalDataSource?.name}-action-delete`}
+            buttonStyle="dropdownItem"
+            data-test-external-data-source-delete
+            marginBottom0
+            onClick={() => {
+              setDeleteModal(true);
+              onToggle();
+            }}
+          >
+            <Icon icon="trash">
+              <FormattedMessage id="stripes-core.button.delete" />
+            </Icon>
+          </Button>
+        </>
+      );
+    }
+
+    return (actionsArray?.length ? actionsArray : null);
+  };
+  const renderViewHeader = renderProps => (
+    <PaneHeader
+      {...renderProps}
+      actionMenu={getActionMenu}
+      dismissible
+      onClose={onClose}
+      paneTitle={externalDataSource?.name}
+    />
   );
 
   return (
     <>
-      <Card
-        data-test-external-data-source-view
-        headerEnd={perm && <ActionMenu actionMenu={getActionMenu} />}
-        headerStart={<strong><FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.externalDataSource" /></strong>}
+      <Pane
+        defaultWidth="fill"
+        id="settings-externalDataSources-viewPane"
+        renderHeader={renderViewHeader}
       >
         {showConfirmResetSyncStatus && renderModal()}
         <CustomMetaSection accordionLabel={syncStatus}>
@@ -150,21 +176,21 @@ const ExternalDataSourcesView = ({
             <KeyValue
               data-test-external-data-source-name
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />}
-              value={value.name}
+              value={externalDataSource?.name}
             />
           </Col>
           <Col xs={5}>
             <KeyValue
               data-test-external-data-source-type
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.type" />}
-              value={value.type}
+              value={externalDataSource?.type}
             />
           </Col>
           <Col xs={4}>
             <KeyValue
               data-test-external-data-source-recordtype
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.recordType" />}
-              value={value.rectype === 1 ? <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.package" /> : ''}
+              value={externalDataSource?.rectype === 1 ? <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.package" /> : ''}
             />
           </Col>
         </Row>
@@ -173,109 +199,114 @@ const ExternalDataSourcesView = ({
             <KeyValue
               data-test-external-data-source-uri
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.uri" />}
-              value={value?.uri ?? <NoValue />}
+              value={externalDataSource?.uri ?? <NoValue />}
             />
           </Col>
           <Col xs={4}>
             <KeyValue
               data-test-external-data-source-trusted-source-ti
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.trustedSourceTI" />}
-              value={<FormattedMessage id={value.trustedSourceTI ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
+              value={<FormattedMessage id={externalDataSource?.trustedSourceTI ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
             />
           </Col>
         </Row>
-        <Layout className="padding-bottom-gutter">
-          <Row>
-            <Col xs={3}>
-              <KeyValue
-                data-test-external-data-source-isactive
-                label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.isActive" />}
-                value={<FormattedMessage id={value.active ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
-              />
-            </Col>
-            <Col xs={5}>
-              <KeyValue
-                data-test-external-data-source-supportsharvesting
-                label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.supportsHarvesting" />}
-                value={<FormattedMessage id={value.supportsHarvesting ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
-              />
-            </Col>
-            <Col xs={4}>
-              <KeyValue
-                data-test-external-data-source-activationenabled
-                label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.activationEnabled" />}
-                value={<FormattedMessage id={value.activationEnabled ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
-              />
-            </Col>
-          </Row>
-        </Layout>
+        <Row>
+          <Col xs={3}>
+            <KeyValue
+              data-test-external-data-source-isactive
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.isActive" />}
+              value={<FormattedMessage id={externalDataSource?.active ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
+            />
+          </Col>
+          <Col xs={5}>
+            <KeyValue
+              data-test-external-data-source-supportsharvesting
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.supportsHarvesting" />}
+              value={<FormattedMessage id={externalDataSource?.supportsHarvesting ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
+            />
+          </Col>
+          <Col xs={4}>
+            <KeyValue
+              data-test-external-data-source-activationenabled
+              label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.activationEnabled" />}
+              value={<FormattedMessage id={externalDataSource?.activationEnabled ? 'ui-local-kb-admin.yes' : 'ui-local-kb-admin.no'} />}
+            />
+          </Col>
+        </Row>
         <Row>
           <Col xs={3}>
             <KeyValue
               data-test-external-data-source-listprefix
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.listPrefix" />}
-              value={value?.listPrefix ?? <NoValue />}
+              value={externalDataSource?.listPrefix ?? <NoValue />}
             />
           </Col>
           <Col xs={5}>
             <KeyValue
               data-test-external-data-source-fullprefix
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.fullPrefix" />}
-              value={value?.fullPrefix ?? <NoValue />}
+              value={externalDataSource?.fullPrefix ?? <NoValue />}
             />
           </Col>
           <Col xs={4}>
             <KeyValue
               data-test-external-data-source-principal
               label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.principal" />}
-              value={value?.principal ?? <NoValue />}
+              value={externalDataSource?.principal ?? <NoValue />}
             />
           </Col>
         </Row>
         <KeyValue
           data-test-external-data-source-credentials
           label={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.credentials" />}
-          value={value?.credentials ?? <NoValue />}
+          value={externalDataSource?.credentials ?? <NoValue />}
         />
-      </Card>
+      </Pane>
+      {deleteModal && (
+        <ConfirmationModal
+          buttonStyle="danger"
+          confirmLabel={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmLabel" />}
+          data-test-confirmationModal
+          heading={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmHeading" />}
+          id="delete-external-data-source-confirmation"
+          message={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmMessage" values={{ name: externalDataSource?.name }} />}
+          onCancel={() => setDeleteModal(false)}
+          onConfirm={() => {
+            onDelete(externalDataSource?.id);
+            onClose();
+            setDeleteModal(false);
+          }}
+          open={deleteModal}
+        />
+      )}
+      <ExternalDataSourcesFormModal
+        initialValues={{ ...externalDataSource }}
+        modalProps={{
+          dismissible: true,
+          label: <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.edit" values={{ name: externalDataSource?.name }} />,
+          onClose: () => setEditEDS(false),
+          open: (editEDS)
+        }}
+        mutators={{ ...arrayMutators }}
+        onCancel={onEditCancel}
+        onDelete={onDelete}
+        onSave={onSave}
+        onSubmit={onSubmit}
+      >
+        <ExternalDataSourceForm externalKbs={externalKbs} />
+      </ExternalDataSourcesFormModal>
     </>
   );
 };
 
 ExternalDataSourcesView.propTypes = {
-  input: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([
-      PropTypes.shape({
-        activationEnabled: PropTypes.bool,
-        active: PropTypes.bool,
-        credentials: PropTypes.string,
-        fullPrefix: PropTypes.string,
-        id: PropTypes.string,
-        listPrefix: PropTypes.string,
-        name: PropTypes.string,
-        principal: PropTypes.string,
-        readonly: PropTypes.bool,
-        rectype: PropTypes.number,
-        supportsHarvesting: PropTypes.bool,
-        trustedSourceTI: PropTypes.bool,
-        type: PropTypes.string,
-        uri: PropTypes.string,
-        syncStatus: PropTypes.string,
-        cursor: PropTypes.string,
-        lastCheck: PropTypes.number
-      }),
-      PropTypes.string
-    ]).isRequired,
-  }).isRequired,
-  meta: PropTypes.shape({
-    invalid: PropTypes.bool,
-    pristine: PropTypes.bool,
-    submitting: PropTypes.bool,
-  }),
+  externalDataSourceId: PropTypes.string.isRequired,
+  externalKbs: PropTypes.arrayOf(PropTypes.object),
   onDelete: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired
+  onSave: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  onEditCancel: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired
 };
 
 export default ExternalDataSourcesView;

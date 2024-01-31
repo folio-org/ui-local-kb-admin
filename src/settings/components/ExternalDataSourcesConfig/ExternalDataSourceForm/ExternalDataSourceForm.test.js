@@ -1,76 +1,47 @@
-import { Field } from 'react-final-form';
-
 import { waitFor } from '@folio/jest-config-stripes/testing-library/react';
-
-import {
-  Button,
-  Checkbox,
-  renderWithIntl,
-  Select,
-  TestForm,
-  TextArea,
-  TextField,
-} from '@folio/stripes-erm-testing';
+import { TestForm, renderWithIntl, Checkbox, Select, TextArea, TextField } from '@folio/stripes-erm-testing';
 
 import translationsProperties from '../../../../../test/helpers';
-
-import ExternalDataSourcesEdit from './ExternalDataSourcesEdit';
+import ExternalDataSourceForm from './ExternalDataSourceForm';
 
 const onCancelMock = jest.fn();
 const onSaveMock = jest.fn();
 const onSubmit = jest.fn();
 
 const initialValues = {
-  'externalKbs': [{
-    'id': '794bc27c-1291-4307-8da9-f23aa992bc1a',
-    'cursor': '2022-08-09T17:37:14Z',
-    'active': true,
-    'trustedSourceTI': false,
-    'activationEnabled': false,
-    'credentials': 'testCredentials',
-    'readonly': false,
-    'syncStatus': 'in-process',
-    'lastCheck': 1670595614843,
-    'name': 'GOKb_TEST',
-    'type': 'org.olf.kb.adapters.GOKbOAIAdapter',
-    'principal': 'testPrincipal',
-    'listPrefix': 'testPrefix',
-    'fullPrefix': 'gokb',
-    'uri': 'https://gokbt.gbv.de/gokb/oai/index',
-    'supportsHarvesting': true,
-    'rectype': 1
+  externalKbs: [{
+    id: 'c4c903d0-f7ef-4d84-8fc7-2ed738e21b91',
+    cursor: '2023-01-11T14:47:18Z',
+    active: true,
+    trustedSourceTI: false,
+    activationEnabled: false,
+    readonly: false,
+    syncStatus: 'idle',
+    lastCheck: 1673463680170,
+    name: 'GOKb_TEST',
+    type: 'org.olf.kb.adapters.GOKbOAIAdapter',
+    fullPrefix: 'gokb',
+    uri: 'https://gokbt.gbv.de/gokb/oai/index',
+    supportsHarvesting: true,
+    rectype: 1
   }]
 };
 
 let renderComponent;
 
-describe('ExternalDataSourcesEdit', () => {
+describe('ExternalDataSourceForm', () => {
   beforeEach(() => {
     renderComponent = renderWithIntl(
       <TestForm
         initialValues={initialValues}
         onSubmit={onSubmit}
       >
-        <Field
-          component={ExternalDataSourcesEdit}
-          name="externalKbs[0]"
+        <ExternalDataSourceForm
           onCancel={onCancelMock}
           onSave={onSaveMock}
         />
       </TestForm>, translationsProperties
     );
-  });
-
-  test('renders the expected header', () => {
-    const { getByText } = renderComponent;
-    expect(getByText('Edit external data source')).toBeInTheDocument();
-  });
-
-  test('clicking the Cancel button works as expected', async () => {
-    await waitFor(async () => {
-      await Button('Cancel').click();
-    });
-    expect(onCancelMock).toHaveBeenCalled();
   });
 
   test('renders the Name field', async () => {
@@ -117,10 +88,9 @@ describe('ExternalDataSourcesEdit', () => {
     await TextArea('Credentials').exists();
   });
 
-  test('renders the expected Submit button', () => {
+  test('renders the expected Save & close button', () => {
     const { getByRole } = renderComponent;
     expect(getByRole('button', { name: 'Submit' }));
   });
 });
-
 
