@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { Field, useFormState } from 'react-final-form';
 import { Checkbox, Col, Row, Select, TextArea, TextField } from '@folio/stripes/components';
-import { composeValidators, requiredValidator } from '@folio/stripes-erm-components';
-import { validateURLIsValid } from '../../../../util/validators';
+import { composeValidators, requiredValidator, validateURL } from '@folio/stripes-erm-components';
 
 const ExternalDataSourceForm = ({ externalKbs }) => {
   const intl = useIntl();
@@ -77,7 +76,7 @@ const ExternalDataSourceForm = ({ externalKbs }) => {
             required={!values.readonly}
             validate={v => {
               if (!values.readonly) {
-                return (v?.length) ? validateURLIsValid(v) : requiredValidator(v);
+                return (v?.length) ? validateURL(v) : requiredValidator(v);
               }
               return undefined;
             }}
