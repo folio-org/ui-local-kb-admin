@@ -6,8 +6,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
-
-import ExternalDataSourcesForm from '../../components/ExternalDataSourcesConfig/ExternalDataSourcesForm';
+import ExternalDataSourcesSettings from '../../components/ExternalDataSourcesConfig/ExternalDataSourcesSettings';
 import { KBS_ENDPOINT } from '../../../constants/endpoints';
 
 const ExternalDataSourcesSettingsRoute = () => {
@@ -15,7 +14,6 @@ const ExternalDataSourcesSettingsRoute = () => {
   const callout = useCallout();
 
   const queryClient = useQueryClient();
-
   const sendCallout = (operation, outcome, error = '') => {
     callout.sendCallout({
       type: outcome,
@@ -61,7 +59,7 @@ const ExternalDataSourcesSettingsRoute = () => {
 
   const { mutateAsync: deleteExternalKB } = useMutation(
     ['ERM', 'KBs', 'PUT'],
-    ({ id }) => ky.delete(`${KBS_ENDPOINT}/${id}`).json()
+    (id) => ky.delete(`${KBS_ENDPOINT}/${id}`).json()
   );
 
   const handleSave = (externalKb) => {
@@ -71,7 +69,6 @@ const ExternalDataSourcesSettingsRoute = () => {
     } else {
       promise = postExternalKB(externalKb);
     }
-
     return promise
       .then(() => {
         sendCallout('save', 'success');
@@ -88,8 +85,8 @@ const ExternalDataSourcesSettingsRoute = () => {
       });
   };
 
-  const handleDelete = (externalKb) => {
-    return deleteExternalKB(externalKb)
+  const handleDelete = (id) => {
+    return deleteExternalKB(id)
       .then(() => {
         sendCallout('delete', 'success');
         queryClient.invalidateQueries(['ERM', 'KBs']);
@@ -106,7 +103,8 @@ const ExternalDataSourcesSettingsRoute = () => {
   };
 
   return (
-    <ExternalDataSourcesForm
+    <ExternalDataSourcesSettings
+      externalKbs={externalKbs}
       initialValues={{ externalKbs }}
       onDelete={handleDelete}
       onSave={handleSave}
