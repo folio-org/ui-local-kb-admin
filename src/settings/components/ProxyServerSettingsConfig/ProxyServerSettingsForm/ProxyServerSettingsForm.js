@@ -96,7 +96,7 @@ const ProxyServerSettingsForm = ({ platforms, stringTemplates }) => {
               />
             </>
           }
-          name="idScope"
+          name="idScopes"
           renderToOverlay
         />
       </Row>

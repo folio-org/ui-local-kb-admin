@@ -20,6 +20,7 @@ const ProxyServerLookup = ({
   const perm = stripes.hasPerm('ui-local-kb-admin.proxyServer.manage');
   const count = stringTemplates?.length ?? 0;
   const [createPS, setCreatePS] = useState(false);
+  
   const renderSettingsHeader = renderProps => (
     <PaneHeader
       {...renderProps}
@@ -51,11 +52,11 @@ const ProxyServerLookup = ({
           columnMapping={{
             name: <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.name" />,
             rule: <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode" />,
-            ids: <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />,
+            idScopes: <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />,
           }}
           contentData={stringTemplates}
           onRowClick={onSelectedProxyServer}
-          visibleColumns={['name', 'rule', 'ids']}
+          visibleColumns={['name', 'rule', 'idScopes']}
           {...mclProps}
         />
       </Pane>
