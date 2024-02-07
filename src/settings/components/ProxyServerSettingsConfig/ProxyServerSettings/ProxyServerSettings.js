@@ -4,6 +4,7 @@ import ProxyServerLookup from '../ProxyServerLookup/ProxyServerLookup';
 import ProxyServerSettingsView from '../ProxyServerSettingsView/ProxyServerSettingsView';
 
 const ProxyServerSettings = ({
+  initialValues,
   stringTemplates,
   platforms,
   onDelete,
@@ -12,7 +13,7 @@ const ProxyServerSettings = ({
   mclProps
 }) => {
   const [proxyServerSettings, setProxyServerSettings] = useState();
-
+  
   return (
     <>
       <ProxyServerLookup
@@ -37,16 +38,12 @@ const ProxyServerSettings = ({
           stringTemplates={stringTemplates}
         />
       }
-
     </>
   );
 };
 
 ProxyServerSettings.propTypes = {
-  initialValues: PropTypes.shape({
-    getInitialValues: PropTypes.func.isRequired,
-    stringTemplates: PropTypes.arrayOf(PropTypes.object),
-  }),
+  initialValues: PropTypes.object,
   mclProps: PropTypes.object,
   platforms: PropTypes.arrayOf(PropTypes.object),
   stringTemplates: PropTypes.arrayOf(PropTypes.object),

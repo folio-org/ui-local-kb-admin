@@ -55,6 +55,14 @@ const ProxyServerLookup = ({
             idScopes: <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />,
           }}
           contentData={stringTemplates}
+          // contentData={stringTemplates?.map(stringTemplate => {
+          //   return {
+          //     name: stringTemplate.name,
+          //     rule: stringTemplate.rule,
+          //     idScopes: stringTemplate.idScopes?.map(ids => ids.label)
+          //   }
+          // }
+          // )}
           onRowClick={onSelectedProxyServer}
           visibleColumns={['name', 'rule', 'idScopes']}
           {...mclProps}

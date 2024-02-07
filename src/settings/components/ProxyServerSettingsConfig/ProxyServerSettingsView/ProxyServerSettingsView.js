@@ -27,7 +27,7 @@ const ProxyServerSettingsView = ({
   const [deleteModal, setDeleteModal] = useState(false);
   const ky = useOkapiKy();
 
-  const { data: proxyServerSettings = {} } = useQuery(
+  const { data: proxyServerSettings = {stringTemplates} } = useQuery(
     ['ERM', 'STs', ST_ENDPOINT(proxyServerSettingsId)],
     () => ky.get(ST_ENDPOINT(proxyServerSettingsId)).json()
   );
@@ -92,7 +92,7 @@ const ProxyServerSettingsView = ({
             <KeyValue
               data-test-proxy-server-setting-name
               label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.name" />}
-              value={proxyServerSettings.name}
+              value={proxyServerSettings?.name}
             />
           </Col>
         </Row>
