@@ -156,5 +156,9 @@
     "job.created.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>تم إنشاء مهمة تعيين مفتاح المطابقة البسيطة</strong>: {name}",
     "org.olf.general.jobs.IdentifierReassignmentJob": "إعادة تعيين المعرف",
     "org.olf.general.jobs.ResourceRematchJob": "إعادة مطابقة الموارد",
-    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "تعيين مفتاح المطابقة البسيطة"
+    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "تعيين مفتاح المطابقة البسيطة",
+    "settings.externalDataSources.edit": "Edit {name}",
+    "settings.externalDataSources.lastChecked": "Last checked",
+    "settings.externalDataSources.cursor": "Cursor",
+    "settings.externalDataSources.syncStatus": "Sync status"
 }

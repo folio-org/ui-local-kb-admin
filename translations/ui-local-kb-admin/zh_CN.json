@@ -156,5 +156,9 @@
     "job.created.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>原始的匹配键分配任务已创建</strong> ： {name}",
     "org.olf.general.jobs.IdentifierReassignmentJob": "标识符再分配",
     "org.olf.general.jobs.ResourceRematchJob": "资源再匹配",
-    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "原始的匹配键分配"
+    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "原始的匹配键分配",
+    "settings.externalDataSources.edit": "编辑 {name}",
+    "settings.externalDataSources.lastChecked": "上次检查",
+    "settings.externalDataSources.cursor": "光标",
+    "settings.externalDataSources.syncStatus": "同步状态"
 }

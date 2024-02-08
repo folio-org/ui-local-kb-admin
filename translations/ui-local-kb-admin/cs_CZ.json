@@ -156,5 +156,9 @@
     "job.created.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>Vytvořena úloha naivního přiřazení klíče</strong>: {name}",
     "org.olf.general.jobs.IdentifierReassignmentJob": "Změna přiřazení identifikátoru",
     "org.olf.general.jobs.ResourceRematchJob": "Rematch zdrojů",
-    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naivní přiřazení klíče shody"
+    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naivní přiřazení klíče shody",
+    "settings.externalDataSources.edit": "Edit {name}",
+    "settings.externalDataSources.lastChecked": "Last checked",
+    "settings.externalDataSources.cursor": "Cursor",
+    "settings.externalDataSources.syncStatus": "Sync status"
 }

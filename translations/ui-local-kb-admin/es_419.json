@@ -156,5 +156,9 @@
     "job.created.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>Trabajo de asignación de clave de coincidencia ingenua creado </strong>: {name}",
     "org.olf.general.jobs.IdentifierReassignmentJob": "Reasignación de identificadores",
     "org.olf.general.jobs.ResourceRematchJob": "Revancha de recursos",
-    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Asignación ingenua de claves de coincidencia"
+    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Asignación ingenua de claves de coincidencia",
+    "settings.externalDataSources.edit": "Edit {name}",
+    "settings.externalDataSources.lastChecked": "Last checked",
+    "settings.externalDataSources.cursor": "Cursor",
+    "settings.externalDataSources.syncStatus": "Sync status"
 }
