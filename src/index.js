@@ -22,6 +22,7 @@ import JobViewRoute from './routes/JobViewRoute';
 import Settings from './settings';
 
 import setUpRegistry from './setUpRegistry';
+import { useIntlKeyStore } from '@k-int/stripes-kint-components';
 
 const propTypes = {
   actAs: PropTypes.string.isRequired,
@@ -33,7 +34,8 @@ const propTypes = {
 
 const App = (props) => {
   const { actAs, match: { path } } = props;
-
+  const addKey = useIntlKeyStore(state => state.addKey);
+  addKey('ui-local-kb-admin');
   const [showKeyboardShortcutsModal, setShowKeyboardShortcutsModal] = useState(false);
 
   const shortcutModalToggle = (handleToggle) => {

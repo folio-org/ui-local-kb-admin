@@ -10,10 +10,12 @@ import { Button, Col, Icon, KeyValue, NoValue, Pane, PaneHeader, Row, List, Conf
 import { ST_ENDPOINT } from '../../../../constants/endpoints';
 import ProxyServerSettingsForm from '../ProxyServerSettingsForm/ProxyServerSettingsForm';
 import ProxyServerSettingsFormModal from '../ProxyServerSettingsFormModal/ProxyServerSettingsFormModal';
+import mapPlatformsToStringTemplate from '../../../../util/mapPlatformsToStringTemplate';
+import { FormModal } from '@k-int/stripes-kint-components';
 
 
 const ProxyServerSettingsView = ({
-  proxyServerSettingsId,
+  proxyServerId,
   stringTemplates,
   platforms,
   onDelete,
@@ -27,20 +29,20 @@ const ProxyServerSettingsView = ({
   const [deleteModal, setDeleteModal] = useState(false);
   const ky = useOkapiKy();
 
-  const { data: proxyServerSettings = {stringTemplates} } = useQuery(
-    ['ERM', 'STs', ST_ENDPOINT(proxyServerSettingsId)],
-    () => ky.get(ST_ENDPOINT(proxyServerSettingsId)).json()
+  const { data = {} } = useQuery(
+    ['ERM', 'STs', ST_ENDPOINT(proxyServerId)],
+    () => ky.get(ST_ENDPOINT(proxyServerId)).json()
   );
-
-  const { idScopes = [] } = proxyServerSettings;
+  const proxyServer = mapPlatformsToStringTemplate(data, platforms);
+  console.log('proxyServerSettings view pane %o', proxyServer);
+  const { idScopes = [] } = proxyServer;
 
   const getActionMenu = ({ onToggle }) => {
     const actionsArray = [];
     if (perm) {
       actionsArray.push(
-        <>
           <Button
-            key={`${proxyServerSettings?.name}-action-edit`}
+            key={`${proxyServer?.name}-action-edit`}
             buttonStyle="dropdownItem"
             data-test-proxy-server-settings-edit
             marginBottom0
@@ -49,9 +51,9 @@ const ProxyServerSettingsView = ({
             <Icon icon="edit">
               <FormattedMessage id="stripes-core.button.edit" />
             </Icon>
-          </Button>
+          </Button>,
           <Button
-            key={`${proxyServerSettings?.name}-action-delete`}
+            key={`${proxyServer?.name}-action-delete`}
             buttonStyle="dropdownItem"
             data-test-proxy-server-settings-delete
             marginBottom0
@@ -64,7 +66,6 @@ const ProxyServerSettingsView = ({
               <FormattedMessage id="stripes-core.button.delete" />
             </Icon>
           </Button>
-        </>
       );
     }
     return (actionsArray?.length ? actionsArray : null);
@@ -76,7 +77,7 @@ const ProxyServerSettingsView = ({
       actionMenu={getActionMenu}
       dismissible
       onClose={onClose}
-      paneTitle={proxyServerSettings?.name}
+      paneTitle={proxyServer?.name}
     />
   );
 
@@ -92,7 +93,7 @@ const ProxyServerSettingsView = ({
             <KeyValue
               data-test-proxy-server-setting-name
               label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.name" />}
-              value={proxyServerSettings?.name}
+              value={proxyServer?.name}
             />
           </Col>
         </Row>
@@ -101,7 +102,7 @@ const ProxyServerSettingsView = ({
             <KeyValue
               data-test-proxy-server-setting-url
               label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode" />}
-              value={proxyServerSettings?.rule ?? <NoValue />}
+              value={proxyServer?.rule ?? <NoValue />}
             />
           </Col>
         </Row>
@@ -126,42 +127,40 @@ const ProxyServerSettingsView = ({
           message={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmMessage" values={{ name: proxyServerSettings?.name }} />}
           onCancel={() => setDeleteModal(false)}
           onConfirm={() => {
-            onDelete(proxyServerSettings?.id);
+            onDelete(proxyServer?.id);
             onClose();
             setDeleteModal(false);
           }}
           open={deleteModal}
         />
       )}
-      <ProxyServerSettingsFormModal
-        initialValues={{ ...proxyServerSettings }}
+      <FormModal
+        initialValues={{ ...proxyServer }}
         modalProps={{
           dismissible: true,
           label: <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.editProxyServerSetting" />,
           onClose: () => setEditPS(false),
           open: (editPS)
         }}
-        mutators={{ ...arrayMutators }}
+        // mutators={{ ...arrayMutators }}
         onDelete={onDelete}
-        onSave={onSave}
         onSubmit={onSubmit}
       >
         <ProxyServerSettingsForm
           platforms={platforms}
           stringTemplates={stringTemplates}
         />
-      </ProxyServerSettingsFormModal>
+      </FormModal>
     </>
   );
 };
 
 ProxyServerSettingsView.propTypes = {
-  proxyServerSettingsId: PropTypes.string.isRequired,
+  proxyServerId: PropTypes.string.isRequired,
   stringTemplates: PropTypes.arrayOf(PropTypes.object),
   platforms: PropTypes.arrayOf(PropTypes.object),
   onDelete: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired
 };

@@ -5,13 +5,12 @@ import { useStripes } from '@folio/stripes/core';
 import arrayMutators from 'final-form-arrays';
 import { Button, MultiColumnList, Pane, PaneHeader } from '@folio/stripes/components';
 
+import { FormModal } from '@k-int/stripes-kint-components';
 import ProxyServerSettingsForm from '../ProxyServerSettingsForm/ProxyServerSettingsForm';
 import ProxyServerSettingsFormModal from '../ProxyServerSettingsFormModal/ProxyServerSettingsFormModal';
 
 const ProxyServerLookup = ({
-  mclProps,
   onSelectedProxyServer,
-  onSave,
   onSubmit,
   platforms,
   stringTemplates,
@@ -39,7 +38,7 @@ const ProxyServerLookup = ({
       paneTitle={<FormattedMessage id="ui-local-kb-admin.section.proxyServerSettings" />}
     />
   );
-
+  console.log('stringTemplates %o', stringTemplates);
   return (
     <>
       <Pane
@@ -55,20 +54,14 @@ const ProxyServerLookup = ({
             idScopes: <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />,
           }}
           contentData={stringTemplates}
-          // contentData={stringTemplates?.map(stringTemplate => {
-          //   return {
-          //     name: stringTemplate.name,
-          //     rule: stringTemplate.rule,
-          //     idScopes: stringTemplate.idScopes?.map(ids => ids.label)
-          //   }
-          // }
-          // )}
+          formatter={{
+            idScopes: data => data?.idScopes?.map(ids => ids.label)?.join(", ")
+          }}
           onRowClick={onSelectedProxyServer}
           visibleColumns={['name', 'rule', 'idScopes']}
-          {...mclProps}
         />
       </Pane>
-      <ProxyServerSettingsFormModal
+      <FormModal
         initialValues={{}}
         modalProps={{
           dismissible: true,
@@ -76,15 +69,17 @@ const ProxyServerLookup = ({
           onClose: () => setCreatePS(false),
           open: (createPS)
         }}
-        mutators={{ ...arrayMutators }}
-        onSave={onSave}
-        onSubmit={onSubmit}
+        // mutators={{ ...arrayMutators }}
+        onSubmit={values => {
+          onSubmit(values);
+          setCreatePS(false)
+        }}
       >
         <ProxyServerSettingsForm
           platforms={platforms}
           stringTemplates={stringTemplates}
         />
-      </ProxyServerSettingsFormModal>
+      </FormModal>
     </>
   );
 };
@@ -93,8 +88,6 @@ ProxyServerLookup.propTypes = {
   onSelectedProxyServer: PropTypes.func,
   stringTemplates: PropTypes.arrayOf(PropTypes.object),
   platforms: PropTypes.arrayOf(PropTypes.object),
-  mclProps: PropTypes.object,
-  onSave: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 

@@ -4,37 +4,35 @@ import ProxyServerLookup from '../ProxyServerLookup/ProxyServerLookup';
 import ProxyServerSettingsView from '../ProxyServerSettingsView/ProxyServerSettingsView';
 
 const ProxyServerSettings = ({
-  initialValues,
   stringTemplates,
   platforms,
   onDelete,
-  onSave,
   onSubmit,
-  mclProps
 }) => {
-  const [proxyServerSettings, setProxyServerSettings] = useState();
+  const [proxyServer, setProxyServer] = useState();
+  const handleClose = () => setProxyServer();
   
+  console.log('proxyServerSettings %o', proxyServer);
   return (
     <>
       <ProxyServerLookup
-        mclProps={mclProps}
-        onSave={onSave}
+        onClose={handleClose}
         onSelectedProxyServer={(_p, pss) => {
-          setProxyServerSettings(pss);
+          setProxyServer(pss.id);
         }}
         onSubmit={onSubmit}
         platforms={platforms}
         stringTemplates={stringTemplates}
+        // stringTemplates={initialValues.stringTemplates}
       />
       {
-        proxyServerSettings &&
+        proxyServer &&
         <ProxyServerSettingsView
-          onClose={() => setProxyServerSettings()}
+          onClose={handleClose}
           onDelete={onDelete}
-          onSave={onSave}
           onSubmit={onSubmit}
           platforms={platforms}
-          proxyServerSettingsId={proxyServerSettings.id}
+          proxyServerId={proxyServer}
           stringTemplates={stringTemplates}
         />
       }
@@ -43,12 +41,9 @@ const ProxyServerSettings = ({
 };
 
 ProxyServerSettings.propTypes = {
-  initialValues: PropTypes.object,
-  mclProps: PropTypes.object,
   platforms: PropTypes.arrayOf(PropTypes.object),
   stringTemplates: PropTypes.arrayOf(PropTypes.object),
   onDelete: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 
