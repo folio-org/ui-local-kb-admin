@@ -156,5 +156,9 @@
     "job.created.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong> Trabalho de atribuição de chave de correspondência simples criado </strong> : {name}",
     "org.olf.general.jobs.IdentifierReassignmentJob": "Reatribuição de identificador",
     "org.olf.general.jobs.ResourceRematchJob": "Reparação de recursos",
-    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Atribuição de chave de correspondência simples"
+    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Atribuição de chave de correspondência simples",
+    "settings.externalDataSources.edit": "Editar {name}",
+    "settings.externalDataSources.lastChecked": "Última verificação",
+    "settings.externalDataSources.cursor": "Cursor",
+    "settings.externalDataSources.syncStatus": "Status de sincronização"
 }
