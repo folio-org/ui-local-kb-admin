@@ -2,10 +2,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useStripes } from '@folio/stripes/core';
-import arrayMutators from 'final-form-arrays';
 import { Button, MultiColumnList, Pane, PaneHeader } from '@folio/stripes/components';
 
-import { FormModal } from '@k-int/stripes-kint-components';
 import ProxyServerSettingsForm from '../ProxyServerSettingsForm/ProxyServerSettingsForm';
 import ProxyServerSettingsFormModal from '../ProxyServerSettingsFormModal/ProxyServerSettingsFormModal';
 
@@ -19,7 +17,6 @@ const ProxyServerLookup = ({
   const perm = stripes.hasPerm('ui-local-kb-admin.proxyServer.manage');
   const count = stringTemplates?.length ?? 0;
   const [createPS, setCreatePS] = useState(false);
-  
   const renderSettingsHeader = renderProps => (
     <PaneHeader
       {...renderProps}
@@ -38,7 +35,7 @@ const ProxyServerLookup = ({
       paneTitle={<FormattedMessage id="ui-local-kb-admin.section.proxyServerSettings" />}
     />
   );
-  console.log('stringTemplates %o', stringTemplates);
+
   return (
     <>
       <Pane
@@ -55,13 +52,13 @@ const ProxyServerLookup = ({
           }}
           contentData={stringTemplates}
           formatter={{
-            idScopes: data => data?.idScopes?.map(ids => ids.label)?.join(", ")
+            idScopes: data => data?.idScopes?.map(ids => ids.label)?.join(', ')
           }}
           onRowClick={onSelectedProxyServer}
           visibleColumns={['name', 'rule', 'idScopes']}
         />
       </Pane>
-      <FormModal
+      <ProxyServerSettingsFormModal
         initialValues={{}}
         modalProps={{
           dismissible: true,
@@ -72,14 +69,14 @@ const ProxyServerLookup = ({
         // mutators={{ ...arrayMutators }}
         onSubmit={values => {
           onSubmit(values);
-          setCreatePS(false)
+          setCreatePS(false);
         }}
       >
         <ProxyServerSettingsForm
           platforms={platforms}
           stringTemplates={stringTemplates}
         />
-      </FormModal>
+      </ProxyServerSettingsFormModal>
     </>
   );
 };

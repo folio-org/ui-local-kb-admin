@@ -2,7 +2,6 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useQuery } from 'react-query';
-import arrayMutators from 'final-form-arrays';
 
 import { useStripes, useOkapiKy } from '@folio/stripes/core';
 import { Button, Col, Icon, KeyValue, NoValue, Pane, PaneHeader, Row, List, ConfirmationModal } from '@folio/stripes/components';
@@ -11,8 +10,6 @@ import { ST_ENDPOINT } from '../../../../constants/endpoints';
 import ProxyServerSettingsForm from '../ProxyServerSettingsForm/ProxyServerSettingsForm';
 import ProxyServerSettingsFormModal from '../ProxyServerSettingsFormModal/ProxyServerSettingsFormModal';
 import mapPlatformsToStringTemplate from '../../../../util/mapPlatformsToStringTemplate';
-import { FormModal } from '@k-int/stripes-kint-components';
-
 
 const ProxyServerSettingsView = ({
   proxyServerId,
@@ -20,7 +17,6 @@ const ProxyServerSettingsView = ({
   platforms,
   onDelete,
   onClose,
-  onSave,
   onSubmit
 }) => {
   const stripes = useStripes();
@@ -34,38 +30,37 @@ const ProxyServerSettingsView = ({
     () => ky.get(ST_ENDPOINT(proxyServerId)).json()
   );
   const proxyServer = mapPlatformsToStringTemplate(data, platforms);
-  console.log('proxyServerSettings view pane %o', proxyServer);
   const { idScopes = [] } = proxyServer;
 
   const getActionMenu = ({ onToggle }) => {
     const actionsArray = [];
     if (perm) {
       actionsArray.push(
-          <Button
-            key={`${proxyServer?.name}-action-edit`}
-            buttonStyle="dropdownItem"
-            data-test-proxy-server-settings-edit
-            marginBottom0
-            onClick={() => setEditPS(true)}
-          >
-            <Icon icon="edit">
-              <FormattedMessage id="stripes-core.button.edit" />
-            </Icon>
-          </Button>,
-          <Button
-            key={`${proxyServer?.name}-action-delete`}
-            buttonStyle="dropdownItem"
-            data-test-proxy-server-settings-delete
-            marginBottom0
-            onClick={() => {
-              setDeleteModal(true);
-              onToggle();
-            }}
-          >
-            <Icon icon="trash">
-              <FormattedMessage id="stripes-core.button.delete" />
-            </Icon>
-          </Button>
+        <Button
+          key={`${proxyServer?.name}-action-edit`}
+          buttonStyle="dropdownItem"
+          data-test-proxy-server-settings-edit
+          marginBottom0
+          onClick={() => setEditPS(true)}
+        >
+          <Icon icon="edit">
+            <FormattedMessage id="stripes-core.button.edit" />
+          </Icon>
+        </Button>,
+        <Button
+          key={`${proxyServer?.name}-action-delete`}
+          buttonStyle="dropdownItem"
+          data-test-proxy-server-settings-delete
+          marginBottom0
+          onClick={() => {
+            setDeleteModal(true);
+            onToggle();
+          }}
+        >
+          <Icon icon="trash">
+            <FormattedMessage id="stripes-core.button.delete" />
+          </Icon>
+        </Button>
       );
     }
     return (actionsArray?.length ? actionsArray : null);
@@ -124,7 +119,7 @@ const ProxyServerSettingsView = ({
           data-test-confirmationModal
           heading={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmHeading" />}
           id="delete-proxy-server-settings-confirmation"
-          message={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmMessage" values={{ name: proxyServerSettings?.name }} />}
+          message={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmMessage" values={{ name: proxyServer?.name }} />}
           onCancel={() => setDeleteModal(false)}
           onConfirm={() => {
             onDelete(proxyServer?.id);
@@ -134,7 +129,7 @@ const ProxyServerSettingsView = ({
           open={deleteModal}
         />
       )}
-      <FormModal
+      <ProxyServerSettingsFormModal
         initialValues={{ ...proxyServer }}
         modalProps={{
           dismissible: true,
@@ -150,7 +145,7 @@ const ProxyServerSettingsView = ({
           platforms={platforms}
           stringTemplates={stringTemplates}
         />
-      </FormModal>
+      </ProxyServerSettingsFormModal>
     </>
   );
 };

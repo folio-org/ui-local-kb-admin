@@ -15,6 +15,8 @@ import {
   importShortcuts,
 } from '@folio/stripes/components';
 
+import { useIntlKeyStore } from '@k-int/stripes-kint-components';
+
 import JobCreateRoute from './routes/JobCreateRoute';
 import JobsRoute from './routes/JobsRoute';
 import JobViewRoute from './routes/JobViewRoute';
@@ -22,7 +24,6 @@ import JobViewRoute from './routes/JobViewRoute';
 import Settings from './settings';
 
 import setUpRegistry from './setUpRegistry';
-import { useIntlKeyStore } from '@k-int/stripes-kint-components';
 
 const propTypes = {
   actAs: PropTypes.string.isRequired,

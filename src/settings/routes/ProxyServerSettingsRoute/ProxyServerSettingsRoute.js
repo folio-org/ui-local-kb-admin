@@ -43,7 +43,6 @@ const ProxyServerSettingsRoute = () => {
     () => ky.get(`${STS_ENDPOINT}?${STSParams?.join('&')}`).json()
   );
 
-  console.log('stringTemplates route %o', stringTemplates);
   // Batch fetch platforms (Up to 1000)
   const {
     items: platforms
@@ -68,7 +67,7 @@ const ProxyServerSettingsRoute = () => {
   );
 
   const mapPlatforms = () => {
-    return cloneDeep(stringTemplates).map(stringTemplate => mapPlatformsToStringTemplate(stringTemplate, platforms))
+    return cloneDeep(stringTemplates).map(stringTemplate => mapPlatformsToStringTemplate(stringTemplate, platforms));
   };
 
   const handleSave = (template) => {

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { Form } from 'react-final-form';
+
 import { Button, Modal, ModalFooter } from '@folio/stripes/components';
 
 const ProxyServerSettingsFormModal = ({

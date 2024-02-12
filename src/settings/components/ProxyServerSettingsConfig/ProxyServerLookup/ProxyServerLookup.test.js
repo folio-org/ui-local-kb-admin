@@ -155,8 +155,7 @@ describe('ProxyServerLookup', () => {
 
   test('renders expected platforms in the row', async () => {
     Promise.all([
-      await MultiColumnListCell({ row: 0, columnIndex: 2 }).has({ content: '' }),
-      await MultiColumnListCell({ row: 1, columnIndex: 2 }).has({ content: '' })
+      await MultiColumnListCell({ row: 0, columnIndex: 2 }).has({ content: 'Oxford Academic Journals, Mary Ann Liebert, Inc. Publishers' }),
     ]);
   });
 });

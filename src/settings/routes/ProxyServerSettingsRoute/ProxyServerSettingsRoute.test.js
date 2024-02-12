@@ -30,7 +30,6 @@ jest.mock('../../components/ProxyServerSettingsConfig/ProxyServerSettings/ProxyS
     return (
       <div>
         <div>ProxyServerSettings</div>
-        <MockButton onClick={props.onSave}>SaveButton</MockButton>
         <MockButton onClick={props.onDelete}>DeleteButton</MockButton>
       </div>
     );
@@ -58,14 +57,6 @@ describe('ProxyServerSettingsRoute', () => {
     test('renders the ProxyServerSettings component', () => {
       const { getByText } = renderComponent;
       expect(getByText('ProxyServerSettings')).toBeInTheDocument();
-    });
-
-    test('clicking on the SaveButton fires the callout', async () => {
-      await waitFor(async () => {
-        await Button('SaveButton').click();
-      });
-
-      await Callout('External data source successfully saved.').exists();
     });
 
     test('clicking on the DeleteButton fires the callout', async () => {

@@ -11,8 +11,6 @@ const ProxyServerSettings = ({
 }) => {
   const [proxyServer, setProxyServer] = useState();
   const handleClose = () => setProxyServer();
-  
-  console.log('proxyServerSettings %o', proxyServer);
   return (
     <>
       <ProxyServerLookup
@@ -23,7 +21,6 @@ const ProxyServerSettings = ({
         onSubmit={onSubmit}
         platforms={platforms}
         stringTemplates={stringTemplates}
-        // stringTemplates={initialValues.stringTemplates}
       />
       {
         proxyServer &&
