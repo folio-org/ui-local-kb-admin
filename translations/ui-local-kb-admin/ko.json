@@ -156,5 +156,9 @@
     "job.created.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong> 순진한 일치 키 할당 작업 생성됨 </strong> : {name}",
     "org.olf.general.jobs.IdentifierReassignmentJob": "식별자 재할당",
     "org.olf.general.jobs.ResourceRematchJob": "자원 재매치",
-    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "순진한 일치 키 할당"
+    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "순진한 일치 키 할당",
+    "settings.externalDataSources.edit": "Edit {name}",
+    "settings.externalDataSources.lastChecked": "Last checked",
+    "settings.externalDataSources.cursor": "Cursor",
+    "settings.externalDataSources.syncStatus": "Sync status"
 }
