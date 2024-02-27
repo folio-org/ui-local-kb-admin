@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import arrayMutators from 'final-form-arrays';
+import { FormModal } from '@k-int/stripes-kint-components';
 
 import { MultiColumnList, Pane, PaneHeader, Button } from '@folio/stripes/components';
 import { useStripes } from '@folio/stripes/core';
@@ -69,7 +70,7 @@ const ExternalDataSourcesLookup = ({
           {...mclProps}
         />
       </Pane>
-      <ExternalDataSourcesFormModal
+      <FormModal
         initialValues={{
           active: false,
           activationEnabled: false,
@@ -89,7 +90,7 @@ const ExternalDataSourcesLookup = ({
         onSubmit={onSubmit}
       >
         <ExternalDataSourceForm externalKbs={externalKbs} />
-      </ExternalDataSourcesFormModal>
+      </FormModal>
     </>
   );
 };

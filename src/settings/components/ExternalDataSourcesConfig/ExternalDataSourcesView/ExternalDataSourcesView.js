@@ -7,6 +7,7 @@ import arrayMutators from 'final-form-arrays';
 
 import { useOkapiKy, useStripes } from '@folio/stripes/core';
 import { CustomMetaSection } from '@folio/stripes-erm-components';
+import { FormModal } from '@k-int/stripes-kint-components';
 import {
   Col,
   KeyValue,
@@ -21,10 +22,10 @@ import {
   ConfirmationModal
 } from '@folio/stripes/components';
 
+
 import useDisplayMetaInfo from '../useDisplayMetaInfo';
 import { KB_ENDPOINT } from '../../../../constants/endpoints';
 
-import ExternalDataSourcesFormModal from '../ExternaldataSourcesFormModal/ExternalDataSourcesFormModal';
 import ExternalDataSourceForm from '../ExternalDataSourceForm/ExternalDataSourceForm';
 
 const ExternalDataSourcesView = ({
@@ -279,7 +280,7 @@ const ExternalDataSourcesView = ({
           open={deleteModal}
         />
       )}
-      <ExternalDataSourcesFormModal
+      <FormModal
         initialValues={{ ...externalDataSource }}
         modalProps={{
           dismissible: true,
@@ -294,7 +295,7 @@ const ExternalDataSourcesView = ({
         onSubmit={onSubmit}
       >
         <ExternalDataSourceForm externalKbs={externalKbs} />
-      </ExternalDataSourcesFormModal>
+      </FormModal>
     </>
   );
 };
