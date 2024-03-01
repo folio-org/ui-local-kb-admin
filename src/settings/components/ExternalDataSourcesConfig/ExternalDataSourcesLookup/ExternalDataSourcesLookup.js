@@ -6,15 +6,12 @@ import { FormModal } from '@k-int/stripes-kint-components';
 
 import { MultiColumnList, Pane, PaneHeader, Button } from '@folio/stripes/components';
 import { useStripes } from '@folio/stripes/core';
-import ExternalDataSourcesFormModal from '../ExternaldataSourcesFormModal/ExternalDataSourcesFormModal';
-import ExternalDataSourceForm from '../ExternalDataSourceForm/ExternalDataSourceForm';
+import ExternalDataSourcesForm from '../ExternalDataSourcesForm/ExternalDataSourcesForm';
 
 const ExternalDataSourcesLookup = ({
   onSelectedExternalDataSource,
   externalKbs,
   mclProps,
-  onSave,
-  onCancel,
   onSubmit
 }) => {
   const stripes = useStripes();
@@ -85,11 +82,9 @@ const ExternalDataSourcesLookup = ({
           open: (createEDS)
         }}
         mutators={{ ...arrayMutators }}
-        onCancel={onCancel}
-        onSave={onSave}
         onSubmit={onSubmit}
       >
-        <ExternalDataSourceForm externalKbs={externalKbs} />
+        <ExternalDataSourcesForm externalKbs={externalKbs} />
       </FormModal>
     </>
   );
@@ -99,9 +94,7 @@ ExternalDataSourcesLookup.propTypes = {
   onSelectedExternalDataSource: PropTypes.func,
   externalKbs: PropTypes.arrayOf(PropTypes.object),
   mclProps: PropTypes.object,
-  onSave: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired
 };
 
 export default ExternalDataSourcesLookup;

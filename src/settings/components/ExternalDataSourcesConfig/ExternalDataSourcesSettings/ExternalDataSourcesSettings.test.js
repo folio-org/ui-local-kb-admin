@@ -1,21 +1,13 @@
 import { MemoryRouter } from 'react-router-dom';
 
-import {
-  Button,
-  MultiColumnList,
-  MultiColumnListCell,
-  Pane,
-  PaneHeader,
-  renderWithIntl,
-} from '@folio/stripes-erm-testing';
+import { renderWithIntl } from '@folio/stripes-erm-testing';
 
-import ExternalDataSourcesSettings from './ExternalDataSourcesSettings';
 import translationsProperties from '../../../../../test/helpers';
+import ExternalDataSourcesSettings from './ExternalDataSourcesSettings';
 
-jest.mock('../ExternaldataSourcesFormModal/ExternalDataSourcesFormModal', () => () => <div>ExternalDataSourcesFormModal</div>);
+jest.mock('../ExternalDataSourcesLookup/ExternalDataSourcesLookup', () => () => <div>ExternalDataSourcesLookup</div>);
 
-const onCancelMock = jest.fn();
-const onSaveMock = jest.fn();
+const onCloseMock = jest.fn();
 const onSubmit = jest.fn();
 const onDeleteMock = jest.fn();
 
@@ -82,9 +74,8 @@ describe('ExternalDataSourcesSettings', () => {
         <ExternalDataSourcesSettings
           externalKbs={externalKbs}
           initialValues={initialValues}
-          onCancel={onCancelMock}
+          onClose={onCloseMock}
           onDelete={onDeleteMock}
-          onSave={onSaveMock}
           onSubmit={onSubmit}
         />
       </MemoryRouter>,
@@ -92,103 +83,8 @@ describe('ExternalDataSourcesSettings', () => {
     );
   });
 
-  it('renders ExternaldataSourcesFormModal component ', () => {
+  it('renders ExternalDataSourcesLookup component ', () => {
     const { getByText } = renderComponent;
-    expect(getByText('ExternalDataSourcesFormModal')).toBeInTheDocument();
-  });
-
-  it('renders the expected New button', async () => {
-    await Button('New').exists();
-  });
-
-  it('renders the expected Pane ', async () => {
-    await Pane('External data sources').is({ visible: true });
-  });
-
-  it('renders the expected Pane header', async () => {
-    await PaneHeader('External data sources').is({ visible: true });
-  });
-
-  test('renders the expected number of records in the pane sub text', async () => {
-    await Pane('External data sources').has({ subtitle: '2 external data sources' });
-  });
-
-  test('renders the expcted number of MCL columns', async () => {
-    await MultiColumnList({ columnCount: 8 }).exists();
-  });
-
-  test('renders the expcted number of MCL rows', async () => {
-    await MultiColumnList({ rowCount: 2 }).exists();
-  });
-
-  test('renders expected columns', async () => {
-    await MultiColumnList({
-      columns: [
-        'Name',
-        'Type',
-        'URI',
-        'Is active',
-        'Trusted for title instance metadata',
-        'Sync status',
-        'Cursor',
-        'Last checked'
-      ],
-    }).exists();
-  });
-
-  test('renders expected name in the row', async () => {
-    Promise.all([
-      await MultiColumnListCell({ row: 0, columnIndex: 0 }).has({ content: 'GOKb_TEST' }),
-      await MultiColumnListCell({ row: 1, columnIndex: 0 }).has({ content: 'MR TEST' })
-    ]);
-  });
-
-  test('renders expected type in the row', async () => {
-    Promise.all([
-      await MultiColumnListCell({ row: 0, columnIndex: 1 }).has({ content: 'org.olf.kb.adapters.GOKbOAIAdapter' }),
-      await MultiColumnListCell({ row: 1, columnIndex: 1 }).has({ content: 'org.olf.kb.adapters.GOKbOAIAdapter' })
-    ]);
-  });
-
-  test('renders expected uri in the row', async () => {
-    Promise.all([
-      await MultiColumnListCell({ row: 0, columnIndex: 2 }).has({ content: 'https://gokbt.gbv.de/gokb/oai/index' }),
-      await MultiColumnListCell({ row: 1, columnIndex: 2 }).has({ content: 'https://mrtest.co.uk' })
-    ]);
-  });
-
-  test('renders expected is active in the row', async () => {
-    Promise.all([
-      await MultiColumnListCell({ row: 0, columnIndex: 3 }).has({ content: 'Yes' }),
-      await MultiColumnListCell({ row: 1, columnIndex: 3 }).has({ content: 'Yes' })
-    ]);
-  });
-
-  test('renders expected Trusted for title instance metadata in the row', async () => {
-    Promise.all([
-      await MultiColumnListCell({ row: 0, columnIndex: 4 }).has({ content: 'No' }),
-      await MultiColumnListCell({ row: 1, columnIndex: 4 }).has({ content: 'Yes' })
-    ]);
-  });
-
-  test('renders expected sync status in the row', async () => {
-    Promise.all([
-      await MultiColumnListCell({ row: 0, columnIndex: 5 }).has({ content: 'idle' }),
-      await MultiColumnListCell({ row: 1, columnIndex: 5 }).has({ content: '' })
-    ]);
-  });
-
-  test('renders expected cursor in the row', async () => {
-    Promise.all([
-      await MultiColumnListCell({ row: 0, columnIndex: 6 }).has({ content: '2023-12-07T17:18:02Z' }),
-      await MultiColumnListCell({ row: 1, columnIndex: 6 }).has({ content: '' })
-    ]);
-  });
-
-  test('renders expected last checked in the row', async () => {
-    Promise.all([
-      await MultiColumnListCell({ row: 0, columnIndex: 7 }).has({ content: '1701974599391' }),
-      await MultiColumnListCell({ row: 1, columnIndex: 7 }).has({ content: '' })
-    ]);
+    expect(getByText('ExternalDataSourcesLookup')).toBeInTheDocument();
   });
 });

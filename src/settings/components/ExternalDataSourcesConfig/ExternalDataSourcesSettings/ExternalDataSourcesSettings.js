@@ -6,8 +6,6 @@ import ExternalDataSourcesLookup from '../ExternalDataSourcesLookup/ExternalData
 
 const ExternalDataSourcesSettings = ({
   onDelete,
-  onCancel,
-  onSave,
   externalKbs,
   onSubmit,
   initialValues
@@ -18,9 +16,6 @@ const ExternalDataSourcesSettings = ({
     <>
       <ExternalDataSourcesLookup
         externalKbs={externalKbs}
-        onCancel={onCancel}
-        onEditCancel={onCancel}
-        onSave={onSave}
         onSelectedExternalDataSource={(_e, eds) => {
           setExternalDataSource(eds);
         }}
@@ -34,8 +29,6 @@ const ExternalDataSourcesSettings = ({
             initialValues={initialValues}
             onClose={() => setExternalDataSource()}
             onDelete={onDelete}
-            onEditCancel={onCancel}
-            onSave={onSave}
             onSubmit={onSubmit}
           />
       }
@@ -49,9 +42,7 @@ ExternalDataSourcesSettings.propTypes = {
     externalKbs: PropTypes.arrayOf(PropTypes.object),
   }),
   onDelete: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired
 };
 
 export default ExternalDataSourcesSettings;

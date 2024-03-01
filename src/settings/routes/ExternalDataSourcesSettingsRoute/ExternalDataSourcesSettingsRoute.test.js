@@ -33,7 +33,7 @@ jest.mock('../../components/ExternalDataSourcesConfig/ExternalDataSourcesSetting
     return (
       <div>
         <div>ExternalDataSourcesSettings</div>
-        <MockButton onClick={props.onSave}>SaveButton</MockButton>
+        <MockButton onClick={props.onSubmit}>SubmitButton</MockButton>
         <MockButton onClick={props.onDelete}>DeleteButton</MockButton>
       </div>
     );
@@ -79,9 +79,9 @@ describe('ExternalDataSourcesSettingsRoute', () => {
       expect(getByText('ExternalDataSourcesSettings')).toBeInTheDocument();
     });
 
-    test('clicking on the SaveButton fires the callout', async () => {
+    test('clicking on the SubmitButton fires the callout', async () => {
       await waitFor(async () => {
-        await Button('SaveButton').click();
+        await Button('SubmitButton').click();
       });
       await Callout('External data source successfully saved.').exists();
     });
