@@ -5,11 +5,11 @@ import { useQuery } from 'react-query';
 
 import { useStripes, useOkapiKy } from '@folio/stripes/core';
 import { Button, Col, Icon, KeyValue, NoValue, Pane, PaneHeader, Row, List, ConfirmationModal } from '@folio/stripes/components';
+import { FormModal } from '@k-int/stripes-kint-components';
 
 import { ST_ENDPOINT } from '../../../../constants/endpoints';
-import ProxyServerSettingsForm from '../ProxyServerSettingsForm/ProxyServerSettingsForm';
-import ProxyServerSettingsFormModal from '../ProxyServerSettingsFormModal/ProxyServerSettingsFormModal';
 import mapPlatformsToStringTemplate from '../../../../util/mapPlatformsToStringTemplate';
+import ProxyServerSettingsFormEdit from '../ProxyServerSettingsFormEdit/ProxyServerSettingsFormEdit';
 
 const ProxyServerSettingsView = ({
   proxyServerId,
@@ -129,7 +129,7 @@ const ProxyServerSettingsView = ({
           open={deleteModal}
         />
       )}
-      <ProxyServerSettingsFormModal
+      <FormModal
         initialValues={{ ...proxyServer }}
         modalProps={{
           dismissible: true,
@@ -137,15 +137,17 @@ const ProxyServerSettingsView = ({
           onClose: () => setEditPS(false),
           open: (editPS)
         }}
-        // mutators={{ ...arrayMutators }}
         onDelete={onDelete}
-        onSubmit={onSubmit}
+        onSubmit={values => {
+          onSubmit(values);
+          setEditPS(false);
+        }}
       >
-        <ProxyServerSettingsForm
+        <ProxyServerSettingsFormEdit
           platforms={platforms}
           stringTemplates={stringTemplates}
         />
-      </ProxyServerSettingsFormModal>
+      </FormModal>
     </>
   );
 };

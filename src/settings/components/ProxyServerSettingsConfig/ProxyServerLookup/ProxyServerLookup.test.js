@@ -12,10 +12,6 @@ import {
 import ProxyServerLookup from './ProxyServerLookup';
 import translationsProperties from '../../../../../test/helpers';
 
-jest.mock('../ProxyServerSettingsFormModal/ProxyServerSettingsFormModal', () => () => <div>ProxyServerSettingsFormModal</div>);
-
-const onCancelMock = jest.fn();
-const onSaveMock = jest.fn();
 const onSubmit = jest.fn();
 const onDeleteMock = jest.fn();
 const onSelectedProxyServer = jest.fn();
@@ -87,9 +83,7 @@ describe('ProxyServerLookup', () => {
     renderComponent = renderWithIntl(
       <MemoryRouter>
         <ProxyServerLookup
-          onCancel={onCancelMock}
           onDelete={onDeleteMock}
-          onSave={onSaveMock}
           onSelectedProxyServer={onSelectedProxyServer}
           onSubmit={onSubmit}
           platforms={platforms}
@@ -98,11 +92,6 @@ describe('ProxyServerLookup', () => {
       </MemoryRouter>,
       translationsProperties
     );
-  });
-
-  it('renders ProxyServerSettingsFormModal component ', () => {
-    const { getByText } = renderComponent;
-    expect(getByText('ProxyServerSettingsFormModal')).toBeInTheDocument();
   });
 
   it('renders the expected New button', async () => {

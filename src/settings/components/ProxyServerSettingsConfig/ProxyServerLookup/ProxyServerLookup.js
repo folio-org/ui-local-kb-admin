@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { useStripes } from '@folio/stripes/core';
 import { Button, MultiColumnList, Pane, PaneHeader } from '@folio/stripes/components';
+import { FormModal } from '@k-int/stripes-kint-components';
 
 import ProxyServerSettingsForm from '../ProxyServerSettingsForm/ProxyServerSettingsForm';
-import ProxyServerSettingsFormModal from '../ProxyServerSettingsFormModal/ProxyServerSettingsFormModal';
 
 const ProxyServerLookup = ({
   onSelectedProxyServer,
@@ -58,7 +58,7 @@ const ProxyServerLookup = ({
           visibleColumns={['name', 'rule', 'idScopes']}
         />
       </Pane>
-      <ProxyServerSettingsFormModal
+      <FormModal
         initialValues={{}}
         modalProps={{
           dismissible: true,
@@ -66,7 +66,6 @@ const ProxyServerLookup = ({
           onClose: () => setCreatePS(false),
           open: (createPS)
         }}
-        // mutators={{ ...arrayMutators }}
         onSubmit={values => {
           onSubmit(values);
           setCreatePS(false);
@@ -76,7 +75,7 @@ const ProxyServerLookup = ({
           platforms={platforms}
           stringTemplates={stringTemplates}
         />
-      </ProxyServerSettingsFormModal>
+      </FormModal>
     </>
   );
 };

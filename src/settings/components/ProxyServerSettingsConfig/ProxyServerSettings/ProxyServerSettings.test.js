@@ -7,8 +7,6 @@ import translationsProperties from '../../../../../test/helpers';
 
 jest.mock('../ProxyServerLookup/ProxyServerLookup', () => () => <div>ProxyServerLookup</div>);
 
-const onCancelMock = jest.fn();
-const onSaveMock = jest.fn();
 const onSubmit = jest.fn();
 const onDeleteMock = jest.fn();
 
@@ -98,9 +96,7 @@ describe('ProxyServerSettings', () => {
       <MemoryRouter>
         <ProxyServerSettings
           initialValues={initialValues}
-          onCancel={onCancelMock}
           onDelete={onDeleteMock}
-          onSave={onSaveMock}
           onSubmit={onSubmit}
           stringTemplates={stringTemplates}
         />
