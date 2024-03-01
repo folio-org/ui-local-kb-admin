@@ -288,7 +288,10 @@ const ExternalDataSourcesView = ({
         }}
         mutators={{ ...arrayMutators }}
         onDelete={onDelete}
-        onSubmit={onSubmit}
+        onSubmit={values => {
+          onSubmit(values);
+          setEditEDS(false);
+        }}
       >
         <ExternalDataSourcesFormEdit />
       </FormModal>

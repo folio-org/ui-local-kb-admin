@@ -82,7 +82,10 @@ const ExternalDataSourcesLookup = ({
           open: (createEDS)
         }}
         mutators={{ ...arrayMutators }}
-        onSubmit={onSubmit}
+        onSubmit={values => {
+          onSubmit(values);
+          setCreateEDS(false);
+        }}
       >
         <ExternalDataSourcesForm externalKbs={externalKbs} />
       </FormModal>
