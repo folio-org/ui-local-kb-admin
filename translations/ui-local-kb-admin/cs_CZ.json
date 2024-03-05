@@ -158,7 +158,7 @@
     "org.olf.general.jobs.ResourceRematchJob": "Rematch zdrojů",
     "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naivní přiřazení klíče shody",
     "settings.externalDataSources.edit": "Upravit {name}",
-    "settings.externalDataSources.lastChecked": "Last checked",
-    "settings.externalDataSources.cursor": "Cursor",
-    "settings.externalDataSources.syncStatus": "Sync status"
+    "settings.externalDataSources.lastChecked": "Poslední kontrola",
+    "settings.externalDataSources.cursor": "Kurzor",
+    "settings.externalDataSources.syncStatus": "Stav synchronizace"
 }
