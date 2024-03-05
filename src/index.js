@@ -14,6 +14,7 @@ import {
   checkScope,
   importShortcuts,
 } from '@folio/stripes/components';
+import { useIntlKeyStore } from '@k-int/stripes-kint-components';
 
 import { useIntlKeyStore } from '@k-int/stripes-kint-components';
 

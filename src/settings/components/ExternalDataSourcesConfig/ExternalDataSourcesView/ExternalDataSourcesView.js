@@ -7,6 +7,7 @@ import arrayMutators from 'final-form-arrays';
 
 import { useOkapiKy, useStripes } from '@folio/stripes/core';
 import { CustomMetaSection } from '@folio/stripes-erm-components';
+import { FormModal } from '@k-int/stripes-kint-components';
 import {
   Col,
   KeyValue,
@@ -21,26 +22,23 @@ import {
   ConfirmationModal
 } from '@folio/stripes/components';
 
+
 import useDisplayMetaInfo from '../useDisplayMetaInfo';
 import { KB_ENDPOINT } from '../../../../constants/endpoints';
 
-import ExternalDataSourcesFormModal from '../ExternaldataSourcesFormModal/ExternalDataSourcesFormModal';
-import ExternalDataSourceForm from '../ExternalDataSourceForm/ExternalDataSourceForm';
+import ExternalDataSourcesFormEdit from '../ExternalDataSourcesFormEdit';
 
 const ExternalDataSourcesView = ({
   externalKbs,
   externalDataSourceId,
   onDelete,
-  onSave,
   onClose,
-  onEditCancel,
   onSubmit
 }) => {
   const stripes = useStripes();
   const perm = stripes.hasPerm('ui-local-kb-admin.kbs.manage');
   const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
-  const { syncStatus, cursor, lastChecked } = useDisplayMetaInfo(externalDataSourceId);
   const hours = moment.utc().diff(moment.utc(externalKbs?.lastCheck), 'hours');
   const messageType = hours >= 24 ? 'active' : 'passive';
   const [editEDS, setEditEDS] = useState(false);
@@ -49,6 +47,7 @@ const ExternalDataSourcesView = ({
     ['ERM', 'KBs', KB_ENDPOINT(externalDataSourceId)],
     () => ky.get(KB_ENDPOINT(externalDataSourceId)).json()
   );
+  const { syncStatus, cursor, lastChecked } = useDisplayMetaInfo(externalDataSource);
 
   const renderModal = () => {
     const footer = (
@@ -59,7 +58,7 @@ const ExternalDataSourcesView = ({
             data-test-confirm-modal
             onClick={() => {
               const newValue = { ...externalDataSource, syncStatus: 'idle' };
-              onSave(newValue);
+              onSubmit(newValue);
               setShowConfirmResetSyncStatus(false);
             }}
           >
@@ -111,7 +110,7 @@ const ExternalDataSourcesView = ({
             marginBottom0
             onClick={() => {
               const newValue = { ...externalDataSource, cursor: null };
-              onSave(newValue);
+              onSubmit(newValue);
             }}
           >
             <Icon icon="refresh">
@@ -279,7 +278,7 @@ const ExternalDataSourcesView = ({
           open={deleteModal}
         />
       )}
-      <ExternalDataSourcesFormModal
+      <FormModal
         initialValues={{ ...externalDataSource }}
         modalProps={{
           dismissible: true,
@@ -288,13 +287,14 @@ const ExternalDataSourcesView = ({
           open: (editEDS)
         }}
         mutators={{ ...arrayMutators }}
-        onCancel={onEditCancel}
         onDelete={onDelete}
-        onSave={onSave}
-        onSubmit={onSubmit}
+        onSubmit={values => {
+          onSubmit(values);
+          setEditEDS(false);
+        }}
       >
-        <ExternalDataSourceForm externalKbs={externalKbs} />
-      </ExternalDataSourcesFormModal>
+        <ExternalDataSourcesFormEdit />
+      </FormModal>
     </>
   );
 };
@@ -303,9 +303,7 @@ ExternalDataSourcesView.propTypes = {
   externalDataSourceId: PropTypes.string.isRequired,
   externalKbs: PropTypes.arrayOf(PropTypes.object),
   onDelete: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  onEditCancel: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
   onClose: PropTypes.func.isRequired
 };
 

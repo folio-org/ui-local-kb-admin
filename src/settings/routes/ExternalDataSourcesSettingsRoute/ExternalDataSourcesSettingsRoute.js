@@ -107,7 +107,6 @@ const ExternalDataSourcesSettingsRoute = () => {
       externalKbs={externalKbs}
       initialValues={{ externalKbs }}
       onDelete={handleDelete}
-      onSave={handleSave}
       onSubmit={handleSave}
     />
   );
