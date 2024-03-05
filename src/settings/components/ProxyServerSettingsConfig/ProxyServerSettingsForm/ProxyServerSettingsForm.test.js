@@ -1,20 +1,13 @@
-import { waitFor } from '@folio/jest-config-stripes/testing-library/react';
-
 import {
+  TestForm,
   renderWithIntl,
-  KeyValue,
-  Button
+  TextField,
 } from '@folio/stripes-erm-testing';
-import { MemoryRouter } from 'react-router';
 
 import translationsProperties from '../../../../../test/helpers';
-import ProxyServerSettingsView from './ProxyServerSettingsView';
+import ProxyServerSettingsForm from './ProxyServerSettingsForm';
 
-const onSaveMock = jest.fn();
 const onSubmit = jest.fn();
-const onDeleteMock = jest.fn();
-const onCloseMock = jest.fn();
-const onClickMock = jest.fn();
 
 const initialValues = {
   stringTemplates: [
@@ -140,51 +133,55 @@ const stringTemplates = [
   }
 ];
 
-const proxyServerSettingsId = '2f57d1d1-f32f-48cd-b99a-c1df1b0fcbeb';
+let renderComponent;
 
-describe('ProxyServerSettingsView', () => {
+describe('ProxyServerSettingsForm', () => {
   beforeEach(() => {
-    renderWithIntl(
-      <MemoryRouter
+    renderComponent = renderWithIntl(
+      <TestForm
         initialValues={initialValues}
         onSubmit={onSubmit}
       >
-        <ProxyServerSettingsView
-          onClick={onClickMock}
-          onClose={onCloseMock}
-          onDelete={onDeleteMock}
-          onSave={onSaveMock}
-          onSubmit={onSubmit}
+        <ProxyServerSettingsForm
           platforms={platforms}
-          proxyServerSettingsId={proxyServerSettingsId}
           stringTemplates={stringTemplates}
         />
-      </MemoryRouter>,
+      </TestForm>,
       translationsProperties
     );
   });
 
-  test('renders Action menu', async () => {
-    await Button('Actions').exists();
+  test('renders the Name field', async () => {
+    await TextField('Name*').exists();
   });
 
-  test('Action menu has four items', async () => {
-    await waitFor(async () => {
-      await Button('Actions').click();
-      await Button('Edit').exists();
-      await Button('Delete').click();
-    });
+  test('renders the name label', () => {
+    const { getByText } = renderComponent;
+    expect(getByText('Name')).toBeInTheDocument();
   });
 
-  test('renders the Name keyValue', async () => {
-    await KeyValue('Name').exists();
+  test('renders the URL customization code label', () => {
+    const { getByText } = renderComponent;
+    expect(getByText('URL customization code')).toBeInTheDocument();
   });
 
-  test('renders the URL customization code keyValue', async () => {
-    await KeyValue('URL customization code').exists();
+  test('renders the expected layout', () => {
+    const { getByText } = renderComponent;
+    expect(getByText('Variables: inputUrl, platformLocalCode')).toBeInTheDocument();
   });
 
-  test('renders the Platforms to exclude from proxy server setting keyValue', async () => {
-    await KeyValue('Platforms to exclude from proxy server setting').exists();
+  test('renders the expected layout', () => {
+    const { getByText } = renderComponent;
+    expect(getByText('Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace')).toBeInTheDocument();
+  });
+
+  test('renders the expected label', () => {
+    const { getByText } = renderComponent;
+    expect(getByText('Platforms to exclude from proxy server setting')).toBeInTheDocument();
+  });
+
+  test('renders the expected Save & close button', () => {
+    const { getByRole } = renderComponent;
+    expect(getByRole('button', { name: 'Submit' }));
   });
 });

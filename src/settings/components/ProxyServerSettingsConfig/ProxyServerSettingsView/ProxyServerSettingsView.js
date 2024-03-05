@@ -1,89 +1,165 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { useStripes } from '@folio/stripes/core';
-import { Button, Card, Col, KeyValue, List, NoValue, Row } from '@folio/stripes/components';
+import { useQuery } from 'react-query';
 
-const ProxyServerSettingsView = ({ input: { value }, onDelete, onEdit }) => {
+import { useStripes, useOkapiKy } from '@folio/stripes/core';
+import { Button, Col, Icon, KeyValue, NoValue, Pane, PaneHeader, Row, List, ConfirmationModal } from '@folio/stripes/components';
+import { FormModal } from '@k-int/stripes-kint-components';
+
+import { ST_ENDPOINT } from '../../../../constants/endpoints';
+import mapPlatformsToStringTemplate from '../../../../util/mapPlatformsToStringTemplate';
+import ProxyServerSettingsFormEdit from '../ProxyServerSettingsFormEdit/ProxyServerSettingsFormEdit';
+
+const ProxyServerSettingsView = ({
+  proxyServerId,
+  stringTemplates,
+  platforms,
+  onDelete,
+  onClose,
+  onSubmit
+}) => {
   const stripes = useStripes();
   const perm = stripes.hasPerm('ui-local-kb-admin.proxyServer.manage');
+  const [editPS, setEditPS] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const ky = useOkapiKy();
 
+  const { data = {} } = useQuery(
+    ['ERM', 'STs', ST_ENDPOINT(proxyServerId)],
+    () => ky.get(ST_ENDPOINT(proxyServerId)).json()
+  );
+  const proxyServer = mapPlatformsToStringTemplate(data, platforms);
+  const { idScopes = [] } = proxyServer;
 
-  const { idScopes = [] } = value;
-  return (
-    <Card
-      data-test-external-data-source-view
-      headerEnd={perm && (
-        <span>
-          <Button
-            buttonStyle="danger"
-            data-test-external-data-source-delete
-            marginBottom0
-            onClick={onDelete}
-          >
-            <FormattedMessage id="stripes-core.button.delete" />
-          </Button>
-          <Button
-            data-test-external-data-source-edit
-            marginBottom0
-            onClick={onEdit}
-          >
+  const getActionMenu = ({ onToggle }) => {
+    const actionsArray = [];
+    if (perm) {
+      actionsArray.push(
+        <Button
+          key={`${proxyServer?.name}-action-edit`}
+          buttonStyle="dropdownItem"
+          data-test-proxy-server-settings-edit
+          marginBottom0
+          onClick={() => setEditPS(true)}
+        >
+          <Icon icon="edit">
             <FormattedMessage id="stripes-core.button.edit" />
-          </Button>
-        </span>
-      )}
-      headerStart={<strong><FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.proxyServerSetting" /></strong>}
-    >
-      <Row>
-        <Col xs={12}>
-          <KeyValue
-            data-test-proxy-server-setting-name
-            label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.name" />}
-            value={value.name}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12}>
-          <KeyValue
-            data-test-proxy-server-setting-url
-            label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode" />}
-            value={value?.rule ?? <NoValue />}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12}>
-          <KeyValue label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />}>
-            <List
-              items={idScopes?.map(ids => ids.label)}
-              listStyle="bullets"
+          </Icon>
+        </Button>,
+        <Button
+          key={`${proxyServer?.name}-action-delete`}
+          buttonStyle="dropdownItem"
+          data-test-proxy-server-settings-delete
+          marginBottom0
+          onClick={() => {
+            setDeleteModal(true);
+            onToggle();
+          }}
+        >
+          <Icon icon="trash">
+            <FormattedMessage id="stripes-core.button.delete" />
+          </Icon>
+        </Button>
+      );
+    }
+    return (actionsArray?.length ? actionsArray : null);
+  };
+
+  const renderViewHeader = renderProps => (
+    <PaneHeader
+      {...renderProps}
+      actionMenu={getActionMenu}
+      dismissible
+      onClose={onClose}
+      paneTitle={proxyServer?.name}
+    />
+  );
+
+  return (
+    <>
+      <Pane
+        defaultWidth="fill"
+        id="settings-proxyServerSettings-viewPane"
+        renderHeader={renderViewHeader}
+      >
+        <Row>
+          <Col xs={12}>
+            <KeyValue
+              data-test-proxy-server-setting-name
+              label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.name" />}
+              value={proxyServer?.name}
             />
-          </KeyValue>
-        </Col>
-      </Row>
-    </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <KeyValue
+              data-test-proxy-server-setting-url
+              label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.urlCustomizationCode" />}
+              value={proxyServer?.rule ?? <NoValue />}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <KeyValue label={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.platformsToExclude" />}>
+              <List
+                items={idScopes?.map(ids => ids.label)}
+                listStyle="bullets"
+              />
+            </KeyValue>
+          </Col>
+        </Row>
+      </Pane>
+      {deleteModal && (
+        <ConfirmationModal
+          buttonStyle="danger"
+          confirmLabel={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmLabel" />}
+          data-test-confirmationModal
+          heading={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmHeading" />}
+          id="delete-proxy-server-settings-confirmation"
+          message={<FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.delete.confirmMessage" values={{ name: proxyServer?.name }} />}
+          onCancel={() => setDeleteModal(false)}
+          onConfirm={() => {
+            onDelete(proxyServer?.id);
+            onClose();
+            setDeleteModal(false);
+          }}
+          open={deleteModal}
+        />
+      )}
+      <FormModal
+        initialValues={{ ...proxyServer }}
+        modalProps={{
+          dismissible: true,
+          label: <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.editProxyServerSetting" />,
+          onClose: () => setEditPS(false),
+          open: (editPS)
+        }}
+        onDelete={onDelete}
+        onSubmit={values => {
+          onSubmit(values);
+          setEditPS(false);
+        }}
+      >
+        <ProxyServerSettingsFormEdit
+          platforms={platforms}
+          stringTemplates={stringTemplates}
+        />
+      </FormModal>
+    </>
   );
 };
 
 ProxyServerSettingsView.propTypes = {
-  input: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    value: PropTypes.shape({
-      id: PropTypes.string,
-      idScopes: PropTypes.arrayOf(PropTypes.object),
-      name: PropTypes.string,
-      readonly: PropTypes.bool,
-      type: PropTypes.string,
-      rule: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
-  meta: PropTypes.shape({
-    invalid: PropTypes.bool,
-    pristine: PropTypes.bool,
-    submitting: PropTypes.bool,
-  }),
+  proxyServerId: PropTypes.string.isRequired,
+  stringTemplates: PropTypes.arrayOf(PropTypes.object),
+  platforms: PropTypes.arrayOf(PropTypes.object),
   onDelete: PropTypes.func.isRequired,
-  onEdit: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 
 export default ProxyServerSettingsView;

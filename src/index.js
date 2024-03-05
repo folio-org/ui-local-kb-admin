@@ -15,6 +15,8 @@ import {
   importShortcuts,
 } from '@folio/stripes/components';
 
+import { useIntlKeyStore } from '@k-int/stripes-kint-components';
+
 import JobCreateRoute from './routes/JobCreateRoute';
 import JobsRoute from './routes/JobsRoute';
 import JobViewRoute from './routes/JobViewRoute';
@@ -33,7 +35,8 @@ const propTypes = {
 
 const App = (props) => {
   const { actAs, match: { path } } = props;
-
+  const addKey = useIntlKeyStore(state => state.addKey);
+  addKey('ui-local-kb-admin');
   const [showKeyboardShortcutsModal, setShowKeyboardShortcutsModal] = useState(false);
 
   const shortcutModalToggle = (handleToggle) => {
