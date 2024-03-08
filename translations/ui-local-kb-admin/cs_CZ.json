@@ -160,5 +160,7 @@
     "settings.externalDataSources.edit": "Upravit {name}",
     "settings.externalDataSources.lastChecked": "Poslední kontrola",
     "settings.externalDataSources.cursor": "Kurzor",
-    "settings.externalDataSources.syncStatus": "Stav synchronizace"
+    "settings.externalDataSources.syncStatus": "Stav synchronizace",
+    "cancel": "Zrušit",
+    "saveAndClose": "Uložit a zavřít"
 }
