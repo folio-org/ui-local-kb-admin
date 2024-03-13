@@ -290,6 +290,8 @@ const ExternalDataSourcesView = ({
         onDelete={onDelete}
         onSubmit={(values, form) => {
           onSubmit(values);
+          // necessary because in FormModal the field state is not reset
+          // https://gitlab.com/knowledge-integration/folio/stripes-kint-components/-/issues/35
           form.reset();
           setEditEDS(false);
         }}

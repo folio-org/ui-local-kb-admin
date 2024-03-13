@@ -84,6 +84,8 @@ const ExternalDataSourcesLookup = ({
         mutators={{ ...arrayMutators }}
         onSubmit={(values, form) => {
           onSubmit(values);
+          // necessary because in FormModal the field state is not reset
+          // https://gitlab.com/knowledge-integration/folio/stripes-kint-components/-/issues/35
           form.reset();
           setCreateEDS(false);
         }}
