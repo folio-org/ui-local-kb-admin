@@ -288,8 +288,9 @@ const ExternalDataSourcesView = ({
         }}
         mutators={{ ...arrayMutators }}
         onDelete={onDelete}
-        onSubmit={values => {
+        onSubmit={(values, form) => {
           onSubmit(values);
+          form.reset();
           setEditEDS(false);
         }}
       >

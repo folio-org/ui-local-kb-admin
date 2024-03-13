@@ -50,10 +50,15 @@ const ExternalDataSourcesSettingsRoute = () => {
 
   const { mutateAsync: putExternalKB } = useMutation(
     ['ERM', 'KBs', 'PUT'],
-    (payload) => {
-      ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json().then(() => {
+    async (payload) => {
+      try {
+        await ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json();
         queryClient.invalidateQueries(['ERM', 'KBs']);
-      });
+      } catch (error) {
+        const { errors } = await error.response.json();
+        const errorMessage = errors?.[0]?.message || 'An error occurred';
+        throw new Error(errorMessage); // Throw a specific error with the message
+      }
     }
   );
 
