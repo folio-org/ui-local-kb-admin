@@ -160,5 +160,7 @@
     "settings.externalDataSources.edit": "Editar {name}",
     "settings.externalDataSources.lastChecked": "Última verificação",
     "settings.externalDataSources.cursor": "Cursor",
-    "settings.externalDataSources.syncStatus": "Status de sincronização"
+    "settings.externalDataSources.syncStatus": "Status de sincronização",
+    "cancel": "Cancelar",
+    "saveAndClose": "Salvar e fechar"
 }

@@ -160,5 +160,7 @@
     "settings.externalDataSources.edit": "编辑 {name}",
     "settings.externalDataSources.lastChecked": "上次检查",
     "settings.externalDataSources.cursor": "光标",
-    "settings.externalDataSources.syncStatus": "同步状态"
+    "settings.externalDataSources.syncStatus": "同步状态",
+    "cancel": "Cancel",
+    "saveAndClose": "Save & close"
 }
