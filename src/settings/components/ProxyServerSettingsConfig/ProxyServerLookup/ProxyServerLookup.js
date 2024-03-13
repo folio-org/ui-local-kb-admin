@@ -66,8 +66,9 @@ const ProxyServerLookup = ({
           onClose: () => setCreatePS(false),
           open: (createPS)
         }}
-        onSubmit={values => {
+        onSubmit={(values, form) => {
           onSubmit(values);
+          form.reset(); // Reset the form fields after submit
           setCreatePS(false);
         }}
       >
