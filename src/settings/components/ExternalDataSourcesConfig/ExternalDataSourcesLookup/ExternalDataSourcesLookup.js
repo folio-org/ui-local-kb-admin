@@ -82,8 +82,9 @@ const ExternalDataSourcesLookup = ({
           open: (createEDS)
         }}
         mutators={{ ...arrayMutators }}
-        onSubmit={values => {
+        onSubmit={(values, form) => {
           onSubmit(values);
+          form.reset();
           setCreateEDS(false);
         }}
       >
