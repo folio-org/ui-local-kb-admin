@@ -8,16 +8,21 @@ import { composeValidators, requiredValidator, validateURL } from '@folio/stripe
 const ExternalDataSourceForm = ({ externalKbs }) => {
   const intl = useIntl();
   const { values } = useFormState();
-  const validateUniqueName = (v) => {
-    const uniqueNameSources = externalKbs
-      .filter(ekb => ekb.name)
-      .filter(ekb => ekb.name.toLowerCase() === v.toLowerCase());
-    if (uniqueNameSources?.length > 0) {
-      return <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.nameExists" />;
+
+  const validateUniqueName = (val, _allVal, meta) => {
+    // ONLY RUN VALIDATION WHEN FIELD IS DIRTY
+    if (meta.dirty) {
+      const uniqueNameSources = externalKbs
+        .filter(ekb => ekb.name)
+        .filter(ekb => ekb.name.toLowerCase() === val.toLowerCase());
+      if (uniqueNameSources?.length > 0) {
+        return <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.nameExists" />;
+      }
     }
 
     return undefined;
   };
+
   return (
     <>
       <Row>

@@ -1,7 +1,7 @@
 
 import { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { cloneDeep, isEmpty } from 'lodash';
 
 import { useParallelBatchFetch } from '@folio/stripes-erm-components';
@@ -38,10 +38,10 @@ const ProxyServerSettingsRoute = () => {
     )
   ), []);
 
-  const { data: { results: stringTemplates = [] } = {} } = useQuery(
-    ['ERM', 'STs', STSParams, STS_ENDPOINT],
-    () => ky.get(`${STS_ENDPOINT}?${STSParams?.join('&')}`).json()
-  );
+  const { items: stringTemplates } = useParallelBatchFetch({
+    generateQueryKey: ({ offset }) => ['ERM', 'STs', STSParams, offset, STS_ENDPOINT],
+    endpoint: STS_ENDPOINT,
+  });
 
   // Batch fetch platforms (Up to 1000)
   const {
@@ -54,15 +54,23 @@ const ProxyServerSettingsRoute = () => {
   const { mutateAsync: postTemplate } = useMutation(
     ['ERM', 'STs', 'POST'],
     (payload) => ky.post(STS_ENDPOINT, { json: payload }).json()
+      .then(p => {
+        queryClient.invalidateQueries(['ERM', 'STs']);
+        return p; // Return promise for promise chain
+      })
   );
 
   const { mutateAsync: putTemplate } = useMutation(
     ['ERM', 'STs', 'PUT'],
     (payload) => ky.put(`${STS_ENDPOINT}/${payload.id}`, { json: payload }).json()
+      .then(p => {
+        queryClient.invalidateQueries(['ERM', 'STs']);
+        return p; // Return promise for promise chain
+      })
   );
 
   const { mutateAsync: deleteTemplate } = useMutation(
-    ['ERM', 'STs', 'PUT'],
+    ['ERM', 'STs', 'DELETE'],
     (id) => ky.delete(`${STS_ENDPOINT}/${id}`).json()
   );
 
@@ -70,7 +78,7 @@ const ProxyServerSettingsRoute = () => {
     return cloneDeep(stringTemplates).map(stringTemplate => mapPlatformsToStringTemplate(stringTemplate, platforms));
   };
 
-  const handleSave = (template) => {
+  const handleSave = (template, onSuccessFunc) => {
     let promise;
     const { idScopes = [] } = template;
     const idScopeValues = isEmpty(idScopes) ? [''] : idScopes.map(ids => ids.value); // fix logic once backend issue with [''] is fixed in the toolkit
@@ -83,18 +91,22 @@ const ProxyServerSettingsRoute = () => {
     }
 
     return promise
-      .then(() => {
+      .then(p => {
         sendCallout('save', 'success');
         queryClient.invalidateQueries(['ERM', 'STs']);
+        return p;
       })
+      .then(onSuccessFunc)
       .catch(error => {
-        // Attempt to show an error message if we got JSON back with a message.
-        // If json()ification fails, show the generic error callout.
-        if (error?.message) {
-          sendCallout('save', 'error', error.message);
-        } else {
-          sendCallout('save', 'error');
-        }
+        // Nested promise chain isn't ideal, but we need it here since response JSONification might fail
+        error.response.json()
+          .then(errResp => {
+            const { errors } = errResp;
+            sendCallout('save', 'error', errors?.[0]?.message);
+          })
+          .catch(() => {
+            sendCallout('save', 'error');
+          });
       });
   };
 

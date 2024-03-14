@@ -22,11 +22,10 @@ import {
   ConfirmationModal
 } from '@folio/stripes/components';
 
-
 import useDisplayMetaInfo from '../useDisplayMetaInfo';
 import { KB_ENDPOINT } from '../../../../constants/endpoints';
 
-import ExternalDataSourcesFormEdit from '../ExternalDataSourcesFormEdit';
+import ExternalDataSourcesForm from '../ExternalDataSourcesForm';
 
 const ExternalDataSourcesView = ({
   externalKbs,
@@ -289,12 +288,15 @@ const ExternalDataSourcesView = ({
         }}
         mutators={{ ...arrayMutators }}
         onDelete={onDelete}
-        onSubmit={(values) => {
+        onSubmit={(values, form) => {
           onSubmit(values);
+          // necessary because in FormModal the field state is not reset
+          // https://gitlab.com/knowledge-integration/folio/stripes-kint-components/-/issues/35
+          form.reset(); // Reset the form fields after submit
           setEditEDS(false);
         }}
       >
-        <ExternalDataSourcesFormEdit />
+        <ExternalDataSourcesForm externalKbs={externalKbs} />
       </FormModal>
     </>
   );

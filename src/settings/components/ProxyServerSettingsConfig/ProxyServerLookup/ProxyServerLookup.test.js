@@ -76,11 +76,9 @@ const platforms = [
   },
 ];
 
-let renderComponent;
-
 describe('ProxyServerLookup', () => {
   beforeEach(() => {
-    renderComponent = renderWithIntl(
+    renderWithIntl(
       <MemoryRouter>
         <ProxyServerLookup
           onDelete={onDeleteMock}

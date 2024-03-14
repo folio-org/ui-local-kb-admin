@@ -15,13 +15,18 @@ import css from './ProxyServerSettingsForm.css';
 
 const ProxyServerSettingsForm = ({ platforms, stringTemplates }) => {
   const { values } = useFormState();
-  const validateUniqueName = (v) => {
-    const uniqueNameServers = stringTemplates
-      .filter(ps => ps.name)
-      .filter(ps => ps.name.toLowerCase() === v.toLowerCase());
-    if (uniqueNameServers?.length > 0) {
-      return <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.nameExists" />;
+
+  const validateUniqueName = (val, _allVal, meta) => {
+    // ONLY RUN VALIDATION WHEN FIELD IS DIRTY
+    if (meta.dirty) {
+      const uniqueNameServers = stringTemplates
+        .filter(ekb => ekb.name)
+        .filter(ekb => ekb.name.toLowerCase() === val.toLowerCase());
+      if (uniqueNameServers?.length > 0) {
+        return <FormattedMessage id="ui-local-kb-admin.settings.proxyServerSettings.nameExists" />;
+      }
     }
+
     return undefined;
   };
 
