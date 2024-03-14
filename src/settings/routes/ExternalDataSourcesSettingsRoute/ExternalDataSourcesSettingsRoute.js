@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
-
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 
 import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
-
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
+import { useParallelBatchFetch } from '@folio/stripes-erm-components';
+
 import ExternalDataSourcesSettings from '../../components/ExternalDataSourcesConfig/ExternalDataSourcesSettings';
 import { KBS_ENDPOINT } from '../../../constants/endpoints';
 
@@ -36,10 +36,10 @@ const ExternalDataSourcesSettingsRoute = () => {
     )
   ), []);
 
-  const { data: { results: externalKbs = [] } = {} } = useQuery(
-    ['ERM', 'KBs', KBsParams, KBS_ENDPOINT],
-    () => ky.get(`${KBS_ENDPOINT}?${KBsParams?.join('&')}`).json()
-  );
+  const { items: externalKbs } = useParallelBatchFetch({
+    generateQueryKey: ({ offset }) => ['ERM', 'KBs', KBsParams, offset, KBS_ENDPOINT],
+    endpoint: KBS_ENDPOINT,
+  });
 
   const { mutateAsync: postExternalKB } = useMutation(
     ['ERM', 'KBs', 'POST'],
@@ -64,7 +64,7 @@ const ExternalDataSourcesSettingsRoute = () => {
     (id) => ky.delete(`${KBS_ENDPOINT}/${id}`).json()
   );
 
-  const handleSave = (externalKb) => {
+  const handleSave = (externalKb, onSuccessFunc) => {
     let promise;
     if (externalKb?.id) {
       promise = putExternalKB(externalKb);
@@ -72,10 +72,13 @@ const ExternalDataSourcesSettingsRoute = () => {
       promise = postExternalKB(externalKb);
     }
     return promise
-      .then(() => {
+      .then(p => {
         sendCallout('save', 'success');
         queryClient.invalidateQueries(['ERM', 'KBs']);
+
+        return p;
       })
+      .then(onSuccessFunc)
       .catch(error => {
         // Nested promise chain isn't ideal, but we need it here since response JSONification might fail
         error.response.json()
@@ -109,7 +112,6 @@ const ExternalDataSourcesSettingsRoute = () => {
   return (
     <ExternalDataSourcesSettings
       externalKbs={externalKbs}
-      initialValues={{ externalKbs }}
       onDelete={handleDelete}
       onSubmit={handleSave}
     />
