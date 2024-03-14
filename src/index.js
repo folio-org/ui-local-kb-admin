@@ -16,8 +16,6 @@ import {
 } from '@folio/stripes/components';
 import { useIntlKeyStore } from '@k-int/stripes-kint-components';
 
-import { useIntlKeyStore } from '@k-int/stripes-kint-components';
-
 import JobCreateRoute from './routes/JobCreateRoute';
 import JobsRoute from './routes/JobsRoute';
 import JobViewRoute from './routes/JobViewRoute';
