@@ -1,7 +1,7 @@
 
 import { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { cloneDeep, isEmpty } from 'lodash';
 
 import { useParallelBatchFetch } from '@folio/stripes-erm-components';
