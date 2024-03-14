@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useQuery } from 'react-query';
 import moment from 'moment';
 import arrayMutators from 'final-form-arrays';
@@ -36,6 +36,7 @@ const ExternalDataSourcesView = ({
   onSubmit
 }) => {
   const stripes = useStripes();
+  const intl = useIntl();
   const perm = stripes.hasPerm('ui-local-kb-admin.kbs.manage');
   const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -91,58 +92,58 @@ const ExternalDataSourcesView = ({
     const actionsArray = [];
     if (perm) {
       actionsArray.push(
-        <>
-          <Button
-            key={`${externalDataSource?.name}-action-edit`}
-            buttonStyle="dropdownItem"
-            data-test-external-data-source-edit
-            marginBottom0
-            onClick={() => setEditEDS(true)}
-          >
-            <Icon icon="edit">
-              <FormattedMessage id="stripes-core.button.edit" />
-            </Icon>
-          </Button>
-          <Button
-            buttonStyle="dropdownItem"
-            data-test-external-data-source-resetcursor
-            disabled={!externalDataSource?.cursor}
-            marginBottom0
-            onClick={() => {
-              const newValue = { ...externalDataSource, cursor: null };
-              onSubmit(newValue);
-            }}
-          >
-            <Icon icon="refresh">
-              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetCursor" />
-            </Icon>
-          </Button>
-          <Button
-            buttonStyle="dropdownItem"
-            data-test-external-data-source-resetsyncstatus
-            disabled={externalDataSource?.syncStatus === 'idle'}
-            marginBottom0
-            onClick={() => setShowConfirmResetSyncStatus(true)}
-          >
-            <Icon icon="refresh">
-              <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetSyncStatus" />
-            </Icon>
-          </Button>
-          <Button
-            key={`${externalDataSource?.name}-action-delete`}
-            buttonStyle="dropdownItem"
-            data-test-external-data-source-delete
-            marginBottom0
-            onClick={() => {
-              setDeleteModal(true);
-              onToggle();
-            }}
-          >
-            <Icon icon="trash">
-              <FormattedMessage id="stripes-core.button.delete" />
-            </Icon>
-          </Button>
-        </>
+        <Button
+          key={`${externalDataSource?.name}-action-edit`}
+          buttonStyle="dropdownItem"
+          data-test-external-data-source-edit
+          marginBottom0
+          onClick={() => setEditEDS(true)}
+        >
+          <Icon icon="edit">
+            <FormattedMessage id="stripes-core.button.edit" />
+          </Icon>
+        </Button>,
+        <Button
+          key={`${externalDataSource?.name}-action-reset-cursor`}
+          buttonStyle="dropdownItem"
+          data-test-external-data-source-resetcursor
+          disabled={!externalDataSource?.cursor}
+          marginBottom0
+          onClick={() => {
+            const newValue = { ...externalDataSource, cursor: null };
+            onSubmit(newValue);
+          }}
+        >
+          <Icon icon="refresh">
+            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetCursor" />
+          </Icon>
+        </Button>,
+        <Button
+          key={`${externalDataSource?.name}-action-reset-sync-status`}
+          buttonStyle="dropdownItem"
+          data-test-external-data-source-resetsyncstatus
+          disabled={externalDataSource?.syncStatus === 'idle'}
+          marginBottom0
+          onClick={() => setShowConfirmResetSyncStatus(true)}
+        >
+          <Icon icon="refresh">
+            <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetSyncStatus" />
+          </Icon>
+        </Button>,
+        <Button
+          key={`${externalDataSource?.name}-action-delete`}
+          buttonStyle="dropdownItem"
+          data-test-external-data-source-delete
+          marginBottom0
+          onClick={() => {
+            setDeleteModal(true);
+            onToggle();
+          }}
+        >
+          <Icon icon="trash">
+            <FormattedMessage id="stripes-core.button.delete" />
+          </Icon>
+        </Button>
       );
     }
 
@@ -266,7 +267,7 @@ const ExternalDataSourcesView = ({
           buttonStyle="danger"
           confirmLabel={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmLabel" />}
           data-test-confirmationModal
-          heading={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmHeading" />}
+          heading={intl.formatMessage({ id: 'ui-local-kb-admin.settings.externalDataSources.delete.confirmHeading' })}
           id="delete-external-data-source-confirmation"
           message={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmMessage" values={{ name: externalDataSource?.name }} />}
           onCancel={() => setDeleteModal(false)}
@@ -288,7 +289,7 @@ const ExternalDataSourcesView = ({
         }}
         mutators={{ ...arrayMutators }}
         onDelete={onDelete}
-        onSubmit={values => {
+        onSubmit={(values) => {
           onSubmit(values);
           setEditEDS(false);
         }}

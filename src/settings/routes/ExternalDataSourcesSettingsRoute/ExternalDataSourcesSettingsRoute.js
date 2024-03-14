@@ -43,18 +43,20 @@ const ExternalDataSourcesSettingsRoute = () => {
 
   const { mutateAsync: postExternalKB } = useMutation(
     ['ERM', 'KBs', 'POST'],
-    (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json().then(() => {
-      queryClient.invalidateQueries(['ERM', 'KBs']);
-    })
+    (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json()
+      .then(p => {
+        queryClient.invalidateQueries(['ERM', 'KBs']);
+        return p;
+      })
   );
 
   const { mutateAsync: putExternalKB } = useMutation(
     ['ERM', 'KBs', 'PUT'],
-    (payload) => {
-      ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json().then(() => {
+    (payload) => ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json()
+      .then(p => {
         queryClient.invalidateQueries(['ERM', 'KBs']);
-      });
-    }
+        return p; // Return promise for promise chain
+      })
   );
 
   const { mutateAsync: deleteExternalKB } = useMutation(
@@ -75,13 +77,15 @@ const ExternalDataSourcesSettingsRoute = () => {
         queryClient.invalidateQueries(['ERM', 'KBs']);
       })
       .catch(error => {
-        // Attempt to show an error message if we got JSON back with a message.
-        // If json()ification fails, show the generic error callout.
-        if (error?.message) {
-          sendCallout('save', 'error', error.message);
-        } else {
-          sendCallout('save', 'error');
-        }
+        // Nested promise chain isn't ideal, but we need it here since response JSONification might fail
+        error.response.json()
+          .then(errResp => {
+            const { errors } = errResp;
+            sendCallout('save', 'error', errors?.[0]?.message);
+          })
+          .catch(() => {
+            sendCallout('save', 'error');
+          });
       });
   };
 
