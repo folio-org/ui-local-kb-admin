@@ -53,14 +53,7 @@ const ExternalDataSourcesSettingsRoute = () => {
     (payload) => ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json()
       .then(() => {
         queryClient.invalidateQueries(['ERM', 'KBs']);
-      })/* .catch(error => {
-      error.response.json().then(err => {
-        const { errors } = err;
-        console.log("ERRORS: %o", errors);
-        const errorMessage = errors?.[0]?.message || 'An error occurred';
-        throw new Error(errorMessage); // Throw a specific error with the message
-      });
-    }) */
+      })
   );
 
   const { mutateAsync: deleteExternalKB } = useMutation(
