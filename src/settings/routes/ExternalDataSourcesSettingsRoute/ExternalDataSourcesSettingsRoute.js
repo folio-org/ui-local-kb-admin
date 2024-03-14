@@ -60,7 +60,7 @@ const ExternalDataSourcesSettingsRoute = () => {
   );
 
   const { mutateAsync: deleteExternalKB } = useMutation(
-    ['ERM', 'KBs', 'PUT'],
+    ['ERM', 'KBs', 'DELETE'],
     (id) => ky.delete(`${KBS_ENDPOINT}/${id}`).json()
   );
 

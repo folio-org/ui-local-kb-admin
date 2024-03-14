@@ -7,8 +7,7 @@ import ExternalDataSourcesLookup from '../ExternalDataSourcesLookup/ExternalData
 const ExternalDataSourcesSettings = ({
   onDelete,
   externalKbs,
-  onSubmit,
-  initialValues
+  onSubmit
 }) => {
   const [externalDataSource, setExternalDataSource] = useState();
 
@@ -26,7 +25,6 @@ const ExternalDataSourcesSettings = ({
           <ExternalDataSourcesView
             externalDataSourceId={externalDataSource.id}
             externalKbs={externalKbs}
-            initialValues={initialValues}
             onClose={() => setExternalDataSource()}
             onDelete={onDelete}
             onSubmit={onSubmit}
@@ -38,9 +36,6 @@ const ExternalDataSourcesSettings = ({
 
 ExternalDataSourcesSettings.propTypes = {
   externalKbs: PropTypes.arrayOf(PropTypes.object),
-  initialValues: PropTypes.shape({
-    externalKbs: PropTypes.arrayOf(PropTypes.object),
-  }),
   onDelete: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired
 };

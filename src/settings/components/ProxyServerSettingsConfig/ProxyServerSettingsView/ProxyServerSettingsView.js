@@ -9,7 +9,7 @@ import { FormModal } from '@k-int/stripes-kint-components';
 
 import { ST_ENDPOINT } from '../../../../constants/endpoints';
 import mapPlatformsToStringTemplate from '../../../../util/mapPlatformsToStringTemplate';
-import ProxyServerSettingsFormEdit from '../ProxyServerSettingsFormEdit/ProxyServerSettingsFormEdit';
+import ProxyServerSettingsForm from '../ProxyServerSettingsForm';
 
 const ProxyServerSettingsView = ({
   proxyServerId,
@@ -143,7 +143,7 @@ const ProxyServerSettingsView = ({
           setEditPS(false);
         }}
       >
-        <ProxyServerSettingsFormEdit
+        <ProxyServerSettingsForm
           platforms={platforms}
           stringTemplates={stringTemplates}
         />

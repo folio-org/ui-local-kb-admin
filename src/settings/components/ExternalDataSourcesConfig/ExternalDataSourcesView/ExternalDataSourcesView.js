@@ -22,11 +22,10 @@ import {
   ConfirmationModal
 } from '@folio/stripes/components';
 
-
 import useDisplayMetaInfo from '../useDisplayMetaInfo';
 import { KB_ENDPOINT } from '../../../../constants/endpoints';
 
-import ExternalDataSourcesFormEdit from '../ExternalDataSourcesFormEdit';
+import ExternalDataSourcesForm from '../ExternalDataSourcesForm';
 
 const ExternalDataSourcesView = ({
   externalKbs,
@@ -294,7 +293,7 @@ const ExternalDataSourcesView = ({
           setEditEDS(false);
         }}
       >
-        <ExternalDataSourcesFormEdit />
+        <ExternalDataSourcesForm externalKbs={externalKbs} />
       </FormModal>
     </>
   );
