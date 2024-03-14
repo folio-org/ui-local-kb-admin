@@ -46,7 +46,7 @@ const ExternalDataSourcesSettingsRoute = () => {
     (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json()
       .then(p => {
         queryClient.invalidateQueries(['ERM', 'KBs']);
-        return p; // Return promise for promise chain
+        return p;
       })
   );
 
@@ -72,23 +72,20 @@ const ExternalDataSourcesSettingsRoute = () => {
       promise = postExternalKB(externalKb);
     }
     return promise
+      .then(() => {
+        sendCallout('save', 'success');
+        queryClient.invalidateQueries(['ERM', 'KBs']);
+      })
       .catch(error => {
-        return error.response.json(); // This might fail, catch at bottom
-      })
-      .then((resp) => {
-        // At this point we _either_ have a successful save or an error
-        const { errors = [] } = resp;
-        if (!errors.length) {
-          // This means we didn't fail, send success callout
-          sendCallout('save', 'success');
-          queryClient.invalidateQueries(['ERM', 'KBs']);
-        } else {
-          sendCallout('save', 'error', errors?.[0]?.message);
-        }
-      })
-      // Should only reach this final catch if JSONification failed
-      .catch(() => {
-        sendCallout('save', 'error');
+        // Nested promise chain isn't ideal, but we need it here since response JSONification might fail
+        error.response.json()
+          .then(errResp => {
+            const { errors } = errResp;
+            sendCallout('save', 'error', errors?.[0]?.message);
+          })
+          .catch(() => {
+            sendCallout('save', 'error');
+          });
       });
   };
 
