@@ -50,16 +50,17 @@ const ExternalDataSourcesSettingsRoute = () => {
 
   const { mutateAsync: putExternalKB } = useMutation(
     ['ERM', 'KBs', 'PUT'],
-    async (payload) => {
-      try {
-        await ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json();
+    (payload) => ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json()
+      .then(() => {
         queryClient.invalidateQueries(['ERM', 'KBs']);
-      } catch (error) {
-        const { errors } = await error.response.json();
+      })/* .catch(error => {
+      error.response.json().then(err => {
+        const { errors } = err;
+        console.log("ERRORS: %o", errors);
         const errorMessage = errors?.[0]?.message || 'An error occurred';
         throw new Error(errorMessage); // Throw a specific error with the message
-      }
-    }
+      });
+    }) */
   );
 
   const { mutateAsync: deleteExternalKB } = useMutation(
@@ -79,14 +80,13 @@ const ExternalDataSourcesSettingsRoute = () => {
         sendCallout('save', 'success');
         queryClient.invalidateQueries(['ERM', 'KBs']);
       })
-      .catch(error => {
-        // Attempt to show an error message if we got JSON back with a message.
-        // If json()ification fails, show the generic error callout.
-        if (error?.message) {
-          sendCallout('save', 'error', error.message);
-        } else {
-          sendCallout('save', 'error');
-        }
+      .catch(error => error.response.json()) // Caught error, chain onwards with json promise
+      .then(errResp => {
+        const { errors } = errResp;
+        sendCallout('save', 'error', errors?.[0]?.message);
+      })
+      .catch(() => {
+        sendCallout('save', 'error');
       });
   };
 
