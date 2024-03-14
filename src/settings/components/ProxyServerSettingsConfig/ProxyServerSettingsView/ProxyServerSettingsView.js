@@ -138,8 +138,11 @@ const ProxyServerSettingsView = ({
           open: (editPS)
         }}
         onDelete={onDelete}
-        onSubmit={values => {
+        onSubmit={(values, form) => {
           onSubmit(values);
+          // necessary because in FormModal the field state is not reset
+          // https://gitlab.com/knowledge-integration/folio/stripes-kint-components/-/issues/35
+          form.reset(); // Reset the form fields after submit
           setEditPS(false);
         }}
       >
