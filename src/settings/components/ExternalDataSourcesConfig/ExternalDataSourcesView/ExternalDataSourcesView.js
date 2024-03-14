@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { useQuery } from 'react-query';
 import moment from 'moment';
 import arrayMutators from 'final-form-arrays';
@@ -36,6 +36,7 @@ const ExternalDataSourcesView = ({
   onSubmit
 }) => {
   const stripes = useStripes();
+  const intl = useIntl();
   const perm = stripes.hasPerm('ui-local-kb-admin.kbs.manage');
   const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
@@ -266,7 +267,7 @@ const ExternalDataSourcesView = ({
           buttonStyle="danger"
           confirmLabel={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmLabel" />}
           data-test-confirmationModal
-          heading={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmHeading" />}
+          heading={intl.formatMessage({ id: 'ui-local-kb-admin.settings.externalDataSources.delete.confirmHeading' })}
           id="delete-external-data-source-confirmation"
           message={<FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.delete.confirmMessage" values={{ name: externalDataSource?.name }} />}
           onCancel={() => setDeleteModal(false)}
@@ -288,11 +289,8 @@ const ExternalDataSourcesView = ({
         }}
         mutators={{ ...arrayMutators }}
         onDelete={onDelete}
-        onSubmit={(values, form) => {
+        onSubmit={(values) => {
           onSubmit(values);
-          // necessary because in FormModal the field state is not reset
-          // https://gitlab.com/knowledge-integration/folio/stripes-kint-components/-/issues/35
-          form.reset();
           setEditEDS(false);
         }}
       >

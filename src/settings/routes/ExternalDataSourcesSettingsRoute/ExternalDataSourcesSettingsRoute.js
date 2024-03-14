@@ -43,16 +43,19 @@ const ExternalDataSourcesSettingsRoute = () => {
 
   const { mutateAsync: postExternalKB } = useMutation(
     ['ERM', 'KBs', 'POST'],
-    (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json().then(() => {
-      queryClient.invalidateQueries(['ERM', 'KBs']);
-    })
+    (payload) => ky.post(KBS_ENDPOINT, { json: payload }).json()
+      .then(p => {
+        queryClient.invalidateQueries(['ERM', 'KBs']);
+        return p; // Return promise for promise chain
+      })
   );
 
   const { mutateAsync: putExternalKB } = useMutation(
     ['ERM', 'KBs', 'PUT'],
     (payload) => ky.put(`${KBS_ENDPOINT}/${payload.id}`, { json: payload }).json()
-      .then(() => {
+      .then(p => {
         queryClient.invalidateQueries(['ERM', 'KBs']);
+        return p; // Return promise for promise chain
       })
   );
 
@@ -69,15 +72,21 @@ const ExternalDataSourcesSettingsRoute = () => {
       promise = postExternalKB(externalKb);
     }
     return promise
-      .then(() => {
-        sendCallout('save', 'success');
-        queryClient.invalidateQueries(['ERM', 'KBs']);
+      .catch(error => {
+        return error.response.json(); // This might fail, catch at bottom
       })
-      .catch(error => error.response.json()) // Caught error, chain onwards with json promise
-      .then(errResp => {
-        const { errors } = errResp;
-        sendCallout('save', 'error', errors?.[0]?.message);
+      .then((resp) => {
+        // At this point we _either_ have a successful save or an error
+        const { errors = [] } = resp;
+        if (!errors.length) {
+          // This means we didn't fail, send success callout
+          sendCallout('save', 'success');
+          queryClient.invalidateQueries(['ERM', 'KBs']);
+        } else {
+          sendCallout('save', 'error', errors?.[0]?.message);
+        }
       })
+      // Should only reach this final catch if JSONification failed
       .catch(() => {
         sendCallout('save', 'error');
       });
