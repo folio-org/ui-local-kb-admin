@@ -71,9 +71,9 @@ const JobForm = (props) => {
     return (
       <PaneMenu>
         <FormattedMessage id="ui-local-kb-admin.job.close">
-          {ariaLabel => (
+          {([ariaLabel]) => (
             <IconButton
-              aria-label={ariaLabel?.[0]}
+              aria-label={ariaLabel}
               icon="times"
               id="close-job-form-button"
               onClick={onClose}
