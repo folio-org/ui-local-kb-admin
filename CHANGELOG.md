@@ -1,5 +1,7 @@
 # Change history for ui-local-kb-admin
 
+## 8.1.0 In progress
+
 ## 8.0.0 2024-03-22
 * ERM-3164 New proxy server setting form includes old data
 * ERM-3163 On attempting to save an external data source if the save fails the toast message should reflect this
