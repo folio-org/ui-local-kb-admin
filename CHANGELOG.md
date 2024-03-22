@@ -1,12 +1,13 @@
 # Change history for ui-local-kb-admin
 
-## 7.1.0 In progress
-* ERM-2792 Swap external datasources (LKB) from card-based to MCL based form
-* ERM-2793 Swap proxy server settings from card-based to MCL based form
-* ERM-2981 Standardise use of external url validator library across ERM apps
-* ERM-3129 Remove explicit typescript version
-* ERM-3163 On attempting to save an external data source if the save fails the toast message should reflect this
+## 8.0.0 2024-03-22
 * ERM-3164 New proxy server setting form includes old data
+* ERM-3163 On attempting to save an external data source if the save fails the toast message should reflect this
+* ERM-3129 Remove explicit typescript version
+* ERM-2981 Standardise use of external url validator library across ERM apps
+* ERM-2793 Swap proxy server settings from card-based to MCL based form
+* ERM-2792 Swap external datasources (LKB) from card-based to MCL based form
+* *BREAKING* Switched to erm interface 7
 
 ## 7.0.0 2023-10-13
   * ERM-3051 Default filters and sort not applied in Local KB Admin
