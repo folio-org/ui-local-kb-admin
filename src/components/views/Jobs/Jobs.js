@@ -152,9 +152,9 @@ const Jobs = ({
                       {/* TODO: Use forthcoming <SearchGroup> or similar component */}
                       <div className={css.searchGroupWrap}>
                         <FormattedMessage id="ui-local-kb-admin.searchInputLabel">
-                          {ariaLabel => (
+                          {([ariaLabel]) => (
                             <SearchField
-                              aria-label={ariaLabel?.[0]}
+                              aria-label={ariaLabel}
                               autoFocus
                               className={css.searchField}
                               data-test-local-kb-admin-search-input

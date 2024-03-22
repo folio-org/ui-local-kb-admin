@@ -140,7 +140,10 @@ const stringTemplates = [
   }
 ];
 
-const proxyServerSettingsId = '2f57d1d1-f32f-48cd-b99a-c1df1b0fcbeb';
+// This isn't how I want to test this kind of thing.
+// We should have a centralised proxy server object,
+// then mock useQuery to bring it in and test the right things render
+const proxyServerId = '2f57d1d1-f32f-48cd-b99a-c1df1b0fcbeb';
 
 describe('ProxyServerSettingsView', () => {
   beforeEach(() => {
@@ -156,7 +159,7 @@ describe('ProxyServerSettingsView', () => {
           onSave={onSaveMock}
           onSubmit={onSubmit}
           platforms={platforms}
-          proxyServerSettingsId={proxyServerSettingsId}
+          proxyServerId={proxyServerId}
           stringTemplates={stringTemplates}
         />
       </MemoryRouter>,
