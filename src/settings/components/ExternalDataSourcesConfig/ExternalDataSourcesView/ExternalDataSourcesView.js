@@ -2,7 +2,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { useQuery } from 'react-query';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import arrayMutators from 'final-form-arrays';
 
 import { useOkapiKy, useStripes } from '@folio/stripes/core';
@@ -27,6 +28,8 @@ import { KB_ENDPOINT } from '../../../../constants/endpoints';
 
 import ExternalDataSourcesForm from '../ExternalDataSourcesForm';
 
+dayjs.extend(utc);
+
 const ExternalDataSourcesView = ({
   externalKbs,
   externalDataSourceId,
@@ -39,7 +42,7 @@ const ExternalDataSourcesView = ({
   const perm = stripes.hasPerm('ui-local-kb-admin.kbs.manage');
   const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
-  const hours = moment.utc().diff(moment.utc(externalKbs?.lastCheck), 'hours');
+  const hours = dayjs.utc().diff(dayjs.utc(externalKbs?.lastCheck), 'hours');
   const messageType = hours >= 24 ? 'active' : 'passive';
   const [editEDS, setEditEDS] = useState(false);
   const ky = useOkapiKy();
