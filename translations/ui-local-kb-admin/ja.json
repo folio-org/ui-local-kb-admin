@@ -136,10 +136,10 @@
     "shortcut.collapseAll": "Collapse all accordions",
     "shortcut.expandOrCollapse": "Expand or collapse an accordion",
     "shortcut.goToSearchFilter": "Go to \"Search & filter\" pane",
-    "settings.externalDataSources.resetCursor": "Reset cursor",
+    "settings.externalDataSources.resetCursor": "カーソルのリセット",
     "settings.externalDataSources.resetSyncStatus": "Reset sync status",
     "settings.externalDataSources.cancelLabel": "キャンセル",
-    "settings.externalDataSources.confirmLabel": "Reset",
+    "settings.externalDataSources.confirmLabel": "リセット",
     "settings.externalDataSources.confirmMessage.active": "外部データ ソースがナレッジベースの更新に最後に使用されたのは{hours}時間前です。リモート KB が誤って処理中の状態になっていることが確実な場合にのみ、同期ステータスをリセットしてください。",
     "settings.externalDataSources.confirmMessage.passive": "The external data source was last used to update the knowledgebase {hours} hours ago. It is only possible to reset the sync status from 24 hours after the external data source was last harvested.",
     "job.delete.heading.org.olf.general.jobs.IdentifierReassignmentJob": "Delete identifier reassignment job",
@@ -159,8 +159,8 @@
     "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naive match key assignment",
     "settings.externalDataSources.edit": "編集{name}",
     "settings.externalDataSources.lastChecked": "Last checked",
-    "settings.externalDataSources.cursor": "Cursor",
-    "settings.externalDataSources.syncStatus": "Sync status",
+    "settings.externalDataSources.cursor": "カーソル",
+    "settings.externalDataSources.syncStatus": "同期ステータス",
     "cancel": "Cancel",
     "saveAndClose": "Save & close"
 }
