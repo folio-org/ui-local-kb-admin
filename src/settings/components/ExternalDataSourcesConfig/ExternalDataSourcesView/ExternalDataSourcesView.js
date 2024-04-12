@@ -129,21 +129,26 @@ const ExternalDataSourcesView = ({
             <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.resetSyncStatus" />
           </Icon>
         </Button>,
-        <Button
-          key={`${externalDataSource?.name}-action-delete`}
-          buttonStyle="dropdownItem"
-          data-test-external-data-source-delete
-          marginBottom0
-          onClick={() => {
-            setDeleteModal(true);
-            onToggle();
-          }}
-        >
-          <Icon icon="trash">
-            <FormattedMessage id="stripes-core.button.delete" />
-          </Icon>
-        </Button>
       );
+
+      if (!externalDataSource.readonly) {
+        actionsArray.push(
+          <Button
+            key={`${externalDataSource?.name}-action-delete`}
+            buttonStyle="dropdownItem"
+            data-test-external-data-source-delete
+            marginBottom0
+            onClick={() => {
+              setDeleteModal(true);
+              onToggle();
+            }}
+          >
+            <Icon icon="trash">
+              <FormattedMessage id="stripes-core.button.delete" />
+            </Icon>
+          </Button>
+        );
+      }
     }
 
     return (actionsArray?.length ? actionsArray : null);
