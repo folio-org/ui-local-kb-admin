@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useMutation, useQueryClient } from 'react-query';
 
-import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
 import { useParallelBatchFetch } from '@folio/stripes-erm-components';
 
