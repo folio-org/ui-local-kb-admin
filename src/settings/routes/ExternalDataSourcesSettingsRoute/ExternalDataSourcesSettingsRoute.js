@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useMutation, useQueryClient } from 'react-query';
 
-import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
 import { useParallelBatchFetch } from '@folio/stripes-erm-components';
 
@@ -24,19 +23,17 @@ const ExternalDataSourcesSettingsRoute = () => {
 
   // LOCAL-KB QUERY PARAMS
   const KBsParams = useMemo(() => (
-    generateKiwtQueryParams(
-      {
-        sort: [
-          {
-            path: 'name',
-          }
-        ]
-      },
-      {}
-    )
+    {
+      sort: [
+        {
+          path: 'name',
+        }
+      ]
+    }
   ), []);
 
   const { items: externalKbs } = useParallelBatchFetch({
+    batchParams: KBsParams,
     generateQueryKey: ({ offset }) => ['ERM', 'KBs', KBsParams, offset, KBS_ENDPOINT],
     endpoint: KBS_ENDPOINT,
   });
