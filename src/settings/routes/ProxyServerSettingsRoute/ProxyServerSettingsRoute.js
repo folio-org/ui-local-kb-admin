@@ -5,7 +5,6 @@ import { useMutation, useQueryClient } from 'react-query';
 import { cloneDeep, isEmpty } from 'lodash';
 
 import { useParallelBatchFetch } from '@folio/stripes-erm-components';
-import { generateKiwtQueryParams } from '@k-int/stripes-kint-components';
 
 import { useCallout, useOkapiKy } from '@folio/stripes/core';
 
@@ -29,16 +28,14 @@ const ProxyServerSettingsRoute = () => {
 
   // STS QUERY PARAMS
   const STSParams = useMemo(() => (
-    generateKiwtQueryParams(
-      {
-        filters: [{ path: 'context.value', value: 'urlproxier' }],
-        sort: [{ path: 'name' }]
-      },
-      {}
-    )
+    {
+      filters: [{ path: 'context.value', value: 'urlproxier' }],
+      sort: [{ path: 'name' }]
+    }
   ), []);
 
   const { items: stringTemplates } = useParallelBatchFetch({
+    batchParams: STSParams,
     generateQueryKey: ({ offset }) => ['ERM', 'STs', STSParams, offset, STS_ENDPOINT],
     endpoint: STS_ENDPOINT,
   });

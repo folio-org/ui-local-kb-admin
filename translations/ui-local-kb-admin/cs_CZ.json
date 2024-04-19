@@ -94,7 +94,7 @@
     "permission.jobs.delete": "Správa lokální KB: Smazání úloh",
     "permission.kbs.manage": "Správa lokální KB: Správa vzdálené konfigurace KB",
     "job.trustedSourceTI": "Důvěřujte této úloze jako zdroji metadat názvu titulu",
-    "settings.externalDataSources.trustedSourceTI": "Důvěryhodné pro metadata titulu názvu",
+    "settings.externalDataSources.trustedSourceTI": "Důvěryhodné pro metadata názvu titulu",
     "permission.proxyServer.manage": "Správa lokální KB: Správa konfigurace proxy serveru",
     "section.proxyServerSettings": "Nastavení proxy serveru",
     "settings.proxyServerSettings": "Nastavení proxy serveru",
