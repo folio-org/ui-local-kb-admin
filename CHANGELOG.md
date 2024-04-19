@@ -2,6 +2,11 @@
 
 ## 8.1.0 In progress
 
+## 8.0.1 2024-04-19
+  * ERM-3195 Settings page for Proxy server settings should use filter `filters=context.value%3D%3Durlproxier`
+  * ERM-3180 LOCAL external source should not offer delete option
+  * Translations
+
 ## 8.0.0 2024-03-22
 * ERM-3164 New proxy server setting form includes old data
 * ERM-3163 On attempting to save an external data source if the save fails the toast message should reflect this
