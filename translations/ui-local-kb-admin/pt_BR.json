@@ -48,7 +48,7 @@
     "settings.externalDataSources.newExternalDataSource": "Nova fonte de dados externa",
     "valid.isURLValid": "Por favor insira um URL válido (incluindo \"http\" ou \"https\").",
     "create": "Criar",
-    "error.uploadFile": "Faça o upload de um arquivo para continuar",
+    "error.uploadFile": "Carregue um arquivo para continuar",
     "job.newJob": "Novo trabalho",
     "job.close": "Fechar trabalho",
     "org.olf.general.jobs.PackageImportJob": "Importação de arquivo",

@@ -157,10 +157,10 @@
     "org.olf.general.jobs.IdentifierReassignmentJob": "Identifikatorneuzuweisung",
     "org.olf.general.jobs.ResourceRematchJob": "Resource rematch",
     "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naive match key assignment",
-    "settings.externalDataSources.edit": "Edit {name}",
-    "settings.externalDataSources.lastChecked": "Last checked",
+    "settings.externalDataSources.edit": "Bearbeiten {name}",
+    "settings.externalDataSources.lastChecked": "Zuletzt geprüft",
     "settings.externalDataSources.cursor": "Cursor",
-    "settings.externalDataSources.syncStatus": "Sync status",
-    "cancel": "Cancel",
-    "saveAndClose": "Save & close"
+    "settings.externalDataSources.syncStatus": "Synchronisierungsstatus",
+    "cancel": "Abbrechen",
+    "saveAndClose": "Speichern & schließen"
 }
