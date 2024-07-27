@@ -161,6 +161,6 @@
     "settings.externalDataSources.lastChecked": "Last checked",
     "settings.externalDataSources.cursor": "Cursor",
     "settings.externalDataSources.syncStatus": "Sync status",
-    "cancel": "Cancel",
+    "cancel": "Anuluj",
     "saveAndClose": "Save & close"
 }
