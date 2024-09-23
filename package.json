@@ -11,7 +11,7 @@
     "start": "stripes serve",
     "build": "stripes build --output ./output",
     "lint": "eslint .",
-    "test": "yarn run test:jest",
+    "test": "yarn run test:jest --maxWorkers=50%",
     "build-mod-descriptor": "stripes mod descriptor --full --strict | jq '.[]' > module-descriptor.json ",
     "formatjs-compile": "formatjs compile-folder --ast --format simple ./translations/ui-local-kb-admin ./translations/ui-local-kb-admin/compiled",
     "test:jest": "jest --ci --coverage"
