@@ -135,7 +135,7 @@
     "shortcut.expandAll": "Rozbalit všechny odstavce",
     "shortcut.collapseAll": "Sbalit všechny odstavce",
     "shortcut.expandOrCollapse": "Rozbalit nebo sbalit odstavec",
-    "shortcut.goToSearchFilter": "Přejděte do podokna Hledat a filtrovat",
+    "shortcut.goToSearchFilter": "Přejděte do podokna Vyhledat a filtrovat",
     "settings.externalDataSources.resetCursor": "Obnovení kurzoru",
     "settings.externalDataSources.resetSyncStatus": "Obnovit stav synchronizace",
     "settings.externalDataSources.cancelLabel": "Zrušit",
