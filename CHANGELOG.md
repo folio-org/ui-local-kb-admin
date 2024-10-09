@@ -1,6 +1,7 @@
 # Change history for ui-local-kb-admin
 
 ## 8.1.0 In progress
+  * FOLIO-4086 Fix GitHub Actions workflow not running for tags
 
 ## 8.0.1 2024-04-19
   * ERM-3195 Settings page for Proxy server settings should use filter `filters=context.value%3D%3Durlproxier`
