@@ -112,7 +112,7 @@
     "settings.proxyServerSettings.editProxyServerSetting": "Editar configuração do servidor proxy",
     "settings.proxyServerSettings.delete.confirmLabel": "Excluir",
     "settings.proxyServerSettings.delete.confirmHeading": "Excluir configuração do servidor proxy",
-    "settings.proxyServerSettings.delete.confirmMessage": "A configuração do servidor proxy <strong>{nome}</strong> será <strong>excluída</strong>.",
+    "settings.proxyServerSettings.delete.confirmMessage": "A configuração do servidor proxy <strong>{name}</strong> será <strong>excluída</strong>.",
     "settings.proxyServerSettings.callout.save.success": "A configuração do servidor proxy foi salva com sucesso.",
     "settings.proxyServerSettings.callout.save.error": "Ocorreu um erro ao salvar a configuração do servidor proxy. {error}",
     "settings.proxyServerSettings.callout.delete.success": "Configuração do servidor proxy excluída com sucesso.",

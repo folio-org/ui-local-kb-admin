@@ -81,7 +81,7 @@
     "job.packageProvider": "Fournisseur du bouquet",
     "job.addNew": "Ajouter un nouveau bouquet",
     "job.update": "Mettre à jour le bouquet",
-    "job.sourceReferenceWarning": "Les champs <strong> Source </strong> et <strong> Référence </strong> sont utilisés ensemble comme identifiant unique pour les bouquets. Si un bouquet avec la <strong> source </strong> + <strong> référence </strong> existante existe déjà, il sera mis à jour, sinon un nouveau bouquet sera créé. Si le <strong> fournisseur </strong> entré n'existe pas, un nouveau sera créé dans la base de connaissances locale de l'application Accords.",
+    "job.sourceReferenceWarning": "Les champs <strong>Source</strong> et <strong>Référence</strong> sont utilisés ensemble comme identifiant unique pour les bouquets. Si un bouquet avec cette combinaison <strong>Source</strong> + <strong>Référence</strong> existe déjà, il sera mis à jour, sinon un nouveau bouquet sera créé. Si le <strong>fournisseur</strong> entré n'existe pas, un nouveau sera créé dans la base de connaissances locale de l'application Accords.",
     "org.olf.general.jobs.KbartIngestJob": "Moissonnage KBART",
     "org.olf.general.jobs.KbartImportJob": "Import de fichiers KBART",
     "job.JSONImportJob": "Tâche d'import JSON",
