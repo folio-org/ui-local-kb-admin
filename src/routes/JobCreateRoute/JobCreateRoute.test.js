@@ -1,21 +1,12 @@
 import { MemoryRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-import { Button } from '@folio/stripes/components';
-import { Button as ButtonInteractor, renderWithIntl } from '@folio/stripes-erm-testing';
+import { waitFor } from '@folio/jest-config-stripes/testing-library/react';
+
+import { Button as MockStripesButton } from '@folio/stripes/components';
+import { Button, renderWithIntl } from '@folio/stripes-erm-testing';
 
 import translationsProperties from '../../../test/helpers/translationsProperties';
 import JobCreateRoute from './JobCreateRoute';
-
-const CloseButton = (props) => {
-  return <Button onClick={props.handlers.onClose}>CloseButton</Button>;
-};
-
-CloseButton.propTypes = {
-  handlers: PropTypes.shape({
-    onClose: PropTypes.func,
-  }),
-};
 
 const historyPushMock = jest.fn();
 
@@ -23,7 +14,11 @@ jest.mock('../../components/views/JobForm', () => {
   return (props) => (
     <div>
       <div>JobForm</div>
-      <CloseButton {...props} />
+      <MockStripesButton
+        onClick={props.handlers.onClose}
+      >
+        CloseButton
+      </MockStripesButton>
     </div>
   );
 });
@@ -57,12 +52,16 @@ const JSONProps = {
 };
 
 describe('JobCreateRoute', () => {
-  describe('rendering the route with KBART format', () => {
+  describe.each([
+    { format: 'KBART', props: KBARTProps },
+    { format: 'JSON', props: JSONProps }
+  ])('rendering the route with $format format', ({ props }) => {
     let renderComponent;
     beforeEach(() => {
+      historyPushMock.mockClear();
       renderComponent = renderWithIntl(
         <MemoryRouter>
-          <JobCreateRoute {...KBARTProps} />
+          <JobCreateRoute {...props} />
         </MemoryRouter>,
         translationsProperties
       );
@@ -73,48 +72,18 @@ describe('JobCreateRoute', () => {
       expect(getByText('JobForm')).toBeInTheDocument();
     });
 
-    test('triggers the CloseButton callback', async () => {
-      await ButtonInteractor('CloseButton').click();
-      expect(historyPushMock).toHaveBeenCalled();
-    });
-
-    describe('re-rendering the route', () => { // makes sure that we hit the componentDidUpdate block
-      beforeEach(() => {
-        renderWithIntl(
-          <MemoryRouter>
-            <JobCreateRoute {...KBARTProps} />
-          </MemoryRouter>,
-          translationsProperties,
-          renderComponent.rerender
-        );
+    describe('clicking the CloseButton', () => {
+      beforeEach(async () => {
+        await waitFor(async () => {
+          await Button('CloseButton').click();
+        });
       });
 
-      test('renders the JobForm component', () => {
-        const { getByText } = renderComponent;
-        expect(getByText('JobForm')).toBeInTheDocument();
+      test('triggers the CloseButton callback', async () => {
+        await waitFor(() => {
+          expect(historyPushMock).toHaveBeenCalled();
+        });
       });
-    });
-  });
-
-  describe('rendering the route with JSON format', () => {
-    let renderComponent;
-    beforeEach(() => {
-      renderComponent = renderWithIntl(
-        <MemoryRouter>
-          <JobCreateRoute {...JSONProps} />
-        </MemoryRouter>,
-        translationsProperties
-      );
-    });
-
-    test('renders the JobForm component', () => {
-      const { getByText } = renderComponent;
-      expect(getByText('JobForm')).toBeInTheDocument();
-    });
-
-    test('triggers the CloseButton callback', async () => {
-      await ButtonInteractor('CloseButton').click();
-      expect(historyPushMock).toHaveBeenCalled();
     });
   });
 });

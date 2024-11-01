@@ -79,18 +79,21 @@ describe('ExternalDataSourcesSettingsRoute', () => {
       expect(getByText('ExternalDataSourcesSettings')).toBeInTheDocument();
     });
 
-    test('clicking on the SubmitButton fires the callout', async () => {
-      await waitFor(async () => {
-        await Button('SubmitButton').click();
+    describe.each([
+      { buttonLabel: 'SubmitButton', calloutText: 'External data source successfully saved.' },
+      { buttonLabel: 'DeleteButton', calloutText: 'External data source successfully deleted.' },
+    ])('clicking on the $buttonLabel', ({ buttonLabel, calloutText }) => {
+      beforeEach(async () => {
+        await waitFor(async () => {
+          await Button(buttonLabel).click();
+        });
       });
-      await Callout('External data source successfully saved.').exists();
-    });
 
-    test('clicking on the DeleteButton fires the callout', async () => {
-      await waitFor(async () => {
-        await Button('DeleteButton').click();
+      test('correct callout fires', async () => {
+        await waitFor(async () => {
+          await Callout(calloutText).exists();
+        });
       });
-      await Callout('External data source successfully deleted.').exists();
     });
   });
 });
