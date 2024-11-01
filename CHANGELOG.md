@@ -1,7 +1,14 @@
 # Change history for ui-local-kb-admin
 
 ## 8.1.0 In progress
+  * ERM-3380 Update module license and guidance for ui-local-kb-admin
+  * ERM-3354 Review and cleanup Module Descriptor for ui-local-kb-admin (Eureka)
+  * ERM-3234 React v19: refactor ui-local-kb-admin away from default props for functional components
+  * ERM-3165 Replace moment with dayjs across app suite
   * FOLIO-4086 Fix GitHub Actions workflow not running for tags
+  * ProxyServerSettings
+    * Fixed issue where wrong callout text showed up while saving ProxyServerSetting
+    * Swapped deprecated use of renderToOverlay out for a usePortal instead in ProxyServerSettingsForm
 
 ## 8.0.1 2024-04-19
   * ERM-3195 Settings page for Proxy server settings should use filter `filters=context.value%3D%3Durlproxier`
