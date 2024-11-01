@@ -30,7 +30,16 @@ jest.mock('../../components/ProxyServerSettingsConfig/ProxyServerSettings/ProxyS
     return (
       <div>
         <div>ProxyServerSettings</div>
-        <MockButton onClick={props.onDelete}>DeleteButton</MockButton>
+        <MockButton
+          onClick={props.onDelete}
+        >
+          DeleteButton
+        </MockButton>
+        <MockButton
+          onClick={props.onSubmit}
+        >
+          SubmitButton
+        </MockButton>
       </div>
     );
   };
@@ -59,12 +68,21 @@ describe('ProxyServerSettingsRoute', () => {
       expect(getByText('ProxyServerSettings')).toBeInTheDocument();
     });
 
-    test('clicking on the DeleteButton fires the callout', async () => {
-      await waitFor(async () => {
-        await Button('DeleteButton').click();
+    describe.each([
+      { buttonLabel: 'SubmitButton', calloutText: 'Proxy server setting successfully saved.' },
+      { buttonLabel: 'DeleteButton', calloutText: 'Proxy server setting successfully deleted.' },
+    ])('clicking on the $buttonLabel', ({ buttonLabel, calloutText }) => {
+      beforeEach(async () => {
+        await waitFor(async () => {
+          await Button(buttonLabel).click();
+        });
       });
 
-      await Callout('External data source successfully deleted.').exists();
+      test('correct callout fires', async () => {
+        await waitFor(async () => {
+          await Callout(calloutText).exists();
+        });
+      });
     });
   });
 });

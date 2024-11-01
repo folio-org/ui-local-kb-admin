@@ -21,7 +21,7 @@ const ProxyServerSettingsRoute = () => {
   const sendCallout = (operation, outcome, error = '') => {
     callout.sendCallout({
       type: outcome,
-      message: <FormattedMessage id={`ui-local-kb-admin.settings.externalDataSources.callout.${operation}.${outcome}`} values={{ error }} />,
+      message: <FormattedMessage id={`ui-local-kb-admin.settings.proxyServerSettings.callout.${operation}.${outcome}`} values={{ error }} />,
       timeout: error ? 0 : undefined, // Don't autohide callouts with a specified error message.
     });
   };

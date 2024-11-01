@@ -16,7 +16,7 @@ const data = {
   'job': {
     'id': '6eb739dc-04b5-4528-addd-f87730ed7bd6',
     'dateCreated': 1670507737772,
-    'ended': 1670507744793,
+    'ended': 1670509984793,
     'result': {
       'id': '2c91809c84f1fd4b0184f205302f003b',
       'value': 'success',
@@ -81,43 +81,75 @@ describe('JobInfo', () => {
       expect(getAllByText('Scheduled Title Ingest Job 2022-12-08T13:55:37.588445Z').length).toEqual(2);
     });
 
-    test('renders the expected Running status value', async () => {
-      await KeyValue('Running status').has({ value: 'Ended' });
-    });
-
-    test('renders the expected Import outcome value', async () => {
-      await KeyValue('Import outcome').has({ value: 'Success' });
-    });
-
-    test('renders the expcected Started date and time', async () => {
-      await FormattedDateTime({ id: 'started-datetime' }).has({ date: '12/8/2022' });
-      await FormattedDateTime({ id: 'started-datetime' }).has({ time: '1:55 PM' });
-    });
-
-    test('renders the expcected Ended date and time', async () => {
-      await FormattedDateTime({ id: 'ended-datetime' }).has({ date: '12/8/2022' });
-      await FormattedDateTime({ id: 'ended-datetime' }).has({ time: '1:55 PM' });
-    });
-
-    test('renders the expected Errors value', async () => {
-      await KeyValue('Errors').has({ value: '0' });
-    });
-
-    test('renders the expected Job Type value', async () => {
-      await KeyValue('Job Type').has({ value: 'Title harvester' });
+    test.each([
+      {
+        title: 'Running status',
+        interactor: KeyValue('Running status'),
+        hasObj: { value: 'Ended' }
+      },
+      {
+        title: 'Import outcome',
+        interactor: KeyValue('Import outcome'),
+        hasObj: { value: 'Success' }
+      },
+      {
+        title: 'Start date date',
+        interactor: FormattedDateTime({ id: 'started-datetime' }),
+        hasObj: { date: '12/8/2022' }
+      },
+      {
+        title: 'Start date time',
+        interactor: FormattedDateTime({ id: 'started-datetime' }),
+        hasObj: { time: '1:55 PM' }
+      },
+      {
+        title: 'End date date',
+        interactor: FormattedDateTime({ id: 'ended-datetime' }),
+        hasObj: { date: '12/8/2022' }
+      },
+      {
+        title: 'End date time',
+        interactor: FormattedDateTime({ id: 'ended-datetime' }),
+        hasObj: { time: '2:33 PM' }
+      },
+      {
+        title: 'Errors',
+        interactor: KeyValue('Errors'),
+        hasObj: { value: '0' }
+      },
+      {
+        title: 'Job Type',
+        interactor: KeyValue('Job Type'),
+        hasObj: { value: 'Title harvester' }
+      },
+    ])('renders the expected $title', async ({ title: _t, interactor, hasObj }) => {
+      await interactor.has(hasObj);
     });
 
     test('renders expected Collapse all button', async () => {
       await Button('Collapse all').exists();
     });
 
-    test('renders dropdwon action/delete buttons', async () => {
-      await waitFor(async () => {
-        await Button('Actions').click();
-        await Button('Delete').click();
+    describe('clicking actions button', () => {
+      beforeEach(async () => {
+        await waitFor(async () => {
+          await Button('Actions').click();
+        });
       });
 
-      expect(onDeleteMock).toHaveBeenCalled();
+      describe('clicking delete button', () => {
+        beforeEach(async () => {
+          await waitFor(async () => {
+            await Button('Delete').click();
+          });
+        });
+
+        test('onDelete callback called', async () => {
+          await waitFor(() => {
+            expect(onDeleteMock).toHaveBeenCalled();
+          });
+        });
+      });
     });
   });
 });

@@ -102,7 +102,7 @@ const ProxyServerSettingsForm = ({ platforms, stringTemplates }) => {
             </>
           }
           name="idScopes"
-          renderToOverlay
+          usePortal
         />
       </Row>
     </>
