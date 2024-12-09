@@ -42,14 +42,15 @@ const ExternalDataSourcesView = ({
   const perm = stripes.hasPerm('ui-local-kb-admin.kbs.manage');
   const [showConfirmResetSyncStatus, setShowConfirmResetSyncStatus] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
-  const hours = dayjs.utc().diff(dayjs.utc(externalKbs?.lastCheck), 'hours');
-  const messageType = hours >= 24 ? 'active' : 'passive';
   const [editEDS, setEditEDS] = useState(false);
   const ky = useOkapiKy();
   const { data: externalDataSource = {} } = useQuery(
     ['ERM', 'KBs', KB_ENDPOINT(externalDataSourceId)],
     () => ky.get(KB_ENDPOINT(externalDataSourceId)).json()
   );
+  const hours = externalDataSource.lastCheck ? dayjs.utc().diff(dayjs(externalDataSource.lastCheck), 'hours') : 0;
+  const messageType = hours >= 24 ? 'active' : 'passive';
+
   const { syncStatus, cursor, lastChecked } = useDisplayMetaInfo(externalDataSource);
 
   const renderModal = () => {
