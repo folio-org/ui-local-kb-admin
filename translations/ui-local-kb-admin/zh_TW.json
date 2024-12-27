@@ -46,7 +46,7 @@
     "settings.externalDataSources.externalDataSource": "外部資料來源",
     "settings.externalDataSources.editExternalDataSource": "編輯外部資料來源",
     "settings.externalDataSources.newExternalDataSource": "新的外部資料來源",
-    "valid.isURLValid": "請輸入有效的網址（包含 http 或 https）。",
+    "valid.isURLValid": "請輸入有效的網址 ( 包含 http 或 https )。",
     "create": "建立",
     "error.uploadFile": "請上傳檔案以繼續",
     "job.newJob": "新工作",
