@@ -1,4 +1,4 @@
-
+import { cleanup } from '@folio/jest-config-stripes/testing-library/react';
 import { renderWithIntl } from '@folio/stripes-erm-testing';
 import { MemoryRouter } from 'react-router-dom';
 import translationsProperties from '../../../test/helpers/translationsProperties';
@@ -39,6 +39,9 @@ describe('JobsRoute', () => {
 
     describe('re-rendering the route', () => { // makes sure that we hit the componentDidUpdate block
       beforeEach(() => {
+        // Using this to clean up the render component prior to rerender
+        cleanup();
+
         renderWithIntl(
           <MemoryRouter>
             <JobsRoute {...routeProps} />
