@@ -135,7 +135,7 @@
     "shortcut.expandAll": "全部展开",
     "shortcut.collapseAll": "全部收起",
     "shortcut.expandOrCollapse": "展开或收起",
-    "shortcut.goToSearchFilter": "转到“搜索和筛选”窗格",
+    "shortcut.goToSearchFilter": "转到“搜索和筛选”面板",
     "settings.externalDataSources.resetCursor": "重置光标",
     "settings.externalDataSources.resetSyncStatus": "重置同步状态",
     "settings.externalDataSources.cancelLabel": "取消",
