@@ -1,5 +1,7 @@
 # Change history for ui-local-kb-admin
 
+## 9.1.0 IN PROGRESS
+
 ## 9.0.0 2025-03-13
   * ERM-3613 *BREAKING* Stripes v10 dependencies update
     * Updated all stripes-* dependencies for the stripes v10 upgrade along with react-intl and formatjs/cli
