@@ -1,6 +1,9 @@
 # Change history for ui-local-kb-admin
 
-## 8.2.0 IN PROGRESS
+## 9.0.0 2025-03-13
+  * ERM-3613 *BREAKING* Stripes v10 dependencies update
+    * Updated all stripes-* dependencies for the stripes v10 upgrade along with react-intl and formatjs/cli
+  * ERM-3461 Cannot reset sync status via the UI
 
 ## 8.1.0 2024-11-01
   * ERM-3380 Update module license and guidance for ui-local-kb-admin
