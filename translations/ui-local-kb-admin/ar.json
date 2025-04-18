@@ -89,9 +89,9 @@
     "settings.externalDataSources.delete.confirmLabel": "حذف",
     "settings.externalDataSources.delete.confirmHeading": "حذف مصدر البيانات الخارجي",
     "settings.externalDataSources.delete.confirmMessage": "سيتم <strong>حذف</strong> مصدر البيانات الخارجي <strong>{name}</strong>",
-    "permission.jobs.view": "إدارة قاعدة المعرفة المحلية: اعرض المهام",
-    "permission.jobs.edit": "إدارة قاعدة المعرفة المحلية: أنشئ مهام",
-    "permission.jobs.delete": "إدارة قاعدة المعرفة المحلية: احذف المهام",
+    "permission.jobs.view": "إدارة قاعدة المعرفة المحلية: عرض المهام",
+    "permission.jobs.edit": "إدارة قاعدة المعرفة المحلية: إنشاء مهام",
+    "permission.jobs.delete": "إدارة قاعدة المعرفة المحلية: حذف المهام",
     "permission.kbs.manage": "إدارة قاعدة المعرفة المحلية: أدر تهيئة قاعدة المعرفة البعيدة",
     "job.trustedSourceTI": "ثق بهذه المهمة كمصدر لميتاداتا وعاء العنوان",
     "settings.externalDataSources.trustedSourceTI": "موثوق بها لميتاداتا وعاء العنوان",
@@ -157,10 +157,10 @@
     "org.olf.general.jobs.IdentifierReassignmentJob": "إعادة تعيين المعرف",
     "org.olf.general.jobs.ResourceRematchJob": "إعادة مطابقة الموارد",
     "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "تعيين مفتاح المطابقة البسيطة",
-    "settings.externalDataSources.edit": "Edit {name}",
+    "settings.externalDataSources.edit": "تحرير {name}",
     "settings.externalDataSources.lastChecked": "Last checked",
     "settings.externalDataSources.cursor": "Cursor",
-    "settings.externalDataSources.syncStatus": "Sync status",
-    "cancel": "Cancel",
-    "saveAndClose": "Save & close"
+    "settings.externalDataSources.syncStatus": "حالة المزامنة",
+    "cancel": "إلغاء",
+    "saveAndClose": "حفظ وإغلاق"
 }
