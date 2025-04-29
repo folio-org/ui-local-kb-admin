@@ -158,8 +158,8 @@
     "org.olf.general.jobs.ResourceRematchJob": "إعادة مطابقة الموارد",
     "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "تعيين مفتاح المطابقة البسيطة",
     "settings.externalDataSources.edit": "تحرير {name}",
-    "settings.externalDataSources.lastChecked": "Last checked",
-    "settings.externalDataSources.cursor": "Cursor",
+    "settings.externalDataSources.lastChecked": "آخر تحقق",
+    "settings.externalDataSources.cursor": "المؤشر",
     "settings.externalDataSources.syncStatus": "حالة المزامنة",
     "cancel": "إلغاء",
     "saveAndClose": "حفظ وإغلاق"
