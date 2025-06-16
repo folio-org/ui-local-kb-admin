@@ -1,13 +1,12 @@
 import { useEffect, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 
-import { generateKiwtQueryParams, useKiwtSASQuery } from '@k-int/stripes-kint-components';
+import { generateKiwtQueryParams, useKiwtSASQuery, usePrevNextPagination } from '@k-int/stripes-kint-components';
 
 import { useOkapiKy } from '@folio/stripes/core';
 import {
   getRefdataValuesByDesc,
   useInfiniteFetch,
-  usePrevNextPagination,
 } from '@folio/stripes-erm-components';
 
 import View from '../../components/views/Jobs';

@@ -5,10 +5,7 @@ import PropTypes from 'prop-types';
 import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 
 import { AppIcon, useStripes } from '@folio/stripes/core';
-import {
-  usePrevNextPagination,
-  FormattedDateTime
-} from '@folio/stripes-erm-components';
+import { FormattedDateTime } from '@folio/stripes-erm-components';
 
 import {
   Button,
@@ -27,6 +24,7 @@ import {
   PersistedPaneset,
   SearchAndSortNoResultsMessage,
 } from '@folio/stripes/smart-components';
+import { usePrevNextPagination } from '@k-int/stripes-kint-components';
 
 import { resultCount } from '../../../constants';
 import JobFilters from '../../JobFilters';
