@@ -32,7 +32,7 @@
     "settings.externalDataSources.isActive": "Є активним",
     "settings.externalDataSources.supportsHarvesting": "Підтримує збір даних",
     "settings.externalDataSources.activationEnabled": "Активацію ввімкнено",
-    "settings.externalDataSources.listPrefix": "Listprefix",
+    "settings.externalDataSources.listPrefix": "Префікс списку",
     "settings.externalDataSources.fullPrefix": "Повний префікс",
     "settings.externalDataSources.package": "Пакет",
     "settings.externalDataSources.principal": "Principal",
