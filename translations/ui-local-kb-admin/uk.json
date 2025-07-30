@@ -48,7 +48,7 @@
     "settings.externalDataSources.newExternalDataSource": "Нове зовнішнє джерело даних",
     "valid.isURLValid": "Будь ласка, введіть дійсну URL-адресу (включно з \"http\" або \"https\").",
     "create": "Створити",
-    "error.uploadFile": "Please upload a file to continue",
+    "error.uploadFile": "Завантажте, будь ласка, файл щоб продовжити",
     "job.newJob": "Нове завдання",
     "job.close": "Закрити завдання",
     "org.olf.general.jobs.PackageImportJob": "Імпорт файлів",
