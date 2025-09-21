@@ -35,7 +35,7 @@
     "settings.externalDataSources.listPrefix": "Префікс списку",
     "settings.externalDataSources.fullPrefix": "Повний префікс",
     "settings.externalDataSources.package": "Пакет",
-    "settings.externalDataSources.principal": "Principal",
+    "settings.externalDataSources.principal": "Суб'єкт",
     "settings.externalDataSources.credentials": "Облікові дані",
     "settings.externalDataSources.callout.save.success": "Зовнішнє джерело даних успішно збережене.",
     "settings.externalDataSources.callout.save.error": "Під час збереження зовнішнього джерела даних сталася помилка. {error}",
