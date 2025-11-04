@@ -138,5 +138,19 @@ describe('JobFilters', () => {
       });
       expect(stateMock).toHaveBeenCalled();
     });
+
+    test('clicking the Trigger package re-sync checkbox', async () => {
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-class-trigger-package-re-sync' }).click();
+      });
+      expect(stateMock).toHaveBeenCalled();
+    });
+
+    test('clicking the External entitlements checkbox', async () => {
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-class-external-entitlements' }).click();
+      });
+      expect(stateMock).toHaveBeenCalled();
+    });
   });
 });
