@@ -58,7 +58,9 @@ const JobsRoute = ({
           { name: 'File import', value: 'org.olf.general.jobs.PackageImportJob' },
           { name: 'Identifier reassignment', value: 'org.olf.general.jobs.IdentifierReassignmentJob' },
           { name: 'Resource rematch', value: 'org.olf.general.jobs.ResourceRematchJob' },
-          { name: 'Naive match key assignment', value: 'org.olf.general.jobs.NaiveMatchKeyAssignmentJob' }
+          { name: 'Naive match key assignment', value: 'org.olf.general.jobs.NaiveMatchKeyAssignmentJob' },
+          { name: 'Trigger package re-sync', value: 'org.olf.general.jobs.PackageTriggerResyncJob' },
+          { name: 'External entitlements', value: 'org.olf.general.jobs.ExternalEntitlementSyncJob' },
         ],
       }],
       page: currentPage,
