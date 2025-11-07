@@ -91,6 +91,8 @@
   "org.olf.general.jobs.IdentifierReassignmentJob": "Identifier reassignment",
   "org.olf.general.jobs.ResourceRematchJob": "Resource rematch",
   "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naive match key assignment",
+  "org.olf.general.jobs.PackageTriggerResyncJob": "Trigger package re-sync",
+  "org.olf.general.jobs.ExternalEntitlementSyncJob": "External entitlements",
   "jobType": "Job Type",
   "columns.errorLogMessage": "Error",
   "columns.infoLogMessage": "Message",
