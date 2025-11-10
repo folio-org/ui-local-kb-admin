@@ -36,6 +36,7 @@ export default class JobFilters extends React.Component {
       { value: 'Naive match key assignment', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.NaiveMatchKeyAssignmentJob" /> },
       { value: 'Trigger package re-sync', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageTriggerResyncJob" /> },
       { value: 'External entitlements', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.ExternalEntitlementSyncJob" /> },
+      { value: 'Delete package contents', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.ResourceDeletionJob" /> },
     ],
   };
 
