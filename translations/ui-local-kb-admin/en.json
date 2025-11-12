@@ -93,6 +93,8 @@
   "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Naive match key assignment",
   "org.olf.general.jobs.PackageTriggerResyncJob": "Trigger package re-sync",
   "org.olf.general.jobs.ExternalEntitlementSyncJob": "External entitlements",
+  "org.olf.general.jobs.ResourceDeletionJob": "Delete package contents",
+
   "jobType": "Job Type",
   "columns.errorLogMessage": "Error",
   "columns.infoLogMessage": "Message",
