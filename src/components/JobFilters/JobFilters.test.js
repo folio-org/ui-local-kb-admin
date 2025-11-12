@@ -152,5 +152,12 @@ describe('JobFilters', () => {
       });
       expect(stateMock).toHaveBeenCalled();
     });
+
+    test('clicking the Delete package contents checkbox', async () => {
+      await waitFor(async () => {
+        await Checkbox({ id: 'clickable-filter-class-delete-package-contents' }).click();
+      });
+      expect(stateMock).toHaveBeenCalled();
+    });
   });
 });

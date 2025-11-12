@@ -61,6 +61,7 @@ const JobsRoute = ({
           { name: 'Naive match key assignment', value: 'org.olf.general.jobs.NaiveMatchKeyAssignmentJob' },
           { name: 'Trigger package re-sync', value: 'org.olf.general.jobs.PackageTriggerResyncJob' },
           { name: 'External entitlements', value: 'org.olf.general.jobs.ExternalEntitlementSyncJob' },
+          { name: 'Delete package contents', value: 'org.olf.general.jobs.ResourceDeletionJob' },
         ],
       }],
       page: currentPage,
