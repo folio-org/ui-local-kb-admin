@@ -84,7 +84,10 @@
     "permissionSets": [
       {
         "permissionName": "module.local-kb-admin.enabled",
-        "displayName": "UI: ui-local-kb-admin module is enabled"
+        "displayName": "UI: ui-local-kb-admin module is enabled",
+        "subPermissions": [
+          "mod-settings.global.read.stripes-core.prefs.manage"
+        ]
       },
       {
         "permissionName": "ui-local-kb-admin.jobs.view",
