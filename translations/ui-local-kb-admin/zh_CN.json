@@ -162,5 +162,8 @@
     "settings.externalDataSources.cursor": "光标",
     "settings.externalDataSources.syncStatus": "同步状态",
     "cancel": "取消",
-    "saveAndClose": "保存并关闭"
+    "saveAndClose": "保存并关闭",
+    "org.olf.general.jobs.PackageTriggerResyncJob": "Trigger package re-sync",
+    "org.olf.general.jobs.ExternalEntitlementSyncJob": "External entitlements",
+    "org.olf.general.jobs.ResourceDeletionJob": "Delete package contents"
 }

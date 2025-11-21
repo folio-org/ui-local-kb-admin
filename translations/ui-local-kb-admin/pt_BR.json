@@ -162,5 +162,8 @@
     "settings.externalDataSources.cursor": "Cursor",
     "settings.externalDataSources.syncStatus": "Status de sincronização",
     "cancel": "Cancelar",
-    "saveAndClose": "Salvar e fechar"
+    "saveAndClose": "Salvar e fechar",
+    "org.olf.general.jobs.PackageTriggerResyncJob": "Acionar ressincronização do pacote",
+    "org.olf.general.jobs.ExternalEntitlementSyncJob": "Direitos externos",
+    "org.olf.general.jobs.ResourceDeletionJob": "Excluir conteúdo do pacote"
 }

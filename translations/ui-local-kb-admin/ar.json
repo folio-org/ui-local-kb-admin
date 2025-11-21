@@ -162,5 +162,8 @@
     "settings.externalDataSources.cursor": "المؤشر",
     "settings.externalDataSources.syncStatus": "حالة المزامنة",
     "cancel": "إلغاء",
-    "saveAndClose": "حفظ وإغلاق"
+    "saveAndClose": "حفظ وإغلاق",
+    "org.olf.general.jobs.PackageTriggerResyncJob": "Trigger package re-sync",
+    "org.olf.general.jobs.ExternalEntitlementSyncJob": "External entitlements",
+    "org.olf.general.jobs.ResourceDeletionJob": "Delete package contents"
 }
