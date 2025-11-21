@@ -162,5 +162,8 @@
     "settings.externalDataSources.cursor": "カーソル",
     "settings.externalDataSources.syncStatus": "同期ステータス",
     "cancel": "キャンセル",
-    "saveAndClose": "保存して閉じる"
+    "saveAndClose": "保存して閉じる",
+    "org.olf.general.jobs.PackageTriggerResyncJob": "Trigger package re-sync",
+    "org.olf.general.jobs.ExternalEntitlementSyncJob": "External entitlements",
+    "org.olf.general.jobs.ResourceDeletionJob": "Delete package contents"
 }
