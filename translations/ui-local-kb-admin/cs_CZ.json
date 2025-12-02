@@ -163,7 +163,7 @@
     "settings.externalDataSources.syncStatus": "Stav synchronizace",
     "cancel": "Zrušit",
     "saveAndClose": "Uložit a zavřít",
-    "org.olf.general.jobs.PackageTriggerResyncJob": "Trigger package re-sync",
-    "org.olf.general.jobs.ExternalEntitlementSyncJob": "External entitlements",
-    "org.olf.general.jobs.ResourceDeletionJob": "Delete package contents"
+    "org.olf.general.jobs.PackageTriggerResyncJob": "Spuštění opětovné synchronizace balíčku",
+    "org.olf.general.jobs.ExternalEntitlementSyncJob": "Externí nároky",
+    "org.olf.general.jobs.ResourceDeletionJob": "Smazat obsah balíčku"
 }
