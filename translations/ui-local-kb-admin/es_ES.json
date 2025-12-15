@@ -163,7 +163,7 @@
     "settings.externalDataSources.syncStatus": "Sync status",
     "cancel": "Cancel",
     "saveAndClose": "Save & close",
-    "org.olf.general.jobs.PackageTriggerResyncJob": "Trigger package re-sync",
-    "org.olf.general.jobs.ExternalEntitlementSyncJob": "External entitlements",
-    "org.olf.general.jobs.ResourceDeletionJob": "Delete package contents"
+    "org.olf.general.jobs.PackageTriggerResyncJob": "Activar la resincronización de paquetes",
+    "org.olf.general.jobs.ExternalEntitlementSyncJob": "Derechos externos",
+    "org.olf.general.jobs.ResourceDeletionJob": "Eliminar el contenido del paquete"
 }
