@@ -26,7 +26,7 @@
     "settings.general": "一般",
     "settings.externalDataSources.sourceCount": "{count, number} {count, plural, one {外部データソース} other {外部データソース}}",
     "settings.externalDataSources.name": "名称",
-    "settings.externalDataSources.type": "種類",
+    "settings.externalDataSources.type": "タイプ",
     "settings.externalDataSources.recordType": "レコードタイプ",
     "settings.externalDataSources.uri": "URI",
     "settings.externalDataSources.isActive": "有効",
