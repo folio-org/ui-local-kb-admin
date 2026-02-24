@@ -164,6 +164,6 @@
     "cancel": "Cancel",
     "saveAndClose": "Save & close",
     "org.olf.general.jobs.PackageTriggerResyncJob": "Trigger package re-sync",
-    "org.olf.general.jobs.ExternalEntitlementSyncJob": "External entitlements",
-    "org.olf.general.jobs.ResourceDeletionJob": "Delete package contents"
+    "org.olf.general.jobs.ExternalEntitlementSyncJob": "สิทธิ์จากภายนอก",
+    "org.olf.general.jobs.ResourceDeletionJob": "ลบเนื้อหาแพ็กเกจ"
 }
