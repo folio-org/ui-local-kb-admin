@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import arrayMutators from 'final-form-arrays';
 import { FormModal } from '@k-int/stripes-kint-components';
 
-import { MultiColumnList, Pane, PaneHeader, Button } from '@folio/stripes/components';
+import { MessageBanner, MultiColumnList, Pane, PaneHeader, Button } from '@folio/stripes/components';
 import { useStripes } from '@folio/stripes/core';
 import ExternalDataSourcesForm from '../ExternalDataSourcesForm/ExternalDataSourcesForm';
 
@@ -18,6 +18,16 @@ const ExternalDataSourcesLookup = ({
   const perm = stripes.hasPerm('ui-local-kb-admin.kbs.manage');
   const count = externalKbs?.length ?? 0;
   const [createEDS, setCreateEDS] = useState(false);
+
+  const gokbCount = (externalKbs || []).filter(kb => kb?.active && kb?.type === 'org.olf.kb.adapters.GOKbOAIAdapter').length;
+
+  const messageBanner = gokbCount > 1 && (
+    <MessageBanner icon={null} type="warning">
+      <FormattedMessage
+        id="ui-local-kb-admin.settings.externalDataSources.warn.multipleKbs"
+      />
+    </MessageBanner>
+  );
 
   const renderSettingsHeader = renderProps => (
     <PaneHeader
@@ -46,6 +56,7 @@ const ExternalDataSourcesLookup = ({
         id="settings-external-data-sources"
         renderHeader={renderSettingsHeader}
       >
+        {messageBanner}
         <MultiColumnList
           columnMapping={{
             name: <FormattedMessage id="ui-local-kb-admin.settings.externalDataSources.name" />,
