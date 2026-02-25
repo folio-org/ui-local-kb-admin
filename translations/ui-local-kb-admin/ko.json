@@ -164,6 +164,6 @@
     "cancel": "Cancel",
     "saveAndClose": "Save & close",
     "org.olf.general.jobs.PackageTriggerResyncJob": "Trigger package re-sync",
-    "org.olf.general.jobs.ExternalEntitlementSyncJob": "External entitlements",
-    "org.olf.general.jobs.ResourceDeletionJob": "Delete package contents"
+    "org.olf.general.jobs.ExternalEntitlementSyncJob": "외부 권한",
+    "org.olf.general.jobs.ResourceDeletionJob": "패키지 내용 삭제"
 }
