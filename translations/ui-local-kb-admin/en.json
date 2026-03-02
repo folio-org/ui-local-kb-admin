@@ -161,6 +161,7 @@
   "settings.externalDataSources.callout.delete.success": "External data source successfully deleted.",
   "settings.externalDataSources.callout.delete.error": "There was an error deleting the external data source.{error}",
   "settings.externalDataSources.nameExists": "This name already exists",
+  "settings.externalDataSources.warn.multipleKbs": "<strong>Warning</strong>: More than one active GOKB data source exists. It is recommended to have a single active GOKB configured. The first active source in the table (listed alphabetically) will be used for the Agreements GOKB search.",
   "cancel": "Cancel",
   "saveAndClose": "Save & close",
   "yes": "Yes",
