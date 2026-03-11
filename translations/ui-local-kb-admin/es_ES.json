@@ -165,5 +165,6 @@
     "saveAndClose": "Save & close",
     "org.olf.general.jobs.PackageTriggerResyncJob": "Activar la resincronización de paquetes",
     "org.olf.general.jobs.ExternalEntitlementSyncJob": "Derechos externos",
-    "org.olf.general.jobs.ResourceDeletionJob": "Eliminar el contenido del paquete"
+    "org.olf.general.jobs.ResourceDeletionJob": "Eliminar el contenido del paquete",
+    "settings.externalDataSources.warn.multipleKbs": "<strong>Warning</strong>: More than one active GOKB data source exists. It is recommended to have a single active GOKB configured. The first active source in the table (listed alphabetically) will be used for the Agreements GOKB search."
 }

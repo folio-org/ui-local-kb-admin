@@ -165,5 +165,6 @@
     "saveAndClose": "Uložit a zavřít",
     "org.olf.general.jobs.PackageTriggerResyncJob": "Spuštění opětovné synchronizace balíčku",
     "org.olf.general.jobs.ExternalEntitlementSyncJob": "Externí nároky",
-    "org.olf.general.jobs.ResourceDeletionJob": "Smazat obsah balíčku"
+    "org.olf.general.jobs.ResourceDeletionJob": "Smazat obsah balíčku",
+    "settings.externalDataSources.warn.multipleKbs": "<strong>Upozornění</strong>: Existuje více než jeden aktivní zdroj dat GOKB. Doporučuje se mít nakonfigurovaný pouze jeden aktivní zdroj GOKB. První aktivní zdroj v tabulce (uvedený abecedně) bude použit pro vyhledávání v GOKB Dohody."
 }

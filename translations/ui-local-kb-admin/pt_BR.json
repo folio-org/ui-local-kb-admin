@@ -165,5 +165,6 @@
     "saveAndClose": "Salvar e fechar",
     "org.olf.general.jobs.PackageTriggerResyncJob": "Acionar ressincronização do pacote",
     "org.olf.general.jobs.ExternalEntitlementSyncJob": "Direitos externos",
-    "org.olf.general.jobs.ResourceDeletionJob": "Excluir conteúdo do pacote"
+    "org.olf.general.jobs.ResourceDeletionJob": "Excluir conteúdo do pacote",
+    "settings.externalDataSources.warn.multipleKbs": "<strong>Aviso</strong>: Existe mais de uma fonte de dados GOKB ativa. Recomenda-se ter apenas uma fonte GOKB ativa configurada. A primeira fonte ativa na tabela (listada em ordem alfabética) será usada para a pesquisa de GOKB de Acordos."
 }
