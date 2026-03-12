@@ -165,5 +165,6 @@
     "saveAndClose": "保存并关闭",
     "org.olf.general.jobs.PackageTriggerResyncJob": "触发资源包重新同步",
     "org.olf.general.jobs.ExternalEntitlementSyncJob": "外部权利",
-    "org.olf.general.jobs.ResourceDeletionJob": "删除 资源包内容"
+    "org.olf.general.jobs.ResourceDeletionJob": "删除 资源包内容",
+    "settings.externalDataSources.warn.multipleKbs": "<strong>警告</strong>：存在一个以上激活的 GOKB 数据源。建议配置单个激活的 GOKB。协议 GOKB 搜索将使用表中的第一个激活来源（按字母顺序列出）。"
 }

@@ -165,5 +165,6 @@
     "saveAndClose": "Opslaan en sluiten",
     "org.olf.general.jobs.PackageTriggerResyncJob": "Pakket opnieuw synchroniseren",
     "org.olf.general.jobs.ExternalEntitlementSyncJob": "Externe rechten",
-    "org.olf.general.jobs.ResourceDeletionJob": "Inhoud van pakket verwijderen"
+    "org.olf.general.jobs.ResourceDeletionJob": "Inhoud van pakket verwijderen",
+    "settings.externalDataSources.warn.multipleKbs": "<strong>Waarschuwing</strong>: Er bestaat meer dan één actieve GOKB gegevensbron. Het wordt aanbevolen om slechts één actieve GOKB te configureren. De eerste actieve bron in de tabel (alfabetisch gerangschikt) wordt gebruikt voor het zoeken naar Overeenkomsten GOKB."
 }
