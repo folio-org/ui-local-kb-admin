@@ -1,5 +1,7 @@
 # Change history for ui-local-kb-admin
 
+## 9.2.0 IN PROGRESS
+
 ## 9.1.0 2026-04-17
   * ERM-3860: Support ResourceDeletionJob job type in Local KB Admin UI
   * ERM-3858: ui-local-kb-admin: include global permissions in package.json base permissions
