@@ -1,6 +1,11 @@
 # Change history for ui-local-kb-admin
 
-## 9.1.0 IN PROGRESS
+## 9.1.0 2026-04-17
+  * ERM-3860: Support ResourceDeletionJob job type in Local KB Admin UI
+  * ERM-3858: ui-local-kb-admin: include global permissions in package.json base permissions
+  * ERM-3833: Support new job types in Local KB Admin UI
+  * ERM-3719: Replace deprecated components from erm-components
+  * ERM-3702: Agreements: Use external data source for GOKb URL in search configuration
 
 ## 9.0.0 2025-03-13
   * ERM-3613 *BREAKING* Stripes v10 dependencies update
