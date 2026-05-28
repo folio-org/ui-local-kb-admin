@@ -119,7 +119,7 @@
     "settings.proxyServerSettings.callout.delete.error": "プロキシ サーバー設定を削除するときにエラーが発生しました  {error}",
     "settings.proxyServerSettings.nameExists": "この名前はすでに存在します",
     "settings.proxyServerSettings.urlCustomizationCode.helpers": "Helpers: insertAfter, insertAfterAll, insertBefore, insertBeforeAll, urlEncode, removeProtocol, replace",
-    "jobType": "Job Type",
+    "jobType": "ジョブ タイプ",
     "appMenu.keyboardShortcuts": "キーボードショートカット",
     "job.delete.heading.org.olf.general.jobs.TitleIngestJob": "Delete JSON title ingest job",
     "job.delete.message.org.olf.general.jobs.TitleIngestJob": "JSON title ingest job <strong>{name}</strong> will be <strong>deleted</strong>.",

@@ -156,7 +156,7 @@
     "job.created.success.org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "<strong>Naive match key assignment job created </strong>: {name}",
     "org.olf.general.jobs.IdentifierReassignmentJob": "Zmiana identyfikatora",
     "org.olf.general.jobs.ResourceRematchJob": "Ponowne dopasowanie zasobów",
-    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Przypisanie klucza dopasowania naiwnego",
+    "org.olf.general.jobs.NaiveMatchKeyAssignmentJob": "Proste przypisanie klucza dopasowania",
     "settings.externalDataSources.edit": "Edycja {name}",
     "settings.externalDataSources.lastChecked": "Ostatnio sprawdzony",
     "settings.externalDataSources.cursor": "Kursor",
