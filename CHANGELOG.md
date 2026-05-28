@@ -1,6 +1,7 @@
 # Change history for ui-local-kb-admin
 
-## 9.2.0 IN PROGRESS
+## 9.1.1 2026-05-28
+  * Updated dependencies for Trillium release
 
 ## 9.1.0 2026-04-17
   * ERM-3860: Support ResourceDeletionJob job type in Local KB Admin UI
