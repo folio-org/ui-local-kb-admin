@@ -166,5 +166,6 @@
     "org.olf.general.jobs.PackageTriggerResyncJob": "Повторна синхронізація тригерних пакетів",
     "org.olf.general.jobs.ExternalEntitlementSyncJob": "Зовнішні entitlements",
     "org.olf.general.jobs.ResourceDeletionJob": "Видалити зміст пакета",
-    "settings.externalDataSources.warn.multipleKbs": "<strong>Попередження</strong>: Існує більше одного активного джерела даних GOKB (глобальна відкрита база даних). Рекомендується мати одне активне джерело GOKB. Перше активне джерело в таблиці (список в алфавітному порядку) буде використано для пошуку Угод GOKB."
+    "settings.externalDataSources.warn.multipleKbs": "<strong>Попередження</strong>: Існує більше одного активного джерела даних GOKB (глобальна відкрита база даних). Рекомендується мати одне активне джерело GOKB. Перше активне джерело в таблиці (список в алфавітному порядку) буде використано для пошуку Угод GOKB.",
+    "org.olf.general.jobs.EHoldingsEntitlementSyncJob": "External eHoldings entitlements"
 }
