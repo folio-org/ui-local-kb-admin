@@ -30,6 +30,7 @@ export default class JobFilters extends React.Component {
     class: [
       { value: 'Title harvester', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.TitleIngestJob" /> },
       { value: 'Package harvester', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageIngestJob" /> },
+      { value: 'Trigger package on demand sync', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackagePullJob" /> },
       { value: 'File import', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.PackageImportJob" /> },
       { value: 'Identifier reassignment', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.IdentifierReassignmentJob" /> },
       { value: 'Resource rematch', label: <FormattedMessage id="ui-local-kb-admin.org.olf.general.jobs.ResourceRematchJob" /> },

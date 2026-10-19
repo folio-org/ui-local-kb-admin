@@ -54,6 +54,7 @@ const JobsRoute = ({
         name: 'class',
         values: [
           { name: 'Package harvester', value: 'org.olf.general.jobs.PackageIngestJob' },
+          { name: 'Trigger package on demand sync', value: 'org.olf.general.jobs.PackagePullJob' },
           { name: 'Title harvester', value: 'org.olf.general.jobs.TitleIngestJob' },
           { name: 'File import', value: 'org.olf.general.jobs.PackageImportJob' },
           { name: 'Identifier reassignment', value: 'org.olf.general.jobs.IdentifierReassignmentJob' },
